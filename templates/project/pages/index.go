@@ -54,6 +54,6 @@ func CreatePages(
 		_ = router.Event(route, pages)
 	})
 
-	router.Service(PageEventRoute, PageRoute, pages, "HEAD", "GET")
+	router.HttpService(PageRoute, pages, "HEAD", "GET")
 	return pages, nil
 }
