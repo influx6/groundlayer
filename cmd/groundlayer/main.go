@@ -75,7 +75,7 @@ func main() {
 
 					var jobs njobs.Jobs
 
-					for _, nextFile := range directoryMapping {
+					var buildJob = func(nextFile string) error {
 						var assetData, assetErr = templates.GzipAsset(nextFile)
 						if assetErr != nil {
 							return nerror.WrapOnly(assetErr)
@@ -98,22 +98,33 @@ func main() {
 							return nerror.WrapOnly(contentReadErr)
 						}
 
+						var contentString = nunsafe.Bytes2String(contentBytes)
 						for targetValue, replacementValue := range stringSwitchMap {
-							var targetValueBytes = nunsafe.String2Bytes(targetValue)
-							var replacementValueBytes = nunsafe.String2Bytes(replacementValue)
-							contentBytes = bytes.ReplaceAll(contentBytes, targetValueBytes, replacementValueBytes)
+							contentString = strings.ReplaceAll(contentString, targetValue, replacementValue)
 						}
 
 						var partJob njobs.Jobs
 						partJob.Add(njobs.Mkdir(path.Dir(targetFile), 0777))
 						partJob.Add(njobs.Println("Created: %s", os.Stdout))
-						partJob.Add(njobs.File(path.Base(targetFile), 0777, bytes.NewReader(contentBytes)))
+						partJob.Add(njobs.File(path.Base(targetFile), 0777, bytes.NewReader(nunsafe.String2Bytes(contentString))))
 						partJob.Add(njobs.Println("Created: %s", os.Stdout))
 						partJob.Add(njobs.JobFunction(func(v interface{}) (interface{}, error) {
 							return v, reader.Close()
 						}))
 
 						jobs.Add(njobs.MoveLastForward(partJob.Do))
+						return nil
+					}
+
+					var buildErr error
+					for _, nextFile := range directoryMapping {
+						if buildErr = buildJob(nextFile); buildErr != nil {
+							break
+						}
+					}
+
+					if buildErr != nil {
+						return nerror.WrapOnly(buildErr)
 					}
 
 					var goModFunction = njobs.ExecuteCommand(ctx.Context, projectRoot, "go mod tidy", nil, nil, map[string]string{})
