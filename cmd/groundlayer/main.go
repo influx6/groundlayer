@@ -54,12 +54,12 @@ func main() {
 					log.Println("Creating project for: ", packagePath)
 					log.Println("Using package name: ", packageName)
 
-					var stringSwitchMap = map[string]string{
-						"github.com/influx6/groundlayer/templates/project": packagePath,
-						"project":   packageName,
-						"[project]": packageName,
-						"[PROJECT]": strings.ToUpper(packageName),
-						"PROJECT_":  strings.ToUpper(packageName) + "_",
+					var stringSwitchMap = [][]string{
+						{"github.com/influx6/groundlayer/templates/project", packagePath},
+						{"project", packageName},
+						{"[project]", packageName},
+						{"[PROJECT]", strings.ToUpper(packageName)},
+						{"PROJECT_", strings.ToUpper(packageName) + "_"},
 					}
 
 					var nameSwitchMap = map[string]string{
@@ -99,14 +99,14 @@ func main() {
 						}
 
 						var contentString = nunsafe.Bytes2String(contentBytes)
-						for targetValue, replacementValue := range stringSwitchMap {
-							contentString = strings.ReplaceAll(contentString, targetValue, replacementValue)
+						for _, opList := range stringSwitchMap {
+							contentString = strings.ReplaceAll(contentString, opList[0], opList[1])
 						}
 
 						var partJob njobs.Jobs
 						partJob.Add(njobs.Mkdir(path.Dir(targetFile), 0777))
 						partJob.Add(njobs.Println("Created: %s", os.Stdout))
-						partJob.Add(njobs.File(path.Base(targetFile), 0777, bytes.NewReader(nunsafe.String2Bytes(contentString))))
+						partJob.Add(njobs.File(path.Base(targetFile), 0777, strings.NewReader(contentString)))
 						partJob.Add(njobs.Println("Created: %s", os.Stdout))
 						partJob.Add(njobs.JobFunction(func(v interface{}) (interface{}, error) {
 							return v, reader.Close()
