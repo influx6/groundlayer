@@ -51,6 +51,8 @@ func main() {
 					}
 
 					var packageName = path.Base(packagePath)
+					log.Println("Creating project for: ", packagePath)
+					log.Println("Using package name: ", packageName)
 
 					var stringSwitchMap = map[string]string{
 						"github.com/influx6/groundlayer/templates/project": packagePath,
