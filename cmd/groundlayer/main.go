@@ -121,7 +121,7 @@ func main() {
 						log.Println("Initializing go modules using: go mod tidy ...")
 						var res, err = goModFunction.Do(i)
 						if err != nil {
-							log.Printf("Running go mod failed: \n%s\n", err)
+							log.Println("go mod tidy failed: You will need to manually do this yourself it seems! :)")
 						}
 						return res, nil
 					}))
