@@ -1,0 +1,63 @@
+{
+  "name": "void",
+  "version": "0.0.1",
+  "description": "A library for the footloose life in web development",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "npx lerna run tsc",
+    "build": "npm run tsc && npm run dist",
+    "unminified": "npx browserify --debug packages/voidgram/lib/voidgram/src/index.js -o web/void.js",
+    "minified": "npx browserify -p tinyify packages/voidgram/lib/voidgram/src/index.js -o web/void.min.js",
+    "example_unminified": "npx browserify --debug packages/voidgram/lib/voidgram/src/index.js -o examples/web/void.js",
+    "example_minified": "npx browserify -p tinyify packages/voidgram/lib/voidgram/src/index.js -o examples/web/void.min.js",
+    "dist": "npm run minified && npm run unminified && npm run example_minified && npm run example_unminified",
+    "format": "npx prettier --write \"packages/**/*.ts\" \"packages/**/*.js\"",
+    "publish": "npm run build && lerna publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influx6/groundlayer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/influx6/groundlayer/issues"
+  },
+  "homepage": "https://github.com/influx6/groundlayer#readme",
+  "devDependencies": {
+    "@babel/parser": "^7.4.3",
+    "@babel/types": "^7.4.0",
+    "@types/jest": "^24.0.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "browserify": "^16.2.3",
+    "chai": "^4.2.0",
+    "dom-testing-library": "^4.0.1",
+    "jest": "^24.7.1",
+    "jsdom": "^15.0.0",
+    "jsdom-global": "^3.0.2",
+    "lerna": "^3.22.1",
+    "mocha": "^6.1.4",
+    "parcel": "^1.12.3",
+    "parcel-bundler": "^1.12.3",
+    "rollup": "^1.10.0",
+    "source-map-loader": "^0.2.4",
+    "tinyify": "^2.5.0",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.1",
+    "watchify": "^3.11.1",
+    "yarn": "^1.22.4"
+  },
+  "dependencies": {
+    "@types/css": "0.0.31",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^11.13.5",
+    "csstype": "^2.6.4",
+    "extend": "^2.0.2",
+    "promise-polyfill": "8.1.0",
+    "whatwg-fetch": "^3.0.0"
+  }
+}

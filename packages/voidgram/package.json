@@ -1,0 +1,36 @@
+{
+  "name": "@void/voidgram",
+  "version": "0.0.2",
+  "description": "The void project",
+  "keywords": [
+    "void", "voidgram"
+  ],
+  "author": "Alex Ewetumo <trinoxf@gmail.com>",
+  "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/voidgram#readme",
+  "license": "MIT",
+  "typings": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "test": "tests"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influx6/groundlayer.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/influx6/groundlayer/issues"
+  },
+  "gitHead": "20a0012478de66d5d71c0626c74a938985025107"
+}

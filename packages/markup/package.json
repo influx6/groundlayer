@@ -1,0 +1,45 @@
+{
+  "name": "@void/markup",
+  "version": "0.0.2",
+  "description": "Void markup library for html generation",
+  "keywords": [
+    "markup", "void markup"
+  ],
+  "author": "Alex Ewetumo <trinoxf@gmail.com>",
+  "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/markup#readme",
+  "license": "MIT",
+  "main": "lib/markup.js",
+  "typings": "lib/markup.d.ts",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "test": "tests"
+  },
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@types/css": "0.0.31",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^11.13.5",
+    "csstype": "^2.6.4",
+    "extend": "^2.0.2",
+    "promise-polyfill": "8.1.0",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influx6/groundlayer.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/influx6/groundlayer/issues"
+  },
+  "gitHead": "20a0012478de66d5d71c0626c74a938985025107"
+}

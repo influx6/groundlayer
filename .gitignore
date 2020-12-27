@@ -1,0 +1,11 @@
+.DS_Store
+*.bin
+*.exec
+*.log
+*.prof
+lib/*.js
+node_modules
+.idea
+packages/*/lib
+
+

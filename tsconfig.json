@@ -1,0 +1,29 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+		"module": "commonjs",
+        "pretty": true,
+        "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "allowJs": true,
+        "declaration": true,
+        "noLib": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es6",
+        "lib": ["es6", "dom"]
+    },
+    "include": [
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "**/*.test.ts"
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        /* ... */
+    }
+}

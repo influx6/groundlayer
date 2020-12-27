@@ -1,0 +1,45 @@
+{
+  "name": "@void/promises",
+  "version": "0.0.2",
+  "description": "Void promises library",
+  "keywords": [
+    "void promises"
+  ],
+  "author": "Alex Ewetumo <trinoxf@gmail.com>",
+  "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/promises#readme",
+  "license": "MIT",
+  "typings": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "test": "tests"
+  },
+  "dependencies": {
+    "@types/css": "0.0.31",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^11.13.5",
+    "csstype": "^2.6.4",
+    "extend": "^2.0.2",
+    "promise-polyfill": "8.1.0",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influx6/groundlayer.git"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/influx6/groundlayer/issues"
+  },
+  "gitHead": "20a0012478de66d5d71c0626c74a938985025107"
+}

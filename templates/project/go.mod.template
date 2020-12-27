@@ -1,0 +1,3 @@
+module github.com/influx6/groundlayer/templates/project
+
+go 1.15
