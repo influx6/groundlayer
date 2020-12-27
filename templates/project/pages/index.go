@@ -16,9 +16,8 @@ import (
 )
 
 const (
-	PagePrefix     = "/pages"
-	PageRoute      = "/pages/*path" // *path tells the router to match anything after the /pages
-	PageEventRoute = "/pages/*"
+	PagePrefix = "/pages"
+	PageRoute  = "/pages/*path" // *path tells the router to match anything after the /pages
 )
 
 func CreatePages(
