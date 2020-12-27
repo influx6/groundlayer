@@ -49,7 +49,9 @@ func CreatePages(
 		stack.Message("Received new page route").String("route", route).End()
 		njson.ReleaseLogStack(stack)
 
-		router
+		// add event for route, so that event pipelines can also request page
+		// based routes through pubsub.
+		_ = router.Event(route, pages)
 	})
 
 	router.Service(PageEventRoute, PageRoute, pages, "HEAD", "GET")
