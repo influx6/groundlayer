@@ -189,6 +189,10 @@ func (psm *PageSessionManager) NewSession(t sabuhp.Transport) (*Page, string, er
 		psm.sessions[ps.Id.String()] = ps
 
 		ps.Page.OnPageAdd(psm.manageAddPageRoute)
+
+		// notify about this page's route.
+		psm.manageAddPageRoute(ps.Page.RoutePath, ps.Page)
+
 		session <- ps
 	}
 

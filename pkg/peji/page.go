@@ -63,10 +63,11 @@ func NewPageUsingRouter(routePath string, layout Layout, router *Mux) *Page {
 	p.Name = routePath
 	p.Layout = layout
 	p.Router = router
+	p.LiveRegistry = NewDOMRegistry()
+	p.Registry = NewDOMRegistry()
+	p.LiveRouteMapping = plain.NewStringMap(10)
 	p.RoutePath = handlePath(routePath)
 	p.AnyRouteInPage = handlePath(routePath, "*path")
-
-	fmt.Printf("NewPage: %q -> %q -- %q \n", routePath, p.RoutePath, p.AnyRouteInPage)
 
 	var pPointer = &p
 	var handler = HandlerFunc(func(d Data) *domu.Node {
@@ -75,6 +76,8 @@ func NewPageUsingRouter(routePath string, layout Layout, router *Mux) *Page {
 
 	p.Router.Serve(p.RoutePath, handler)
 	p.Router.Serve(p.AnyRouteInPage, handler)
+	p.notifyOnPage(p.RoutePath, pPointer)
+
 	return &p
 }
 
