@@ -6,7 +6,6 @@ import (
 
 	"github.com/influx6/npkg/nenv"
 	"github.com/influx6/npkg/nerror"
-	"github.com/influx6/npkg/njson"
 	"github.com/influx6/sabuhp/ochestrator"
 
 	"github.com/influx6/groundlayer/pkg/peji"
@@ -41,10 +40,6 @@ func CreatePages(
 	var router = station.Router()
 	pages.AddOnPageRoute(func(route string, _ *peji.Pages) {
 		_ = router.Event(route, pages)
-
-		var stack = njson.Log(logger)
-		stack.Message("Added new page route as event topic").String("route", route).End()
-		njson.ReleaseLogStack(stack)
 	})
 
 	if addErr := pages.Add("hello", hello.CreateHelloWorldPage); addErr != nil {
