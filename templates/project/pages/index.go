@@ -39,20 +39,18 @@ func CreatePages(
 		not_found.NotFound,
 	)
 
+	var router = station.Router()
+	pages.AddOnPageRoute(func(route string, _ *peji.Pages) {
+		_ = router.Event(route, pages)
+		var stack = njson.Log(logger)
+
+		stack.Message("Added new page route as event topic").String("route", route).End()
+		njson.ReleaseLogStack(stack)
+	})
+
 	if addErr := pages.Add("hello", hello.CreateHelloWorldPage); addErr != nil {
 		return nil, nerror.WrapOnly(addErr)
 	}
-
-	var router = station.Router()
-	pages.AddOnPageRoute(func(route string, _ *peji.Page) {
-		var stack = njson.Log(logger)
-		stack.Message("Received new page route").String("route", route).End()
-		njson.ReleaseLogStack(stack)
-
-		// add event for route, so that event pipelines can also request page
-		// based routes through pubsub.
-		_ = router.Event(route, pages)
-	})
 
 	router.HttpService(PageRoute, pages, "HEAD", "GET")
 	return pages, nil

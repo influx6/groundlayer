@@ -76,8 +76,6 @@ func NewPageUsingRouter(routePath string, layout Layout, router *Mux) *Page {
 
 	p.Router.Serve(p.RoutePath, handler)
 	p.Router.Serve(p.AnyRouteInPage, handler)
-	p.notifyOnPage(p.RoutePath, pPointer)
-
 	return &p
 }
 
@@ -163,13 +161,13 @@ func (pg *Page) ServeLive(route string, handler Handler) {
 	pg.Router.Serve(targetRouteWithWildcard, handler)
 }
 
-// GetRouting returns the route for giving name.
+// GetRouting returns the route for giving routePath.
 func (pg *Page) GetRouting(name string) string {
 	pg.check()
 	return pg.LiveRouteMapping.Get(name)
 }
 
-// GetStatic returns the DOM for giving name, if not found, nil is returned.
+// GetStatic returns the DOM for giving routePath, if not found, nil is returned.
 func (pg *Page) Static(name string) DOM {
 	pg.check()
 
@@ -179,7 +177,7 @@ func (pg *Page) Static(name string) DOM {
 	return pg.Registry.Get(name)
 }
 
-// GetLive returns the DOM for giving name, if not found, nil is returned.
+// GetLive returns the DOM for giving routePath, if not found, nil is returned.
 func (pg *Page) Live(route string) DOM {
 	pg.check()
 
@@ -193,7 +191,7 @@ func (pg *Page) Live(route string) DOM {
 	return pg.LiveRegistry.Get(route)
 }
 
-// Retire retires the dom (live or static) associated with the name
+// Retire retires the dom (live or static) associated with the routePath
 // and every route associated with it.
 func (pg *Page) Retire(name string) {
 	pg.check()
@@ -215,11 +213,11 @@ func (pg *Page) Retire(name string) {
 	}
 }
 
-// AddStatic adds a new name mapping for a provided list, ensuring these
+// AddStatic adds a new routePath mapping for a provided list, ensuring these
 // are referenced with giving component, if there is more than 1 item then they
-// are treated as a whole and referenced by provided name.
+// are treated as a whole and referenced by provided routePath.
 //
-// Note: It clears all live routes for this giving name, if we are replacing
+// Note: It clears all live routes for this giving routePath, if we are replacing
 // an existing live key.
 func (pg *Page) AddStatic(name string, items ...DOM) {
 	pg.check()
@@ -270,7 +268,7 @@ func (pg *Page) AddLive(route string, targetName string) DOM {
 
 	// if we do not have such a registry, then ignore
 	if !pg.HasStatic(targetName) {
-		panic(fmt.Sprintf("no component with target name %s", targetName))
+		panic(fmt.Sprintf("no component with target routePath %s", targetName))
 	}
 
 	if pg.Registry.Has(targetName) {

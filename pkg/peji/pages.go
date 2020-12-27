@@ -42,7 +42,7 @@ type Logger interface {
 	Log(json *njson.JSON)
 }
 type PageSessionManager struct {
-	name              string
+	routePath         string
 	maxIdle           time.Duration
 	idleCheckInterval time.Duration
 	onAddRoute        OnPage
@@ -60,7 +60,7 @@ type PageSessionManager struct {
 
 func NewPageSessionManager(
 	ctx context.Context,
-	name string,
+	routePath string,
 	maxIdle time.Duration,
 	idleCheckInterval time.Duration,
 	creator PageCreator,
@@ -68,7 +68,7 @@ func NewPageSessionManager(
 ) *PageSessionManager {
 	var newCtx, canceler = context.WithCancel(ctx)
 	return &PageSessionManager{
-		name:              name,
+		routePath:         routePath,
 		ctx:               newCtx,
 		canceler:          canceler,
 		maxIdle:           maxIdle,
@@ -82,7 +82,7 @@ func NewPageSessionManager(
 }
 
 func (psm *PageSessionManager) GetName() string {
-	return psm.name
+	return psm.routePath
 }
 
 func (psm *PageSessionManager) Wait() {
@@ -114,7 +114,7 @@ func (psm *PageSessionManager) Stat() (SessionStat, error) {
 
 	psm.doFunc <- func() {
 		var stat SessionStat
-		stat.PageName = psm.name
+		stat.PageName = psm.routePath
 		stat.Sessions = map[string]time.Time{}
 		stat.TotalSessions = len(psm.sessions)
 
@@ -185,14 +185,10 @@ func (psm *PageSessionManager) NewSession(t sabuhp.Transport) (*Page, string, er
 		var ps PageSession
 		ps.Id = nxid.New()
 		ps.lastUsed = time.Now()
-		ps.Page = psm.Creator(psm.name, t)
+		ps.Page = psm.Creator(psm.routePath, t)
 		psm.sessions[ps.Id.String()] = ps
 
 		ps.Page.OnPageAdd(psm.manageAddPageRoute)
-
-		// notify about this page's route.
-		psm.manageAddPageRoute(ps.Page.RoutePath, ps.Page)
-
 		session <- ps
 	}
 
@@ -244,6 +240,8 @@ doLoop:
 }
 
 var _ sabuhp.TransportResponse = (*Pages)(nil)
+
+type OnPages func(route string, p *Pages)
 
 // Pages exists to provider an organization
 // around sessions and pages.
@@ -385,9 +383,14 @@ func (p *Pages) Stats() PagesStat {
 
 // GetManager returns page creator registered for a giving page page
 func (p *Pages) Get(pageName string) (*PageSessionManager, error) {
-	var prefixPage = cleanAllSlashes(handlePath(pageName))
+	var pageHandle = cleanAllSlashes(handlePath(pageName))
+	var prefixPage = cleanAllSlashes(handlePath(p.prefix, pageName))
+
 	p.sl.RLock()
 	var manager, exists = p.managers[prefixPage]
+	if !exists {
+		manager, exists = p.managers[pageHandle]
+	}
 	p.sl.RUnlock()
 
 	if !exists {
@@ -398,9 +401,14 @@ func (p *Pages) Get(pageName string) (*PageSessionManager, error) {
 
 // HasPage returns true/false if a giving page exists.
 func (p *Pages) Has(pageName string) bool {
-	var prefixPage = cleanAllSlashes(handlePath(pageName))
+	var pageHandle = cleanAllSlashes(handlePath(pageName))
+	var prefixPage = cleanAllSlashes(handlePath(p.prefix, pageName))
 	p.sl.RLock()
 	if _, exists := p.managers[prefixPage]; exists {
+		p.sl.RUnlock()
+		return true
+	}
+	if _, exists := p.managers[pageHandle]; exists {
 		p.sl.RUnlock()
 		return true
 	}
@@ -408,11 +416,13 @@ func (p *Pages) Has(pageName string) bool {
 	return false
 }
 
-// AddCreator adds a new PageCreator for a giving page name.
-// It returns true/false based on whether the name and creator was registered or if there was name conflict.
+// AddCreator adds a new PageCreator for a giving page routePath.
+// It returns true/false based on whether the routePath and creator was registered or if there was routePath conflict.
 func (p *Pages) Add(pageName string, creatorFunc PageCreator) error {
-	var prefixPage = cleanAllSlashes(handlePath(pageName))
-	var prefixPageForMore = cleanAllSlashes(handlePath(pageName, "*path"))
+	var prefixPage = cleanAllSlashes(handlePath(p.prefix, pageName))
+
+	var routerPath = cleanAllSlashes(handlePath(pageName))
+	var routerPathForMore = cleanAllSlashes(handlePath(p.prefix, pageName, "*path"))
 
 	if p.Has(prefixPage) {
 		return nerror.New("already exists")
@@ -436,13 +446,16 @@ func (p *Pages) Add(pageName string, creatorFunc PageCreator) error {
 	p.sl.Unlock()
 
 	var handler = createHandler(prefixPage, manager, p.tr)
-	p.router.Serve(prefixPage, handler)
-	p.router.Serve(prefixPageForMore, handler)
+	p.router.Serve(routerPath, handler)
+	p.router.Serve(routerPathForMore, handler)
+	p.onNewPage.Emit(prefixPage, nil)
 	return nil
 }
 
-func (p *Pages) AddOnPageRoute(cb OnPage) {
-	p.onNewPage.Add(cb)
+func (p *Pages) AddOnPageRoute(cb OnPages) {
+	p.onNewPage.Add(func(route string, _ *Page) {
+		cb(route, p)
+	})
 }
 
 func (p *Pages) Handle(message *sabuhp.Message, tr sabuhp.Transport) sabuhp.MessageErr {

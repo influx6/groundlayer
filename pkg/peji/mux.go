@@ -69,7 +69,7 @@ type MuxConfig struct {
 }
 
 // Mux is Request multiplexer.
-// It matches an event name or http url pattern to
+// It matches an event routePath or http url pattern to
 // a specific TransportHandler which will be registered
 // to the provided transport for handling specific events.
 type Mux struct {

@@ -84,6 +84,78 @@ func TestPages(t *testing.T) {
 	pages.Wait()
 }
 
+func TestPagesWithNotification(t *testing.T) {
+	var newCtx, canceler = context.WithCancel(context.Background())
+
+	var listeners = map[string][]sabuhp.TransportResponse{}
+	var transport = &testingutils.TransportImpl{
+		ListenFunc: func(topic string, handler sabuhp.TransportResponse) sabuhp.Channel {
+			listeners[topic] = append(listeners[topic], handler)
+			return &testingutils.NoPubSubChannel{}
+		},
+		SendToAllFunc: func(data *sabuhp.Message, timeout time.Duration) error {
+			return nil
+		},
+		SendToOneFunc: func(data *sabuhp.Message, timeout time.Duration) error {
+			var targetListeners = listeners[data.Topic]
+			if len(targetListeners) > 0 {
+				_ = targetListeners[0].Handle(data, nil)
+			}
+			return nil
+		},
+	}
+
+	var logger = new(LoggerImpl)
+	var pages = peji.NewPages(newCtx, logger, "/pages/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+
+	var pageNotification = make(chan string, 2)
+	pages.AddOnPageRoute(func(route string, p *peji.Pages) {
+		pageNotification <- route
+	})
+
+	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+		sales.AddStatic("users", &UserComponent{})
+		return sales
+	}))
+
+	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+		about.AddStatic("users", &UserComponent{})
+		return about
+	}))
+
+	require.True(t, pages.Has("/pages/sales"))
+	require.True(t, pages.Has("/pages/about"))
+	require.False(t, pages.Has("/pages/salesforce"))
+
+	var manager, managerErr = pages.Get("/pages/sales")
+	require.NoError(t, managerErr)
+
+	var page, sessionId, sessionErr = manager.NewSession(nil)
+	require.NoError(t, sessionErr)
+	require.NotEmpty(t, sessionId)
+	require.NotNil(t, page)
+
+	var otherPage, getSessErr = manager.Session(sessionId)
+	require.NoError(t, getSessErr)
+	require.Equal(t, page, otherPage)
+
+	var pageStat = pages.Stats()
+	require.Equal(t, 2, pageStat.TotalPages)
+
+	var route = <-pageNotification
+	require.NotEmpty(t, route)
+	require.Equal(t, "/pages/sales", route)
+
+	var route2 = <-pageNotification
+	require.NotEmpty(t, route2)
+	require.Equal(t, "/pages/about", route2)
+
+	canceler()
+	pages.Wait()
+}
+
 func TestPagesRouter(t *testing.T) {
 	var newCtx, canceler = context.WithCancel(context.Background())
 

@@ -42,24 +42,24 @@ func (k *DOMRegistry) Delete(refName string) {
 	delete(k.list, refName)
 }
 
-// GetList returns the DOM matching giving type name.
+// GetList returns the DOM matching giving type routePath.
 func (k *DOMRegistry) GetList(refName string) []DOM {
 	return k.list[refName]
 }
 
-// Get returns the DOM matching giving type name.
+// Get returns the DOM matching giving type routePath.
 func (k *DOMRegistry) Get(refName string) DOM {
 	return k.single[refName]
 }
 
 // AddList adds giving component into underline register using the
-// type name for giving component.
+// type routePath for giving component.
 func (k *DOMRegistry) AddList(km []DOM, refName string) {
 	k.list[refName] = km
 }
 
 // Add adds giving component into underline register using the
-// type name for giving component.
+// type routePath for giving component.
 func (k *DOMRegistry) Add(km DOM, refName string) {
 	k.single[refName] = km
 }
