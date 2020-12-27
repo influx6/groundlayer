@@ -41,8 +41,8 @@ func CreatePages(
 	var router = station.Router()
 	pages.AddOnPageRoute(func(route string, _ *peji.Pages) {
 		_ = router.Event(route, pages)
-		var stack = njson.Log(logger)
 
+		var stack = njson.Log(logger)
 		stack.Message("Added new page route as event topic").String("route", route).End()
 		njson.ReleaseLogStack(stack)
 	})
