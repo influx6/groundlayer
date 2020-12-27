@@ -22,7 +22,7 @@ const (
 	DefaultPageIdlenessChecksInterval = 2 * time.Minute
 
 	HeaderSessionIdName         = "X-Void-Id"
-	QueryAndCookieSessionIdName = "_void_id"
+	QueryAndCookieSessionIdName = "_groundlayer_id"
 )
 
 type PageCreator func(name string, pubsub sabuhp.Transport) *Page

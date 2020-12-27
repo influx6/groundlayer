@@ -105,19 +105,19 @@ export class Socket {
   }
 
   // reset the socket to allow reconnection to address.
-  reset(): void {
+  reset(): groundlayer {
     this.attemptedConnects = 0;
     this.lastWait = OneSecond;
   }
 
-  end(): void {
+  end(): groundlayer {
     this.userClosed = true;
     this.reader.Closed(this);
     this.socket!.close();
     this.socket = null;
   }
 
-  _disconnected(event: Event): void {
+  _disconnected(event: Event): groundlayer {
     this.reader.Disconnected(event, this);
 
     this.disconnected = true;

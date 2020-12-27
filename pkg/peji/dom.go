@@ -11,10 +11,10 @@ import (
 
 const (
 	PlainHTML      = "text/html"
-	VoidHTML       = "application/void+html"
-	VoidHTMLDiff   = "application/void+html+diff"
-	VoidJSON       = "application/void+json"
-	VoidJSONStream = "application/void+json_stream"
+	VoidHTML       = "application/groundlayer+html"
+	VoidHTMLDiff   = "application/groundlayer+html+diff"
+	VoidJSON       = "application/groundlayer+json"
+	VoidJSONStream = "application/groundlayer+json_stream"
 )
 
 type Data struct {

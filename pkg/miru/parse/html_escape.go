@@ -51,7 +51,7 @@ func HTMLEscape(w io.Writer, b []byte) {
 
 // HTMLEscapeString returns the escaped HTML equivalent of the plain text data s.
 func HTMLEscapeString(s string) string {
-	// Avoid allocation if we can.
+	// Agroundlayer allocation if we can.
 	if !strings.ContainsAny(s, "'\"&<>\000") {
 		return s
 	}
@@ -134,7 +134,7 @@ func JSEscape(w io.Writer, b []byte) {
 
 // JSEscapeString returns the escaped JavaScript equivalent of the plain text data s.
 func JSEscapeString(s string) string {
-	// Avoid allocation if we can.
+	// Agroundlayer allocation if we can.
 	if strings.IndexFunc(s, jsIsSpecial) < 0 {
 		return s
 	}

@@ -131,7 +131,7 @@ const eof = -1
 // preceding the action are trimmed; conversely if it ends " -}}" the
 // leading spaces are trimmed. This is done entirely in the lexer; the
 // parser never sees it happen. We require an ASCII space to be
-// present to avoid ambiguity with things like "{{-3}}". It reads
+// present to agroundlayer ambiguity with things like "{{-3}}". It reads
 // better with the space present anyway. For simplicity, only ASCII
 // space does the job.
 const (

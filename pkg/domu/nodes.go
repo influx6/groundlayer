@@ -1747,7 +1747,7 @@ func (al *slidingList) RemoveIndex(index int) (*Node, error) {
 		al.items[index] = nil
 
 		// if this is really the last item within slice
-		// we need to slice down slice to avoid reference
+		// we need to slice down slice to agroundlayer reference
 		// nil slots at the end of slice.
 		// We also need to use this to decide if swapping is
 		// needed.

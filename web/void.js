@@ -157,7 +157,7 @@ process.title = 'browser';
 process.browser = true;
 process.env = {};
 process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
+process.version = ''; // empty string to agroundlayer regexp issues
 process.versions = {};
 
 function noop() {}
@@ -1064,7 +1064,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AFrame = exports.AnimationQueue = void 0;
+exports.AFrame = exports.AnimationQueue = groundlayer 0;
 const rafPolyfill = require("./raf-polyfill");
 class AnimationQueue {
     constructor() {
@@ -1259,7 +1259,7 @@ class ChangeManager {
 },{"./raf-polyfill":7}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mountTo = void 0;
+exports.mountTo = groundlayer 0;
 const rafPolyfill = require("./raf-polyfill");
 const Animation = require("./anime");
 const namespace = Object.assign(Object.assign({}, rafPolyfill), Animation);
@@ -1272,7 +1272,7 @@ exports.default = namespace;
 },{"./anime":5,"./raf-polyfill":7}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetRAF = void 0;
+exports.GetRAF = groundlayer 0;
 const now = (function () {
     if (self.hasOwnProperty('performance')) {
         return ((performance.now ? performance.now.bind(performance) : null) ||
@@ -1324,7 +1324,7 @@ exports.GetRAF = GetRAF;
 },{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DOMException = exports.Response = exports.Request = exports.Headers = exports.fetch = void 0;
+exports.DOMException = exports.Response = exports.Request = exports.Headers = exports.fetch = groundlayer 0;
 const fetch = require("whatwg-fetch");
 if (!self.fetch) {
     self.fetch = exports.fetch.fetch;

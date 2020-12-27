@@ -21,13 +21,13 @@ import (
 
 func main() {
 	var app = cli.App{
-		Name:     "void",
+		Name:     "groundlayer",
 		HelpName: "Void CLI",
-		Usage:    "void provides the CLI tool for the void library",
+		Usage:    "groundlayer provides the CLI tool for the groundlayer library",
 		Commands: []*cli.Command{
 			{
 				Name:        "new",
-				Description: "create a new void project",
+				Description: "create a new groundlayer project",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:  "dir",
@@ -160,7 +160,7 @@ func main() {
 			},
 			{
 				Name:        "view",
-				Description: "creates a void dom package generated from a set of go/html templates",
+				Description: "creates a groundlayer dom package generated from a set of go/html templates",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name: "dir",

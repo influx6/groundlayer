@@ -4,7 +4,7 @@ import * as animations from '../../animation/src';
 import * as http from '../../http/src';
 import * as promises from '../../promises/src';
 
-const voidgram = {
+const groundlayergram = {
     realm: {},
     animations: {},
     http: {},
@@ -13,15 +13,15 @@ const voidgram = {
 }
 
 // mount all to object
-realm.mountTo(voidgram)
-markup.mountTo(voidgram)
-animations.mountTo(voidgram)
-http.mountTo(voidgram)
-promises.mountTo(voidgram)
+realm.mountTo(groundlayergram)
+markup.mountTo(groundlayergram)
+animations.mountTo(groundlayergram)
+http.mountTo(groundlayergram)
+promises.mountTo(groundlayergram)
 
 if (window) {
     //@ts-ignore
-    window.voidgram = voidgram;
+    window.groundlayergram = groundlayergram;
 }
 
-export default voidgram
+export default groundlayergram

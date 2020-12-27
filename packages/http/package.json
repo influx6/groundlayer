@@ -1,9 +1,9 @@
 {
-  "name": "@void/http",
+  "name": "@groundlayer/http",
   "version": "0.0.2",
   "description": "Void http libraries",
   "keywords": [
-    "void http"
+    "groundlayer http"
   ],
   "author": "Alex Ewetumo <trinoxf@gmail.com>",
   "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/http#readme",

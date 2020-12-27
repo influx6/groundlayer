@@ -1,5 +1,5 @@
 {
-  "name": "void",
+  "name": "groundlayer",
   "version": "0.0.1",
   "description": "A library for the footloose life in web development",
   "main": "dist/index.js",
@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "npx lerna run tsc",
     "build": "npm run tsc && npm run dist",
-    "unminified": "npx browserify --debug packages/voidgram/lib/voidgram/src/index.js -o web/void.js",
-    "minified": "npx browserify -p tinyify packages/voidgram/lib/voidgram/src/index.js -o web/void.min.js",
-    "example_unminified": "npx browserify --debug packages/voidgram/lib/voidgram/src/index.js -o examples/web/void.js",
-    "example_minified": "npx browserify -p tinyify packages/voidgram/lib/voidgram/src/index.js -o examples/web/void.min.js",
+    "unminified": "npx browserify --debug packages/groundlayergram/lib/groundlayergram/src/index.js -o web/groundlayer.js",
+    "minified": "npx browserify -p tinyify packages/groundlayergram/lib/groundlayergram/src/index.js -o web/groundlayer.min.js",
+    "example_unminified": "npx browserify --debug packages/groundlayergram/lib/groundlayergram/src/index.js -o examples/web/groundlayer.js",
+    "example_minified": "npx browserify -p tinyify packages/groundlayergram/lib/groundlayergram/src/index.js -o examples/web/groundlayer.min.js",
     "dist": "npm run minified && npm run unminified && npm run example_minified && npm run example_unminified",
     "format": "npx prettier --write \"packages/**/*.ts\" \"packages/**/*.js\"",
     "publish": "npm run build && lerna publish"

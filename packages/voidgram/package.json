@@ -1,12 +1,12 @@
 {
-  "name": "@void/voidgram",
+  "name": "@groundlayer/groundlayergram",
   "version": "0.0.2",
-  "description": "The void project",
+  "description": "The groundlayer project",
   "keywords": [
-    "void", "voidgram"
+    "groundlayer", "groundlayergram"
   ],
   "author": "Alex Ewetumo <trinoxf@gmail.com>",
-  "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/voidgram#readme",
+  "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/groundlayergram#readme",
   "license": "MIT",
   "typings": "lib/index.d.ts",
   "main": "lib/index.js",

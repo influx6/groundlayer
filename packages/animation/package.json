@@ -1,9 +1,9 @@
 {
-  "name": "@void/animation",
+  "name": "@groundlayer/animation",
   "version": "0.0.2",
-  "description": "Animations for the void library",
+  "description": "Animations for the groundlayer library",
   "keywords": [
-    "void animations", "animations"
+    "groundlayer animations", "animations"
   ],
   "author": "Alex Ewetumo <trinoxf@gmail.com>",
   "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/animation#readme",

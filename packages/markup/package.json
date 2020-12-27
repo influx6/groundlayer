@@ -1,9 +1,9 @@
 {
-  "name": "@void/markup",
+  "name": "@groundlayer/markup",
   "version": "0.0.2",
   "description": "Void markup library for html generation",
   "keywords": [
-    "markup", "void markup"
+    "markup", "groundlayer markup"
   ],
   "author": "Alex Ewetumo <trinoxf@gmail.com>",
   "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/markup#readme",

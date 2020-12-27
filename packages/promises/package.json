@@ -1,9 +1,9 @@
 {
-  "name": "@void/promises",
+  "name": "@groundlayer/promises",
   "version": "0.0.2",
   "description": "Void promises library",
   "keywords": [
-    "void promises"
+    "groundlayer promises"
   ],
   "author": "Alex Ewetumo <trinoxf@gmail.com>",
   "homepage": "https://github.com/influx6/groundlayer/tree/master/packages/promises#readme",
