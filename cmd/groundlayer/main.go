@@ -115,6 +115,7 @@ func main() {
 
 					var goModFunction = njobs.ExecuteCommand(ctx.Context, projectRoot, "go mod tidy", nil, nil, map[string]string{})
 					jobs.Add(njobs.JobFunction(func(i interface{}) (interface{}, error) {
+						log.Println("Initializing go modules using: go mod tidy ...")
 						var res, err = goModFunction.Do(i)
 						if err != nil {
 							log.Printf("Running go mod failed: \n%s\n", err)
