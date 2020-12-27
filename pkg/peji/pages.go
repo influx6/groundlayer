@@ -45,6 +45,7 @@ type PageSessionManager struct {
 	name              string
 	maxIdle           time.Duration
 	idleCheckInterval time.Duration
+	onAddRoute        OnPage
 	Creator           PageCreator
 	sessions          map[string]PageSession
 	doFunc            chan func()
@@ -53,6 +54,8 @@ type PageSessionManager struct {
 	waiter            sync.WaitGroup
 	starter           sync.Once
 	ender             sync.Once
+	rl                sync.Mutex
+	routes            map[string]bool
 }
 
 func NewPageSessionManager(
@@ -61,6 +64,7 @@ func NewPageSessionManager(
 	maxIdle time.Duration,
 	idleCheckInterval time.Duration,
 	creator PageCreator,
+	onAddRoute OnPage,
 ) *PageSessionManager {
 	var newCtx, canceler = context.WithCancel(ctx)
 	return &PageSessionManager{
@@ -69,8 +73,10 @@ func NewPageSessionManager(
 		canceler:          canceler,
 		maxIdle:           maxIdle,
 		Creator:           creator,
+		onAddRoute:        onAddRoute,
 		idleCheckInterval: idleCheckInterval,
 		doFunc:            make(chan func(), 0),
+		routes:            map[string]bool{},
 		sessions:          map[string]PageSession{},
 	}
 }
@@ -181,6 +187,8 @@ func (psm *PageSessionManager) NewSession(t sabuhp.Transport) (*Page, string, er
 		ps.lastUsed = time.Now()
 		ps.Page = psm.Creator(psm.name, t)
 		psm.sessions[ps.Id.String()] = ps
+
+		ps.Page.OnPageAdd(psm.manageAddPageRoute)
 		session <- ps
 	}
 
@@ -190,6 +198,18 @@ func (psm *PageSessionManager) NewSession(t sabuhp.Transport) (*Page, string, er
 	case ss := <-session:
 		return ss.Page, ss.Id.String(), nil
 	}
+}
+
+func (psm *PageSessionManager) manageAddPageRoute(pageRoute string, p *Page) {
+	psm.rl.Lock()
+	if _, hasRoute := psm.routes[pageRoute]; hasRoute {
+		psm.rl.Unlock()
+		return
+	}
+	psm.routes[pageRoute] = true
+	psm.rl.Unlock()
+
+	psm.onAddRoute(pageRoute, p)
 }
 
 func (psm *PageSessionManager) manage() {
@@ -236,6 +256,7 @@ type Pages struct {
 	sl        sync.RWMutex
 	waiter    sync.WaitGroup
 	managers  map[string]*PageSessionManager
+	onNewPage *PageNotification
 }
 
 func WithPages(
@@ -276,6 +297,7 @@ func NewPages(
 		logger:    logger,
 		maxIdle:   maxIdle,
 		idleCheck: idleCheck,
+		onNewPage: NewPageNotification(),
 		managers:  map[string]*PageSessionManager{},
 		router: mixer.NewMux(mixer.MuxConfig{
 			RootPath: prefix,
@@ -392,7 +414,7 @@ func (p *Pages) Add(pageName string, creatorFunc PageCreator) error {
 		return nerror.New("already exists")
 	}
 
-	var manager = NewPageSessionManager(p.ctx, prefixPage, p.maxIdle, p.idleCheck, creatorFunc)
+	var manager = NewPageSessionManager(p.ctx, prefixPage, p.maxIdle, p.idleCheck, creatorFunc, p.onNewPage.Emit)
 	manager.Start()
 
 	p.waiter.Add(1)
@@ -413,6 +435,10 @@ func (p *Pages) Add(pageName string, creatorFunc PageCreator) error {
 	p.router.Serve(prefixPage, handler)
 	p.router.Serve(prefixPageForMore, handler)
 	return nil
+}
+
+func (p *Pages) AddOnPageRoute(cb OnPage) {
+	p.onNewPage.Add(cb)
 }
 
 func (p *Pages) Handle(message *sabuhp.Message, tr sabuhp.Transport) sabuhp.MessageErr {

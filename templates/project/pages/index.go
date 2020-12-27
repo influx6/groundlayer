@@ -4,18 +4,21 @@ import (
 	"context"
 	"time"
 
-	"github.com/influx6/groundlayer/pkg/peji"
 	"github.com/influx6/npkg/nenv"
 	"github.com/influx6/npkg/nerror"
+	"github.com/influx6/npkg/njson"
 	"github.com/influx6/sabuhp/ochestrator"
+
+	"github.com/influx6/groundlayer/pkg/peji"
 
 	"github.com/influx6/groundlayer/templates/project/pages/hello"
 	"github.com/influx6/groundlayer/templates/project/pages/not_found"
 )
 
 const (
-	PagePrefix = "/pages"
-	PageRoute  = "/pages/*path"
+	PagePrefix     = "/pages"
+	PageRoute      = "/pages/*path" // *path tells the router to match anything after the /pages
+	PageEventRoute = "/pages/*"
 )
 
 func CreatePages(
@@ -40,6 +43,15 @@ func CreatePages(
 		return nil, nerror.WrapOnly(addErr)
 	}
 
-	station.Router().HttpService(PageRoute, pages, "HEAD", "GET")
+	var router = station.Router()
+	pages.AddOnPageRoute(func(route string, _ *peji.Page) {
+		var stack = njson.Log(logger)
+		stack.Message("Received new page route").String("route", route).End()
+		njson.ReleaseLogStack(stack)
+
+		router
+	})
+
+	router.Service(PageEventRoute, PageRoute, pages, "HEAD", "GET")
 	return pages, nil
 }

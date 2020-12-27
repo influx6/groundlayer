@@ -33,6 +33,8 @@ func StaticDOMHandler(target string, page *Page) Handler {
 	})
 }
 
+type OnPage func(route string, p *Page)
+
 // Page implements the Document interface and represents
 // a single unique html page.
 type Page struct {
@@ -42,6 +44,7 @@ type Page struct {
 	AnyRouteInPage   string
 	Router           *Mux
 	Layout           Layout
+	onPageAdded      []OnPage
 	Last             *domu.Node
 	Registry         *DOMRegistry
 	LiveRegistry     *DOMRegistry
@@ -92,6 +95,10 @@ func (pg *Page) check() {
 	}
 }
 
+func (pg *Page) OnPageAdd(fn OnPage) {
+	pg.onPageAdded = append(pg.onPageAdded, fn)
+}
+
 func (pg *Page) SetReconciliation(b bool) {
 	pg.UseChanges = b
 }
@@ -118,6 +125,12 @@ func (pg *Page) Serve(d Data) *domu.Node {
 	return pg.Router.ServeRoute(d)
 }
 
+func (pg *Page) notifyOnPage(name string, p *Page) {
+	for _, fn := range pg.onPageAdded {
+		fn(name, p)
+	}
+}
+
 func (pg *Page) ServeStatic(name string, handler Handler) {
 	name = cleanName(name)
 	if !pg.HasStatic(name) {
@@ -126,6 +139,8 @@ func (pg *Page) ServeStatic(name string, handler Handler) {
 
 	var targetRoute = handlePath(pg.Name, name)
 	var targetRouteWithWildcard = handlePath(pg.Name, name, "*path")
+
+	pg.notifyOnPage(targetRoute, pg)
 
 	pg.Router.Serve(targetRoute, handler)
 	pg.Router.Serve(targetRouteWithWildcard, handler)
@@ -138,6 +153,8 @@ func (pg *Page) ServeLive(route string, handler Handler) {
 
 	var targetRoute = handlePath(path.Join(pg.Name, route))
 	var targetRouteWithWildcard = handlePath(pg.Name, route, "*path")
+
+	pg.notifyOnPage(targetRoute, pg)
 
 	pg.Router.Serve(targetRoute, handler)
 	pg.Router.Serve(targetRouteWithWildcard, handler)
