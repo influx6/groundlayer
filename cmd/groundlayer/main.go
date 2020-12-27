@@ -59,7 +59,7 @@ func main() {
 						"project":   packageName,
 						"[project]": packageName,
 						"[PROJECT]": strings.ToUpper(packageName),
-						"PROJECT_":  strings.ToUpper(packageName),
+						"PROJECT_":  strings.ToUpper(packageName) + "_",
 					}
 
 					var nameSwitchMap = map[string]string{
