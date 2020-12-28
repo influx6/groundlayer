@@ -7,7 +7,6 @@ package main
 import (
 	"bytes"
 	"context"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -144,7 +143,6 @@ func main() {
 							return nerror.WrapOnly(fileErr)
 						}
 
-						fmt.Printf("Content: %q\n", content)
 						envFileReader = bytes.NewBuffer(content)
 					}
 
