@@ -119,7 +119,7 @@ func (n *Node) RenderJSONNode() JSONNode {
 		})
 	}
 
-	n.kids.Each(func(node *Node, i int) bool {
+	n.EachChild(func(node *Node, i int) bool {
 		rootNode.Children = append(rootNode.Children, node.RenderJSONNode())
 		return true
 	})
@@ -194,7 +194,7 @@ func (n *Node) GetChangeStream() []JSONNode {
 
 		// if we have empty kids and we still have changed
 		// then we must be the target change then add parent.
-		if nm.kids.Empty() {
+		if len(nm.kids) == 0 {
 			changes = append(changes, n.RenderJSONNode())
 			return false
 		}

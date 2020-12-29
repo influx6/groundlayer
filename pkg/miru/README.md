@@ -168,9 +168,6 @@ to some need to pass this off to a function or to a custom function which append
 
 Hence, there exists 3 identifiers to be used: `dom`, `parentdom` and `rootdom`.
 
-##### dom 
-This will be transformed into the current parent where this 
-
 #### Noop directive
 The `noop` function call in Miru exists due to the fact that all function calls, fields, text, variables are automatically attached to 
 the current node which is the parent of others (where the final is the root node if no html exists). This occurs because Miru is a compiled
@@ -364,4 +361,27 @@ Html tags are now supported directly within the text parsing code, hence allowin
 {{else}}
 	No data to count
 {{end}}
+```
+
+### Theme Attributes
+The current templates had supports for theme attributes in [Tailwind](https://tailwindcss.com/) style.
+It allows specifying such values if so desired which will be applied and generated accordingly to the
+element.
+
+```go
+<p
+    class="bob"
+    theme=[
+        color-red-50
+        sm-padding-10
+        max-w
+        max-h
+        {{if and .User .User.Admin}}
+            bob
+        {{else}}
+            bob-10
+        {{end}}
+    ]
+    id=wan
+>It was you</p>
 ```

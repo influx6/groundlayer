@@ -35,6 +35,8 @@ var (
 
 	rootVar     = singleVar{Name: baseParentCtx}
 	htmlRootVar = singleVar{Name: baseNodeCtx}
+
+	allLineSpacesTabs = regexp.MustCompile(`[\n\f\r\t\[\]]+`)
 )
 
 var builtinFunctions = map[string]string{
@@ -192,6 +194,7 @@ type TextWriter struct {
 	funcBuilder        *strings.Builder
 	typeBuilder        *strings.Builder
 	inMethodDefinition bool
+	inHTMLAttr         bool
 }
 
 func (t *TextWriter) addImport(alias string, importPath string) {
@@ -230,6 +233,7 @@ func (t *TextWriter) swapBuilder(sd *strings.Builder) *strings.Builder {
 // ParseTree parses the tree with provided Treeset and parent.
 func (t *TextWriter) ParseTree() error {
 	t.addImport("peji", "github.com/influx6/groundlayer/pkg/peji")
+	t.addImport("styled", "github.com/influx6/groundlayer/pkg/styled")
 
 	var err = t.walk(t.base, t.base.Root, nil)
 	if err != nil {
@@ -238,9 +242,9 @@ func (t *TextWriter) ParseTree() error {
 	return nil
 }
 
-//func (t *TextWriter) walk(tree *parse.Tree, node parse.Node, parent parse.Node) error {
+// func (t *TextWriter) walk(tree *parse.Tree, node parse.Node, parent parse.Node) error {
 //	return t.walk(tree, node, parent, t.funcMaps.Komponents)
-//}
+// }
 
 func (t *TextWriter) walk(tree *parse.Tree, node parse.Node, parent parse.Node) error {
 	var tmp = getBuffer()
@@ -721,8 +725,19 @@ func (t *TextWriter) walkHTMLNode(tree *parse.Tree, node *parse.HTMLNode, parent
 	t.NewLine()
 
 	for _, attr := range node.Attr {
-		var attrName = t.newVar("attr")
-		t.NewHtmlListAttr(attrName, attr.Key)
+		var attrName string
+
+		if attr.IsTheme {
+			attrName = t.newVar("theme")
+		} else {
+			attrName = t.newVar("attr")
+		}
+
+		if attr.IsTheme {
+			t.NewHtmlTheme(attrName)
+		} else {
+			t.NewHtmlListAttr(attrName, attr.Key)
+		}
 		t.NewLine()
 
 		t.htmlQueue.pushSingle(attrName)
@@ -743,7 +758,13 @@ func (t *TextWriter) walkHTMLNode(tree *parse.Tree, node *parse.HTMLNode, parent
 		t.swapBuilder(currentBuffer)
 		releaseBuffer(htmlAttrContent)
 
-		t.AppendNode(nodeName, attrName)
+		if attr.IsTheme {
+			t.AssignNodeTheme(attrName, nodeName)
+		} else {
+			t.AppendNode(nodeName, attrName)
+		}
+
+		t.NewLine()
 		t.NewLine()
 	}
 
@@ -777,6 +798,7 @@ func (t *TextWriter) walkHTMLNode(tree *parse.Tree, node *parse.HTMLNode, parent
 }
 
 func (t *TextWriter) walkAttrValue(tree *parse.Tree, node parse.Node, parent parse.Node, varName string) error {
+	t.inHTMLAttr = true
 	switch value := node.(type) {
 	case *parse.TextNode:
 		var deQuoted = nunsafe.Bytes2String(value.Text)
@@ -789,9 +811,14 @@ func (t *TextWriter) walkAttrValue(tree *parse.Tree, node parse.Node, parent par
 		if err := t.walkHTMLPipeNode(tree, value.Pipe, parent); err != nil {
 			return nerror.WrapOnly(err)
 		}
+	case *parse.IfNode:
+		if err := t.walkIfNode(tree, value, parent); err != nil {
+			return nerror.WrapOnly(err)
+		}
 	default:
 		return nerror.New("unable to handle attr value for node %#v", node)
 	}
+	t.inHTMLAttr = false
 	return nil
 }
 
@@ -986,6 +1013,15 @@ func (t *TextWriter) walkTextNode(tree *parse.Tree, node *parse.TextNode, parent
 	var currentNode, ok = t.htmlQueue.peek().(singleVar)
 	if !ok {
 		return nerror.New("expected a singleVar in variable queue")
+	}
+
+	if t.inHTMLAttr {
+		var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(string(node.Text), ""))
+		for _, part := range strings.Split(text, " ") {
+			t.AddToAttr(currentNode.Name, part)
+			t.NewLine()
+		}
+		return nil
 	}
 
 	var content = string(node.Text)
@@ -1642,6 +1678,10 @@ func (t *TextWriter) NewText(varName string, text string) {
 	t.Write(fmt.Sprintf(`var %s = domu.Text(%q)`, varName, text))
 }
 
+func (t *TextWriter) AddToAttr(varName string, text string) {
+	t.Write(fmt.Sprintf(`%s.Add(%q)`, varName, text))
+}
+
 func (t *TextWriter) attachResultToNode(content string, node string) {
 	var attachToName, hasAttachFuncName = t.funcMaps.Funcs[attachNodeFuncName]
 	if !hasAttachFuncName {
@@ -1663,6 +1703,10 @@ func (t *TextWriter) NewHtmlListAttr(varName string, name string) {
 	t.Write(fmt.Sprintf(`var %s = domu.NewStringListAttr(%q, "")`, varName, name))
 }
 
+func (t *TextWriter) NewHtmlTheme(varName string) {
+	t.Write(fmt.Sprintf(`var %s = styled.ThemeDirective{}`, varName))
+}
+
 func (t *TextWriter) AddValueToHtmlListAttr(varName string, content string) {
 	t.Write(fmt.Sprintf(`%s.Add(%q)`, varName, content))
 }
@@ -1677,6 +1721,10 @@ func (t *TextWriter) NewComment(varName string, content string) {
 
 func (t *TextWriter) NewNode(varName string, nodeType int, tagName string, id string) {
 	t.Write(fmt.Sprintf(`var %s = domu.NewNode(%d, %q, %q)`, varName, nodeType, tagName, id))
+}
+
+func (t *TextWriter) AssignNodeTheme(rootName string, varName string) {
+	t.Write(fmt.Sprintf(`%s.Themes = %s`, varName, rootName))
 }
 
 func (t *TextWriter) AppendNode(rootName string, varName string) {

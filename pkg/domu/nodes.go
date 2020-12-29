@@ -7,13 +7,14 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"sync/atomic"
 	"time"
 
 	"github.com/influx6/npkg/natomic"
 	"github.com/influx6/npkg/nerror"
 	"github.com/influx6/npkg/nunsafe"
 	"github.com/influx6/npkg/nxid"
+
+	"github.com/influx6/groundlayer/pkg/styled"
 )
 
 const (
@@ -237,6 +238,7 @@ func (n NodeList) Mount(parent *Node) error {
 // root, next and previous siblings using a underline growing array as
 // the basis.
 type Node struct {
+	Themes      styled.ThemeDirective
 	Attrs       AttrList
 	Events      *EventHashList
 	parent      *Node
@@ -253,7 +255,7 @@ type Node struct {
 	index       *natomic.IntSwitch
 	next        *natomic.IntSwitch
 	prev        *natomic.IntSwitch
-	kids        *slidingList
+	kids        []*Node
 
 	err error
 }
@@ -280,10 +282,10 @@ func NewNode(nt NodeType, tagName string) *Node {
 
 	var child Node
 	child.nodeType = nt
-	child.tagName = tagName
-	child.kids = &slidingList{}
-	child.tid = nxid.New().String()
 	child.atid = child.tid
+	child.tagName = tagName
+	child.tid = nxid.New().String()
+	child.Themes = []string{}
 
 	child.Events = NewEventHashList()
 	child.next = &natomic.IntSwitch{}
@@ -318,37 +320,34 @@ func (n *Node) Clone(deepClone bool) *Node {
 	})
 
 	if deepClone {
-		n.kids.Each(func(node *Node, _ int) bool {
+		newNode.kids = make([]*Node, 0, n.ChildCount())
+		for _, node := range n.kids {
 			var newChildNode = node.Clone(deepClone)
 			newNode.AppendChild(newChildNode)
 			if err := newNode.Err(); err != nil {
-				return false
+				break
 			}
-			return true
-		})
+		}
 	}
 
 	return newNode
 }
 
-func (n *Node) EachChild(fn func(*Node, int) bool) {
-	n.kids.Each(fn)
+func (n *Node) Find(fn func(*Node, int) bool) (*Node, error) {
+	for index, node := range n.kids {
+		if fn(node, index) {
+			return node, nil
+		}
+	}
+	return nil, nerror.New("invalid op")
 }
 
-// SwapAll swaps provided node with myself within
-// parent list, the swapped node replaces me and
-// my children nodes list.
-func (n *Node) SwapAll(m *Node) error {
-	if n.parent == nil {
-		return ErrInvalidOp
+func (n *Node) EachChild(fn func(*Node, int) bool) {
+	for index, node := range n.kids {
+		if !fn(node, index) {
+			return
+		}
 	}
-
-	if err := n.parent.kids.SwapNode(n.index.Read(), m, false); err != nil {
-		return err
-	}
-
-	n.reset()
-	return nil
 }
 
 // Apply applies giving set of functions to the node.
@@ -524,18 +523,10 @@ func (n *Node) Reconcile(old *Node) bool {
 
 	// if total kids are different, more or less (does not matter)
 	// we know new node has changed either way.
-	if old.kids.Length() != n.kids.Length() {
+	if len(old.kids) != len(n.kids) {
 		n.changed = true
 		return true
 	}
-
-	// if we matched, then swap our ids to ensure we can locate old node
-	// in rendering.
-	// ensure our list is also sorted.
-	n.kids.SortList()
-
-	// ensure child list of old node is sorted.
-	old.kids.SortList()
 
 	var changed bool
 
@@ -543,8 +534,8 @@ func (n *Node) Reconcile(old *Node) bool {
 	// in anyway, so check the kids and do a check if there is
 	// a change, if we've maxed out kids in new then set others
 	// as removed.
-	old.kids.Each(func(node *Node, i int) bool {
-		newChild, err := n.kids.Get(i)
+	old.EachChild(func(node *Node, i int) bool {
+		newChild, err := n.Get(i)
 
 		// if we fail to find a node matching index, then mark
 		// as removed.
@@ -704,7 +695,7 @@ func (n *Node) renderAttributes(build io.Writer, indented bool) error {
 	var attrBuilder strings.Builder
 	var encoder = DOMAttrEncoderWith("", &attrBuilder)
 
-	if n.atid != n.tid {
+	if n.atid != n.tid && n.atid != "" {
 		if err = encoder.QuotedString("atid", n.atid); err != nil {
 			return err
 		}
@@ -882,7 +873,7 @@ func (n *Node) renderRoot(build io.Writer, indented bool, indentCount int, rende
 }
 
 func (n *Node) renderChildren(build io.Writer, indented bool, indentCount int, renderRemoved bool) (err error) {
-	n.kids.Each(func(node *Node, _ int) bool {
+	n.EachChild(func(node *Node, _ int) bool {
 		if err = node.renderNode(build, indented, indentCount, renderRemoved); err != nil {
 			return false
 		}
@@ -891,28 +882,15 @@ func (n *Node) renderChildren(build io.Writer, indented bool, indentCount int, r
 	return
 }
 
-// SwapNode swaps provided node with myself within parent's list. The swapped node
-// takes over my children node list.
-func (n *Node) SwapNode(m *Node) error {
-	if n.parent == nil {
-		return ErrInvalidOp
-	}
-
-	if err := n.parent.kids.SwapNode(n.index.Read(), m, true); err != nil {
-		return err
-	}
-
-	// reset my properties.
-	n.reset()
-	return nil
-}
-
 // Get returns a giving Node at giving index, if no removals
 // have being done before this call, then insertion order of
 // children nodes are maintained, else before using this method
 // ensure to call Node.Balance() to restore insertion order.
 func (n *Node) Get(index int) (*Node, error) {
-	return n.kids.Get(index)
+	if index >= len(n.kids) {
+		return nil, nerror.New("bad op")
+	}
+	return n.kids[index], nil
 }
 
 // RefID returns the reference id of giving node.
@@ -979,7 +957,7 @@ func (n *Node) findRefNodeFromList(ref []string) (*Node, error) {
 	}
 
 	var secondId = strings.TrimSpace(rest[0])
-	var targetNode, err = n.kids.Find(func(node *Node, _ int) bool {
+	var targetNode, err = n.Find(func(node *Node, _ int) bool {
 		return node.idAttr == secondId
 	})
 	if err != nil {
@@ -1018,20 +996,6 @@ func (n *Node) Parent() *Node {
 	return n.parent
 }
 
-// Remove removes this giving node from it's parent node list.
-func (n *Node) Remove() error {
-	if n.parent == nil {
-		return ErrInvalidOp
-	}
-
-	if _, err := n.parent.kids.RemoveAndSwap(n.index.Read()); err != nil {
-		return err
-	}
-
-	n.parent = nil
-	return nil
-}
-
 // Match returns true/false if provided node matches this node
 // exactly in type, name and attributes.
 func (n *Node) Match(other *Node) bool {
@@ -1066,11 +1030,28 @@ func (n *Node) Mount(parent *Node) {
 	parent.AppendChild(n)
 }
 
+func (n *Node) addChild(kid *Node) {
+	if len(n.kids) == cap(n.kids) {
+		var newKids = make([]*Node, cap(n.kids)*2)
+		var written = copy(newKids, n.kids)
+		n.kids = newKids[:written]
+	}
+
+	var last = len(n.kids)
+	n.kids = append(n.kids, kid)
+
+	kid.prev.Flip(last)
+	kid.index.Flip(len(n.kids))
+	kid.next.Flip(-1)
+
+	var lastChild = n.kids[last]
+	lastChild.next.Flip(len(n.kids))
+}
+
 // AppendChild adds new child into node tree creating a relationship of child
 // and parent.
 //
-// Comment and Text nodes can have children but they must be of the same
-// type as their parent.
+// Comment and Text nodes can't have children.
 //
 // Operation will fail if the node.Err() has an error.
 func (n *Node) AppendChild(kid *Node) {
@@ -1088,7 +1069,7 @@ func (n *Node) AppendChild(kid *Node) {
 	}
 
 	if n.Type() == CommentNode || n.Type() == TextNode {
-		n.SetErr(ErrInvalidOp)
+		n.SetErr(nerror.New("noop"))
 		return
 	}
 
@@ -1096,9 +1077,7 @@ func (n *Node) AppendChild(kid *Node) {
 		kid.EachChild(func(node *Node, _ int) bool {
 			var cloned = node.Clone(true)
 			cloned.parent = n
-			if _, addErr := n.kids.Add(cloned); addErr != nil {
-				n.SetErr(addErr)
-			}
+			n.addChild(cloned)
 			return true
 		})
 		return
@@ -1107,56 +1086,40 @@ func (n *Node) AppendChild(kid *Node) {
 	if kid.nodeType == CarrierNode {
 		kid.EachChild(func(node *Node, _ int) bool {
 			node.parent = n
-			if _, addErr := n.kids.Add(node); addErr != nil {
-				n.SetErr(addErr)
-			}
+			n.addChild(node)
 			return true
 		})
-		kid.kids.Clear()
+		kid.kids = kid.kids[:0]
 		return
 	}
 
-	if _, err := n.kids.Add(kid); err != nil {
-		n.SetErr(ErrInvalidOp)
-		return
-	}
-
+	n.addChild(kid)
 	kid.parent = n
-}
-
-// Balance runs optimization operations to the list of child nodes for
-// this node. Node uses a sliding list underneath which trades positional
-// guarantees (i.e consistently having a node at a giving index within the used list)
-// for efficient memory management and random access speed during write operations like remove
-// which can leave blank spots within underline list leaving your memory fragmented.
-//
-// This allows us the benefit of aggregating all write operations like remove an into a
-// single set of calls, which can then be balance at the end using this function with
-// little cost.
-//
-// If a removal is never done, or if only swaps are done, then Balance does nothing as those
-// still maintain random access guarantees.
-func (n *Node) Balance() {
-	n.kids.SortList()
 }
 
 // FirstChild returns first child of giving node if any,
 // else returns an error.
 func (n *Node) FirstChild() (*Node, error) {
-	return n.kids.FirstNode()
+	if len(n.kids) == 0 {
+		return nil, nerror.New("noop")
+	}
+	return n.kids[0], nil
 }
 
 // LastChild returns last child of giving node if any,
 // else returns an error.
 func (n *Node) LastChild() (*Node, error) {
-	return n.kids.LastNode()
+	if len(n.kids) == 0 {
+		return nil, nerror.New("noop")
+	}
+	return n.kids[len(n.kids)-1], nil
 }
 
 // PreviousSibling returns a node that is previous to this giving
 // node in it's parent's list.
 func (n *Node) PreviousSibling() (*Node, error) {
 	if n.parent == nil {
-		return nil, ErrInvalidOp
+		return nil, nerror.New("noop")
 	}
 	return n.parent.Get(n.prev.Read())
 }
@@ -1165,7 +1128,7 @@ func (n *Node) PreviousSibling() (*Node, error) {
 // node in it's parent's list.
 func (n *Node) NextSibling() (*Node, error) {
 	if n.parent == nil {
-		return nil, ErrInvalidOp
+		return nil, nerror.New("noop")
 	}
 	return n.parent.Get(n.next.Read())
 }
@@ -1182,7 +1145,7 @@ func (n *Node) NodeAttr() NodeAttr {
 
 // ChildCount returns the current total count of kids.
 func (n *Node) ChildCount() int {
-	return n.kids.Length()
+	return len(n.kids)
 }
 
 // ResetNode resets giving node alone without affecting it's underline sub-tree.
@@ -1204,12 +1167,12 @@ func (n *Node) ResetNode() {
 func (n *Node) ResetTree(doNode func(*Node)) {
 	n.ResetNode()
 
-	n.kids.Each(func(child *Node, _ int) bool {
+	n.EachChild(func(child *Node, _ int) bool {
 		child.ResetTree(doNode)
 		return true
 	})
 
-	n.kids.items = n.kids.items[:0]
+	n.kids = n.kids[:0]
 
 	if doNode != nil {
 		doNode(n)
@@ -1222,9 +1185,9 @@ func (n *Node) reset() {
 	n.prev.Flip(-1)
 }
 
-//****************************************************************************
+// ****************************************************************************
 // Class List and ID List
-//****************************************************************************
+// ****************************************************************************
 
 // IDList defines a map type containing a giving class and
 // associated nodes that match said classes.
@@ -1337,32 +1300,14 @@ func (na *NodeAttrList) Remove(n *Node) {
 	delete(na.nodes, n.RefID())
 }
 
-//****************************************************************************
+// ****************************************************************************
 // slidingList
-//****************************************************************************
+// ****************************************************************************
 
 // increasing factor provides a base increase size for
 // a node's internal slice/array. It is used in the calculation
 // of said size increment calculation for growth rate.
 const increasingFactor = 5
-
-// errors
-var (
-	// ErrInvalidIndex is returned when giving index is out of range or below 0.
-	ErrInvalidIndex = errors.New("index is out of range")
-
-	// ErrInvalidOp is returned when an operation is impossible.
-	ErrInvalidOp = errors.New("operation can not be performed")
-
-	// ErrEmptyList is returned when given list is empty.
-	ErrEmptyList = errors.New("list is empty")
-
-	// ErrIndexNotEmpty is returned when index has a element and not empty.
-	ErrIndexNotEmpty = errors.New("index has element")
-
-	// ErrEmptyIndex is returned when index has no element.
-	ErrEmptyIndex = errors.New("index has no element")
-)
 
 // slidingList implements a efficient random access compact list
 // where elements can be moved from end of list to fill up opened
@@ -1375,589 +1320,11 @@ var (
 // positional guarantees.
 //
 // slidingList is not safe for concurrent use.
-type slidingList struct {
-	items []*Node
+type slidingList []*Node
 
-	// lf is the lastAddFactor containing the last total items added before
-	// an expansion.
-	lf uint32
-
-	// dirty signifies if list requires resorting to regain
-	// positional guarantees.
-	dirty uint32
-
-	// lastNode represents the next index of last node.
-	lastNode *natomic.IntSwitch
-
-	// firstNode points to the giving node which stands in first
-	// place as in
-	firstNode *natomic.IntSwitch
-}
-
-// newNodeArrayList returns a new instance of a slidingList.
-func newNodeArrayList() *slidingList {
-	return &slidingList{}
-}
-
-// Capacity returns the underline size of the array of the used slice.
-func (al *slidingList) Capacity() int {
-	return cap(al.items)
-}
-
-// Clear resets the underline slice, emptying
-// all elements within.
-func (al *slidingList) Clear() {
-	al.items = al.items[:0]
-}
-
-// Length returns the length of the underline slice.
-func (al *slidingList) Length() int {
-	return len(al.items)
-}
-
-// LastIndex returns the index value of the last item in
-// the list.
-func (al *slidingList) LastIndex() int {
-	if al.lastNode == nil {
-		return 0
-	}
-	return al.lastNode.Read()
-}
-
-// Available returns total space available to be filled
-// left in array.
-func (al *slidingList) Available() int {
-	return cap(al.items) - len(al.items)
-}
-
-// List returns the underline slice of giving list.
-func (al *slidingList) List() []*Node {
-	return al.items
-}
-
-// Get returns giving element at provided index else returns an
-// error if index is out of range. If slot is empty then returns
-// error ErrEmptyIndex.
-func (al *slidingList) Get(index int) (*Node, error) {
-	if index >= len(al.items) || index < 0 || len(al.items) == 0 {
-		return nil, ErrInvalidIndex
-	}
-	if al.items[index] == nil {
-		return nil, ErrEmptyIndex
-	}
-	return al.items[index], nil
-}
-
-// LastNode returns possible last node within sliding list.
-func (al *slidingList) LastNode() (*Node, error) {
-	if al.lastNode != nil {
-		return al.items[al.lastNode.Read()], nil
-	}
-	return nil, ErrInvalidOp
-}
-
-// FirstNode returns possible first node within sliding list.
-func (al *slidingList) FirstNode() (*Node, error) {
-	if al.firstNode != nil {
-		return al.items[al.firstNode.Read()], nil
-	}
-	return nil, ErrInvalidOp
-}
-
-// GetNext returns the next Node from the giving index. It returns the
-// next sibling if any from the provided index.
-func (al *slidingList) GetNext(index int) (*Node, error) {
-	if index >= len(al.items) || index < 0 || len(al.items) == 0 {
-		return nil, ErrInvalidIndex
-	}
-
-	next := index + 1
-	if al.items[next] == nil {
-		return nil, ErrEmptyIndex
-	}
-	return al.items[next], nil
-}
-
-// GetPrevious returns the previous Node from the giving index. It returns the
-// previous sibling if any from the provided index.
-func (al *slidingList) GetPrevious(index int) (*Node, error) {
-	if index >= len(al.items) || index < 0 || len(al.items) == 0 {
-		return nil, ErrInvalidIndex
-	}
-
-	if index == 0 {
-		return nil, ErrInvalidOp
-	}
-
-	prev := index - 1
-	if al.items[prev] == nil {
-		return nil, ErrEmptyIndex
-	}
-	return al.items[prev], nil
-}
-
-// Add adds giving Node into the array list, expanding giving node
-// as needed. It returns the index where the item was added.
-func (al *slidingList) Add(n *Node) (int, error) {
-	if al.items == nil {
-		al.items = make([]*Node, 0, al.getLastExpansion())
-	}
-	if al.Available() <= 2 {
-		al.expandList()
-	}
-
-	var index = len(al.items)
-	n.index.Flip(index)
-	al.items = append(al.items, n)
-
-	if al.firstNode == nil {
-		al.firstNode = al.lastNode
-	}
-
-	if al.lastNode != nil {
-		var lastNode = al.items[al.lastNode.Read()]
-		lastNode.next.Flip(index)
-		n.prev.Flip(al.lastNode.Read())
-	}
-
-	al.lastNode = n.index
-	if al.firstNode == nil {
-		al.firstNode = n.index
-	}
-
-	al.incrementLastExpansion(1)
-	return index, nil
-}
-
-// Last returns the last node in the list.
-func (al *slidingList) Last() *Node {
-	if al.lastNode == nil {
-		return nil
-	}
-	return al.items[al.lastNode.Read()]
-}
-
-// First returns the first node in the list.
-func (al *slidingList) First() *Node {
-	if al.firstNode == nil {
-		return nil
-	}
-	return al.items[al.firstNode.Read()]
-}
-
-// Empty returns true/false if giving list is empty.
-func (al *slidingList) Empty() bool {
-	return len(al.items) == 0
-}
-
-// ToList returns a ordered list of Node items according
-// to their link arrangement in the underline list.
-func (al *slidingList) ToList() []*Node {
-	// run through the list of items
-	var count = len(al.items)
-	if al.firstNode == nil && count > 1 {
-		panic("Invalid pointer to first item, check logic")
-	}
-
-	al.SortList()
-	return al.items
-}
-
-// SortList resets the underline list if dirty according to
-// it's insertion order, returning the underline list back into
-// positional guarantees.
-func (al *slidingList) SortList() {
-	if !al.isDirty() {
-		return
-	}
-
-	if al.firstNode == nil && al.lastNode != nil {
-		panic("Invalid pointer state for slidingList.firstNode")
-	}
-
-	var count = len(al.items)
-	if count == 0 {
-		return
-	}
-
-	var items = make([]*Node, 0, count)
-
-	var index int
-	var next = al.firstNode.Read()
-
-	for next != -1 {
-		item := al.items[next]
-		next = item.next.Read()
-
-		item.index.Flip(index)
-		item.prev.Flip(index - 1)
-
-		index++
-		item.next.Flip(index)
-
-		items = append(items, item)
-
-		if next == -1 {
-			item.next.Flip(-1)
-			break
-		}
-	}
-
-	//al.firstNode = items[0].index
-	//al.lastNode = items[len(items)-1].index
-
-	al.items = items
-	al.resetDirty()
-}
-
-// Find returns giving node matching provided function.
-func (al *slidingList) Find(fn func(*Node, int) bool) (*Node, error) {
-	var count = len(al.items)
-	if count == 0 {
-		return nil, ErrNotFound
-	}
-
-	// run through the list of items
-	if al.firstNode == nil && count > 1 {
-		panic("Invalid pointer to first item, check logic")
-	}
-
-	var index int
-	var next = al.firstNode
-	if next == nil && al.lastNode != nil {
-		panic("Invalid pointer state for slidingList.firstNode")
-	}
-
-	if next == nil {
-		return nil, ErrNotFound
-	}
-
-	for next.Read() != -1 {
-		item := al.items[next.Read()]
-		if fn(item, index) {
-			return item, nil
-		}
-
-		if item.next.Read() == -1 {
-			break
-		}
-
-		index++
-		next = item.next
-	}
-	return nil, ErrNotFound
-}
-
-// Each runs down the list of elements in array from first to last
-// following not the arrangement in the slice but the links of next
-// and previous for each node.
-//
-// It keeps walking down the sliding list node till either it reaches the
-// node without a next index pointer or the function returns false.
-func (al *slidingList) Each(fn func(*Node, int) bool) {
-	var count = len(al.items)
-	if count == 0 {
-		return
-	}
-
-	// run through the list of items
-	if al.firstNode == nil && count > 1 {
-		panic("Invalid pointer to first item, check logic")
-	}
-
-	var index int
-	var next = al.firstNode
-	if next == nil && al.lastNode != nil {
-		panic("Invalid pointer state for slidingList.firstNode")
-	}
-
-	if next == nil {
-		return
-	}
-
-	for next.Read() != -1 {
-		item := al.items[next.Read()]
-		if !fn(item, index) {
-			return
-		}
-
-		if item.next.Read() == -1 {
-			return
-		}
-
-		index++
-		next = item.next
-	}
-}
-
-// EmptyIndex returns true/false if giving index is empty.
-func (al *slidingList) EmptyIndex(index int) (bool, error) {
-	if index < 0 || index >= len(al.items) {
-		return false, ErrInvalidIndex
-	}
-	if len(al.items) == 0 {
-		return false, ErrEmptyList
-	}
-	if al.items[index] == nil {
-		return true, nil
-	}
-	return false, nil
-}
-
-// GetFirst returns the first node if any within list.
-func (al *slidingList) GetFirst() (*Node, error) {
-	return al.Get(0)
-}
-
-// GetLast returns the last node if any within list.
-func (al *slidingList) GetLast() (*Node, error) {
-	return al.Get(al.LastIndex())
-}
-
-// RemoveAndSwap removes a giving index and attempts to swap that
-// index with the last element in the list to remove any blank spot.
-func (al *slidingList) RemoveAndSwap(index int) (*Node, error) {
-	node, err := al.RemoveIndex(index)
-	if err != nil {
-		return nil, err
-	}
-
-	if err = al.SwapIndex(index); err != nil && err != ErrEmptyList {
-		return node, err
-	}
-	return node, nil
-}
-
-// RemoveIndex removes giving element at index from the array list,
-// returning removed item, else an error if index is out of range
-// or if index is empty.
-//
-// RemoveIndex creates a empty pocket when used and does not swap
-// or maintain compactness, hence you must keep a manual history
-// of removed indexes for swapping after your removals. This let's you
-// optimize writes and maintain indexes for operations, which then are
-// later swapped then sorted to maintain compactness.
-func (al *slidingList) RemoveIndex(index int) (*Node, error) {
-	var count = len(al.items)
-	if index >= len(al.items) || index < 0 || count == 0 {
-		return nil, ErrInvalidIndex
-	}
-
-	if item := al.items[index]; item != nil {
-		al.items[index] = nil
-
-		// if this is really the last item within slice
-		// we need to slice down slice to agroundlayer reference
-		// nil slots at the end of slice.
-		// We also need to use this to decide if swapping is
-		// needed.
-		if index == (count - 1) {
-			al.items = al.items[:index]
-		}
-
-		if item.prev.Read() != -1 {
-			pNode := al.items[item.prev.Read()]
-
-			if item.next.Read() != -1 {
-				nNode := al.items[item.next.Read()]
-				pNode.next.Flip(nNode.index.Read())
-				nNode.prev.Flip(pNode.index.Read())
-			} else {
-				pNode.next.Flip(-1)
-			}
-
-			if item.index == al.lastNode {
-				al.lastNode = pNode.index
-			}
-
-			item.reset()
-			return item, nil
-		}
-
-		if item.next.Read() != -1 {
-			nNode := al.items[item.next.Read()]
-
-			if item.prev.Read() != -1 {
-				pNode := al.items[item.prev.Read()]
-				pNode.next.Flip(nNode.index.Read())
-				nNode.prev.Flip(pNode.index.Read())
-
-				if item.index == al.lastNode {
-					al.lastNode = pNode.index
-				}
-			} else {
-				nNode.prev.Flip(-1)
-			}
-
-			if item.index == al.firstNode {
-				al.firstNode = nNode.index
-			}
-
-			item.reset()
-			return item, nil
-		}
-
-		item.reset()
-		al.lastNode = nil
-		al.firstNode = nil
-		al.items = al.items[:0]
-		return item, nil
-	}
-	return nil, ErrEmptyIndex
-}
-
-// SwapNode swaps giving node in index with provide node `m`. It will
-// also swap kids list if `swapKids` is true.
-// It returns an error if giving index is wrong
-func (al *slidingList) SwapNode(index int, m *Node, swapKids bool) error {
-	var count = len(al.items)
-	if count == 0 {
-		return ErrEmptyList
-	}
-	if index < 0 || index > count {
-		return ErrInvalidOp
-	}
-	if index == count {
-		return nil
-	}
-
-	var oldNode = al.items[index]
-
-	m.next.Flip(oldNode.next.Read())
-	m.prev.Flip(oldNode.prev.Read())
-	m.index.Flip(oldNode.index.Read())
-
-	if oldNode.index == al.firstNode {
-		al.firstNode = m.index
-	}
-
-	if oldNode.index == al.lastNode {
-		al.lastNode = m.index
-	}
-
-	if swapKids {
-		var oldKids = oldNode.kids
-		oldNode.kids = m.kids
-		m.kids = oldKids
-	}
-
-	al.items[index] = m
-	return nil
-}
-
-// SwapIndex swaps last item in the slice into the provided index shrinking
-// the giving array by 1. It fails to perform the shrinking if the total element
-// in the list is 1 or if list is empty.
-func (al *slidingList) SwapIndex(index int) error {
-	var count = len(al.items)
-	if count == 0 {
-		return ErrEmptyList
-	}
-	if index < 0 || index > count {
-		return ErrInvalidOp
-	}
-	if index == count {
-		return nil
-	}
-
-	if al.items[index] != nil {
-		return ErrIndexNotEmpty
-	}
-
-	if count == 1 && al.items[0] == nil {
-		al.lastNode = nil
-		al.firstNode = nil
-		al.items = al.items[:0]
-		return nil
-	}
-
-	lastIndex := count - 1
-	lastItem := al.items[lastIndex]
-
-	// if we are nil, then we have open
-	// pocket, close it and retry till you
-	// find usable pocket.
-	if lastItem == nil {
-		al.items = al.items[:lastIndex]
-		return al.SwapIndex(index)
-	}
-
-	al.items[index] = lastItem
-	lastItem.index.Flip(index)
-	if lastItem.prev.Read() != -1 {
-		pNode := al.items[lastItem.prev.Read()]
-		pNode.next.Flip(index)
-	}
-	if lastItem.next.Read() != -1 {
-		nNode := al.items[lastItem.next.Read()]
-		nNode.prev.Flip(index)
-	}
-
-	al.items = al.items[:lastIndex]
-	al.setDirty()
-	return nil
-}
-
-func (al *slidingList) expandList() {
-	var nextCapacity = al.getNextCapacity()
-	var newList = make([]*Node, nextCapacity)
-	var copied = copy(newList, al.items)
-	al.items = newList[:copied]
-	al.resetLastExpansion()
-}
-
-// getNextCapacity returns a possible increasing expansion value
-// based on a expansive but gradual increasing size
-func (al *slidingList) getNextCapacity() int {
-	var current = cap(al.items)
-	if current == 0 {
-		current = increasingFactor
-	}
-	var clen = len(al.items)
-	if clen == 0 {
-		clen = 1
-	}
-
-	var ld = al.getLastExpansion()
-	if ld == 0 {
-		ld = 1
-	}
-
-	var pb = (current * increasingFactor) * ld
-	var inc = (pb / current) + increasingFactor
-	return inc + (current / clen)
-}
-
-// resetLastExpansion resets the giving last addition value.
-func (al *slidingList) resetLastExpansion() {
-	atomic.StoreUint32(&al.lf, 0)
-}
-
-func (al *slidingList) resetDirty() {
-	atomic.StoreUint32(&al.dirty, 0)
-}
-
-func (al *slidingList) setDirty() {
-	atomic.StoreUint32(&al.dirty, 1)
-}
-
-func (al *slidingList) isDirty() bool {
-	return atomic.LoadUint32(&al.dirty) == 1
-}
-
-// incrementLastExpansion increments the last addition value by count.
-func (al *slidingList) incrementLastExpansion(n int) {
-	atomic.AddUint32(&al.lf, uint32(n))
-}
-
-// getLastExpansion returns the current value of last addition value.
-func (al *slidingList) getLastExpansion() int {
-	return int(atomic.LoadUint32(&al.lf))
-}
-
-//**********************************************
+// **********************************************
 // utils
-//**********************************************
+// **********************************************
 
 var alphanums = []rune("bcdfghjklmnpqrstvwxz0123456789")
 

@@ -3,7 +3,6 @@ package domu
 import (
 	"bytes"
 	"fmt"
-	"math/rand"
 	"strconv"
 	"strings"
 	"testing"
@@ -239,6 +238,8 @@ func TestDeeperChangedJSON(t *testing.T) {
 	require.NoError(t, baseClone.RenderShallowHTML(&baseCloneContent, true))
 	require.Equal(t, baseContent.String(), baseCloneContent.String())
 
+	require.Len(t, baseClone.kids, base.ChildCount())
+
 	section, err := baseClone.Get(0)
 	require.NoError(t, err)
 	require.NotNil(t, section)
@@ -300,49 +301,6 @@ func TestNode(t *testing.T) {
 	require.Equal(t, 1000, base.ChildCount())
 }
 
-func TestNode_Remove(t *testing.T) {
-	base := Element("red", Id("767h"))
-	require.NotNil(t, base)
-
-	for i := 0; i < 1000; i++ {
-		base.AppendChild(Element(fmt.Sprintf("red%d", i), Id("65jnj")))
-	}
-
-	require.Equal(t, 1000, base.ChildCount())
-
-	deletes := 500
-	for i := 0; i < deletes; i++ {
-		var target = rand.Intn(deletes)
-		if node, err := base.Get(target); err == nil {
-			node.Remove()
-		}
-	}
-
-	require.Equal(t, 500, base.ChildCount())
-}
-
-func TestNode_Remove_Balance(t *testing.T) {
-	base := Element("red", Id("767h"))
-	require.NotNil(t, base)
-
-	for i := 0; i < 1000; i++ {
-		base.AppendChild(Element(fmt.Sprintf("red%d", i), Id("65jnj")))
-	}
-
-	require.Equal(t, 1000, base.ChildCount())
-
-	deletes := 500
-	for i := 0; i < deletes; i++ {
-		var target = rand.Intn(deletes)
-		if node, err := base.Get(target); err == nil {
-			node.Remove()
-			node.Balance()
-		}
-	}
-
-	require.Equal(t, 500, base.ChildCount())
-}
-
 func BenchmarkNode_Append(b *testing.B) {
 	b.ResetTimer()
 	b.ReportAllocs()
@@ -350,87 +308,5 @@ func BenchmarkNode_Append(b *testing.B) {
 	base := Element("red", Id("232"))
 	for i := 0; i < 1001; i++ {
 		base.AppendChild(Element(strconv.Itoa(i), Id("45g")))
-	}
-}
-
-func BenchmarkNode_Append_Remove_Balance(b *testing.B) {
-	b.ResetTimer()
-	b.ReportAllocs()
-
-	base := Element("red", Id("232"))
-
-	var count = 4001
-	for i := 0; i < count; i++ {
-		base.AppendChild(Element("sf", Id(strconv.Itoa(i))))
-	}
-
-	var deletes = count / 2
-	for i := 0; i < deletes; i++ {
-		var target = rand.Intn(deletes)
-		if node, err := base.Get(target); err == nil {
-			node.Remove()
-		}
-	}
-	base.Balance()
-}
-
-func BenchmarkNode_Append_Remove_With_Balance(b *testing.B) {
-	b.ResetTimer()
-	b.ReportAllocs()
-
-	base := Element("red", Id("232"))
-
-	var count = 4001
-	for i := 0; i < count; i++ {
-		base.AppendChild(Element(strconv.Itoa(i), Id("343f")))
-	}
-
-	var deletes = count / 2
-	for i := 0; i < deletes; i++ {
-		var target = rand.Intn(deletes)
-		if node, err := base.Get(target); err == nil {
-			node.Remove()
-			base.Balance()
-		}
-	}
-}
-
-func BenchmarkNode_Append_SwapAll(b *testing.B) {
-	b.ResetTimer()
-	b.ReportAllocs()
-
-	base := Element("red", Id("322"))
-
-	var child *Node
-	for i := 0; i < 1001; i++ {
-		newChild := Element(strconv.Itoa(i), Id("331"))
-		if child == nil {
-			base.AppendChild(newChild)
-			child = newChild
-			continue
-		}
-
-		child.SwapAll(newChild)
-		child = newChild
-	}
-}
-
-func BenchmarkNode_Append_SwapNode(b *testing.B) {
-	b.ResetTimer()
-	b.ReportAllocs()
-
-	base := Element("red", Id("112"))
-
-	var child *Node
-	for i := 0; i < 1001; i++ {
-		newChild := Element(strconv.Itoa(i), Id("132"))
-		if child == nil {
-			base.AppendChild(newChild)
-			child = newChild
-			continue
-		}
-
-		child.SwapNode(newChild)
-		child = newChild
 	}
 }

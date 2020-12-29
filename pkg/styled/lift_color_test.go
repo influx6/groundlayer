@@ -10,21 +10,20 @@ import (
 )
 
 func TestPalette(t *testing.T) {
-	var palette = CreatePalette(HuePalette{
-		Steps:              10,
-		HueStart:           100,
-		HueEnd:             359,
-		HueCurve:           EaseInCubicTCurve,
-		SaturationRate:     30,
-		SaturationStart:    10,
-		SaturationEnd:      80,
-		SaturationCurve:    EaseInCubicTCurve,
-		LuminousityStart:   5,
-		LuminousityEnd:     80,
-		LuminosityCurve:    EaseInCubicTCurve,
-		ContrastColorLight: nil,
-		ContrastColorDark:  nil,
+	var palette, perr = CreatePalettes(HuePalette{
+		Steps:            10,
+		HueStart:         100,
+		HueEnd:           359,
+		HueCurve:         EaseInCubicTCurve,
+		SaturationRate:   30,
+		SaturationStart:  10,
+		SaturationEnd:    80,
+		SaturationCurve:  EaseInCubicTCurve,
+		LuminousityStart: 5,
+		LuminousityEnd:   80,
+		LuminosityCurve:  EaseInCubicTCurve,
 	})
+	require.NoError(t, perr)
 	require.NotNil(t, palette.DarkMode)
 	require.NotNil(t, palette.LightMode)
 	require.Len(t, palette.LightMode, 10)
@@ -32,21 +31,23 @@ func TestPalette(t *testing.T) {
 }
 
 func ExamplePalette() {
-	var palette = CreatePalette(HuePalette{
-		Steps:              10,
-		HueStart:           100,
-		HueEnd:             359,
-		HueCurve:           EaseInCubicTCurve,
-		SaturationRate:     30,
-		SaturationStart:    10,
-		SaturationEnd:      80,
-		SaturationCurve:    EaseInCubicTCurve,
-		LuminousityStart:   5,
-		LuminousityEnd:     80,
-		LuminosityCurve:    EaseInCubicTCurve,
-		ContrastColorLight: nil,
-		ContrastColorDark:  nil,
+	var palette, perr = CreatePalettes(HuePalette{
+		Steps:            10,
+		HueStart:         100,
+		HueEnd:           359,
+		HueCurve:         EaseInCubicTCurve,
+		SaturationRate:   30,
+		SaturationStart:  10,
+		SaturationEnd:    80,
+		SaturationCurve:  EaseInCubicTCurve,
+		LuminousityStart: 5,
+		LuminousityEnd:   80,
+		LuminosityCurve:  EaseInCubicTCurve,
 	})
+
+	if perr != nil {
+		log.Fatalf("Error: %s\n", perr)
+	}
 
 	var json, err = json2.Marshal(palette)
 	if err != nil {

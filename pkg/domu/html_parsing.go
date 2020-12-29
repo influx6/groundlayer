@@ -39,7 +39,7 @@ func ParseTemplate(markup string, binding interface{}) *Node {
 // ParseToRoot passes the markup generated from the markup added to the provided
 // root.
 func ParseToRoot(root *Node, markup string) {
-	ParseTree(markup).kids.Each(func(node *Node, i int) bool {
+	ParseTree(markup).EachChild(func(node *Node, i int) bool {
 		root.AppendChild(node)
 		return true
 	})

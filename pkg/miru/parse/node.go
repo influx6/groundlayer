@@ -122,7 +122,6 @@ const (
 	NodeMethodIdentifier                 // An identifier; always a function name.
 	NodeIf                               // An if action.
 	NodeTag                              // A html tag .
-	NodeTagEnd                           // A html ending tag .
 	NodeImport                           // A import declaration
 	NodeImportedFunc                     // A imported func declaration
 	NodeImportedField                    // A imported field declaration
@@ -131,7 +130,6 @@ const (
 	NodeModelField                       // A model field declaration
 	NodeModelTypeField                   // A model type field declaration
 	NodeMethod                           // A method declaration
-	NodeMethodArgument                   // A model agument declaration
 	NodeAttr                             // A html attr node .
 	NodeKids                             // A html attr node .
 	NodeList                             // A list of Nodes.
@@ -897,7 +895,7 @@ type ModelTypeNode struct {
 }
 
 func (t *Tree) newModelType(pos Pos, model string, detail Node) *ModelTypeNode {
-	return &ModelTypeNode{tr: t, NodeType: NodeModel, Typ: model, Pos: pos, Detail: detail}
+	return &ModelTypeNode{tr: t, NodeType: NodeModelType, Typ: model, Pos: pos, Detail: detail}
 }
 
 func (b *ModelTypeNode) String() string {
@@ -1121,14 +1119,15 @@ func (n *NumberNode) Copy() Node {
 type AttrNode struct {
 	NodeType
 	Pos
-	tr     *Tree
-	Quoted string // The original text of the string, with quotes.
-	Key    string // The string, after quote processing.
-	Values *ListNode
+	IsTheme bool
+	tr      *Tree
+	Quoted  string // The original text of the string, with quotes.
+	Key     string // The string, after quote processing.
+	Values  *ListNode
 }
 
 func (t *Tree) newAttr(pos Pos, orig, key string, v *ListNode) *AttrNode {
-	return &AttrNode{tr: t, NodeType: NodeString, Pos: pos, Quoted: orig, Key: key, Values: v}
+	return &AttrNode{tr: t, NodeType: NodeAttr, Pos: pos, Quoted: orig, Key: key, Values: v}
 }
 
 func (s *AttrNode) String() string {
@@ -1247,7 +1246,7 @@ type ImportDeclr struct {
 }
 
 func (t *Tree) newImportDeclr(pos Pos, alias string, path string) *ImportDeclr {
-	return &ImportDeclr{tr: t, NodeType: NodeString, Pos: pos, Alias: alias, Path: path}
+	return &ImportDeclr{tr: t, NodeType: NodeImport, Pos: pos, Alias: alias, Path: path}
 }
 
 func (s *ImportDeclr) String() string {
@@ -1434,7 +1433,7 @@ func (e *elseNode) Copy() Node {
 	return e.tr.newElse(e.Pos, e.Line)
 }
 
-// HTMLNode is the common representation of if, range, and with.
+// HTMLNode is the common representation of html node.
 type HTMLNode struct {
 	NodeType
 	Pos
@@ -1444,6 +1443,22 @@ type HTMLNode struct {
 	Line     int       // The line number in the input. Deprecated: Kept for compatibility.
 	Attr     AttrList  // The pipeline to be evaluated.
 	Children *ListNode // What are the children nodes for this.
+}
+
+func (t *Tree) newHTMLTag(pos Pos, line int, tag string, attr AttrList, kids *ListNode) *HTMLNode {
+	return &HTMLNode{tr: t, NodeType: NodeTag, Pos: pos, Tag: tag, Line: line, Attr: attr, Children: kids}
+}
+
+type ThemeList []string
+
+func (at *ThemeList) append(n string) {
+	*at = append(*at, n)
+}
+
+func (at *ThemeList) WriteTo(sb *strings.Builder) {
+	for _, attr := range *at {
+		sb.WriteString(attr)
+	}
 }
 
 type AttrList []*AttrNode
@@ -1558,10 +1573,6 @@ type IfNode struct {
 
 func (t *Tree) newIf(pos Pos, line int, pipe *PipeNode, list, elseList *ListNode) *IfNode {
 	return &IfNode{BranchNode{tr: t, NodeType: NodeIf, Pos: pos, Line: line, Pipe: pipe, List: list, ElseList: elseList}}
-}
-
-func (t *Tree) newHTMLTag(pos Pos, line int, tag string, attr AttrList, kids *ListNode) *HTMLNode {
-	return &HTMLNode{tr: t, NodeType: NodeIf, Pos: pos, Tag: tag, Line: line, Attr: attr, Children: kids}
 }
 
 func (i *IfNode) Copy() Node {

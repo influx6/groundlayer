@@ -1,7 +1,6 @@
 package miru_test
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
@@ -271,7 +270,6 @@ func TestTextWriter_ParseMountListWithRootType(t *testing.T) {
 		{{ mountList user }}
 	`, false)
 
-	fmt.Println(builder)
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
@@ -410,13 +408,121 @@ func TestTextWriter_ParseLayoutArgument(t *testing.T) {
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
 }
 
-func TestTextWriter_ParseLayoutArgumentWithNoRoot(t *testing.T) {
+func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
-		<p>It was you</p>
+		<p
+			class="bob"
+			theme=[ color-red-50 sm-padding-10 max-w max-h ]
+		>It was you</p>
 	`, false)
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `It was you`)
+	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `= styled.ThemeDirective{}`)
+	hasText(t, builder, `.Add("color-red-50")`)
+	hasText(t, builder, `.Add("sm-padding-10")`)
+	hasText(t, builder, `.Add("max-w")`)
+	hasText(t, builder, `.Add("max-h")`)
+	hasText(t, builder, `.Themes = theme`)
+}
+
+func TestTextWriter_ParseTagAttrsWithListMultiline(t *testing.T) {
+	var builder = textWriterTestHelper(t, `
+		<p
+			class=[ 
+				color-red-50 
+				sm-padding-10 
+				max-w 
+				max-h
+				{{if and .User .User.Admin}}
+					bob
+				{{else}}
+					bob-10
+				{{end}}
+			]
+			id=wan
+		>It was you</p>
+	`, false)
+
+	require.NotNil(t, builder)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `It was you`)
+	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.NewStringListAttr("class", "")`)
+	hasText(t, builder, `.Add("color-red-50")`)
+	hasText(t, builder, `.Add("sm-padding-10")`)
+	hasText(t, builder, `.Add("max-w")`)
+	hasText(t, builder, `.Add("max-h")`)
+	hasText(t, builder, `if helpers.And(ctx.User, ctx.User.Admin) {`)
+	hasText(t, builder, `.Add("bob")`)
+	hasText(t, builder, `else`)
+	hasText(t, builder, `.Add("bob-10")`)
+	hasText(t, builder, `.Mount(`)
+}
+
+func TestTextWriter_ParseTagAttrsWithThemeMultiline(t *testing.T) {
+	var builder = textWriterTestHelper(t, `
+		<p
+			class="bob"
+			theme=[ 
+				color-red-50 
+				sm-padding-10 
+				max-w 
+				max-h
+				{{if and .User .User.Admin}}
+					bob
+				{{else}}
+					bob-10
+				{{end}}
+			]
+			id=wan
+		>It was you</p>
+	`, false)
+
+	require.NotNil(t, builder)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `It was you`)
+	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `= styled.ThemeDirective{}`)
+	hasText(t, builder, `.Add("color-red-50")`)
+	hasText(t, builder, `.Add("sm-padding-10")`)
+	hasText(t, builder, `.Add("max-w")`)
+	hasText(t, builder, `.Add("max-h")`)
+	hasText(t, builder, `if helpers.And(ctx.User, ctx.User.Admin) {`)
+	hasText(t, builder, `.Add("bob")`)
+	hasText(t, builder, `else`)
+	hasText(t, builder, `.Add("bob-10")`)
+	hasText(t, builder, `.Themes = theme`)
+}
+
+func TestTextWriter_ParseMultilineTag(t *testing.T) {
+	var builder = textWriterTestHelper(t, `
+		<p
+			class="bob"
+			date="rocker blocker"
+			windy='yes'
+			elevated=yes
+			bottled
+		>It was you</p>
+	`, false)
+
+	require.NotNil(t, builder)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `It was you`)
+	hasText(t, builder, `domu.Element("p",`)
+}
+
+func TestTextWriter_ParseLayoutArgumentWithNoRoot(t *testing.T) {
+	var builder = textWriterTestHelper(t, `
+		<p class="bob">It was you</p>
+	`, false)
+
+	require.NotNil(t, builder)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `It was you`)
+	hasText(t, builder, `domu.Element("p",`)
 }
 
 func TestTextWriter_ParseWithPackageImport(t *testing.T) {

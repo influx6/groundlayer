@@ -62,6 +62,7 @@ const (
 	itemKeyword                              // used only to delimit the keywords
 	itemBlock                                // block keyword
 	itemTagAttrValueStart                    // block keyword
+	itemTagThemeAttrStart                    // block keyword
 	itemTagAttrStart                         // block keyword
 	itemTagAttrEnd                           // block keyword
 	itemTag                                  // block keyword
@@ -85,6 +86,7 @@ const (
 	itemModelTypeBase                        // model keyword
 	itemModelTypeEnd                         // end of modelType keyword
 	itemRoot                                 // rootType keyword
+	itemList                                 // list keyword using [
 	itemMount                                // mount keyword
 	itemMountList                            // mount keyword
 	itemMountLive                            // mountLive keyword
@@ -160,6 +162,7 @@ type lexer struct {
 	startLine      int       // start line of this item
 	htmlMode       bool      // htmlMode flag <
 	htmlTagMode    bool      // htmlMode flag <
+	htmlListMode   bool
 	htmlStacks     []string
 }
 
@@ -302,14 +305,20 @@ func (l *lexer) run() {
 // state functions
 
 const (
-	leftDelim           = "{{"
-	rightDelim          = "}}"
-	leftHTMLDelim       = "<"
-	rightHTMLDelim      = ">"
-	leftCloseHTMLDelim  = `</`
-	rightCloseHTMLDelim = `/>`
-	leftComment         = "/*"
-	rightComment        = "*/"
+	leftDelim              = "{{"
+	rightDelim             = "}}"
+	leftHTMLDelim          = "<"
+	rightHTMLDelim         = ">"
+	leftCloseHTMLDelim     = `</`
+	rightCloseHTMLDelim    = `/>`
+	leftComment            = "/*"
+	rightComment           = "*/"
+	singleQuote            = '\''
+	doubleQuote            = '"'
+	leftListDelim          = '['
+	rightListDelim         = ']'
+	leftAngleBracketDelim  = '<'
+	rightAngleBracketDelim = '>'
 )
 
 // lexText scans until an opening action delimiter, "{{".
@@ -332,11 +341,11 @@ func lexText(l *lexer) stateFn {
 			l.emit(itemSpace)
 		}
 
-		if nr := l.next(); nr == firstDelim || nr == '<' {
+		if nr := l.next(); nr == firstDelim || nr == leftAngleBracketDelim {
 			l.backup()
 
 			l.emit(itemText)
-			if nr == '<' {
+			if nr == leftAngleBracketDelim {
 				l.htmlMode = true
 				return lexTag
 			}
@@ -722,7 +731,7 @@ func lexModelTypeBase(l *lexer) {
 
 func lexTag(l *lexer) stateFn {
 	var pr = l.peek()
-	if pr != '<' {
+	if pr != leftAngleBracketDelim {
 		return lexText
 	}
 
@@ -753,7 +762,7 @@ func lexTag(l *lexer) stateFn {
 			l.popDOM()
 			l.emit(itemTagEnd)
 
-			if mr := l.next(); mr != '>' {
+			if mr := l.next(); mr != rightAngleBracketDelim {
 				return l.errorf("invalid html tag ending, expected '>', see line %d at %d", l.line, l.pos)
 			}
 			l.ignore()
@@ -792,7 +801,7 @@ func lexDocTypeTag(l *lexer) stateFn {
 	})
 	l.emit(itemText)
 
-	if l.next() == '>' {
+	if l.next() == rightAngleBracketDelim {
 		l.emit(itemTagEnd)
 		return lexText
 	}
@@ -811,6 +820,7 @@ func lexTagAttrs(l *lexer) stateFn {
 	var nr2 = l.input[l.start:l.pos]
 	if nr2 == "/>" {
 		l.emit(itemTagAttrEnd)
+		l.htmlListMode = false
 		l.emit(itemTagSelfEnd)
 		l.popDOM()
 		return lexText
@@ -821,7 +831,11 @@ func lexTagAttrs(l *lexer) stateFn {
 	if found := lexAllUntil(l, func(r rune) bool {
 		return isAlphaNumeric(r) || (r == '_') || (r == '.') || (r == '-')
 	}); found > 0 {
-		l.emit(itemTagAttrStart)
+		if l.htmlListMode {
+			l.emit(itemText)
+		} else {
+			l.emit(itemTagAttrStart)
+		}
 	}
 
 	// gather all the space available.
@@ -835,19 +849,52 @@ func lexTagAttrs(l *lexer) stateFn {
 		var ending = l.input[l.start:l.pos]
 		if ending == "\\>" {
 			l.emit(itemTagAttrEnd)
+			l.htmlListMode = false
 			return lexText
 		}
 		l.backup()
 	}
 
-	if nr != '=' && nr != '>' {
-		// might be another tag infront
+	if nr == '{' {
+		l.backup()
+
+		var foundDelim, foundCount = lexIfDelimiter(l, l.leftDelim)
+		lexBackupCount(l, foundCount)
+		if foundDelim {
+			l.emit(itemText)
+			var nextFunc = lexLeftDelim
+			for {
+				nextFunc = nextFunc(l)
+				if nextFunc == nil {
+					break
+				}
+			}
+		}
+	}
+
+	if nr == rightListDelim && l.htmlListMode {
+		l.ignore()
+		l.emit(itemTagAttrEnd)
+		l.htmlListMode = false
 		return lexTagAttrs
 	}
 
-	if nr == '>' {
+	if nr != '=' && nr != rightAngleBracketDelim {
+		// might be another tag in-front
+		return lexTagAttrs
+	}
+
+	if nr == rightAngleBracketDelim {
 		l.emit(itemTagAttrEnd)
+		l.htmlListMode = false
 		return lexText
+	}
+
+	if nr == rightListDelim && l.htmlListMode {
+		l.ignore()
+		l.emit(itemTagAttrEnd)
+		l.htmlListMode = false
+		return lexTagAttrs
 	}
 
 	if nr == '=' {
@@ -859,20 +906,30 @@ func lexTagAttrs(l *lexer) stateFn {
 
 		var nextNr = l.peek()
 
-		if nextNr == '"' {
-			return lexTagAttrValueWithQuote
+		if nextNr == leftListDelim {
+			return lexTagAttrValueWithList
+		}
+
+		if nextNr == doubleQuote {
+			return lexTagAttrValueWithDoubleQuote
+		}
+
+		if nextNr == singleQuote {
+			return lexTagAttrValueWithSingleQuote
 		}
 
 		return lexTagAttrValueWithoutQuote
 	}
 
 	l.emit(itemTagAttrEnd)
+	l.htmlListMode = false
 	return lexText
 }
 
-func lexTagAttrValueWithQuote(l *lexer) stateFn {
-	var foundEndingDelimiter = lexTextEnclosedInStarterAndEndsWithStarter(l, '"', l.htmlTagMode)
-	l.emit(itemText)
+func lexTagAttrValueWithList(l *lexer) stateFn {
+	l.htmlListMode = true
+	var foundEndingDelimiter = lexTextEnclosedInStarterAndEndsWith(l, leftListDelim, rightListDelim, l.htmlTagMode)
+	l.emit(itemList)
 
 	if foundEndingDelimiter {
 		l.htmlTagMode = false
@@ -881,9 +938,9 @@ func lexTagAttrValueWithQuote(l *lexer) stateFn {
 	}
 
 	r := l.peek()
-	if r == '>' {
+	if r == rightAngleBracketDelim {
 		if !foundEndingDelimiter {
-			return l.errorf("expected ending quote(\") but found '>'")
+			return l.errorf("expected ending quote(\") but found rightAngleBracketDelim")
 		}
 
 		l.next()
@@ -894,7 +951,71 @@ func lexTagAttrValueWithQuote(l *lexer) stateFn {
 	lexNextCount(l, 2)
 	if l.input[l.start:l.pos] == "/>" {
 		if !foundEndingDelimiter {
-			return l.errorf("expected ending quote(\") but found '>'")
+			return l.errorf("expected ending quote(\") but found rightAngleBracketDelim")
+		}
+
+		lexBackupCount(l, 2)
+		l.emit(itemTagAttrEnd)
+		lexNextCount(l, 2)
+
+		l.emit(itemTagSelfEnd)
+
+		l.popDOM()
+		return lexText
+	}
+
+	lexBackupCount(l, 2)
+
+	var foundDelim, foundCount = lexIfDelimiter(l, l.leftDelim)
+	lexBackupCount(l, foundCount)
+	if foundDelim {
+		l.emit(itemText)
+		l.htmlTagMode = true
+		var nextFunc = lexLeftDelim
+		for {
+			nextFunc = nextFunc(l)
+			if nextFunc == nil {
+				break
+			}
+		}
+	}
+
+	return lexTagAttrs
+}
+
+func lexTagAttrValueWithDoubleQuote(l *lexer) stateFn {
+	return lexTagAttrValueWithQuote(l, '"')
+}
+
+func lexTagAttrValueWithSingleQuote(l *lexer) stateFn {
+	return lexTagAttrValueWithQuote(l, '\'')
+}
+
+func lexTagAttrValueWithQuote(l *lexer, quoteType rune) stateFn {
+	var foundEndingDelimiter = lexTextEnclosedInStarterAndEndsWithStarter(l, quoteType, l.htmlTagMode)
+	l.emit(itemText)
+
+	if foundEndingDelimiter {
+		l.htmlTagMode = false
+		l.emit(itemTagAttrEnd)
+		return lexTagAttrs
+	}
+
+	r := l.peek()
+	if r == rightAngleBracketDelim {
+		if !foundEndingDelimiter {
+			return l.errorf("expected ending quote(\") but found rightAngleBracketDelim")
+		}
+
+		l.next()
+		l.emit(itemTagAttrEnd)
+		return lexText
+	}
+
+	lexNextCount(l, 2)
+	if l.input[l.start:l.pos] == "/>" {
+		if !foundEndingDelimiter {
+			return l.errorf("expected ending quote(\") but found rightAngleBracketDelim")
 		}
 
 		lexBackupCount(l, 2)
@@ -922,7 +1043,10 @@ func lexTagAttrValueWithQuote(l *lexer) stateFn {
 			}
 		}
 
-		return lexTagAttrValueWithQuote
+		if quoteType == '\'' {
+			return lexTagAttrValueWithSingleQuote
+		}
+		return lexTagAttrValueWithDoubleQuote
 	}
 
 	return lexTagAttrs
@@ -933,12 +1057,13 @@ func lexTagAttrValueWithoutQuote(l *lexer) stateFn {
 	lexTextUntil(l)
 
 	r := l.peek()
-	if r == '>' {
+	if r == rightAngleBracketDelim {
 		l.emit(itemTagAttrEnd)
 		l.next()
 		return lexText
 	}
 
+	l.emit(itemText)
 	l.emit(itemTagAttrEnd)
 	return lexTagAttrs
 }
@@ -1204,6 +1329,54 @@ func lexTextWith(fn stateFn) stateFn {
 	}
 }
 
+// lexTextEnclosedInStarterAndEndsWith scans a run of alphanumeric characters.
+//
+// Returns true if we found both the starting and ending quote.
+func lexTextEnclosedInStarterAndEndsWith(l *lexer, starter rune, ender rune, ignoreStarter bool) bool {
+	var firstDelim, _ = utf8.DecodeRuneInString(l.leftDelim)
+	var found = false
+
+	if !ignoreStarter {
+		if l.peek() != starter {
+			return false
+		}
+
+		l.next()
+	}
+
+	var r rune
+	for {
+		r = l.peek()
+
+		// is it an unexpected value or possible params marker ?
+		if isGreaterThan(r) {
+			break
+		}
+
+		// is this some usage of template substitution ?
+		if r == firstDelim {
+			var foundDelim, foundCount = lexIfDelimiter(l, l.leftDelim)
+
+			// if it is then let this be handled specially else ignore
+			if foundDelim {
+				lexBackupCount(l, foundCount)
+				break
+			}
+
+			l.next()
+			continue
+		}
+		// if we see a quote then we have met the
+		if r == ender {
+			found = true
+			l.next()
+			break
+		}
+		l.next()
+	}
+	return found
+}
+
 // lexTextEnclosedInStarterAndEndsWithStarter scans a run of alphanumeric characters.
 //
 // Returns true if we found both the starting and ending quote.
@@ -1250,8 +1423,12 @@ func lexTextEnclosedInStarterAndEndsWithStarter(l *lexer, starter rune, ignoreSt
 	return found
 }
 
+func isGreaterThan(r rune) bool {
+	return r == rightAngleBracketDelim
+}
+
 func isOtherTypeOfSpaceOrGreaterThan(r rune) bool {
-	return r == '\t' || r == '\n' || r == '\f' || r == '\r' || r == '>'
+	return r == '\t' || r == '\n' || r == '\f' || r == '\r' || r == rightAngleBracketDelim
 }
 
 // lexAttrName scans a run of alphaneumeric characters.
@@ -1270,7 +1447,7 @@ func lexAttrName(l *lexer) bool {
 }
 
 func isSpaceEqualOrGreaterThan(r rune) bool {
-	return r == ' ' || r == '\t' || r == '\n' || r == '\f' || r == '\r' || r == '=' || r == '>'
+	return r == ' ' || r == '\t' || r == '\n' || r == '\f' || r == '\r' || r == '=' || r == rightAngleBracketDelim
 }
 
 // lexTagName scans a run of alphaneumeric characters.

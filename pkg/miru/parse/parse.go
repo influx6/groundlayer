@@ -28,8 +28,13 @@ import (
 )
 
 var (
-	allSpace      = regexp.MustCompile(`\s+`)
-	modelTypeBase = regexp.MustCompile(`([0-9a-zA-Z]+)\(([0-9a-zA-Z]+),?([0-9a-zA-Z]+)?\)`)
+	allSpace          = regexp.MustCompile(`\s+`)
+	allLineSpacesTabs = regexp.MustCompile(`[\n\f\r\t\[\]]+`)
+	modelTypeBase     = regexp.MustCompile(`([0-9a-zA-Z]+)\(([0-9a-zA-Z]+),?([0-9a-zA-Z]+)?\)`)
+)
+
+const (
+	themeAttrName = "theme"
 )
 
 var domFunctions = map[string]bool{
@@ -94,6 +99,7 @@ type Tree struct {
 	rootNode      *RootNode
 	seenRighDelim bool
 	withinHTML    bool
+	withinTheme   bool
 }
 
 // Parsing.
@@ -426,6 +432,7 @@ func (t *Tree) textOrAction(allowSpace bool) Node {
 	} else {
 		token = t.nextNonSpace()
 	}
+
 	switch token.typ {
 	case itemTag:
 		nn := t.html(token)
@@ -441,8 +448,11 @@ func (t *Tree) textOrAction(allowSpace bool) Node {
 	case itemEOF:
 		return t.newFinish(token.pos)
 	case itemIgnore:
-		t.errorf("Should not receive ignore instruction for token %q at line %d, did you forget to properly end a statement", token.val, token.pos)
+		t.errorf("Should not receive ignore instruction for token %#v at line %d, did you forget to properly end a statement", token, token.pos)
 	default:
+		if t.withinTheme {
+			return t.newText(token.pos, token.val)
+		}
 		t.unexpected(token, "input")
 	}
 	return nil
@@ -466,6 +476,7 @@ func (t *Tree) html(token item) (n Node) {
 htmlLoop:
 	for {
 		var nextToken = t.next()
+
 		switch nextToken.typ {
 		case itemIdentifier:
 		case itemTagAttrStart:
@@ -518,6 +529,9 @@ htmlLoop:
 
 func (t *Tree) attr(token item) *AttrNode {
 	newAttr := t.newAttr(token.pos, token.val, token.val, new(ListNode))
+	newAttr.IsTheme = strings.TrimSpace(token.val) == themeAttrName
+
+	t.withinTheme = true
 
 	var acceptSpaces = false
 attrLoop:
@@ -527,12 +541,23 @@ attrLoop:
 		switch nextToken.typ {
 		case itemTagAttrValueStart:
 			acceptSpaces = true
-			// var starter = t.newText(nextToken.pos, nextToken.val)
-			// newAttr.Values.append(starter)
 		case itemTagAttrEnd:
 			break attrLoop
+		case itemList:
+			if nextToken.val == "" {
+				continue attrLoop
+			}
+
+			var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(nextToken.val, ""))
+			for _, part := range strings.Split(text, " ") {
+				var newText = t.newText(nextToken.pos, part)
+				newAttr.Values.append(newText)
+			}
 		case itemText:
 			if nextToken.val == "" {
+				continue attrLoop
+			}
+			if strings.TrimSpace(nextToken.val) == "" && newAttr.IsTheme {
 				continue attrLoop
 			}
 			var newText = t.newText(nextToken.pos, nextToken.val)
@@ -541,7 +566,7 @@ attrLoop:
 			if nextToken.val == "" {
 				continue attrLoop
 			}
-			if acceptSpaces {
+			if acceptSpaces && !newAttr.IsTheme {
 				newAttr.Values.append(t.newText(nextToken.pos, nextToken.val))
 			}
 		case itemEOF:
@@ -563,6 +588,8 @@ attrLoop:
 			// newAttr.Values.append(t.newText(nextToken.pos, nextToken.val))
 		}
 	}
+
+	t.withinTheme = false
 	return newAttr
 }
 
@@ -1112,7 +1139,7 @@ func (t *Tree) parseControl(allowElseIf bool, context string) (pos Pos, line int
 	var next Node
 	list, next = t.itemList()
 	switch next.Type() {
-	case nodeEnd: //done
+	case nodeEnd: // done
 	case nodeElse:
 		if allowElseIf {
 			// Special case for "else if". If the "else" is followed immediately by an "if",

@@ -1,6 +1,7 @@
 package styled
 
 import (
+	"github.com/influx6/npkg/nerror"
 	gocolorful "github.com/lucasb-eyer/go-colorful"
 	"gonum.org/v1/plot/vg"
 )
@@ -27,55 +28,80 @@ type XYCurve interface {
 // and [Life Color Algorithm](https://github.com/lyft/coloralgorithm).
 //
 type HuePalette struct {
-	Steps              int               // number of colors to be generated
-	HueStart           int               // Hue value (0-359)
-	HueEnd             int               // Hue value (0-359)
-	HueCurve           Curve             // Hue bezier curve points
-	SaturationRate     float64           // rate of saturation increase (0-200)
-	SaturationStart    int               // Saturation value (0-100)
-	SaturationEnd      int               // Saturation value (0-100)
-	SaturationCurve    Curve             // Bezier curve points for saturation
-	LuminousityStart   int               // Luminous value (0-100)
-	LuminousityEnd     int               // Luminous value (0-100)
-	LuminosityCurve    Curve             // Luminosity bezier curve points
-	ContrastColorLight *gocolorful.Color // Provides light color contrast to be used for calculating contrast
-	ContrastColorDark  *gocolorful.Color // Provides dark color contrast to be used for calculating contrast
+	Steps              int              // number of colors to be generated
+	HueStart           int              // Hue value (0-360)
+	HueEnd             int              // Hue value (0-360)
+	HueCurve           Curve            // Hue bezier curve points
+	SaturationRate     float64          // rate of saturation increase (0-200)
+	SaturationStart    int              // Saturation value (0-100)
+	SaturationEnd      int              // Saturation value (0-100)
+	SaturationCurve    Curve            // Bezier curve points for saturation
+	LuminousityStart   int              // Luminous value (0-100)
+	LuminousityEnd     int              // Luminous value (0-100)
+	LuminosityCurve    Curve            // Luminosity bezier curve points
+	ContrastColorLight gocolorful.Color // Provides light color contrast to be used for calculating contrast
+	ContrastColorDark  gocolorful.Color // Provides dark color contrast to be used for calculating contrast
 }
 
-func (h *HuePalette) ensure() {
+func (h *HuePalette) ensure() error {
 	if h.Steps <= 0 {
-		panic("HuePalette.Steps is required and should be above 0")
+		return nerror.New("HuePalette.Steps is required and should be above 0")
 	}
 	if h.LuminosityCurve == nil {
-		panic("HuePalette.LuminosityCurve is required")
+		return nerror.New("HuePalette.LuminosityCurve is required")
 	}
 	if h.HueCurve == nil {
-		panic("HuePalette.HueCurve is required")
+		return nerror.New("HuePalette.HueCurve is required")
 	}
 	if h.SaturationCurve == nil {
-		panic("HuePalette.SaturationCurve is required")
+		return nerror.New("HuePalette.SaturationCurve is required")
 	}
 	if h.SaturationRate <= 0 {
-		panic("HuePalette.SaturationRate is required and should be above 0")
+		return nerror.New("HuePalette.SaturationRate is required and should be above 0")
 	}
 	if h.SaturationStart <= 0 {
-		panic("HuePalette.SaturationStart is required and should be above 0")
+		return nerror.New("HuePalette.SaturationStart is required and should be above 0")
 	}
 	if h.SaturationEnd > 100 {
-		panic("HuePalette.SaturationEnd is required and should be below or equal to 100")
+		return nerror.New("HuePalette.SaturationEnd is required and should be below or equal to 100")
 	}
 	if h.LuminousityStart <= 0 {
-		panic("HuePalette.LuminousityStart is required and should be above 0")
+		return nerror.New("HuePalette.LuminousityStart is required and should be above 0")
 	}
 	if h.LuminousityEnd > 100 {
-		panic("HuePalette.LuminousityEnd is required and should be below or equal to 100")
+		return nerror.New("HuePalette.LuminousityEnd is required and should be below or equal to 100")
 	}
 	if h.HueStart <= 0 {
-		panic("HuePalette.HueStart is required and should be above 0")
+		return nerror.New("HuePalette.HueStart is required and should be above 0")
 	}
 	if h.HueEnd >= 360 {
-		panic("HuePalette.HueEnd is required and should be below 360")
+		return nerror.New("HuePalette.HueEnd is required and should be below 360")
 	}
+	return nil
+}
+
+func Hex(hex string) (HuePalette, error) {
+	var config HuePalette
+
+	var hexColor, hexErr = gocolorful.Hex(hex)
+	if hexErr != nil {
+		return config, nerror.WrapOnly(hexErr)
+	}
+
+	var hexH, hexS, hexL = hexColor.Hsl()
+
+	config.Steps = 10
+	config.HueStart = int(hexH)
+	config.HueEnd = 360
+	config.HueCurve = EaseInCubicTCurve
+	config.SaturationStart = int(hexS * 100)
+	config.SaturationRate = 20
+	config.SaturationEnd = 100
+	config.SaturationCurve = EaseInCubicTCurve
+	config.LuminousityStart = int(hexL)
+	config.LuminousityEnd = 1
+	config.LuminosityCurve = EaseInCubicTCurve
+	return config, nil
 }
 
 // Palette defines the generated color set which is produced from
@@ -96,22 +122,97 @@ type Palette struct {
 	Luminosity    float64
 }
 
+func MustUserPalettes(hexColors ...string) []Palette {
+	var pls, err = UserPalettes(hexColors...)
+	if err != nil {
+		panic(err.Error())
+	}
+	return pls
+}
+
+func UserPalettes(hexColors ...string) ([]Palette, error) {
+	var palettes = make([]Palette, 0, len(hexColors))
+	for index, hex := range hexColors {
+		var ul, err = UserPalette(hex, index, len(hexColors))
+		if err != nil {
+			return palettes, nerror.WrapOnly(err)
+		}
+		palettes = append(palettes, ul)
+	}
+	return palettes, nil
+}
+
+func MustUserPalette(hex string, step int, steps int) Palette {
+	var upl, err = UserPalette(hex, step, steps)
+	if err != nil {
+		panic(err)
+	}
+	return upl
+}
+
+func UserPalette(hex string, step int, steps int) (Palette, error) {
+	var config Palette
+
+	var hexColor, hexErr = gocolorful.Hex(hex)
+	if hexErr != nil {
+		return config, nerror.WrapOnly(hexErr)
+	}
+
+	var hexHV, hexSV, hexV = hexColor.Hsv()
+	config.HSV = gocolorful.Hsl(hexHV, hexSV, hexV)
+
+	var hexH, hexS, hexL = hexColor.Hsl()
+	config.HSL = gocolorful.Hsl(hexH, hexS, hexL)
+
+	var hexHL, hexCL, hexLL = hexColor.Hcl()
+	config.HCL = gocolorful.Hcl(hexHL, hexCL, hexLL)
+
+	config.RGB = gocolorful.Color{
+		R: hexColor.R,
+		G: hexColor.G,
+		B: hexColor.B,
+	}
+
+	config.ContrastLight = getColorContrastFor(config.HCL, white)
+	config.ContrastDark = getColorContrastFor(config.HCL, black)
+
+	config.Steps = steps
+	config.Step = step
+	config.Hex = hex
+	config.HueRange = []int{int(hexH), 360}
+	config.Hue = hexH
+	config.Saturation = hexS
+	config.Luminosity = hexL
+	return config, nil
+}
+
 type Palettes struct {
 	LightMode []Palette
 	DarkMode  []Palette // will be a list of LightMode palette set reversed.
 }
 
-func CreatePalette(config HuePalette) Palettes {
-	config.ensure()
+func MustCreatePalettes(config HuePalette) Palettes {
+	var pls, err = CreatePalettes(config)
+	if err != nil {
+		panic(err.Error())
+	}
+	return pls
+}
+
+func CreatePalettes(config HuePalette) (Palettes, error) {
+	var pl Palettes
+	if err := config.ensure(); err != nil {
+		return pl, nerror.WrapOnly(err)
+	}
 
 	var lightContrast = config.ContrastColorLight
-	if lightContrast == nil {
-		lightContrast = &white
+	if isDefaultValue(lightContrast) {
+		lightContrast = white
 	}
 
 	var darkContrast = config.ContrastColorDark
-	if darkContrast == nil {
-		darkContrast = &black
+	if isDefaultValue(darkContrast) {
+		darkContrast = black
 	}
 
 	var huePoints = getStepCurvePoints(config.HueCurve, config.Steps)
@@ -232,8 +333,8 @@ func CreatePalette(config HuePalette) Palettes {
 			B: b,
 		}
 
-		lightPalette.ContrastLight = getColorContrastFor(&lightPalette.HCL, lightContrast)
-		lightPalette.ContrastDark = getColorContrastFor(&lightPalette.HCL, darkContrast)
+		lightPalette.ContrastLight = getColorContrastFor(lightPalette.HCL, lightContrast)
+		lightPalette.ContrastDark = getColorContrastFor(lightPalette.HCL, darkContrast)
 
 		lightPalettes = append(lightPalettes, lightPalette)
 
@@ -265,22 +366,25 @@ func CreatePalette(config HuePalette) Palettes {
 			B: db,
 		}
 
-		darkPalette.ContrastLight = getColorContrastFor(&darkPalette.HCL, lightContrast)
-		darkPalette.ContrastDark = getColorContrastFor(&darkPalette.HCL, darkContrast)
+		darkPalette.ContrastLight = getColorContrastFor(darkPalette.HCL, lightContrast)
+		darkPalette.ContrastDark = getColorContrastFor(darkPalette.HCL, darkContrast)
 
 		darkPalettes = append(darkPalettes, darkPalette)
 	}
 
-	return Palettes{
-		LightMode: lightPalettes,
-		DarkMode:  darkPalettes,
-	}
+	pl.LightMode = lightPalettes
+	pl.DarkMode = darkPalettes
+	return pl, nil
+}
+
+func isDefaultValue(c gocolorful.Color) bool {
+	return c.R == 0 && c.G == 0 && c.B == 0
 }
 
 // getColorContrastFor returns the contrast of giving color against white.
 // WCAG contrast ratio
 // see http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
-func getColorContrastFor(c *gocolorful.Color, contender *gocolorful.Color) float64 {
+func getColorContrastFor(c gocolorful.Color, contender gocolorful.Color) float64 {
 	var _, _, l1 = c.Hcl()
 	var _, _, l2 = contender.Hcl()
 	if l1 > l2 {
@@ -299,13 +403,6 @@ func getStepCurvePoints(curve Curve, steps int) []float64 {
 }
 
 func distributeValue(value float64, fromRange []float64, toRange []float64) float64 {
-	if len(fromRange) != 2 {
-		panic("from range requires only 2 items")
-	}
-	if len(toRange) != 2 {
-		panic("to range requires only 2 items")
-	}
-
 	var fromLow, fromHigh = fromRange[0], fromRange[1]
 	var toLow, toHigh = toRange[0], toRange[1]
 
