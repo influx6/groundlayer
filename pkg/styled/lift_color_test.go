@@ -1,7 +1,7 @@
 package styled
 
 import (
-	json2 "encoding/json"
+	"encoding/json"
 	"fmt"
 	"log"
 	"testing"
@@ -10,7 +10,7 @@ import (
 )
 
 func TestPalette(t *testing.T) {
-	var palette, perr = CreatePalettes(HuePalette{
+	var lightList, darkList, perr = CreatePalettes(HuePalette{
 		Steps:            10,
 		HueStart:         100,
 		HueEnd:           359,
@@ -24,14 +24,12 @@ func TestPalette(t *testing.T) {
 		LuminosityCurve:  EaseInCubicTCurve,
 	})
 	require.NoError(t, perr)
-	require.NotNil(t, palette.DarkMode)
-	require.NotNil(t, palette.LightMode)
-	require.Len(t, palette.LightMode, 10)
-	require.Len(t, palette.DarkMode, 10)
+	require.Len(t, lightList, 10)
+	require.Len(t, darkList, 10)
 }
 
 func ExamplePalette() {
-	var palette, perr = CreatePalettes(HuePalette{
+	var light, dark, perr = CreatePalettes(HuePalette{
 		Steps:            10,
 		HueStart:         100,
 		HueEnd:           359,
@@ -49,9 +47,15 @@ func ExamplePalette() {
 		log.Fatalf("Error: %s\n", perr)
 	}
 
-	var json, err = json2.Marshal(palette)
+	var lightJSON, err = json.Marshal(light)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	fmt.Println(json)
+	fmt.Println(lightJSON)
+
+	var darkJSON, err2 = json.Marshal(dark)
+	if err2 != nil {
+		log.Fatal(err2.Error())
+	}
+	fmt.Println(darkJSON)
 }

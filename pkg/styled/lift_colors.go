@@ -191,18 +191,18 @@ type Palettes struct {
 	DarkMode  []Palette // will be a list of LightMode palette set reversed.
 }
 
-func MustCreatePalettes(config HuePalette) Palettes {
-	var pls, err = CreatePalettes(config)
+func MustCreatePalettes(config HuePalette) (lightPalettes []Palette, darkPalettes []Palette, err error) {
+	lightPalettes, darkPalettes, err = CreatePalettes(config)
 	if err != nil {
 		panic(err.Error())
 	}
-	return pls
+	return
 }
 
-func CreatePalettes(config HuePalette) (Palettes, error) {
-	var pl Palettes
-	if err := config.ensure(); err != nil {
-		return pl, nerror.WrapOnly(err)
+func CreatePalettes(config HuePalette) (lightPalettes []Palette, darkPalettes []Palette, err error) {
+	if ensureErr := config.ensure(); ensureErr != nil {
+		err = nerror.WrapOnly(ensureErr)
+		return
 	}
 
 	var lightContrast = config.ContrastColorLight
@@ -300,8 +300,8 @@ func CreatePalettes(config HuePalette) (Palettes, error) {
 		)
 	}
 
-	var lightPalettes = make([]Palette, 0, config.Steps)
-	var darkPalettes = make([]Palette, 0, config.Steps)
+	lightPalettes = make([]Palette, 0, config.Steps)
+	darkPalettes = make([]Palette, 0, config.Steps)
 
 	// use the luminosity as base for palette color list.
 	for index := 0; index < luminousCount; index++ {
@@ -372,9 +372,7 @@ func CreatePalettes(config HuePalette) (Palettes, error) {
 		darkPalettes = append(darkPalettes, darkPalette)
 	}
 
-	pl.LightMode = lightPalettes
-	pl.DarkMode = darkPalettes
-	return pl, nil
+	return
 }
 
 func isDefaultValue(c gocolorful.Color) bool {
