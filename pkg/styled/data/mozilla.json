@@ -1,0 +1,391 @@
+{
+  "-moz-appearance": {
+    "syntax": "none | button | button-arrow-down | button-arrow-next | button-arrow-previous | button-arrow-up | button-bevel | button-focus | caret | checkbox | checkbox-container | checkbox-label | checkmenuitem | dualbutton | groupbox | listbox | listitem | menuarrow | menubar | menucheckbox | menuimage | menuitem | menuitemtext | menulist | menulist-button | menulist-text | menulist-textfield | menupopup | menuradio | menuseparator | meterbar | meterchunk | progressbar | progressbar-vertical | progresschunk | progresschunk-vertical | radio | radio-container | radio-label | radiomenuitem | range | range-thumb | resizer | resizerpanel | scale-horizontal | scalethumbend | scalethumb-horizontal | scalethumbstart | scalethumbtick | scalethumb-vertical | scale-vertical | scrollbarbutton-down | scrollbarbutton-left | scrollbarbutton-right | scrollbarbutton-up | scrollbarthumb-horizontal | scrollbarthumb-vertical | scrollbartrack-horizontal | scrollbartrack-vertical | searchfield | separator | sheet | spinner | spinner-downbutton | spinner-textfield | spinner-upbutton | splitter | statusbar | statusbarpanel | tab | tabpanel | tabpanels | tab-scroll-arrow-back | tab-scroll-arrow-forward | textfield | textfield-multiline | toolbar | toolbarbutton | toolbarbutton-dropdown | toolbargripper | toolbox | tooltip | treeheader | treeheadercell | treeheadersortarrow | treeitem | treeline | treetwisty | treetwistyopen | treeview | -moz-mac-unified-toolbar | -moz-win-borderless-glass | -moz-win-browsertabbar-toolbox | -moz-win-communicationstext | -moz-win-communications-toolbox | -moz-win-exclude-glass | -moz-win-glass | -moz-win-mediatext | -moz-win-media-toolbox | -moz-window-button-box | -moz-window-button-box-maximized | -moz-window-button-close | -moz-window-button-maximize | -moz-window-button-minimize | -moz-window-button-restore | -moz-window-frame-bottom | -moz-window-frame-left | -moz-window-frame-right | -moz-window-titlebar | -moz-window-titlebar-maximized",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions",
+      "WebKit Extensions"
+    ],
+    "initial": "noneButOverriddenInUserAgentCSS",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
+  },
+  "-moz-binding": {
+    "syntax": "<url> | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElementsExceptGeneratedContentOrPseudoElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-binding"
+  },
+  "-moz-border-bottom-colors": {
+    "syntax": "color+ | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-bottom-colors"
+  },
+  "-moz-border-left-colors": {
+    "syntax": "color+ | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-left-colors"
+  },
+  "-moz-border-right-colors": {
+    "syntax": "color+ | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-right-colors"
+  },
+  "-moz-border-top-colors": {
+    "syntax": "color+ | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-top-colors"
+  },
+  "-moz-context-properties": {
+    "syntax": "none | [ fill | fill-opacity | stroke | stroke-opacity ]#",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElementsThatCanReferenceImages",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-context-properties"
+  },
+  "-moz-float-edge": {
+    "syntax": "border-box | content-box | margin-box | padding-box",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "content-box",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge"
+  },
+  "-moz-force-broken-image-icon": {
+    "syntax": "<integer [0,1]>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "images",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon"
+  },
+  "-moz-image-region": {
+    "syntax": "<shape> | auto",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "auto",
+    "appliesto": "xulImageElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region"
+  },
+  "-moz-orient": {
+    "syntax": "inline | block | horizontal | vertical",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "inline",
+    "appliesto": "anyElementEffectOnProgressAndMeter",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient"
+  },
+  "-moz-outline-radius": {
+    "syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
+    "media": "visual",
+    "inherited": false,
+    "animationType": [
+      "-moz-outline-radius-topleft",
+      "-moz-outline-radius-topright",
+      "-moz-outline-radius-bottomright",
+      "-moz-outline-radius-bottomleft"
+    ],
+    "percentages": [
+      "-moz-outline-radius-topleft",
+      "-moz-outline-radius-topright",
+      "-moz-outline-radius-bottomright",
+      "-moz-outline-radius-bottomleft"
+    ],
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": [
+      "-moz-outline-radius-topleft",
+      "-moz-outline-radius-topright",
+      "-moz-outline-radius-bottomright",
+      "-moz-outline-radius-bottomleft"
+    ],
+    "appliesto": "allElements",
+    "computed": [
+      "-moz-outline-radius-topleft",
+      "-moz-outline-radius-topright",
+      "-moz-outline-radius-bottomright",
+      "-moz-outline-radius-bottomleft"
+    ],
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius"
+  },
+  "-moz-outline-radius-bottomleft": {
+    "syntax": "<outline-radius>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "lpc",
+    "percentages": "referToDimensionOfBorderBox",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomleft"
+  },
+  "-moz-outline-radius-bottomright": {
+    "syntax": "<outline-radius>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "lpc",
+    "percentages": "referToDimensionOfBorderBox",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomright"
+  },
+  "-moz-outline-radius-topleft": {
+    "syntax": "<outline-radius>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "lpc",
+    "percentages": "referToDimensionOfBorderBox",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topleft"
+  },
+  "-moz-outline-radius-topright": {
+    "syntax": "<outline-radius>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "lpc",
+    "percentages": "referToDimensionOfBorderBox",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topright"
+  },
+  "-moz-stack-sizing": {
+    "syntax": "ignore | stretch-to-fit",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "stretch-to-fit",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-stack-sizing"
+  },
+  "-moz-text-blink": {
+    "syntax": "none | blink",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-text-blink"
+  },
+  "-moz-user-focus": {
+    "syntax": "ignore | normal | select-after | select-before | select-menu | select-same | select-all | none",
+    "media": "interactive",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus"
+  },
+  "-moz-user-input": {
+    "syntax": "auto | none | enabled | disabled",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "auto",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input"
+  },
+  "-moz-user-modify": {
+    "syntax": "read-only | read-write | write-only",
+    "media": "interactive",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "read-only",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-modify"
+  },
+  "-moz-window-dragging": {
+    "syntax": "drag | no-drag",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "drag",
+    "appliesto": "allElementsCreatingNativeWindows",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-dragging"
+  },
+  "-moz-window-shadow": {
+    "syntax": "default | menu | tooltip | sheet | none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Mozilla Extensions"
+    ],
+    "initial": "default",
+    "appliesto": "allElementsCreatingNativeWindows",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-shadow"
+  }
+}

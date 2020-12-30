@@ -1,0 +1,480 @@
+{
+  "-webkit-appearance": {
+    "syntax": "none | button | button-bevel | caret | checkbox | default-button | inner-spin-button | listbox | listitem | media-controls-background | media-controls-fullscreen-background | media-current-time-display | media-enter-fullscreen-button | media-exit-fullscreen-button | media-fullscreen-button | media-mute-button | media-overlay-play-button | media-play-button | media-seek-back-button | media-seek-forward-button | media-slider | media-sliderthumb | media-time-remaining-display | media-toggle-closed-captions-button | media-volume-slider | media-volume-slider-container | media-volume-sliderthumb | menulist | menulist-button | menulist-text | menulist-textfield | meter | progress-bar | progress-bar-value | push-button | radio | searchfield | searchfield-cancel-button | searchfield-decoration | searchfield-results-button | searchfield-results-decoration | slider-horizontal | slider-vertical | sliderthumb-horizontal | sliderthumb-vertical | square-button | textarea | textfield | -apple-pay-button",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "noneButOverriddenInUserAgentCSS",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
+  },
+  "-webkit-border-before": {
+    "syntax": "<'border-width'> || <'border-style'> || color",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": [
+      "-webkit-border-before-width"
+    ],
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": [
+      "border-width",
+      "border-style",
+      "color"
+    ],
+    "appliesto": "allElements",
+    "computed": [
+      "border-width",
+      "border-style",
+      "color"
+    ],
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-border-before"
+  },
+  "-webkit-border-before-color": {
+    "type": "color",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "currentcolor",
+    "appliesto": "allElements",
+    "computed": "computedColor",
+    "order": "uniqueOrder",
+    "status": "nonstandard"
+  },
+  "-webkit-border-before-style": {
+    "syntax": "<'border-style'>",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard"
+  },
+  "-webkit-border-before-width": {
+    "syntax": "<'border-width'>",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "logicalWidthOfContainingBlock",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "medium",
+    "appliesto": "allElements",
+    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "order": "uniqueOrder",
+    "status": "nonstandard"
+  },
+  "-webkit-box-reflect": {
+    "syntax": "above | below | right | left ",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect"
+  },
+  "-webkit-line-clamp": {
+    "syntax": "none | <integer>",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "byComputedValueType",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions",
+      "CSS Overflow"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp"
+  },
+  "-webkit-mask": {
+    "syntax": "[ <mask-reference> || <position> [ / <bg-size> ]? || <repeat-style> || [ <box> | border | padding | content | text ] || [ <box> | border | padding | content ] ]#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": [
+      "-webkit-mask-image",
+      "-webkit-mask-repeat",
+      "-webkit-mask-attachment",
+      "-webkit-mask-position",
+      "-webkit-mask-origin",
+      "-webkit-mask-clip"
+    ],
+    "appliesto": "allElements",
+    "computed": [
+      "-webkit-mask-image",
+      "-webkit-mask-repeat",
+      "-webkit-mask-attachment",
+      "-webkit-mask-position",
+      "-webkit-mask-origin",
+      "-webkit-mask-clip"
+    ],
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask"
+  },
+  "-webkit-mask-attachment": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "scroll",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-attachment"
+  },
+  "-webkit-mask-clip": {
+    "syntax": "[ <box> | border | padding | content | text ]#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "border",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
+  },
+  "-webkit-mask-composite": {
+    "syntax": "<composite-style>#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "source-over",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite"
+  },
+  "-webkit-mask-image": {
+    "syntax": "<mask-reference>#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "none",
+    "appliesto": "allElements",
+    "computed": "absoluteURIOrNone",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
+  },
+  "-webkit-mask-origin": {
+    "syntax": "[ <box> | border | padding | content ]#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "padding",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
+  },
+  "-webkit-mask-position": {
+    "syntax": "<position>#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "referToSizeOfElement",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "0% 0%",
+    "appliesto": "allElements",
+    "computed": "absoluteLengthOrPercentage",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
+  },
+  "-webkit-mask-position-x": {
+    "syntax": "[ <length-percentage> | left | center | right ]#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "referToSizeOfElement",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "0%",
+    "appliesto": "allElements",
+    "computed": "absoluteLengthOrPercentage",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x"
+  },
+  "-webkit-mask-position-y": {
+    "syntax": "[ <length-percentage> | top | center | bottom ]#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "referToSizeOfElement",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "0%",
+    "appliesto": "allElements",
+    "computed": "absoluteLengthOrPercentage",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y"
+  },
+  "-webkit-mask-repeat": {
+    "syntax": "<repeat-style>#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "repeat",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
+  },
+  "-webkit-mask-repeat-x": {
+    "syntax": "repeat | no-repeat | space | round",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "repeat",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x"
+  },
+  "-webkit-mask-repeat-y": {
+    "syntax": "repeat | no-repeat | space | round",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "repeat",
+    "appliesto": "allElements",
+    "computed": "absoluteLengthOrPercentage",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y"
+  },
+  "-webkit-mask-size": {
+    "syntax": "<bg-size>#",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "relativeToBackgroundPositioningArea",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "auto auto",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
+  },
+  "-webkit-overflow-scrolling": {
+    "syntax": "auto | touch",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "auto",
+    "appliesto": "scrollingBoxes",
+    "computed": "asSpecified",
+    "order": "orderOfAppearance",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-overflow-scrolling"
+  },
+  "-webkit-tap-highlight-color": {
+    "type": "color",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "black",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color"
+  },
+  "-webkit-text-fill-color": {
+    "type": "color",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "color",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "currentcolor",
+    "appliesto": "allElements",
+    "computed": "computedColor",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color"
+  },
+  "-webkit-text-stroke": {
+    "syntax": "number || color",
+    "media": "visual",
+    "inherited": true,
+    "animationType": [
+      "-webkit-text-stroke-width",
+      "-webkit-text-stroke-color"
+    ],
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": [
+      "-webkit-text-stroke-width",
+      "-webkit-text-stroke-color"
+    ],
+    "appliesto": "allElements",
+    "computed": [
+      "-webkit-text-stroke-width",
+      "-webkit-text-stroke-color"
+    ],
+    "order": "canonicalOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke"
+  },
+  "-webkit-text-stroke-color": {
+    "type": "color",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "color",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "currentcolor",
+    "appliesto": "allElements",
+    "computed": "computedColor",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color"
+  },
+  "-webkit-text-stroke-width": {
+    "type": "number",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "0",
+    "appliesto": "allElements",
+    "computed": "absoluteLength",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width"
+  },
+  "-webkit-touch-callout": {
+    "syntax": "default | none",
+    "media": "visual",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "default",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout"
+  },
+  "-webkit-user-modify": {
+    "syntax": "read-only | read-write | read-write-plaintext-only",
+    "media": "interactive",
+    "inherited": true,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "WebKit Extensions"
+    ],
+    "initial": "read-only",
+    "appliesto": "allElements",
+    "computed": "asSpecified",
+    "order": "uniqueOrder",
+    "status": "nonstandard"
+  }
+}

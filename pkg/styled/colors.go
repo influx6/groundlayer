@@ -26,3 +26,9 @@ func NewColorDirective(light *NumberPalette, dark *NumberPalette) *ColorDirectiv
 		Dark:  dark,
 	}
 }
+
+type ColorsDirective map[string]*ColorDirective
+
+func (c ColorsDirective) Add(color string, directive *ColorDirective) {
+	c[color] = directive
+}
