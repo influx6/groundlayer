@@ -10,8 +10,8 @@
       "WebKit Extensions"
     ],
     "initial": "noneButOverriddenInUserAgentCSS",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
@@ -26,8 +26,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElementsExceptGeneratedContentOrPseudoElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptGeneratedContentOrPseudoElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-binding"
@@ -42,8 +42,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-bottom-colors"
@@ -58,8 +58,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-left-colors"
@@ -74,8 +74,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-right-colors"
@@ -90,8 +90,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-border-top-colors"
@@ -106,8 +106,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElementsThatCanReferenceImages",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsThatCanReferenceImages",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-context-properties"
@@ -122,8 +122,8 @@
       "Mozilla Extensions"
     ],
     "initial": "content-box",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-float-edge"
@@ -138,8 +138,8 @@
       "Mozilla Extensions"
     ],
     "initial": "0",
-    "appliesto": "images",
-    "computed": "asSpecified",
+    "appliesTo": "images",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-force-broken-image-icon"
@@ -154,8 +154,8 @@
       "Mozilla Extensions"
     ],
     "initial": "auto",
-    "appliesto": "xulImageElements",
-    "computed": "asSpecified",
+    "appliesTo": "xulImageElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-image-region"
@@ -170,8 +170,8 @@
       "Mozilla Extensions"
     ],
     "initial": "inline",
-    "appliesto": "anyElementEffectOnProgressAndMeter",
-    "computed": "asSpecified",
+    "appliesTo": "anyElementEffectOnProgressAndMeter",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-orient"
@@ -180,13 +180,13 @@
     "syntax": "<outline-radius>{1,4} [ / <outline-radius>{1,4} ]?",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "-moz-outline-radius-topleft",
       "-moz-outline-radius-topright",
       "-moz-outline-radius-bottomright",
       "-moz-outline-radius-bottomleft"
     ],
-    "percentages": [
+    "percentagesSet": [
       "-moz-outline-radius-topleft",
       "-moz-outline-radius-topright",
       "-moz-outline-radius-bottomright",
@@ -195,13 +195,13 @@
     "groups": [
       "Mozilla Extensions"
     ],
-    "initial": [
+    "initials": [
       "-moz-outline-radius-topleft",
       "-moz-outline-radius-topright",
       "-moz-outline-radius-bottomright",
       "-moz-outline-radius-bottomleft"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "-moz-outline-radius-topleft",
       "-moz-outline-radius-topright",
@@ -222,8 +222,8 @@
       "Mozilla Extensions"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomleft"
@@ -238,8 +238,8 @@
       "Mozilla Extensions"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-bottomright"
@@ -254,8 +254,8 @@
       "Mozilla Extensions"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topleft"
@@ -270,8 +270,8 @@
       "Mozilla Extensions"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-outline-radius-topright"
@@ -286,8 +286,8 @@
       "Mozilla Extensions"
     ],
     "initial": "stretch-to-fit",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-stack-sizing"
@@ -302,8 +302,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-text-blink"
@@ -318,8 +318,8 @@
       "Mozilla Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-focus"
@@ -334,8 +334,8 @@
       "Mozilla Extensions"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-input"
@@ -350,8 +350,8 @@
       "Mozilla Extensions"
     ],
     "initial": "read-only",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-user-modify"
@@ -366,8 +366,8 @@
       "Mozilla Extensions"
     ],
     "initial": "drag",
-    "appliesto": "allElementsCreatingNativeWindows",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsCreatingNativeWindows",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-dragging"
@@ -382,8 +382,8 @@
       "Mozilla Extensions"
     ],
     "initial": "default",
-    "appliesto": "allElementsCreatingNativeWindows",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsCreatingNativeWindows",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-moz-window-shadow"

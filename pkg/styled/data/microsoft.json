@@ -9,8 +9,8 @@
       "Microsoft Extensions"
     ],
     "initial": "false",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-accelerator"
@@ -25,8 +25,8 @@
       "Microsoft Extensions"
     ],
     "initial": "tb",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-block-progression"
@@ -41,8 +41,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-chaining"
@@ -57,8 +57,8 @@
       "Microsoft Extensions"
     ],
     "initial": "zoomForTheTopLevelNoneForTheRest",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zooming"
@@ -73,8 +73,8 @@
       "Microsoft Extensions"
     ],
     "initial": "400%",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-limit-max"
@@ -89,8 +89,8 @@
       "Microsoft Extensions"
     ],
     "initial": "100%",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-limit-min"
@@ -105,8 +105,8 @@
       "Microsoft Extensions"
     ],
     "initial": "snapInterval(0%, 100%)",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-snap-points"
@@ -121,8 +121,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-snap-type"
@@ -137,8 +137,8 @@
       "Microsoft Extensions"
     ],
     "initial": "\"\"",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-filter"
@@ -153,8 +153,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "nonReplacedElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-flow-from"
@@ -169,8 +169,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "iframeElements",
-    "computed": "asSpecified",
+    "appliesTo": "iframeElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-flow-into"
@@ -185,8 +185,8 @@
       "CSS Grid Layout"
     ],
     "initial": "none",
-    "appliesto": "gridContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-grid-columns"
@@ -201,8 +201,8 @@
       "CSS Grid Layout"
     ],
     "initial": "none",
-    "appliesto": "gridContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-grid-rows"
@@ -217,8 +217,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-high-contrast-adjust"
@@ -233,8 +233,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-hyphenate-limit-chars"
@@ -249,8 +249,8 @@
       "Microsoft Extensions"
     ],
     "initial": "no-limit",
-    "appliesto": "blockContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainerElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-hyphenate-limit-lines"
@@ -265,8 +265,8 @@
       "Microsoft Extensions"
     ],
     "initial": "0",
-    "appliesto": "blockContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainerElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-hyphenate-limit-zone"
@@ -281,8 +281,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-ime-align"
@@ -297,8 +297,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-overflow-style"
@@ -313,8 +313,8 @@
       "Microsoft Extensions"
     ],
     "initial": "dependsOnUserAgent",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-3dlight-color"
@@ -329,8 +329,8 @@
       "Microsoft Extensions"
     ],
     "initial": "ButtonText",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-arrow-color"
@@ -345,8 +345,8 @@
       "Microsoft Extensions"
     ],
     "initial": "dependsOnUserAgent",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-base-color"
@@ -361,8 +361,8 @@
       "Microsoft Extensions"
     ],
     "initial": "ThreeDDarkShadow",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-darkshadow-color"
@@ -377,8 +377,8 @@
       "Microsoft Extensions"
     ],
     "initial": "ThreeDFace",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-face-color"
@@ -393,8 +393,8 @@
       "Microsoft Extensions"
     ],
     "initial": "ThreeDHighlight",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-highlight-color"
@@ -409,8 +409,8 @@
       "Microsoft Extensions"
     ],
     "initial": "ThreeDDarkShadow",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-shadow-color"
@@ -425,8 +425,8 @@
       "Microsoft Extensions"
     ],
     "initial": "Scrollbar",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scrollbar-track-color"
@@ -441,8 +441,8 @@
       "Microsoft Extensions"
     ],
     "initial": "chained",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-chaining"
@@ -456,13 +456,13 @@
     "groups": [
       "Microsoft Extensions"
     ],
-    "initial": [
+    "initials": [
       "-ms-scroll-limit-x-min",
       "-ms-scroll-limit-y-min",
       "-ms-scroll-limit-x-max",
       "-ms-scroll-limit-y-max"
     ],
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
     "computed": [
       "-ms-scroll-limit-x-min",
       "-ms-scroll-limit-y-min",
@@ -483,8 +483,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-limit-x-max"
@@ -499,8 +499,8 @@
       "Microsoft Extensions"
     ],
     "initial": "0",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-limit-x-min"
@@ -515,8 +515,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-limit-y-max"
@@ -531,8 +531,8 @@
       "Microsoft Extensions"
     ],
     "initial": "0",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-limit-y-min"
@@ -547,8 +547,8 @@
       "Microsoft Extensions"
     ],
     "initial": "railed",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-rails"
@@ -563,8 +563,8 @@
       "Microsoft Extensions"
     ],
     "initial": "snapInterval(0px, 100%)",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-snap-points-x"
@@ -579,8 +579,8 @@
       "Microsoft Extensions"
     ],
     "initial": "snapInterval(0px, 100%)",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-snap-points-y"
@@ -595,8 +595,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-snap-type"
@@ -610,11 +610,11 @@
     "groups": [
       "Microsoft Extensions"
     ],
-    "initial": [
+    "initials": [
       "-ms-scroll-snap-type",
       "-ms-scroll-snap-points-x"
     ],
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
     "computed": [
       "-ms-scroll-snap-type",
       "-ms-scroll-snap-points-x"
@@ -632,11 +632,11 @@
     "groups": [
       "Microsoft Extensions"
     ],
-    "initial": [
+    "initials": [
       "-ms-scroll-snap-type",
       "-ms-scroll-snap-points-y"
     ],
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
     "computed": [
       "-ms-scroll-snap-type",
       "-ms-scroll-snap-points-y"
@@ -655,8 +655,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-scroll-translation"
@@ -671,8 +671,8 @@
       "Microsoft Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-text-autospace"
@@ -687,8 +687,8 @@
       "Microsoft Extensions"
     ],
     "initial": "grippers",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-touch-select"
@@ -703,8 +703,8 @@
       "Microsoft Extensions"
     ],
     "initial": "text",
-    "appliesto": "nonReplacedElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-user-select"
@@ -719,8 +719,8 @@
       "Microsoft Extensions"
     ],
     "initial": "auto",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-wrap-flow"
@@ -735,8 +735,8 @@
       "Microsoft Extensions"
     ],
     "initial": "0",
-    "appliesto": "exclusionElements",
-    "computed": "asSpecified",
+    "appliesTo": "exclusionElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-wrap-margin"
@@ -751,8 +751,8 @@
       "Microsoft Extensions"
     ],
     "initial": "wrap",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-wrap-through"

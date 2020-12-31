@@ -9,8 +9,10 @@
       "WebKit Extensions"
     ],
     "initial": "noneButOverriddenInUserAgentCSS",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
@@ -20,18 +22,18 @@
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
-    "percentages": [
+    "percentageSet": [
       "-webkit-border-before-width"
     ],
     "groups": [
       "WebKit Extensions"
     ],
-    "initial": [
+    "initials": [
       "border-width",
       "border-style",
       "color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-width",
       "border-style",
@@ -51,8 +53,10 @@
       "WebKit Extensions"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed": [
+      "computedColor"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard"
   },
@@ -66,8 +70,10 @@
       "WebKit Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard"
   },
@@ -81,8 +87,10 @@
       "WebKit Extensions"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLengthZeroIfBorderStyleNoneOrHidden"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard"
   },
@@ -96,8 +104,10 @@
       "WebKit Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-box-reflect"
@@ -113,8 +123,10 @@
       "CSS Overflow"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-line-clamp"
@@ -128,7 +140,7 @@
     "groups": [
       "WebKit Extensions"
     ],
-    "initial": [
+    "initials": [
       "-webkit-mask-image",
       "-webkit-mask-repeat",
       "-webkit-mask-attachment",
@@ -136,7 +148,7 @@
       "-webkit-mask-origin",
       "-webkit-mask-clip"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "-webkit-mask-image",
       "-webkit-mask-repeat",
@@ -159,8 +171,10 @@
       "WebKit Extensions"
     ],
     "initial": "scroll",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-attachment"
@@ -175,8 +189,10 @@
       "WebKit Extensions"
     ],
     "initial": "border",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
@@ -191,8 +207,10 @@
       "WebKit Extensions"
     ],
     "initial": "source-over",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-composite"
@@ -207,8 +225,10 @@
       "WebKit Extensions"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "absoluteURIOrNone",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteURIOrNone"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
@@ -223,8 +243,10 @@
       "WebKit Extensions"
     ],
     "initial": "padding",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
@@ -239,8 +261,10 @@
       "WebKit Extensions"
     ],
     "initial": "0% 0%",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOrPercentage",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLengthOrPercentage"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
@@ -255,8 +279,10 @@
       "WebKit Extensions"
     ],
     "initial": "0%",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOrPercentage",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLengthOrPercentage"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-x"
@@ -271,8 +297,10 @@
       "WebKit Extensions"
     ],
     "initial": "0%",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOrPercentage",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLengthOrPercentage"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-position-y"
@@ -287,8 +315,10 @@
       "WebKit Extensions"
     ],
     "initial": "repeat",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
@@ -303,8 +333,10 @@
       "WebKit Extensions"
     ],
     "initial": "repeat",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-x"
@@ -319,8 +351,10 @@
       "WebKit Extensions"
     ],
     "initial": "repeat",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOrPercentage",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLengthOrPercentage"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-mask-repeat-y"
@@ -335,8 +369,10 @@
       "WebKit Extensions"
     ],
     "initial": "auto auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
@@ -351,8 +387,10 @@
       "WebKit Extensions"
     ],
     "initial": "auto",
-    "appliesto": "scrollingBoxes",
-    "computed": "asSpecified",
+    "appliesTo": "scrollingBoxes",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "orderOfAppearance",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-overflow-scrolling"
@@ -367,8 +405,10 @@
       "WebKit Extensions"
     ],
     "initial": "black",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-tap-highlight-color"
@@ -383,8 +423,10 @@
       "WebKit Extensions"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed": [
+      "computedColor"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-fill-color"
@@ -393,7 +435,7 @@
     "syntax": "number || color",
     "media": "visual",
     "inherited": true,
-    "animationType": [
+    "animationTypes": [
       "-webkit-text-stroke-width",
       "-webkit-text-stroke-color"
     ],
@@ -401,11 +443,11 @@
     "groups": [
       "WebKit Extensions"
     ],
-    "initial": [
+    "initials": [
       "-webkit-text-stroke-width",
       "-webkit-text-stroke-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "-webkit-text-stroke-width",
       "-webkit-text-stroke-color"
@@ -424,8 +466,10 @@
       "WebKit Extensions"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed": [
+      "computedColor"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-color"
@@ -440,8 +484,10 @@
       "WebKit Extensions"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "absoluteLength",
+    "appliesTo": "allElements",
+    "computed": [
+      "absoluteLength"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-text-stroke-width"
@@ -456,8 +502,10 @@
       "WebKit Extensions"
     ],
     "initial": "default",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-webkit-touch-callout"
@@ -472,8 +520,10 @@
       "WebKit Extensions"
     ],
     "initial": "read-only",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed": [
+      "asSpecified"
+    ],
     "order": "uniqueOrder",
     "status": "nonstandard"
   }

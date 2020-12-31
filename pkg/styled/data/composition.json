@@ -1,4 +1,54 @@
 {
+  "-ms-content-zoom-snap": {
+    "compose": ["-ms-content-zoom-snap-type","-ms-content-zoom-snap-points"],
+    "media": "interactive",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "no",
+    "groups": [
+      "Microsoft Extensions"
+    ],
+    "initials": [
+      "-ms-content-zoom-snap-type",
+      "-ms-content-zoom-snap-points"
+    ],
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed": [
+      "-ms-content-zoom-snap-type",
+      "-ms-content-zoom-snap-points"
+    ],
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-snap"
+  },
+  "-ms-content-zoom-limit": {
+    "composes": [
+      "-ms-content-zoom-limit-min",
+      "-ms-content-zoom-limit-max"
+    ],
+    "media": "interactive",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentageSet": [
+      "-ms-content-zoom-limit-max",
+      "-ms-content-zoom-limit-min"
+    ],
+    "groups": [
+      "Microsoft Extensions"
+    ],
+    "initials": [
+      "-ms-content-zoom-limit-max",
+      "-ms-content-zoom-limit-min"
+    ],
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed": [
+      "-ms-content-zoom-limit-max",
+      "-ms-content-zoom-limit-min"
+    ],
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-content-zoom-limit"
+  },
   "transition": {
     "syntax": "<single-transition>#",
     "media": "interactive",
@@ -14,7 +64,7 @@
       "transition-property",
       "transition-timing-function"
     ],
-    "appliesto": "allElementsAndPseudos",
+    "appliesTo": "allElementsAndPseudos",
     "computed": [
       "transition-delay",
       "transition-duration",
@@ -29,7 +79,7 @@
     "syntax": "<'text-decoration-line'> || <'text-decoration-style'> || <'text-decoration-color'> || <'text-decoration-thickness'>",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "text-decoration-color",
       "text-decoration-style",
       "text-decoration-line",
@@ -44,7 +94,7 @@
       "text-decoration-style",
       "text-decoration-line"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "text-decoration-line",
       "text-decoration-style",
@@ -70,8 +120,8 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
@@ -90,7 +140,7 @@
       "align-self",
       "justify-self"
     ],
-    "appliesto": "blockLevelBoxesAndAbsolutelyPositionedBoxesAndGridItems",
+    "appliesTo": "blockLevelBoxesAndAbsolutelyPositionedBoxesAndGridItems",
     "computed": [
       "align-self",
       "justify-self"
@@ -112,7 +162,7 @@
       "align-items",
       "justify-items"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "align-items",
       "justify-items"
@@ -123,12 +173,12 @@
   },
   "outline": {
     "syntax": "[ <'outline-color'> || <'outline-style'> || <'outline-width'> ]",
-    "media": [
+    "medias": [
       "visual",
       "interactive"
     ],
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "outline-color",
       "outline-width",
       "outline-style"
@@ -142,7 +192,7 @@
       "outline-style",
       "outline-width"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "outline-color",
       "outline-width",
@@ -156,14 +206,14 @@
     "syntax": "[ <'offset-position'>? [ <'offset-path'> [ <'offset-distance'> || <'offset-rotate'> ]? ]? ]! [ / <'offset-anchor'> ]?",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "offset-position",
       "offset-path",
       "offset-distance",
       "offset-anchor",
       "offset-rotate"
     ],
-    "percentages": [
+    "percentageSet": [
       "offset-position",
       "offset-distance",
       "offset-anchor"
@@ -178,7 +228,7 @@
       "offset-anchor",
       "offset-rotate"
     ],
-    "appliesto": "transformableElements",
+    "appliesTo": "transformableElements",
     "computed": [
       "offset-position",
       "offset-path",
@@ -195,7 +245,7 @@
     "syntax": "<mask-layer>#",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "mask-image",
       "mask-mode",
       "mask-repeat",
@@ -205,7 +255,7 @@
       "mask-size",
       "mask-composite"
     ],
-    "percentages": [
+    "percentageSet": [
       "mask-position"
     ],
     "groups": [
@@ -221,7 +271,7 @@
       "mask-size",
       "mask-composite"
     ],
-    "appliesto": "allElementsSVGContainerElements",
+    "appliesTo": "allElementsSVGContainerElements",
     "computed": [
       "mask-image",
       "mask-mode",
@@ -241,7 +291,7 @@
     "syntax": "<'mask-border-source'> || <'mask-border-slice'> [ / <'mask-border-width'>? [ / <'mask-border-outset'> ]? ]? || <'mask-border-repeat'> || <'mask-border-mode'>",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "mask-border-mode",
       "mask-border-outset",
       "mask-border-repeat",
@@ -249,7 +299,7 @@
       "mask-border-source",
       "mask-border-width"
     ],
-    "percentages": [
+    "percentageSet": [
       "mask-border-slice",
       "mask-border-width"
     ],
@@ -264,7 +314,7 @@
       "mask-border-source",
       "mask-border-width"
     ],
-    "appliesto": "allElementsSVGContainerElements",
+    "appliesTo": "allElementsSVGContainerElements",
     "computed": [
       "mask-border-mode",
       "mask-border-outset",
@@ -293,7 +343,7 @@
       "padding-right",
       "padding-top"
     ],
-    "appliesto": "allElementsExceptTableDisplayTypes",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
     "computed": [
       "padding-bottom",
       "padding-left",
@@ -323,7 +373,7 @@
       "margin-right",
       "margin-top"
     ],
-    "appliesto": "allElementsExceptTableDisplayTypes",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
     "computed": [
       "margin-bottom",
       "margin-left",
@@ -352,7 +402,7 @@
       "list-style-position",
       "list-style-image"
     ],
-    "appliesto": "listItems",
+    "appliesTo": "listItems",
     "computed": [
       "list-style-image",
       "list-style-position",
@@ -367,7 +417,7 @@
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
-    "percentages": [
+    "percentageSet": [
       "grid-template-columns",
       "grid-template-rows"
     ],
@@ -379,7 +429,7 @@
       "grid-template-rows",
       "grid-template-areas"
     ],
-    "appliesto": "gridContainers",
+    "appliesTo": "gridContainers",
     "computed": [
       "grid-template-columns",
       "grid-template-rows",
@@ -393,7 +443,7 @@
     "syntax": "<'grid-row-gap'> <'grid-column-gap'>?",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "grid-row-gap",
       "grid-column-gap"
     ],
@@ -405,7 +455,7 @@
       "grid-row-gap",
       "grid-column-gap"
     ],
-    "appliesto": "gridContainers",
+    "appliesTo": "gridContainers",
     "computed": [
       "grid-row-gap",
       "grid-column-gap"
@@ -427,7 +477,7 @@
       "grid-row-start",
       "grid-row-end"
     ],
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
     "computed": [
       "grid-row-start",
       "grid-row-end"
@@ -449,7 +499,7 @@
       "grid-column-start",
       "grid-column-end"
     ],
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
     "computed": [
       "grid-column-start",
       "grid-column-end"
@@ -463,7 +513,7 @@
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
-    "percentages": [
+    "percentageSet": [
       "grid-template-rows",
       "grid-template-columns",
       "grid-auto-rows",
@@ -484,7 +534,7 @@
       "column-gap",
       "row-gap"
     ],
-    "appliesto": "gridContainers",
+    "appliesTo": "gridContainers",
     "computed": [
       "grid-template-rows",
       "grid-template-columns",
@@ -516,7 +566,7 @@
       "grid-row-end",
       "grid-column-end"
     ],
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
     "computed": [
       "grid-row-start",
       "grid-column-start",
@@ -531,7 +581,7 @@
     "syntax": "[ [ <'font-style'> || <font-variant-css21> || <'font-weight'> || <'font-stretch'> ]? <'font-size'> [ / <'line-height'> ]? <'font-family'> ] | caption | icon | menu | message-box | small-caption | status-bar",
     "media": "visual",
     "inherited": true,
-    "animationType": [
+    "animationTypes": [
       "font-style",
       "font-variant",
       "font-weight",
@@ -540,7 +590,7 @@
       "line-height",
       "font-family"
     ],
-    "percentages": [
+    "percentageSet": [
       "font-size",
       "line-height"
     ],
@@ -556,7 +606,7 @@
       "line-height",
       "font-family"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "font-style",
       "font-variant",
@@ -578,7 +628,7 @@
   "text-emphasis": {
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "text-emphasis-color",
       "text-emphasis-style"
     ],
@@ -590,7 +640,7 @@
       "text-emphasis-style",
       "text-emphasis-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "text-emphasis-style",
       "text-emphasis-color"
@@ -609,8 +659,8 @@
       "CSS Text Decoration"
     ],
     "initial": "over right",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
@@ -633,7 +683,7 @@
       "animation-fill-mode",
       "animation-play-state"
     ],
-    "appliesto": "allElementsAndPseudos",
+    "appliesTo": "allElementsAndPseudos",
     "computed": [
       "animation-name",
       "animation-duration",
@@ -652,7 +702,7 @@
     "type": "string",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "background-color",
       "background-image",
       "background-clip",
@@ -661,7 +711,7 @@
       "background-repeat",
       "background-attachment"
     ],
-    "percentages": [
+    "percentageSet": [
       "background-position",
       "background-size"
     ],
@@ -678,7 +728,7 @@
       "background-attachment",
       "background-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "background-image",
       "background-position",
@@ -701,7 +751,7 @@
   "border": {
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-color",
       "border-style",
       "border-width"
@@ -715,7 +765,7 @@
       "border-style",
       "border-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-width",
       "border-style",
@@ -742,7 +792,7 @@
       "border-top-style",
       "border-top-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-top-width",
       "border-top-style",
@@ -756,7 +806,7 @@
     "syntax": "<'border-top-width'> || <'border-top-style'> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-block-end-color",
       "border-block-end-style",
       "border-block-end-width"
@@ -770,7 +820,7 @@
       "border-top-style",
       "border-top-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-top-width",
       "border-top-style",
@@ -784,7 +834,7 @@
     "syntax": "<'border-top-width'> || <'border-top-style'> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-block-start-color",
       "border-block-start-style",
       "border-block-start-width"
@@ -798,7 +848,7 @@
       "border-style",
       "color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-width",
       "border-style",
@@ -812,7 +862,7 @@
     "syntax": "<line-width> || <line-style> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-bottom-color",
       "border-bottom-style",
       "border-bottom-width"
@@ -826,7 +876,7 @@
       "border-bottom-style",
       "border-bottom-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-bottom-width",
       "border-bottom-style",
@@ -843,7 +893,7 @@
     "syntax": "<length-percentage>{1,4} [ / <length-percentage>{1,4} ]?",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-top-left-radius",
       "border-top-right-radius",
       "border-bottom-right-radius",
@@ -859,7 +909,7 @@
       "border-bottom-right-radius",
       "border-bottom-left-radius"
     ],
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
     "computed": [
       "border-bottom-left-radius",
       "border-bottom-right-radius",
@@ -877,7 +927,7 @@
     "syntax": "<line-width> || <line-style> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-right-color",
       "border-right-style",
       "border-right-width"
@@ -891,7 +941,7 @@
       "border-right-style",
       "border-right-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-right-width",
       "border-right-style",
@@ -908,7 +958,7 @@
     "syntax": "<line-width> || <line-style> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-left-color",
       "border-left-style",
       "border-left-width"
@@ -922,7 +972,7 @@
       "border-left-style",
       "border-left-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-left-width",
       "border-left-style",
@@ -939,7 +989,7 @@
     "syntax": "<'border-top-width'> || <'border-top-style'> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-inline-start-color",
       "border-inline-start-style",
       "border-inline-start-width"
@@ -953,7 +1003,7 @@
       "border-style",
       "color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-width",
       "border-style",
@@ -977,7 +1027,7 @@
       "border-top-style",
       "border-top-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-top-width",
       "border-top-style",
@@ -991,7 +1041,7 @@
     "syntax": "<'border-top-width'> || <'border-top-style'> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-inline-end-color",
       "border-inline-end-style",
       "border-inline-end-width"
@@ -1005,7 +1055,7 @@
       "border-style",
       "color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-width",
       "border-style",
@@ -1020,7 +1070,7 @@
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
-    "percentages": [
+    "percentageSet": [
       "border-image-slice",
       "border-image-width"
     ],
@@ -1034,7 +1084,7 @@
       "border-image-outset",
       "border-image-repeat"
     ],
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
     "computed": [
       "border-image-outset",
       "border-image-repeat",
@@ -1053,7 +1103,7 @@
     "syntax": "<line-width> || <line-style> || color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-top-color",
       "border-top-style",
       "border-top-width"
@@ -1067,7 +1117,7 @@
       "border-top-style",
       "border-top-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-top-width",
       "border-top-style",
@@ -1095,7 +1145,7 @@
       "border-bottom-style",
       "border-left-style"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-bottom-style",
       "border-left-style",
@@ -1113,7 +1163,7 @@
     "syntax": "none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "flex-grow",
       "flex-shrink",
       "flex-basis"
@@ -1127,7 +1177,7 @@
       "flex-shrink",
       "flex-basis"
     ],
-    "appliesto": "flexItemsAndInFlowPseudos",
+    "appliesTo": "flexItemsAndInFlowPseudos",
     "computed": [
       "flex-grow",
       "flex-shrink",
@@ -1150,7 +1200,7 @@
       "flex-direction",
       "flex-wrap"
     ],
-    "appliesto": "flexContainers",
+    "appliesTo": "flexContainers",
     "computed": [
       "flex-direction",
       "flex-wrap"
@@ -1163,7 +1213,7 @@
     "syntax": "<'column-width'> || <'column-count'>",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "column-width",
       "column-count"
     ],
@@ -1175,7 +1225,7 @@
       "column-width",
       "column-count"
     ],
-    "appliesto": "blockContainersExceptTableWrappers",
+    "appliesTo": "blockContainersExceptTableWrappers",
     "computed": [
       "column-width",
       "column-count"
@@ -1188,7 +1238,7 @@
     "syntax": "<'column-rule-width'> || <'column-rule-style'> || <'column-rule-color'>",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "column-rule-color",
       "column-rule-style",
       "column-rule-width"
@@ -1202,7 +1252,7 @@
       "column-rule-style",
       "column-rule-color"
     ],
-    "appliesto": "multicolElements",
+    "appliesTo": "multicolElements",
     "computed": [
       "column-rule-color",
       "column-rule-style",
@@ -1216,7 +1266,7 @@
     "syntax": "<line-width>{1,4}",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-bottom-width",
       "border-left-width",
       "border-right-width",
@@ -1232,7 +1282,7 @@
       "border-bottom-width",
       "border-left-width"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-bottom-width",
       "border-left-width",
@@ -1250,7 +1300,7 @@
     "type": "color",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "border-bottom-color",
       "border-left-color",
       "border-right-color",
@@ -1266,7 +1316,7 @@
       "border-bottom-color",
       "border-left-color"
     ],
-    "appliesto": "allElements",
+    "appliesTo": "allElements",
     "computed": [
       "border-bottom-color",
       "border-left-color",

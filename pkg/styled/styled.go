@@ -1,5 +1,11 @@
 package styled
 
+// Color represents a color type for a css style value.
+type Color Palette
+
+// URL represent a style url, image unit type in css (used by background-image, etc).
+type URL string
+
 /**
 Theme provides a clear description of a predefined styling which will
 be used to generate unique styles for each target element. It provides

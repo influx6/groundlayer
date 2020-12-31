@@ -1,15 +1,5 @@
 package styled
 
-type Unit int
-
-const (
-	Pixels Unit = iota
-	Rems
-	Ems
-	Vw // viewport's width
-	Vh // viewport's height
-)
-
 // Screens represents measures/scale of supported screen sizes.
 var DefaultScreenScales = StringScale("sm", "md", "lg", "xl", "2xl")
 var DefaultScreenValues = NewStringNumber(DefaultScreenScales).
@@ -26,7 +16,7 @@ var TailwindScreenValues = NewStringNumber(DefaultScreenScales).
 	Key("2xl", 1280)
 
 func DefaultScreens() *ScreenDirective {
-	return NewScreenDirective(Ems, DefaultScreenValues)
+	return NewScreenDirective(EM, DefaultScreenValues)
 }
 
 type ScreenDirective struct {

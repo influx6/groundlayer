@@ -36,13 +36,13 @@
     "media": "visual"
   },
   "fill": {
-    "type": "color",
+    "type": "Color",
     "initial": "black",
     "inherited": true,
     "media": "visual"
   },
   "fill-opacity": {
-    "type": "number",
+    "type": "float64",
     "initial": "1",
     "inherited": true,
     "media": "visual"
@@ -54,13 +54,13 @@
     "media": "visual"
   },
   "flood-color": {
-    "type": "color",
+    "type": "Color",
     "initial": "black",
     "inherited": false,
     "media": "visual"
   },
   "flood-opacity": {
-    "type": "number",
+    "type": "float64",
     "initial": "1",
     "inherited": false,
     "media": "visual"
@@ -84,25 +84,25 @@
     "media": "visual"
   },
   "stop-color": {
-    "type": "color",
+    "type": "Color",
     "initial": "black",
     "inherited": false,
     "media": "visual"
   },
   "stop-opacity": {
-    "type": "number",
+    "type": "float64",
     "initial": "1",
     "inherited": false,
     "media": "visual"
   },
   "stroke": {
-    "type": "color",
+    "type": "Color",
     "initial": "none",
     "inherited": true,
     "media": "visual"
   },
   "stroke-dashoffset": {
-    "type": "number",
+    "type": "float64",
     "initial": "0",
     "inherited": true,
     "media": "visual"
@@ -120,19 +120,19 @@
     "media": "visual"
   },
   "stroke-miterlimit": {
-    "type": "number",
+    "type": "float64",
     "initial": "4",
     "inherited": true,
     "media": "visual"
   },
   "stroke-opacity": {
-    "type": "number",
+    "type": "float64",
     "initial": "1",
     "inherited": true,
     "media": "visual"
   },
   "stroke-width": {
-    "type": "number",
+    "type": "float64",
     "initial": "1",
     "inherited": true,
     "media": "visual"
@@ -144,7 +144,7 @@
     "media": "visual"
   },
   "lighting-color": {
-    "type": "color",
+    "type": "Color",
     "initial": "white",
     "inherited": false,
     "media": "visual"
@@ -183,8 +183,8 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "multilineFlexContainers",
-    "computed": "asSpecified",
+    "appliesTo": "multilineFlexContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/align-content"
@@ -199,8 +199,8 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/align-items"
@@ -215,8 +215,8 @@
       "CSS Box Alignment"
     ],
     "initial": "auto",
-    "appliesto": "flexItemsGridItemsAndAbsolutelyPositionedBoxes",
-    "computed": "autoOnAbsolutelyPositionedElementsValueOfAlignItemsOnParent",
+    "appliesTo": "flexItemsGridItemsAndAbsolutelyPositionedBoxes",
+    "computed_for": "autoOnAbsolutelyPositionedElementsValueOfAlignItemsOnParent",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/align-self"
@@ -231,8 +231,8 @@
       "CSS Grid Layout"
     ],
     "initial": "normal",
-    "appliesto": "gridContainersWithMasonryLayoutInTheirBlockAxis",
-    "computed": "asSpecified",
+    "appliesTo": "gridContainersWithMasonryLayoutInTheirBlockAxis",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/align-tracks"
@@ -247,14 +247,14 @@
       "CSS Miscellaneous"
     ],
     "initial": "noPracticalInitialValue",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedAppliesToEachProperty",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedAppliesToEachProperty",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/all"
   },
   "animation-delay": {
-    "type": "time",
+    "type": "time.Duration",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -263,8 +263,8 @@
       "CSS Animations"
     ],
     "initial": "0s",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-delay"
@@ -279,14 +279,14 @@
       "CSS Animations"
     ],
     "initial": "normal",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-direction"
   },
   "animation-duration": {
-    "type": "time",
+    "type": "time.Duration",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -295,8 +295,8 @@
       "CSS Animations"
     ],
     "initial": "0s",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-duration"
@@ -311,14 +311,14 @@
       "CSS Animations"
     ],
     "initial": "none",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-fill-mode"
   },
   "animation-iteration-count": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -327,8 +327,8 @@
       "CSS Animations"
     ],
     "initial": "1",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-iteration-count"
@@ -343,8 +343,8 @@
       "CSS Animations"
     ],
     "initial": "none",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-name"
@@ -359,8 +359,8 @@
       "CSS Animations"
     ],
     "initial": "running",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-play-state"
@@ -375,8 +375,8 @@
       "CSS Animations"
     ],
     "initial": "ease",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/animation-timing-function"
@@ -391,8 +391,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/appearance"
@@ -407,8 +407,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "allElementsExceptInlineBoxesAndInternalRubyOrTableBoxes",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptInlineBoxesAndInternalRubyOrTableBoxes",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/aspect-ratio"
@@ -423,14 +423,14 @@
       "CSS Speech"
     ],
     "initial": "center",
-    "appliesto": "allElements",
-    "computed": "normalizedAngle",
+    "appliesTo": "allElements",
+    "computed_for": "normalizedAngle",
     "order": "orderOfAppearance",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/azimuth"
   },
   "backdrop-filter": {
-    "type": "<function>",
+    "type": "string",
     "media": "visual",
     "inherited": false,
     "animationType": "filterList",
@@ -439,8 +439,8 @@
       "Filter Effects"
     ],
     "initial": "none",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/backdrop-filter"
@@ -455,8 +455,8 @@
       "CSS Transforms"
     ],
     "initial": "visible",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/backface-visibility"
@@ -471,8 +471,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "scroll",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -492,8 +492,8 @@
       "Compositing and Blending"
     ],
     "initial": "normal",
-    "appliesto": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -513,8 +513,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "border-box",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -525,7 +525,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/background-clip"
   },
   "background-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -534,8 +534,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "transparent",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -546,7 +546,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/background-color"
   },
   "background-image": {
-    "type": "url",
+    "type": "URL",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -555,8 +555,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedURLsAbsolute",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedURLsAbsolute",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -576,8 +576,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "padding-box",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -597,8 +597,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0% 0%",
-    "appliesto": "allElements",
-    "computed": "listEachItemTwoKeywordsOriginOffsets",
+    "appliesTo": "allElements",
+    "computed_for": "listEachItemTwoKeywordsOriginOffsets",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -618,8 +618,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "left",
-    "appliesto": "allElements",
-    "computed": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
+    "appliesTo": "allElements",
+    "computed_for": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/background-position-x"
@@ -634,8 +634,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "top",
-    "appliesto": "allElements",
-    "computed": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
+    "appliesTo": "allElements",
+    "computed_for": "listEachItemConsistingOfAbsoluteLengthPercentageAndOrigin",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/background-position-y"
@@ -650,8 +650,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "repeat",
-    "appliesto": "allElements",
-    "computed": "listEachItemHasTwoKeywordsOnePerDimension",
+    "appliesTo": "allElements",
+    "computed_for": "listEachItemHasTwoKeywordsOnePerDimension",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -671,8 +671,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "auto auto",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -692,8 +692,8 @@
       "CSS Overflow"
     ],
     "initial": "clip",
-    "appliesto": "blockContainers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental"
   },
@@ -707,14 +707,14 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsWidthAndHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsWidthAndHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/block-size"
   },
   "border-block-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -723,8 +723,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-color"
@@ -739,8 +739,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-style"
@@ -755,14 +755,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-width"
   },
   "border-block-end-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -771,8 +771,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-color"
@@ -787,8 +787,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-style"
@@ -803,14 +803,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-end-width"
   },
   "border-block-start-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -819,8 +819,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-color"
@@ -835,8 +835,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-style"
@@ -851,14 +851,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-block-start-width"
   },
   "border-bottom-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -867,8 +867,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -886,8 +886,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -905,8 +905,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -924,8 +924,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -943,8 +943,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOr0IfBorderBottomStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthOr0IfBorderBottomStyleNoneOrHidden",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -962,8 +962,8 @@
       "CSS Table"
     ],
     "initial": "separate",
-    "appliesto": "tableElements",
-    "computed": "asSpecified",
+    "appliesTo": "tableElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-collapse"
@@ -978,8 +978,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -997,8 +997,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1016,8 +1016,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1035,8 +1035,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "stretch",
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1054,8 +1054,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "100%",
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
-    "computed": "oneToFourPercentagesOrAbsoluteLengthsPlusFill",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
+    "computed_for": "oneToFourPercentagesOrAbsoluteLengthsPlusFill",
     "order": "percentagesOrLengthsFollowedByFill",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1073,8 +1073,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
-    "computed": "noneOrImageWithAbsoluteURI",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
+    "computed_for": "noneOrImageWithAbsoluteURI",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1092,8 +1092,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "1",
-    "appliesto": "allElementsExceptTableElementsWhenCollapse",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElementsExceptTableElementsWhenCollapse",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1102,7 +1102,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-image-width"
   },
   "border-inline-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -1111,8 +1111,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-color"
@@ -1127,8 +1127,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-style"
@@ -1143,14 +1143,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-width"
   },
   "border-inline-end-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1159,8 +1159,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-color"
@@ -1175,8 +1175,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-style"
@@ -1191,14 +1191,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-end-width"
   },
   "border-inline-start-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1207,8 +1207,8 @@
       "CSS Logical Properties"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-color"
@@ -1223,8 +1223,8 @@
       "CSS Logical Properties"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-style"
@@ -1239,14 +1239,14 @@
       "CSS Logical Properties"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthZeroIfBorderStyleNoneOrHidden",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-inline-start-width"
   },
   "border-left-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1255,8 +1255,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1274,8 +1274,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1293,8 +1293,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOr0IfBorderLeftStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthOr0IfBorderLeftStyleNoneOrHidden",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1303,7 +1303,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-left-width"
   },
   "border-right-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1312,8 +1312,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1331,8 +1331,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1350,8 +1350,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOr0IfBorderRightStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthOr0IfBorderRightStyleNoneOrHidden",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1369,8 +1369,8 @@
       "CSS Table"
     ],
     "initial": "0",
-    "appliesto": "tableElements",
-    "computed": "twoAbsoluteLengths",
+    "appliesTo": "tableElements",
+    "computed_for": "twoAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-spacing"
@@ -1385,8 +1385,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1404,8 +1404,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1414,7 +1414,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-start-start-radius"
   },
   "border-top-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1423,8 +1423,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1442,8 +1442,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1461,8 +1461,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "0",
-    "appliesto": "allElementsUAsNotRequiredWhenCollapse",
-    "computed": "twoAbsoluteLengthOrPercentages",
+    "appliesTo": "allElementsUAsNotRequiredWhenCollapse",
+    "computed_for": "twoAbsoluteLengthOrPercentages",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1480,8 +1480,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1499,8 +1499,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOr0IfBorderTopStyleNoneOrHidden",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthOr0IfBorderTopStyleNoneOrHidden",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1518,8 +1518,8 @@
       "CSS Positioning"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "positionedElements",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/bottom"
@@ -1535,8 +1535,8 @@
       "WebKit Extensions"
     ],
     "initial": "stretch",
-    "appliesto": "elementsWithDisplayBoxOrInlineBox",
-    "computed": "asSpecified",
+    "appliesTo": "elementsWithDisplayBoxOrInlineBox",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-align"
@@ -1551,8 +1551,8 @@
       "CSS Fragmentation"
     ],
     "initial": "slice",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-decoration-break"
@@ -1568,14 +1568,14 @@
       "WebKit Extensions"
     ],
     "initial": "normal",
-    "appliesto": "elementsWithDisplayBoxOrInlineBox",
-    "computed": "asSpecified",
+    "appliesTo": "elementsWithDisplayBoxOrInlineBox",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-direction"
   },
   "box-flex": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -1585,14 +1585,14 @@
       "WebKit Extensions"
     ],
     "initial": "0",
-    "appliesto": "directChildrenOfElementsWithDisplayMozBoxMozInlineBox",
-    "computed": "asSpecified",
+    "appliesTo": "directChildrenOfElementsWithDisplayMozBoxMozInlineBox",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-flex"
   },
   "box-flex-group": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -1602,8 +1602,8 @@
       "WebKit Extensions"
     ],
     "initial": "1",
-    "appliesto": "inFlowChildrenOfBoxElements",
-    "computed": "asSpecified",
+    "appliesTo": "inFlowChildrenOfBoxElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-flex-group"
@@ -1619,14 +1619,14 @@
       "WebKit Extensions"
     ],
     "initial": "single",
-    "appliesto": "boxElements",
-    "computed": "asSpecified",
+    "appliesTo": "boxElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-lines"
   },
   "box-ordinal-group": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "discrete",
@@ -1636,8 +1636,8 @@
       "WebKit Extensions"
     ],
     "initial": "1",
-    "appliesto": "childrenOfBoxElements",
-    "computed": "asSpecified",
+    "appliesTo": "childrenOfBoxElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-ordinal-group"
@@ -1653,8 +1653,8 @@
       "WebKit Extensions"
     ],
     "initial": "inlineAxisHorizontalInXUL",
-    "appliesto": "elementsWithDisplayBoxOrInlineBox",
-    "computed": "asSpecified",
+    "appliesTo": "elementsWithDisplayBoxOrInlineBox",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-orient"
@@ -1670,8 +1670,8 @@
       "WebKit Extensions"
     ],
     "initial": "start",
-    "appliesto": "elementsWithDisplayMozBoxMozInlineBox",
-    "computed": "asSpecified",
+    "appliesTo": "elementsWithDisplayMozBoxMozInlineBox",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-pack"
@@ -1686,8 +1686,8 @@
       "CSS Backgrounds and Borders"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthsSpecifiedColorAsSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthsSpecifiedColorAsSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter"
@@ -1705,8 +1705,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "content-box",
-    "appliesto": "allElementsAcceptingWidthOrHeight",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAcceptingWidthOrHeight",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/box-sizing"
@@ -1721,8 +1721,8 @@
       "CSS Fragmentation"
     ],
     "initial": "auto",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/break-after"
@@ -1737,8 +1737,8 @@
       "CSS Fragmentation"
     ],
     "initial": "auto",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/break-before"
@@ -1753,8 +1753,8 @@
       "CSS Fragmentation"
     ],
     "initial": "auto",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/break-inside"
@@ -1769,14 +1769,14 @@
       "CSS Table"
     ],
     "initial": "top",
-    "appliesto": "tableCaptionElements",
-    "computed": "asSpecified",
+    "appliesTo": "tableCaptionElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/caption-side"
   },
   "caret-color": {
-    "type": "color",
+    "type": "Color",
     "media": "interactive",
     "inherited": true,
     "animationType": "color",
@@ -1785,8 +1785,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asAutoOrColor",
+    "appliesTo": "allElements",
+    "computed_for": "asAutoOrColor",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/caret-color"
@@ -1801,8 +1801,8 @@
       "CSS Positioning"
     ],
     "initial": "none",
-    "appliesto": "blockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/clear"
@@ -1817,8 +1817,8 @@
       "CSS Masking"
     ],
     "initial": "auto",
-    "appliesto": "absolutelyPositionedElements",
-    "computed": "autoOrRectangle",
+    "appliesTo": "absolutelyPositionedElements",
+    "computed_for": "autoOrRectangle",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/clip"
@@ -1833,14 +1833,14 @@
       "CSS Masking"
     ],
     "initial": "none",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedURLsAbsolute",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedURLsAbsolute",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/clip-path"
   },
   "color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": true,
     "animationType": "color",
@@ -1849,8 +1849,8 @@
       "CSS Color"
     ],
     "initial": "variesFromBrowserToBrowser",
-    "appliesto": "allElements",
-    "computed": "translucentValuesRGBAOtherwiseRGB",
+    "appliesTo": "allElements",
+    "computed_for": "translucentValuesRGBAOtherwiseRGB",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -1870,8 +1870,8 @@
       "CSS Color"
     ],
     "initial": "economy",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/color-adjust"
@@ -1886,8 +1886,8 @@
       "CSS Columns"
     ],
     "initial": "auto",
-    "appliesto": "blockContainersExceptTableWrappers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainersExceptTableWrappers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-count"
@@ -1902,8 +1902,8 @@
       "CSS Columns"
     ],
     "initial": "balance",
-    "appliesto": "multicolElements",
-    "computed": "asSpecified",
+    "appliesTo": "multicolElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-fill"
@@ -1918,14 +1918,14 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "multiColumnElementsFlexContainersGridContainers",
-    "computed": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
+    "appliesTo": "multiColumnElementsFlexContainersGridContainers",
+    "computed_for": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-gap"
   },
   "column-rule-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -1934,8 +1934,8 @@
       "CSS Columns"
     ],
     "initial": "currentcolor",
-    "appliesto": "multicolElements",
-    "computed": "computedColor",
+    "appliesTo": "multicolElements",
+    "computed_for": "computedColor",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-color"
@@ -1950,8 +1950,8 @@
       "CSS Columns"
     ],
     "initial": "none",
-    "appliesto": "multicolElements",
-    "computed": "asSpecified",
+    "appliesTo": "multicolElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-style"
@@ -1966,8 +1966,8 @@
       "CSS Columns"
     ],
     "initial": "medium",
-    "appliesto": "multicolElements",
-    "computed": "absoluteLength0IfColumnRuleStyleNoneOrHidden",
+    "appliesTo": "multicolElements",
+    "computed_for": "absoluteLength0IfColumnRuleStyleNoneOrHidden",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-rule-width"
@@ -1982,8 +1982,8 @@
       "CSS Columns"
     ],
     "initial": "none",
-    "appliesto": "inFlowBlockLevelElements",
-    "computed": "asSpecified",
+    "appliesTo": "inFlowBlockLevelElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-span"
@@ -1998,8 +1998,8 @@
       "CSS Columns"
     ],
     "initial": "auto",
-    "appliesto": "blockContainersExceptTableWrappers",
-    "computed": "absoluteLengthZeroOrLarger",
+    "appliesTo": "blockContainersExceptTableWrappers",
+    "computed_for": "absoluteLengthZeroOrLarger",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-width"
@@ -2014,8 +2014,8 @@
       "CSS Containment"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/contain"
@@ -2030,8 +2030,8 @@
       "CSS Generated Content"
     ],
     "initial": "normal",
-    "appliesto": "beforeAndAfterPseudos",
-    "computed": "normalOnElementsForPseudosNoneAbsoluteURIStringOrAsSpecified",
+    "appliesTo": "beforeAndAfterPseudos",
+    "computed_for": "normalOnElementsForPseudosNoneAbsoluteURIStringOrAsSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/content"
@@ -2046,8 +2046,8 @@
       "CSS Containment"
     ],
     "initial": "visible",
-    "appliesto": "elementsForWhichLayoutContainmentCanApply",
-    "computed": "asSpecified",
+    "appliesTo": "elementsForWhichLayoutContainmentCanApply",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility"
@@ -2062,8 +2062,8 @@
       "CSS Counter Styles"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment"
@@ -2078,8 +2078,8 @@
       "CSS Counter Styles"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset"
@@ -2094,15 +2094,15 @@
       "CSS Counter Styles"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-set"
   },
   "cursor": {
     "syntax": "auto | default | none | context-menu | help | pointer | progress | wait | cell | crosshair | text | vertical-text | alias | copy | move | no-drop | not-allowed | e-resize | n-resize | ne-resize | nw-resize | s-resize | se-resize | sw-resize | w-resize | ew-resize | ns-resize | nesw-resize | nwse-resize | col-resize | row-resize | all-scroll | zoom-in | zoom-out | grab | grabbing",
-    "media": [
+    "medias": [
       "visual",
       "interactive"
     ],
@@ -2113,8 +2113,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedURLsAbsolute",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedURLsAbsolute",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/cursor"
@@ -2129,8 +2129,8 @@
       "CSS Writing Modes"
     ],
     "initial": "ltr",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/direction"
@@ -2145,8 +2145,8 @@
       "CSS Display"
     ],
     "initial": "inline",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedExceptPositionedFloatingAndRootElementsKeywordMaybeDifferent",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedExceptPositionedFloatingAndRootElementsKeywordMaybeDifferent",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/display"
@@ -2161,8 +2161,8 @@
       "CSS Table"
     ],
     "initial": "show",
-    "appliesto": "tableCellElements",
-    "computed": "asSpecified",
+    "appliesTo": "tableCellElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/empty-cells"
@@ -2177,8 +2177,8 @@
       "Filter Effects"
     ],
     "initial": "none",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/filter"
@@ -2193,8 +2193,8 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "auto",
-    "appliesto": "flexItemsAndInFlowPseudos",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "flexItemsAndInFlowPseudos",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "lengthOrPercentageBeforeKeywordIfBothPresent",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/flex-basis"
@@ -2209,14 +2209,14 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "row",
-    "appliesto": "flexContainers",
-    "computed": "asSpecified",
+    "appliesTo": "flexContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/flex-direction"
   },
   "flex-grow": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "number",
@@ -2225,14 +2225,14 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "0",
-    "appliesto": "flexItemsAndInFlowPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "flexItemsAndInFlowPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/flex-grow"
   },
   "flex-shrink": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "number",
@@ -2241,8 +2241,8 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "1",
-    "appliesto": "flexItemsAndInFlowPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "flexItemsAndInFlowPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/flex-shrink"
@@ -2257,8 +2257,8 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "nowrap",
-    "appliesto": "flexContainers",
-    "computed": "asSpecified",
+    "appliesTo": "flexContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/flex-wrap"
@@ -2273,8 +2273,8 @@
       "CSS Positioning"
     ],
     "initial": "none",
-    "appliesto": "allElementsNoEffectIfDisplayNone",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsNoEffectIfDisplayNone",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/float"
@@ -2289,8 +2289,8 @@
       "CSS Fonts"
     ],
     "initial": "dependsOnUserAgent",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2310,8 +2310,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2331,8 +2331,8 @@
       "CSS Fonts"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2352,8 +2352,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2373,8 +2373,8 @@
       "CSS Fonts"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2394,8 +2394,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2415,8 +2415,8 @@
       "CSS Fonts"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2427,7 +2427,8 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/font-size"
   },
   "font-size-adjust": {
-    "syntax": "none | number",
+    "type": "string",
+    "syntax": "none",
     "media": "visual",
     "inherited": true,
     "animationType": "number",
@@ -2436,8 +2437,8 @@
       "CSS Fonts"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2448,7 +2449,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/font-size-adjust"
   },
   "font-smooth": {
-    "syntax": "auto | never | always | <absolute-size> | number",
+    "syntax": "auto | never | always",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -2457,8 +2458,8 @@
       "CSS Fonts"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/font-smooth"
@@ -2473,8 +2474,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2494,8 +2495,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2515,8 +2516,8 @@
       "CSS Fonts"
     ],
     "initial": "weight style",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2536,8 +2537,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2557,8 +2558,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2578,8 +2579,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2599,8 +2600,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2620,8 +2621,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2641,8 +2642,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2662,8 +2663,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2683,8 +2684,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "keywordOrNumericalValueBolderLighterTransformedToRealValue",
+    "appliesTo": "allElements",
+    "computed_for": "keywordOrNumericalValueBolderLighterTransformedToRealValue",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -2704,8 +2705,8 @@
       "CSS Color"
     ],
     "initial": "auto",
-    "appliesto": "allElementsAndText",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndText",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/forced-color-adjust"
@@ -2714,7 +2715,7 @@
     "type": "string",
     "media": "visual",
     "inherited": false,
-    "animationType": [
+    "animationTypes": [
       "row-gap",
       "column-gap"
     ],
@@ -2722,11 +2723,11 @@
     "groups": [
       "CSS Box Alignment"
     ],
-    "initial": [
+    "initials": [
       "row-gap",
       "column-gap"
     ],
-    "appliesto": "multiColumnElementsFlexContainersGridContainers",
+    "appliesTo": "multiColumnElementsFlexContainersGridContainers",
     "computed": [
       "row-gap",
       "column-gap"
@@ -2745,8 +2746,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridContainers",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "gridContainers",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-columns"
@@ -2761,8 +2762,8 @@
       "CSS Grid Layout"
     ],
     "initial": "row",
-    "appliesto": "gridContainers",
-    "computed": "asSpecified",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow"
@@ -2777,8 +2778,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridContainers",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "gridContainers",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-auto-rows"
@@ -2793,8 +2794,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
-    "computed": "asSpecified",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-end"
@@ -2809,8 +2810,8 @@
       "CSS Grid Layout"
     ],
     "initial": "0",
-    "appliesto": "gridContainers",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "gridContainers",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/column-gap"
@@ -2825,8 +2826,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
-    "computed": "asSpecified",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-column-start"
@@ -2841,8 +2842,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
-    "computed": "asSpecified",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-end"
@@ -2857,8 +2858,8 @@
       "CSS Grid Layout"
     ],
     "initial": "0",
-    "appliesto": "gridContainers",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "gridContainers",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/row-gap"
@@ -2873,8 +2874,8 @@
       "CSS Grid Layout"
     ],
     "initial": "auto",
-    "appliesto": "gridItemsAndBoxesWithinGridContainer",
-    "computed": "asSpecified",
+    "appliesTo": "gridItemsAndBoxesWithinGridContainer",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-row-start"
@@ -2889,8 +2890,8 @@
       "CSS Grid Layout"
     ],
     "initial": "none",
-    "appliesto": "gridContainers",
-    "computed": "asSpecified",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-areas"
@@ -2905,8 +2906,8 @@
       "CSS Grid Layout"
     ],
     "initial": "none",
-    "appliesto": "gridContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-columns"
@@ -2921,8 +2922,8 @@
       "CSS Grid Layout"
     ],
     "initial": "none",
-    "appliesto": "gridContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/grid-template-rows"
@@ -2937,8 +2938,8 @@
       "CSS Text"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/hanging-punctuation"
@@ -2953,8 +2954,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "allElementsButNonReplacedAndTableColumns",
-    "computed": "percentageAutoOrAbsoluteLength",
+    "appliesTo": "allElementsButNonReplacedAndTableColumns",
+    "computed_for": "percentageAutoOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/height"
@@ -2969,8 +2970,8 @@
       "CSS Text"
     ],
     "initial": "manual",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/hyphens"
@@ -2985,8 +2986,8 @@
       "CSS Images"
     ],
     "initial": "from-image",
-    "appliesto": "allElements",
-    "computed": "angleRoundedToNextQuarter",
+    "appliesTo": "allElements",
+    "computed_for": "angleRoundedToNextQuarter",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/image-orientation"
@@ -3001,8 +3002,8 @@
       "CSS Images"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/image-rendering"
@@ -3017,8 +3018,8 @@
       "CSS Images"
     ],
     "initial": "1dppx",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedWithExceptionOfResolution",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedWithExceptionOfResolution",
     "order": "uniqueOrder",
     "status": "experimental"
   },
@@ -3032,8 +3033,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "textFields",
-    "computed": "asSpecified",
+    "appliesTo": "textFields",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/ime-mode"
@@ -3048,8 +3049,8 @@
       "CSS Inline"
     ],
     "initial": "normal",
-    "appliesto": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
-    "computed": "asSpecified",
+    "appliesTo": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter"
@@ -3064,8 +3065,8 @@
       "CSS Inline"
     ],
     "initial": "auto",
-    "appliesto": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
-    "computed": "asSpecified",
+    "appliesTo": "firstLetterPseudoElementsAndInlineLevelFirstChildren",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/initial-letter-align"
@@ -3080,8 +3081,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsWidthAndHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsWidthAndHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inline-size"
@@ -3096,8 +3097,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset"
@@ -3112,8 +3113,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-block"
@@ -3128,8 +3129,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-end"
@@ -3144,8 +3145,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-block-start"
@@ -3160,8 +3161,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline"
@@ -3176,8 +3177,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-end"
@@ -3192,8 +3193,8 @@
       "CSS Logical Properties"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "sameAsBoxOffsets",
+    "appliesTo": "positionedElements",
+    "computed_for": "sameAsBoxOffsets",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inset-inline-start"
@@ -3208,8 +3209,8 @@
       "Compositing and Blending"
     ],
     "initial": "auto",
-    "appliesto": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerGraphicsAndGraphicsReferencingElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/isolation"
@@ -3224,8 +3225,8 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "flexContainers",
-    "computed": "asSpecified",
+    "appliesTo": "flexContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/justify-content"
@@ -3240,8 +3241,8 @@
       "CSS Box Alignment"
     ],
     "initial": "legacy",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/justify-items"
@@ -3256,8 +3257,8 @@
       "CSS Box Alignment"
     ],
     "initial": "auto",
-    "appliesto": "blockLevelBoxesAndAbsolutelyPositionedBoxesAndGridItems",
-    "computed": "asSpecified",
+    "appliesTo": "blockLevelBoxesAndAbsolutelyPositionedBoxesAndGridItems",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/justify-self"
@@ -3272,8 +3273,8 @@
       "CSS Grid Layout"
     ],
     "initial": "normal",
-    "appliesto": "gridContainersWithMasonryLayoutInTheirInlineAxis",
-    "computed": "asSpecified",
+    "appliesTo": "gridContainersWithMasonryLayoutInTheirInlineAxis",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/justify-tracks"
@@ -3288,8 +3289,8 @@
       "CSS Positioning"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "positionedElements",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/left"
@@ -3304,8 +3305,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "optimumValueOfAbsoluteLengthOrNormal",
+    "appliesTo": "allElements",
+    "computed_for": "optimumValueOfAbsoluteLengthOrNormal",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3324,8 +3325,8 @@
       "CSS Text"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/line-break"
@@ -3340,8 +3341,8 @@
       "CSS Overflow"
     ],
     "initial": "none",
-    "appliesto": "blockContainersExceptMultiColumnContainers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainersExceptMultiColumnContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental"
   },
@@ -3355,8 +3356,8 @@
       "CSS Fonts"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "absoluteLengthOrAsSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLengthOrAsSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3367,7 +3368,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/line-height"
   },
   "line-height-step": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -3376,14 +3377,14 @@
       "CSS Fonts"
     ],
     "initial": "0",
-    "appliesto": "blockContainers",
-    "computed": "absoluteLength",
+    "appliesTo": "blockContainers",
+    "computed_for": "absoluteLength",
     "order": "perGrammar",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/line-height-step"
   },
   "list-style-image": {
-    "type": "url",
+    "type": "URL",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -3392,8 +3393,8 @@
       "CSS Lists and Counters"
     ],
     "initial": "none",
-    "appliesto": "listItems",
-    "computed": "noneOrImageWithAbsoluteURI",
+    "appliesTo": "listItems",
+    "computed_for": "noneOrImageWithAbsoluteURI",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/list-style-image"
@@ -3408,14 +3409,14 @@
       "CSS Lists and Counters"
     ],
     "initial": "outside",
-    "appliesto": "listItems",
-    "computed": "asSpecified",
+    "appliesTo": "listItems",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position"
   },
   "list-style-type": {
-    "type": "url",
+    "type": "URL",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -3424,8 +3425,8 @@
       "CSS Lists and Counters"
     ],
     "initial": "disc",
-    "appliesto": "listItems",
-    "computed": "asSpecified",
+    "appliesTo": "listItems",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/list-style-type"
@@ -3440,8 +3441,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-block"
@@ -3456,8 +3457,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-end"
@@ -3472,8 +3473,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-block-start"
@@ -3488,8 +3489,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3508,8 +3509,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline"
@@ -3524,8 +3525,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-end"
@@ -3540,8 +3541,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsMargin",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "sameAsMargin",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/margin-inline-start"
@@ -3556,8 +3557,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3576,8 +3577,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3596,8 +3597,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3616,8 +3617,8 @@
       "CSS Box Model"
     ],
     "initial": "none",
-    "appliesto": "blockContainersAndMultiColumnContainers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainersAndMultiColumnContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "alsoAppliesTo": [
       "::first-letter",
@@ -3636,8 +3637,8 @@
       "CSS Masking"
     ],
     "initial": "alpha",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-mode"
@@ -3652,8 +3653,8 @@
       "CSS Masking"
     ],
     "initial": "0",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-outset"
@@ -3668,8 +3669,8 @@
       "CSS Masking"
     ],
     "initial": "stretch",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-repeat"
@@ -3684,8 +3685,8 @@
       "CSS Masking"
     ],
     "initial": "0",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-slice"
@@ -3700,8 +3701,8 @@
       "CSS Masking"
     ],
     "initial": "none",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedURLsAbsolute",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedURLsAbsolute",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source"
@@ -3716,8 +3717,8 @@
       "CSS Masking"
     ],
     "initial": "auto",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-width"
@@ -3732,8 +3733,8 @@
       "CSS Masking"
     ],
     "initial": "border-box",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-clip"
@@ -3748,8 +3749,8 @@
       "CSS Masking"
     ],
     "initial": "add",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-composite"
@@ -3764,8 +3765,8 @@
       "CSS Masking"
     ],
     "initial": "none",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedURLsAbsolute",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedURLsAbsolute",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-image"
@@ -3780,8 +3781,8 @@
       "CSS Masking"
     ],
     "initial": "match-source",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-mode"
@@ -3796,8 +3797,8 @@
       "CSS Masking"
     ],
     "initial": "border-box",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-origin"
@@ -3812,8 +3813,8 @@
       "CSS Masking"
     ],
     "initial": "center",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "consistsOfTwoKeywordsForOriginAndOffsets",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "consistsOfTwoKeywordsForOriginAndOffsets",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-position"
@@ -3828,8 +3829,8 @@
       "CSS Masking"
     ],
     "initial": "no-repeat",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "consistsOfTwoDimensionKeywords",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "consistsOfTwoDimensionKeywords",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-repeat"
@@ -3844,8 +3845,8 @@
       "CSS Masking"
     ],
     "initial": "auto",
-    "appliesto": "allElementsSVGContainerElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-size"
@@ -3860,8 +3861,8 @@
       "CSS Masking"
     ],
     "initial": "luminance",
-    "appliesto": "maskElements",
-    "computed": "asSpecified",
+    "appliesTo": "maskElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-type"
@@ -3876,8 +3877,8 @@
       "CSS Grid Layout"
     ],
     "initial": "pack",
-    "appliesto": "gridContainersWithMasonryLayout",
-    "computed": "asSpecified",
+    "appliesTo": "gridContainersWithMasonryLayout",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/masonry-auto-flow"
@@ -3892,8 +3893,8 @@
       "MathML"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/math-style"
@@ -3908,8 +3909,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsMaxWidthAndMaxHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsMaxWidthAndMaxHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/max-block-size"
@@ -3924,8 +3925,8 @@
       "CSS Box Model"
     ],
     "initial": "none",
-    "appliesto": "allElementsButNonReplacedAndTableColumns",
-    "computed": "percentageAsSpecifiedAbsoluteLengthOrNone",
+    "appliesTo": "allElementsButNonReplacedAndTableColumns",
+    "computed_for": "percentageAsSpecifiedAbsoluteLengthOrNone",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/max-height"
@@ -3940,8 +3941,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsMaxWidthAndMaxHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsMaxWidthAndMaxHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/max-inline-size"
@@ -3956,8 +3957,8 @@
       "CSS Overflow"
     ],
     "initial": "none",
-    "appliesto": "blockContainersExceptMultiColumnContainers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainersExceptMultiColumnContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "experimental"
   },
@@ -3971,8 +3972,8 @@
       "CSS Box Model"
     ],
     "initial": "none",
-    "appliesto": "allElementsButNonReplacedAndTableRows",
-    "computed": "percentageAsSpecifiedAbsoluteLengthOrNone",
+    "appliesTo": "allElementsButNonReplacedAndTableRows",
+    "computed_for": "percentageAsSpecifiedAbsoluteLengthOrNone",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/max-width"
@@ -3987,8 +3988,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsMinWidthAndMinHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsMinWidthAndMinHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/min-block-size"
@@ -4003,8 +4004,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "allElementsButNonReplacedAndTableColumns",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsButNonReplacedAndTableColumns",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/min-height"
@@ -4019,8 +4020,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "sameAsWidthAndHeight",
-    "computed": "sameAsMinWidthAndMinHeight",
+    "appliesTo": "sameAsWidthAndHeight",
+    "computed_for": "sameAsMinWidthAndMinHeight",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/min-inline-size"
@@ -4035,8 +4036,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "allElementsButNonReplacedAndTableRows",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsButNonReplacedAndTableRows",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/min-width"
@@ -4051,8 +4052,8 @@
       "Compositing and Blending"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
@@ -4068,8 +4069,8 @@
       "CSS Images"
     ],
     "initial": "fill",
-    "appliesto": "replacedElements",
-    "computed": "asSpecified",
+    "appliesTo": "replacedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/object-fit"
@@ -4084,8 +4085,8 @@
       "CSS Images"
     ],
     "initial": "50% 50%",
-    "appliesto": "replacedElements",
-    "computed": "asSpecified",
+    "appliesTo": "replacedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/object-position"
@@ -4100,8 +4101,8 @@
       "CSS Motion Path"
     ],
     "initial": "auto",
-    "appliesto": "transformableElements",
-    "computed": "forLengthAbsoluteValueOtherwisePercentage",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
     "order": "perGrammar",
     "status": "standard"
   },
@@ -4115,8 +4116,8 @@
       "CSS Motion Path"
     ],
     "initial": "0",
-    "appliesto": "transformableElements",
-    "computed": "forLengthAbsoluteValueOtherwisePercentage",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/offset-distance"
@@ -4131,8 +4132,8 @@
       "CSS Motion Path"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
@@ -4148,8 +4149,8 @@
       "CSS Motion Path"
     ],
     "initial": "auto",
-    "appliesto": "transformableElements",
-    "computed": "forLengthAbsoluteValueOtherwisePercentage",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
     "order": "perGrammar",
     "status": "experimental"
   },
@@ -4163,14 +4164,14 @@
       "CSS Motion Path"
     ],
     "initial": "auto",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/offset-rotate"
   },
   "opacity": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "number",
@@ -4179,8 +4180,8 @@
       "CSS Color"
     ],
     "initial": "1.0",
-    "appliesto": "allElements",
-    "computed": "specifiedValueClipped0To1",
+    "appliesTo": "allElements",
+    "computed_for": "specifiedValueClipped0To1",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::placeholder"
@@ -4189,7 +4190,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/opacity"
   },
   "order": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "integer",
@@ -4198,14 +4199,14 @@
       "CSS Flexible Box Layout"
     ],
     "initial": "0",
-    "appliesto": "flexItemsGridItemsAbsolutelyPositionedContainerChildren",
-    "computed": "asSpecified",
+    "appliesTo": "flexItemsGridItemsAbsolutelyPositionedContainerChildren",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/order"
   },
   "orphans": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -4214,15 +4215,15 @@
       "CSS Fragmentation"
     ],
     "initial": "2",
-    "appliesto": "blockContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/orphans"
   },
   "outline-color": {
-    "syntax": "color",
-    "media": [
+    "type": "Color",
+    "medias": [
       "visual",
       "interactive"
     ],
@@ -4233,15 +4234,15 @@
       "CSS Basic User Interface"
     ],
     "initial": "invertOrCurrentColor",
-    "appliesto": "allElements",
-    "computed": "invertForTranslucentColorRGBAOtherwiseRGB",
+    "appliesTo": "allElements",
+    "computed_for": "invertForTranslucentColorRGBAOtherwiseRGB",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/outline-color"
   },
   "outline-offset": {
-    "type": "number",
-    "media": [
+    "type": "float64",
+    "medias": [
       "visual",
       "interactive"
     ],
@@ -4252,15 +4253,15 @@
       "CSS Basic User Interface"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/outline-offset"
   },
   "outline-style": {
     "type": "string",
-    "media": [
+    "medias": [
       "visual",
       "interactive"
     ],
@@ -4271,15 +4272,15 @@
       "CSS Basic User Interface"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/outline-style"
   },
   "outline-width": {
     "type": "string",
-    "media": [
+    "medias": [
       "visual",
       "interactive"
     ],
@@ -4290,8 +4291,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "medium",
-    "appliesto": "allElements",
-    "computed": "absoluteLength0ForNone",
+    "appliesTo": "allElements",
+    "computed_for": "absoluteLength0ForNone",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/outline-width"
@@ -4306,7 +4307,7 @@
       "CSS Overflow"
     ],
     "initial": "visible",
-    "appliesto": "blockContainersFlexContainersGridContainers",
+    "appliesTo": "blockContainersFlexContainersGridContainers",
     "computed": [
       "overflow-x",
       "overflow-y"
@@ -4325,8 +4326,8 @@
       "CSS Scroll Anchoring"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard"
   },
@@ -4340,8 +4341,8 @@
       "CSS Overflow"
     ],
     "initial": "auto",
-    "appliesto": "blockContainersFlexContainersGridContainers",
-    "computed": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
+    "appliesTo": "blockContainersFlexContainersGridContainers",
+    "computed_for": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
     "order": "perGrammar",
     "status": "standard"
   },
@@ -4355,8 +4356,8 @@
       "Mozilla Extensions"
     ],
     "initial": "padding-box",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Mozilla/CSS/overflow-clip-box"
@@ -4371,8 +4372,8 @@
       "CSS Overflow"
     ],
     "initial": "auto",
-    "appliesto": "blockContainersFlexContainersGridContainers",
-    "computed": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
+    "appliesTo": "blockContainersFlexContainersGridContainers",
+    "computed_for": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
     "order": "perGrammar",
     "status": "standard"
   },
@@ -4386,8 +4387,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "nonReplacedInlineElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedInlineElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
@@ -4402,8 +4403,8 @@
       "CSS Overflow"
     ],
     "initial": "visible",
-    "appliesto": "blockContainersFlexContainersGridContainers",
-    "computed": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
+    "appliesTo": "blockContainersFlexContainersGridContainers",
+    "computed_for": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overflow-x"
@@ -4418,8 +4419,8 @@
       "CSS Overflow"
     ],
     "initial": "visible",
-    "appliesto": "blockContainersFlexContainersGridContainers",
-    "computed": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
+    "appliesTo": "blockContainersFlexContainersGridContainers",
+    "computed_for": "asSpecifiedButVisibleOrClipReplacedToAutoOrHiddenIfOtherValueDifferent",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overflow-y"
@@ -4434,8 +4435,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior"
@@ -4450,8 +4451,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-block"
@@ -4466,8 +4467,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-inline"
@@ -4482,8 +4483,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-x"
@@ -4498,8 +4499,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "nonReplacedBlockAndInlineBlockElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedBlockAndInlineBlockElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overscroll-behavior-y"
@@ -4514,8 +4515,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-block"
@@ -4530,8 +4531,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-end"
@@ -4546,8 +4547,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-block-start"
@@ -4562,8 +4563,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptInternalTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptInternalTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -4582,8 +4583,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline"
@@ -4598,8 +4599,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-end"
@@ -4614,8 +4615,8 @@
       "CSS Logical Properties"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asLength",
+    "appliesTo": "allElements",
+    "computed_for": "asLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/padding-inline-start"
@@ -4630,8 +4631,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptInternalTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptInternalTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -4650,8 +4651,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptInternalTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptInternalTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -4670,8 +4671,8 @@
       "CSS Box Model"
     ],
     "initial": "0",
-    "appliesto": "allElementsExceptInternalTableDisplayTypes",
-    "computed": "percentageAsSpecifiedOrAbsoluteLength",
+    "appliesTo": "allElementsExceptInternalTableDisplayTypes",
+    "computed_for": "percentageAsSpecifiedOrAbsoluteLength",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -4682,7 +4683,7 @@
   },
   "page-break-after": {
     "syntax": "auto | always | avoid | left | right | recto | verso",
-    "media": [
+    "medias": [
       "visual",
       "paged"
     ],
@@ -4693,15 +4694,15 @@
       "CSS Pages"
     ],
     "initial": "auto",
-    "appliesto": "blockElementsInNormalFlow",
-    "computed": "asSpecified",
+    "appliesTo": "blockElementsInNormalFlow",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/page-break-after"
   },
   "page-break-before": {
     "syntax": "auto | always | avoid | left | right | recto | verso",
-    "media": [
+    "medias": [
       "visual",
       "paged"
     ],
@@ -4712,15 +4713,15 @@
       "CSS Pages"
     ],
     "initial": "auto",
-    "appliesto": "blockElementsInNormalFlow",
-    "computed": "asSpecified",
+    "appliesTo": "blockElementsInNormalFlow",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/page-break-before"
   },
   "page-break-inside": {
     "syntax": "auto | avoid",
-    "media": [
+    "medias": [
       "visual",
       "paged"
     ],
@@ -4731,8 +4732,8 @@
       "CSS Pages"
     ],
     "initial": "auto",
-    "appliesto": "blockElementsInNormalFlow",
-    "computed": "asSpecified",
+    "appliesTo": "blockElementsInNormalFlow",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/page-break-inside"
@@ -4747,8 +4748,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "textElements",
-    "computed": "asSpecified",
+    "appliesTo": "textElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/paint-order"
@@ -4763,8 +4764,8 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "absoluteLengthOrNone",
+    "appliesTo": "transformableElements",
+    "computed_for": "absoluteLengthOrNone",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
@@ -4780,8 +4781,8 @@
       "CSS Transforms"
     ],
     "initial": "50% 50%",
-    "appliesto": "transformableElements",
-    "computed": "forLengthAbsoluteValueOtherwisePercentage",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
     "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/perspective-origin"
@@ -4796,8 +4797,8 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "multilineFlexContainers",
-    "computed": "asSpecified",
+    "appliesTo": "multilineFlexContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/place-content"
@@ -4812,8 +4813,8 @@
       "Pointer Events"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/pointer-events"
@@ -4828,8 +4829,8 @@
       "CSS Positioning"
     ],
     "initial": "static",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
@@ -4845,8 +4846,8 @@
       "CSS Generated Content"
     ],
     "initial": "dependsOnUserAgent",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/quotes"
@@ -4861,8 +4862,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "none",
-    "appliesto": "elementsWithOverflowNotVisibleAndReplacedElements",
-    "computed": "asSpecified",
+    "appliesTo": "elementsWithOverflowNotVisibleAndReplacedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/resize"
@@ -4877,8 +4878,8 @@
       "CSS Positioning"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "positionedElements",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/right"
@@ -4893,15 +4894,15 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/rotate"
   },
   "row-gap": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "lpc",
@@ -4910,8 +4911,8 @@
       "CSS Box Alignment"
     ],
     "initial": "normal",
-    "appliesto": "multiColumnElementsFlexContainersGridContainers",
-    "computed": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
+    "appliesTo": "multiColumnElementsFlexContainersGridContainers",
+    "computed_for": "asSpecifiedWithLengthsAbsoluteAndNormalComputingToZeroExceptMultiColumn",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/row-gap"
@@ -4926,8 +4927,8 @@
       "CSS Ruby"
     ],
     "initial": "space-around",
-    "appliesto": "rubyBasesAnnotationsBaseAnnotationContainers",
-    "computed": "asSpecified",
+    "appliesTo": "rubyBasesAnnotationsBaseAnnotationContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/ruby-align"
@@ -4942,8 +4943,8 @@
       "CSS Ruby"
     ],
     "initial": "separate",
-    "appliesto": "rubyAnnotationsContainers",
-    "computed": "asSpecified",
+    "appliesTo": "rubyAnnotationsContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental"
   },
@@ -4957,8 +4958,8 @@
       "CSS Ruby"
     ],
     "initial": "over",
-    "appliesto": "rubyAnnotationsContainers",
-    "computed": "asSpecified",
+    "appliesTo": "rubyAnnotationsContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/ruby-position"
@@ -4973,8 +4974,8 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
@@ -4990,15 +4991,15 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scale"
   },
   "scrollbar-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": true,
     "animationType": "color",
@@ -5007,8 +5008,8 @@
       "CSS Scrollbars"
     ],
     "initial": "auto",
-    "appliesto": "scrollingBoxes",
-    "computed": "asSpecified",
+    "appliesTo": "scrollingBoxes",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-color"
@@ -5023,8 +5024,8 @@
       "CSS Overflow"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-gutter"
@@ -5039,8 +5040,8 @@
       "CSS Scrollbars"
     ],
     "initial": "auto",
-    "appliesto": "scrollingBoxes",
-    "computed": "asSpecified",
+    "appliesTo": "scrollingBoxes",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scrollbar-width"
@@ -5055,14 +5056,14 @@
       "CSSOM View"
     ],
     "initial": "auto",
-    "appliesto": "scrollingBoxes",
-    "computed": "asSpecified",
+    "appliesTo": "scrollingBoxes",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-behavior"
   },
   "scroll-margin": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5071,14 +5072,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin"
   },
   "scroll-margin-block": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5087,14 +5088,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block"
   },
   "scroll-margin-block-start": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5103,14 +5104,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-start"
   },
   "scroll-margin-block-end": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5119,14 +5120,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-block-end"
   },
   "scroll-margin-bottom": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5135,14 +5136,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-bottom"
   },
   "scroll-margin-inline": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5151,14 +5152,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline"
   },
   "scroll-margin-inline-start": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5167,14 +5168,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-start"
   },
   "scroll-margin-inline-end": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5183,14 +5184,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-inline-end"
   },
   "scroll-margin-left": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5199,14 +5200,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-left"
   },
   "scroll-margin-right": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5215,14 +5216,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-right"
   },
   "scroll-margin-top": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "byComputedValueType",
@@ -5231,8 +5232,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "0",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-margin-top"
@@ -5247,8 +5248,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding"
@@ -5263,8 +5264,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block"
@@ -5279,8 +5280,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-start"
@@ -5295,8 +5296,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-block-end"
@@ -5311,8 +5312,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-bottom"
@@ -5327,8 +5328,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline"
@@ -5343,8 +5344,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-start"
@@ -5359,8 +5360,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-inline-end"
@@ -5375,8 +5376,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-left"
@@ -5391,8 +5392,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-right"
@@ -5407,8 +5408,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "auto",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-padding-top"
@@ -5423,8 +5424,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-align"
@@ -5439,8 +5440,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-coordinate"
@@ -5455,8 +5456,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "0px 0px",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-destination"
@@ -5471,8 +5472,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-points-x"
@@ -5487,8 +5488,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-points-y"
@@ -5503,8 +5504,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop"
@@ -5519,8 +5520,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type"
@@ -5535,8 +5536,8 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type-x"
@@ -5551,14 +5552,14 @@
       "CSS Scroll Snap"
     ],
     "initial": "none",
-    "appliesto": "scrollContainers",
-    "computed": "asSpecified",
+    "appliesTo": "scrollContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-type-y"
   },
   "shape-image-threshold": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": false,
     "animationType": "number",
@@ -5567,14 +5568,14 @@
       "CSS Shapes"
     ],
     "initial": "0.0",
-    "appliesto": "floats",
-    "computed": "specifiedValueNumberClipped0To1",
+    "appliesTo": "floats",
+    "computed_for": "specifiedValueNumberClipped0To1",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/shape-image-threshold"
   },
   "shape-margin": {
-    "syntax": "number",
+    "type": "string",
     "media": "visual",
     "inherited": false,
     "animationType": "lpc",
@@ -5583,14 +5584,14 @@
       "CSS Shapes"
     ],
     "initial": "0",
-    "appliesto": "floats",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "floats",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/shape-margin"
   },
   "shape-outside": {
-    "syntax": "none | <shape-box> | <basic-shape> | <image>",
+    "type": "string",
     "media": "visual",
     "inherited": false,
     "animationType": "basicShapeOtherwiseNo",
@@ -5599,14 +5600,14 @@
       "CSS Shapes"
     ],
     "initial": "none",
-    "appliesto": "floats",
-    "computed": "asDefinedForBasicShapeWithAbsoluteURIOtherwiseAsSpecified",
+    "appliesTo": "floats",
+    "computed_for": "asDefinedForBasicShapeWithAbsoluteURIOtherwiseAsSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/shape-outside"
   },
   "tab-size": {
-    "type": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": true,
     "animationType": "length",
@@ -5615,8 +5616,8 @@
       "CSS Text"
     ],
     "initial": "8",
-    "appliesto": "blockContainers",
-    "computed": "specifiedIntegerOrAbsoluteLength",
+    "appliesTo": "blockContainers",
+    "computed_for": "specifiedIntegerOrAbsoluteLength",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/tab-size"
@@ -5631,8 +5632,8 @@
       "CSS Table"
     ],
     "initial": "auto",
-    "appliesto": "tableElements",
-    "computed": "asSpecified",
+    "appliesTo": "tableElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/table-layout"
@@ -5647,8 +5648,8 @@
       "CSS Text"
     ],
     "initial": "startOrNamelessValueIfLTRRightIfRTL",
-    "appliesto": "blockContainers",
-    "computed": "asSpecifiedExceptMatchParent",
+    "appliesTo": "blockContainers",
+    "computed_for": "asSpecifiedExceptMatchParent",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::placeholder"
@@ -5666,8 +5667,8 @@
       "CSS Text"
     ],
     "initial": "auto",
-    "appliesto": "blockContainers",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainers",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-align-last"
@@ -5682,14 +5683,14 @@
       "CSS Writing Modes"
     ],
     "initial": "none",
-    "appliesto": "nonReplacedInlineElements",
-    "computed": "keywordPlusIntegerIfDigits",
+    "appliesTo": "nonReplacedInlineElements",
+    "computed_for": "keywordPlusIntegerIfDigits",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-combine-upright"
   },
   "text-decoration-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -5698,8 +5699,8 @@
       "CSS Text Decoration"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -5719,8 +5720,8 @@
       "CSS Text Decoration"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "alsoAppliesTo": [
       "::first-letter",
@@ -5740,8 +5741,8 @@
       "CSS Text Decoration"
     ],
     "initial": "objects",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip"
@@ -5756,8 +5757,8 @@
       "CSS Text Decoration"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-skip-ink"
@@ -5772,8 +5773,8 @@
       "CSS Text Decoration"
     ],
     "initial": "solid",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -5793,8 +5794,8 @@
       "CSS Text Decoration"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -5805,7 +5806,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-decoration-thickness"
   },
   "text-emphasis-color": {
-    "type": "color",
+    "type": "Color",
     "media": "visual",
     "inherited": false,
     "animationType": "color",
@@ -5814,8 +5815,8 @@
       "CSS Text Decoration"
     ],
     "initial": "currentcolor",
-    "appliesto": "allElements",
-    "computed": "computedColor",
+    "appliesTo": "allElements",
+    "computed_for": "computedColor",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-color"
@@ -5830,8 +5831,8 @@
       "CSS Text Decoration"
     ],
     "initial": "over right",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
@@ -5846,8 +5847,8 @@
       "CSS Text Decoration"
     ],
     "initial": "over right",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-position"
@@ -5862,8 +5863,8 @@
       "CSS Text Decoration"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-emphasis-style"
@@ -5878,8 +5879,8 @@
       "CSS Text"
     ],
     "initial": "0",
-    "appliesto": "blockContainers",
-    "computed": "percentageOrAbsoluteLengthPlusKeywords",
+    "appliesTo": "blockContainers",
+    "computed_for": "percentageOrAbsoluteLengthPlusKeywords",
     "order": "lengthOrPercentageBeforeKeywords",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-indent"
@@ -5894,8 +5895,8 @@
       "CSS Text"
     ],
     "initial": "auto",
-    "appliesto": "inlineLevelAndTableCellElements",
-    "computed": "asSpecified",
+    "appliesTo": "inlineLevelAndTableCellElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-justify"
@@ -5910,8 +5911,8 @@
       "CSS Writing Modes"
     ],
     "initial": "mixed",
-    "appliesto": "allElementsExceptTableRowGroupsRowsColumnGroupsAndColumns",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptTableRowGroupsRowsColumnGroupsAndColumns",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-orientation"
@@ -5926,8 +5927,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "clip",
-    "appliesto": "blockContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainerElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::placeholder"
@@ -5945,8 +5946,8 @@
       "CSS Miscellaneous"
     ],
     "initial": "auto",
-    "appliesto": "textElements",
-    "computed": "asSpecified",
+    "appliesTo": "textElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-rendering"
@@ -5961,8 +5962,8 @@
       "CSS Text Decoration"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "colorPlusThreeAbsoluteLengths",
+    "appliesTo": "allElements",
+    "computed_for": "colorPlusThreeAbsoluteLengths",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -5982,8 +5983,8 @@
       "CSS Text"
     ],
     "initial": "autoForSmartphoneBrowsersSupportingInflation",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "experimental",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-size-adjust"
@@ -5998,8 +5999,8 @@
       "CSS Text"
     ],
     "initial": "none",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -6019,8 +6020,8 @@
       "CSS Text Decoration"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -6040,8 +6041,8 @@
       "CSS Text Decoration"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "orderOfAppearance",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/text-underline-position"
@@ -6056,8 +6057,8 @@
       "CSS Positioning"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
+    "appliesTo": "positionedElements",
+    "computed_for": "lengthAbsolutePercentageAsSpecifiedOtherwiseAuto",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/top"
@@ -6072,8 +6073,8 @@
       "Pointer Events"
     ],
     "initial": "auto",
-    "appliesto": "allElementsExceptNonReplacedInlineElementsTableRowsColumnsRowColumnGroups",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptNonReplacedInlineElementsTableRowsColumnsRowColumnGroups",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/touch-action"
@@ -6088,8 +6089,8 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
@@ -6105,8 +6106,8 @@
       "CSS Transforms"
     ],
     "initial": "view-box",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-box"
@@ -6121,8 +6122,8 @@
       "CSS Transforms"
     ],
     "initial": "50% 50% 0",
-    "appliesto": "transformableElements",
-    "computed": "forLengthAbsoluteValueOtherwisePercentage",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
     "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
@@ -6137,15 +6138,15 @@
       "CSS Transforms"
     ],
     "initial": "flat",
-    "appliesto": "transformableElements",
-    "computed": "asSpecified",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-style"
   },
   "transition-delay": {
-    "type": "time",
+    "type": "time.Duration",
     "media": "interactive",
     "inherited": false,
     "animationType": "discrete",
@@ -6154,14 +6155,14 @@
       "CSS Transitions"
     ],
     "initial": "0s",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transition-delay"
   },
   "transition-duration": {
-    "type": "time",
+    "type": "time.Duration",
     "media": "interactive",
     "inherited": false,
     "animationType": "discrete",
@@ -6170,8 +6171,8 @@
       "CSS Transitions"
     ],
     "initial": "0s",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transition-duration"
@@ -6186,8 +6187,8 @@
       "CSS Transitions"
     ],
     "initial": "all",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transition-property"
@@ -6202,8 +6203,8 @@
       "CSS Transitions"
     ],
     "initial": "ease",
-    "appliesto": "allElementsAndPseudos",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsAndPseudos",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transition-timing-function"
@@ -6218,8 +6219,8 @@
       "CSS Transforms"
     ],
     "initial": "none",
-    "appliesto": "transformableElements",
-    "computed": "asSpecifiedRelativeToAbsoluteLengths",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
     "order": "perGrammar",
     "stacking": true,
     "status": "standard",
@@ -6235,8 +6236,8 @@
       "CSS Writing Modes"
     ],
     "initial": "normal",
-    "appliesto": "allElementsSomeValuesNoEffectOnNonInlineElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsSomeValuesNoEffectOnNonInlineElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/unicode-bidi"
@@ -6251,8 +6252,8 @@
       "CSS Basic User Interface"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/user-select"
@@ -6267,8 +6268,8 @@
       "CSS Table"
     ],
     "initial": "baseline",
-    "appliesto": "inlineLevelAndTableCellElements",
-    "computed": "absoluteLengthOrKeyword",
+    "appliesTo": "inlineLevelAndTableCellElements",
+    "computed_for": "absoluteLengthOrKeyword",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -6288,8 +6289,8 @@
       "CSS Box Model"
     ],
     "initial": "visible",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/visibility"
@@ -6304,14 +6305,14 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/white-space"
   },
   "widows": {
-    "syntax": "number",
+    "type": "float64",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -6320,14 +6321,15 @@
       "CSS Fragmentation"
     ],
     "initial": "2",
-    "appliesto": "blockContainerElements",
-    "computed": "asSpecified",
+    "appliesTo": "blockContainerElements",
+    "computed_for": "asSpecified",
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/widows"
   },
   "width": {
-    "syntax": "auto | number | <percentage> | min-content | max-content",
+    "syntax": "auto |  min-content | max-content",
+    "type": "string",
     "media": "visual",
     "inherited": false,
     "animationType": "lpc",
@@ -6336,8 +6338,8 @@
       "CSS Box Model"
     ],
     "initial": "auto",
-    "appliesto": "allElementsButNonReplacedAndTableRows",
-    "computed": "percentageAutoOrAbsoluteLength",
+    "appliesTo": "allElementsButNonReplacedAndTableRows",
+    "computed_for": "percentageAutoOrAbsoluteLength",
     "order": "lengthOrPercentageBeforeKeywordIfBothPresent",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/width"
@@ -6352,8 +6354,8 @@
       "CSS Will Change"
     ],
     "initial": "auto",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/will-change"
@@ -6368,8 +6370,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/word-break"
@@ -6384,8 +6386,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "optimumMinAndMaxValueOfAbsoluteLengthPercentageOrNormal",
+    "appliesTo": "allElements",
+    "computed_for": "optimumMinAndMaxValueOfAbsoluteLengthPercentageOrNormal",
     "order": "uniqueOrder",
     "alsoAppliesTo": [
       "::first-letter",
@@ -6405,8 +6407,8 @@
       "CSS Text"
     ],
     "initial": "normal",
-    "appliesto": "nonReplacedInlineElements",
-    "computed": "asSpecified",
+    "appliesTo": "nonReplacedInlineElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/overflow-wrap"
@@ -6421,8 +6423,8 @@
       "CSS Writing Modes"
     ],
     "initial": "horizontal-tb",
-    "appliesto": "allElementsExceptTableRowColumnGroupsTableRowsColumns",
-    "computed": "asSpecified",
+    "appliesTo": "allElementsExceptTableRowColumnGroupsTableRowsColumns",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/writing-mode"
@@ -6437,8 +6439,8 @@
       "CSS Positioning"
     ],
     "initial": "auto",
-    "appliesto": "positionedElements",
-    "computed": "asSpecified",
+    "appliesTo": "positionedElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "stacking": true,
     "status": "standard",
@@ -6454,8 +6456,8 @@
       "Microsoft Extensions"
     ],
     "initial": "normal",
-    "appliesto": "allElements",
-    "computed": "asSpecified",
+    "appliesTo": "allElements",
+    "computed_for": "asSpecified",
     "order": "uniqueOrder",
     "status": "nonstandard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/zoom"
