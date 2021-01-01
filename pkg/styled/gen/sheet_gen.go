@@ -184,6 +184,9 @@ func createStyling(builder *strings.Builder, name string, unit, webkit, moz, ms 
 		}
 	`, typeName, name))
 
+	var styleSelectionMap strings.Builder
+	styleSelectionMap.WriteString(fmt.Sprintf("%s: true,", name))
+
 	if len(unit.Syntax) > 0 {
 		var valueTypes = toSyntax(unit.Syntax)
 		for _, valueType := range valueTypes {
@@ -191,12 +194,24 @@ func createStyling(builder *strings.Builder, name string, unit, webkit, moz, ms 
 			if len(valueType) == 0 {
 				continue
 			}
+
+			var utilityTypeName = name + "-" + valueType
+			styleSelectionMap.WriteString(fmt.Sprintf("%s: true,", utilityTypeName))
+
 			var valueTypeName = toCap(valueType)
 			builder.WriteString(fmt.Sprintf(`
 		const %sStyle%s = %q
 		`, typeName, valueTypeName, valueType))
 		}
 	}
+
+	builder.WriteString(fmt.Sprintf(`
+		func (t %sStyle) Utilities() map[string]bool {
+			return map[string]bool{
+			%s
+			}
+		}
+	`, typeName, styleSelectionMap.String()))
 }
 
 func createUnit(builder *strings.Builder, name string, unit *StyleUnit) {
