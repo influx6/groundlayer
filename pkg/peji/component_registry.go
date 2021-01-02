@@ -1,7 +1,5 @@
 package peji
 
-import "time"
-
 // DOMRegistry implements the a component single for DOM objects.
 type DOMRegistry struct {
 	single map[string]DOM
@@ -62,37 +60,4 @@ func (k *DOMRegistry) AddList(km []DOM, refName string) {
 // type routePath for giving component.
 func (k *DOMRegistry) Add(km DOM, refName string) {
 	k.single[refName] = km
-}
-
-// Clean up all LiveDOM elements with a dormancy equal or above provided duration.
-func (k *DOMRegistry) Clean(max time.Duration) {
-	k.cleanList(max)
-	k.cleanSingle(max)
-}
-
-func (k *DOMRegistry) cleanSingle(max time.Duration) {
-	for key, item := range k.single {
-		// only check the first item, has they
-		// are handled together.
-		if liveItem, ok := item.(*LiveDOM); ok {
-			if time.Since(liveItem.tick) >= max {
-				delete(k.list, key)
-			}
-			continue
-		}
-	}
-}
-
-func (k *DOMRegistry) cleanList(max time.Duration) {
-	for key, items := range k.list {
-		// only check the first item, has they
-		// are handled together.
-		var item = items[0]
-		if liveItem, ok := item.(*LiveDOM); ok {
-			if time.Since(liveItem.tick) >= max {
-				delete(k.list, key)
-			}
-			continue
-		}
-	}
 }

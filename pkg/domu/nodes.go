@@ -967,6 +967,12 @@ func (n *Node) findRefNodeFromList(ref []string) (*Node, error) {
 	return targetNode.findRefNodeFromList(rest)
 }
 
+// UseID sets the id of the giving node.
+func (n *Node) UseID(id string) *Node {
+	n.idAttr = id
+	return n
+}
+
 // ID returns user-provided id of giving node.
 func (n *Node) ID() string {
 	return n.idAttr

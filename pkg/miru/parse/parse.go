@@ -347,7 +347,7 @@ func (t *Tree) add() {
 		return
 	}
 	if !IsEmptyTree(t.Root) {
-		t.errorf("template: multiple definition of template %q, maybe you named a file and a definition block the same name ?", t.Name)
+		t.errorf("template: multiple definition of template %q, maybe you named a file and a definition block the same name or your files containing define blocks have contents outside of define blocks, only the root file can have those ?", t.Name)
 	}
 }
 

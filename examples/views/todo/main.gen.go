@@ -14,7 +14,7 @@ func main() {
 	var dir = miru.NewVDir("./")
 	var indexFile, err = dir.GetFile("main.html")
 	if err != nil {
-		log.Fatal("Failed read file 'todo':", err)
+		log.Fatal("Failed read file 'todo.go':", err)
 	}
 
 	var parsedData, parseErr = indexFile.Parse(miru.DefaultOption, nil)
@@ -22,7 +22,7 @@ func main() {
 		log.Fatal("Failed to parse template files: ", parseErr)
 	}
 
-	var parsedString, parsedStrErr = parsedData.Format("todo.go")
+	var parsedString, parsedStrErr = parsedData.Format("todo")
 	if parsedStrErr != nil {
 		log.Fatal("Failed to format code properly: ", parsedStrErr)
 	}

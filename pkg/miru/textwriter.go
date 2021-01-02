@@ -964,6 +964,7 @@ func (t *TextWriter) walkTemplateNode(tree *parse.Tree, node *parse.TemplateNode
 	t.NewLine()
 	t.Write(funcName)
 	t.Write("(")
+	t.Write("page, ")
 	t.Write(pipeCondition.String())
 	t.Write(", ")
 
@@ -1712,7 +1713,7 @@ func (t *TextWriter) AddValueToHtmlListAttr(varName string, content string) {
 }
 
 func (t *TextWriter) NewElement(varName string, tagName string, id string) {
-	t.Write(fmt.Sprintf(`var %s = domu.Element(%q, %q)`, varName, tagName, id))
+	t.Write(fmt.Sprintf(`var %s = domu.Element(%q).UseID(%q)`, varName, tagName, id))
 }
 
 func (t *TextWriter) NewComment(varName string, content string) {
@@ -1720,7 +1721,7 @@ func (t *TextWriter) NewComment(varName string, content string) {
 }
 
 func (t *TextWriter) NewNode(varName string, nodeType int, tagName string, id string) {
-	t.Write(fmt.Sprintf(`var %s = domu.NewNode(%d, %q, %q)`, varName, nodeType, tagName, id))
+	t.Write(fmt.Sprintf(`var %s = domu.NewNode(%d, %q).UseID(%q)`, varName, nodeType, tagName, id))
 }
 
 func (t *TextWriter) AssignNodeTheme(rootName string, varName string) {

@@ -215,8 +215,8 @@ func main() {
 						generatorContent,
 						"./",
 						rootFile,
-						viewName,
 						viewGoFile,
+						viewName,
 						viewGoFile,
 						viewGoFile,
 						viewGoFile,
@@ -231,7 +231,7 @@ func main() {
 
 					viewsJob.Add(njobs.Mkdir(viewsDir, 0777))
 					viewsJob.Add(njobs.Println("Created: %s", os.Stdout))
-					viewsJob.Add(njobs.File("blocks.html", 0777, headerContent))
+					viewsJob.Add(njobs.File("blocks.html", 0777, blockContent))
 					viewsJob.Add(njobs.Println("Created: %s", os.Stdout))
 					viewsJob.Add(njobs.BackupPath())
 					viewsJob.Add(njobs.File("main.html", 0777, indexContent))
@@ -266,12 +266,13 @@ var componentContent = `<!-- component: %s -->
 `
 
 var indexContent = bytes.NewBufferString(`
-{{ rootType string }}
 
-{{ template "header.render.html#header" . }}
+{{/* you can reference a specific 'define' block from an external file using the # prefix*/}}
+{{ template "blocks.html#header" .Path }}
 `)
 
-var headerContent = bytes.NewBufferString(`<!-- component: header -->
+var blockContent = bytes.NewBufferString(`{{/* blocks: This file can only contain define blocks */}}
+
 {{ define "header" string }}
 	<h1>{{ . }}</h1>
 {{ end }}

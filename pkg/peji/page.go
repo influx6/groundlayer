@@ -5,7 +5,6 @@ import (
 	"path"
 	"regexp"
 	"strings"
-	"time"
 
 	"github.com/influx6/npkg/nstorage/plain"
 
@@ -102,12 +101,6 @@ func (pg *Page) OnPageAdd(fn OnPage) {
 
 func (pg *Page) SetReconciliation(b bool) {
 	pg.UseChanges = b
-}
-
-// Cleanup goes through the live instance releasing
-// any which may have surpassed the maxLastUsed period.
-func (pg *Page) Cleanup(maxDuration time.Duration) {
-	pg.LiveRegistry.Clean(maxDuration)
 }
 
 // HasLive returns true if giving route exists either as a live dom or dom list.
@@ -273,7 +266,7 @@ func (pg *Page) AddLive(route string, targetName string) DOM {
 
 	if pg.Registry.Has(targetName) {
 		var target = pg.Registry.Get(targetName)
-		var liveTarget = NewLiveDOM(target)
+		var liveTarget = LiveDOMFrom(target, route, targetName)
 		pg.LiveRouteMapping.Set(targetName, route)
 		pg.LiveRegistry.Add(liveTarget, route)
 
@@ -284,15 +277,15 @@ func (pg *Page) AddLive(route string, targetName string) DOM {
 	}
 
 	var instances = pg.Registry.GetList(targetName)
-	var liveInstances = DOMToLiveDOM(instances)
-	pg.LiveRouteMapping.Set(targetName, route)
-	pg.LiveRegistry.AddList(liveInstances, route)
+	var liveInstance = LiveFromDOMList(instances, route, targetName)
 
-	var set = DOMSet(liveInstances)
+	pg.LiveRouteMapping.Set(targetName, route)
+	pg.LiveRegistry.Add(liveInstance, route)
+
 	pg.ServeLive(route, HandlerFunc(func(data Data) *domu.Node {
-		return set.Render(data)
+		return liveInstance.Render(data)
 	}))
-	return set
+	return liveInstance
 }
 
 // Render renders new domu.Node from existing page which is reconciled

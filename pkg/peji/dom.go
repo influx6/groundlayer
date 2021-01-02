@@ -2,7 +2,6 @@ package peji
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/influx6/sabuhp"
 
@@ -43,42 +42,37 @@ func (pf DOMFunc) Render(ctx Data) *domu.Node {
 	return pf(ctx)
 }
 
-// NewLiveDOM returns a DOM wrapped to return Nodes reconciled with their previous render.
-func NewLiveDOM(dom DOM) *LiveDOM {
-	if cdm, ok := dom.(*LiveDOM); ok {
-		return cdm
-	}
-	return &LiveDOM{dom: dom}
+func Portal(route string, name string, renders ...domu.Mounter) *domu.Node {
+	var elem = domu.Element("portal", renders...)
+	domu.NewStringAttr("route", route).Mount(elem)
+	domu.NewStringAttr("name", name).Mount(elem)
+	return elem
+}
+
+// LiveDOMFrom returns a DOM wrapped to return Nodes reconciled with their previous render.
+func LiveDOMFrom(dom DOM, route string, name string) *LiveDOM {
+	return &LiveDOM{dom: dom, route: route, name: name}
+}
+
+// LiveFromDOMList returns a DOM wrapped to return Nodes reconciled with their previous render.
+func LiveFromDOMList(dom []DOM, route string, name string) *LiveDOM {
+	return &LiveDOM{dom: DOMSet(dom), route: route, name: name}
 }
 
 type LiveDOMList []LiveDOM
 
 // LiveDOM wraps a dom which keeps track of Last render and reconciling new renderings with the old.
 type LiveDOM struct {
-	dom  DOM
-	last *domu.Node
-	tick time.Time
-}
-
-// LastCalled returns the time when the Last called was made.
-func (c *LiveDOM) LastCalled() time.Time {
-	return c.tick
+	dom   DOM
+	name  string
+	route string
 }
 
 // Render implements the DOM interface which returns
 // a new instance of the DOM's rendered reconciled with
 // the Last.
 func (c *LiveDOM) Render(ctx Data) *domu.Node {
-	c.tick = time.Now()
-
-	var prev = c.last
-	var res = c.dom.Render(ctx)
-	c.last = res.Clone(true)
-
-	if prev != nil {
-		res.Reconcile(prev)
-	}
-	return res
+	return Portal(c.route, c.name, c.dom.Render(ctx))
 }
 
 // DOMSet defines a list of DOM items.
@@ -110,24 +104,4 @@ type LayoutFunc func(p *Page, ctx Data, parent *domu.Node)
 
 func (pf LayoutFunc) Render(p *Page, ctx Data, parent *domu.Node) {
 	pf(p, ctx, parent)
-}
-
-func DOMToLiveDOM(list []DOM) []DOM {
-	var set = make([]DOM, len(list))
-	for _, dm := range list {
-		if cdm, ok := dm.(*LiveDOM); ok {
-			set = append(set, cdm)
-			continue
-		}
-		set = append(set, &LiveDOM{dom: dm})
-	}
-	return set
-}
-
-func LiveDOMToDOM(list []*LiveDOM) []DOM {
-	var set = make([]DOM, len(list))
-	for _, dm := range list {
-		set = append(set, dm)
-	}
-	return set
 }
