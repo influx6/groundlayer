@@ -285,11 +285,10 @@ Hello, {{if .Name}} {{.Name}} {{else}} there {{end}}!
 #### Defined templates
 
 ```go
-{{define "footer.tmper" }}
-	This is rendered text
-	{{range .Items}}
-		<div class="item">{{.}}</div>
-	{{end}}
+This is rendered text
+
+{{range .Items}}
+    <div class="item">{{.}}</div>
 {{end}}
 
 {{template "footer.tmper" .}}
@@ -317,11 +316,11 @@ directive.
 
 - File 2
 ```go
-{{template "footer.tmper#footer" .}}
-{{template "footer.tmper#fender" .}}
+{{template "footer.tmper" .}}
+{{template "footer.tmper" .}}
 ```
 
-Where each template specifically targets the specified defined block.
+Where each template specifically targets the specified file.
 
 With the addition of [Data and Types Directives](#data-and-types-directives), define blocks can also be typed:
 
@@ -329,10 +328,9 @@ With the addition of [Data and Types Directives](#data-and-types-directives), de
 {{modelType ItemList | List(string) }}
 {{model Product | Items: ItemList }}
 
-{{define "footer.tmper" Product }}
-	This is rendered text
-{{end}}
+This is rendered text
 ```
+
 
 ### Html tags
 Html tags are now supported directly within the text parsing code, hence allowing you to write html text like any other text.
@@ -347,6 +345,7 @@ Html tags are now supported directly within the text parsing code, hence allowin
 	No data to count
 {{end}}
 ```
+
 
 ### Theme Attributes
 The current templates had supports for theme attributes in [Tailwind](https://tailwindcss.com/) style.

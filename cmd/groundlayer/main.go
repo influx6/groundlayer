@@ -142,7 +142,7 @@ func main() {
 			},
 			{
 				Name:        "component",
-				Description: "create a .render.html file for existing package or directory",
+				Description: "create a .html file for existing package or directory which contains the component define block for this",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name: "dir",
@@ -163,7 +163,7 @@ func main() {
 					}
 
 					var targetDir = ctx.String("dir")
-					var componentFile = fmt.Sprintf("%s.render.html", componentName)
+					var componentFile = fmt.Sprintf("%s.html", componentName)
 
 					var viewsJob njobs.Jobs
 
@@ -231,7 +231,7 @@ func main() {
 
 					viewsJob.Add(njobs.Mkdir(viewsDir, 0777))
 					viewsJob.Add(njobs.Println("Created: %s", os.Stdout))
-					viewsJob.Add(njobs.File("blocks.html", 0777, blockContent))
+					viewsJob.Add(njobs.File("header.html", 0777, headerContent))
 					viewsJob.Add(njobs.Println("Created: %s", os.Stdout))
 					viewsJob.Add(njobs.BackupPath())
 					viewsJob.Add(njobs.File("main.html", 0777, indexContent))
@@ -261,20 +261,23 @@ func main() {
 	}
 }
 
-var componentContent = `<!-- component: %s -->
+var componentContent = `{{/* Component file should contain only template code related to the component */}}
+<!-- component: %s -->
 
+<div>No Content</div>
 `
 
 var indexContent = bytes.NewBufferString(`
 {{/* you can reference a specific 'define' block from an external block file using the # prefix*/}}
-{{ template "blocks.html#header" .Path }}
+{{ template "header.html" .Path }}
 `)
 
-var blockContent = bytes.NewBufferString(`{{/* blocks: This file can only contain 'define' blocks, anything else will fail */}}
+var headerContent = bytes.NewBufferString(`{{/* header: This file contains what will be a generated function and must define it's own root type */}}
+{{ rootType string }}
 
-{{ define "header" string }}
-	<h1>{{ . }}</h1>
-{{ end }}
+<head>
+	<title>{{.}}</title>
+<head>
 `)
 
 var docContent = `package %s

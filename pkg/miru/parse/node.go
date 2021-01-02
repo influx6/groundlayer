@@ -50,6 +50,8 @@ var baseTypesRepresentation = map[string]string{
 	"Rune":      "rune",
 	"Byte":      "byte",
 	"ByteSlice": "[]byte",
+	"Data":      "peji.Data",
+	"peji.Data": "peji.Data",
 }
 
 var textFormat = "%s" // Changed to "%q" in tests for better error messages.

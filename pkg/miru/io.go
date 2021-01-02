@@ -107,7 +107,7 @@ func (vt *VFile) ParseFor(ops Options, fns parse.FuncMaps, treeset Treeset) (*Pa
 			return nil, err
 		}
 	}
-	return ParseTreeWithFuncMaps(vt.targetFile, vt.builder.String(), ops, fns, vt.fs, treeset)
+	return ParseTreeWithFuncMaps(vt.targetFile, vt.targetFile, vt.builder.String(), ops, fns, vt.fs, treeset)
 }
 
 // ParseBlock parses the content of the File using the miru.TextWriter
@@ -129,7 +129,7 @@ func (vt *VFile) ParseBlockFor(blockName string, ops Options, fns parse.FuncMaps
 			return nil, err
 		}
 	}
-	return ParseTreeWithFuncMaps(blockName, vt.builder.String(), ops, fns, vt.fs, treeset)
+	return ParseTreeWithFuncMaps(blockName, vt.targetFile, vt.builder.String(), ops, fns, vt.fs, treeset)
 }
 
 // Read returns the string from it's cache (a strings.Builder)

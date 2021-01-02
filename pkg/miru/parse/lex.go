@@ -267,6 +267,9 @@ func (l *lexer) nextItem() item {
 // drain drains the output so the lexing goroutine will exit.
 // Called by the parser, not in the lexing goroutine.
 func (l *lexer) drain() {
+	if len(l.items) == 0 {
+		return
+	}
 	for range l.items {
 	}
 }
@@ -285,7 +288,7 @@ func lex(name, input, left, right string) *lexer {
 		leftDelim:      left,
 		rightDelim:     right,
 		trimRightDelim: rightTrimMarker + right,
-		items:          make(chan item),
+		items:          make(chan item, 1),
 		line:           1,
 		startLine:      1,
 		htmlMode:       false,
@@ -660,7 +663,7 @@ func lexRootType(l *lexer) stateFn {
 	}
 
 	// CollectName for root model
-	lexTextUntil(l)
+	lexTextAndDotUntil(l)
 	l.emit(itemRoot)
 
 	// Collect away possible space
@@ -670,7 +673,7 @@ func lexRootType(l *lexer) stateFn {
 
 	var foundDelim, _ = lexIfDelimiter(l, l.rightDelim)
 	if !foundDelim {
-		return l.errorf("failed to close komponent declaration in line %d at %d", l.line, l.pos)
+		return l.errorf("failed to close rootType declaration in line %d at %d", l.line, l.pos)
 	}
 
 	l.ignore()
@@ -1282,6 +1285,23 @@ func lexAllUntil(l *lexer, fn func(r rune) bool) int {
 	return numSpaces
 }
 
+// lexTextAndDotUntil scans a run of alphaneumeric characters.
+func lexTextAndDotUntil(l *lexer) bool {
+	var found = false
+	var r rune
+	var numSpaces int
+	for {
+		r = l.peek()
+		if !isAlphaNumericAndDot(r) {
+			break
+		}
+		found = true
+		l.next()
+		numSpaces++
+	}
+	return found
+}
+
 // lexTextUntil scans a run of alphaneumeric characters.
 func lexTextUntil(l *lexer) bool {
 	var found = false
@@ -1780,6 +1800,11 @@ func isEndOfLine(r rune) bool {
 // isAlphaNumeric reports whether r is an alphabetic, digit, or underscore.
 func isAlphaNumeric(r rune) bool {
 	return r == '_' || unicode.IsLetter(r) || unicode.IsDigit(r)
+}
+
+// isAlphaNumeric reports whether r is an alphabetic, digit, or underscore.
+func isAlphaNumericAndDot(r rune) bool {
+	return r == '_' || unicode.IsLetter(r) || unicode.IsDigit(r) || r == '.'
 }
 
 func isLetter(s string) bool {

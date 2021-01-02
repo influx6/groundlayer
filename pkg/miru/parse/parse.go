@@ -83,12 +83,15 @@ type FuncMaps struct {
 // Tree is the representation of a single parsed template.
 type Tree struct {
 	FuncMaps
-	Name      string // name of the template represented by the tree.
-	ParseName string // name of the top-level template during parsing, for error messages.
-	TypeName  string
-	Root      *ListNode // top-level root of the tree.
-	textCache []*TextNode
-	text      string // text parsed to create the template (or its parent)
+	badErr         error
+	seenEOF        bool
+	FromDefinition bool
+	Name           string // name of the template represented by the tree.
+	ParseName      string // name of the top-level template during parsing, for error messages.
+	TypeName       string
+	Root           *ListNode // top-level root of the tree.
+	textCache      []*TextNode
+	text           string // text parsed to create the template (or its parent)
 	// Parsing only; cleared after parse.
 	lex           *lexer
 	token         [3]item // three-token lookahead for parser.
@@ -253,8 +256,16 @@ func (t *Tree) error(err error) {
 func (t *Tree) expectTypeOrRightDelimiter(context string) item {
 	token := t.nextNonSpace()
 	switch token.typ {
-	case itemText, itemIdentifier:
-		t.TypeName = token.val
+	case itemText, itemRawString, itemString, itemIdentifier:
+		var err error
+		var typeName = token.val
+		if strings.Contains(typeName, "\"") || strings.Contains(typeName, "'") {
+			typeName, err = strconv.Unquote(token.val)
+			if err != nil {
+				t.errorf("Failed to unquote string %q -> %q", token.val, err.Error())
+			}
+		}
+		t.TypeName = typeName
 	case itemRightDelim:
 		// do nothing
 		return token
@@ -300,6 +311,7 @@ func (t *Tree) recover(errp *error) {
 			t.lex.drain()
 			t.stopParse()
 		}
+
 		*errp = e.(error)
 	}
 }
@@ -330,13 +342,16 @@ func (t *Tree) stopParse() {
 // the treeSet map.
 func (t *Tree) Parse(text, leftDelim, rightDelim string, treeSet map[string]*Tree, maps FuncMaps) (tree *Tree, err error) {
 	defer t.recover(&err)
+
 	t.ParseName = t.Name
 	t.startParse(maps, lex(t.Name, text, leftDelim, rightDelim), treeSet)
 	t.text = text
 	t.parse()
 	t.add()
 	t.stopParse()
-	return t, nil
+
+	tree = t
+	return
 }
 
 // add adds tree to t.treeSet.
@@ -346,6 +361,7 @@ func (t *Tree) add() {
 		t.treeSet[t.Name] = t
 		return
 	}
+
 	if !IsEmptyTree(t.Root) {
 		t.errorf("template: multiple definition of template %q, maybe you named a file and a definition block the same name or your files containing define blocks have contents outside of define blocks, only the root file can have those ?", t.Name)
 	}
@@ -398,6 +414,7 @@ func (t *Tree) parse() {
 				newT := New("definition") // name will be updated once we know it.
 				newT.text = t.text
 				newT.ParseName = t.ParseName
+				newT.FromDefinition = true
 				newT.startParse(t.FuncMaps, t.lex, t.treeSet)
 				newT.parseDefinition()
 				continue
@@ -473,6 +490,9 @@ func (t *Tree) html(token item) (n Node) {
 		t.withinHTML = false
 	}()
 
+	var unfinishedHtml = false
+	var badToken item
+
 htmlLoop:
 	for {
 		var nextToken = t.next()
@@ -489,6 +509,11 @@ htmlLoop:
 			textList = textList[:0]
 
 			tagNode.Children.append(t.html(nextToken))
+			if t.seenEOF {
+				unfinishedHtml = true
+				badToken = nextToken
+				break htmlLoop
+			}
 		case itemTagSelfEnd:
 			textList.print(tagNode.Children, t)
 			textList = textList[:0]
@@ -520,8 +545,13 @@ htmlLoop:
 				t.errorf("Found {{endMethod}} occurring during html parsing, did you forget to close a tag ?")
 			}
 		case itemEOF:
+			t.seenEOF = true
 			break htmlLoop
 		}
+	}
+
+	if unfinishedHtml {
+		t.unexpected(badToken, fmt.Sprintf("tag %q was not properly closed at line %d and pos %d", tagNode.Tag, badToken.line, badToken.pos))
 	}
 
 	return tagNode
@@ -662,8 +692,20 @@ func (t *Tree) rootType(token item) *RootNode {
 		return nil
 	}
 
-	var rootNodeType = t.newRootNode(token.pos, token.val, t.getTypeName(token.val))
+	var err error
+	var content = token.val
+	if strings.Contains(content, "\"") || strings.Contains(content, "'") {
+		content, err = strconv.Unquote(token.val)
+		if err != nil {
+			t.errorf("Failed to unquote string %q -> %q", token.val, err.Error())
+		}
+	}
+
+	var typeValue = t.getTypeName(content)
+	var rootNodeType = t.newRootNode(token.pos, token.val, typeValue)
 	t.rootNode = rootNodeType
+	t.TypeName = typeValue
+
 	return rootNodeType
 }
 
@@ -956,6 +998,7 @@ func (t *Tree) getRefType(token item, tokenFieldString string) Node {
 // been scanned.
 func (t *Tree) parseDefinition() {
 	const context = "define clause"
+
 	name := t.expectOneOf(itemString, itemRawString, context)
 	var err error
 	t.Name, err = strconv.Unquote(name.val)
@@ -965,6 +1008,7 @@ func (t *Tree) parseDefinition() {
 
 	t.expectTypeOrRightDelimiter(context)
 	// t.expect(itemRightDelim, context)
+
 	var end Node
 	t.Root, end = t.itemList()
 	if end.Type() != nodeEnd {
@@ -985,6 +1029,7 @@ func (t *Tree) itemList() (list *ListNode, next Node) {
 doloop:
 	for t.peek().typ != itemEOF {
 		n := t.textOrAction(true)
+
 		switch n.Type() {
 		case NodeKomponent:
 			continue doloop

@@ -57,16 +57,14 @@ func TestTextWriter_FileSystem(t *testing.T) {
 	hasNotText(t, content, `func definedTemplate2(ctx some.tmper, rootDoc *domu.Node)`)
 	hasText(t, content, `func definedTemplate2(page *peji.Page, ctx interface{}, rootDoc *domu.Node)`)
 	hasText(t, content, `This is some text`)
-	hasText(t, content, `definedTemplate2(ctx, rootDoc)`)
+	hasText(t, content, `definedTemplate2(page, ctx, rootDoc)`)
 	hasText(t, content, `func definedTemplate5(page *peji.Page, ctx interface{}, rootDoc *domu.Node)`)
 	hasText(t, content, `This is some.tmper text`)
-	hasText(t, content, `definedTemplate5(ctx, rootDoc)`)
+	hasText(t, content, `definedTemplate5(page, ctx, rootDoc)`)
 }
 
 func TestTextWriter_ParseTextTemplateWithMethodsWithUsage(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
-		{{rootType string }}
-
 		{{model Address | Zip:String, Street: string, Number:Int }}
 		{{model Product | Isin:String, Price: Float, Address:Address }}
 		{{modelType ProductMapping |  Map(string, Product) }}
@@ -92,7 +90,7 @@ func TestTextWriter_ParseTextTemplateWithMethodsWithUsage(t *testing.T) {
 	hasText(t, builder, `type Product struct`)
 	hasText(t, builder, `type ProductMapping map[string]Product`)
 	hasText(t, builder, `func renderSubProducts`)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node)`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node)`)
 	hasText(t, builder, `helpers.Print((product).PageName)`)
 }
 
@@ -154,7 +152,7 @@ func TestTextWriter_ParseTextTemplateWithMethodsUsingKomponent(t *testing.T) {
 	hasText(t, builder, `type Product struct`)
 	hasText(t, builder, `type ProductMapping map[string]Product`)
 	hasText(t, builder, `func renderSubProducts`)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node)`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node)`)
 }
 
 func TestTextWriter_ParseTextTemplateWithMethodsUsingKomponentAndMountsFailed(t *testing.T) {
@@ -254,12 +252,11 @@ func TestTextWriter_ParseTextWithModelAndModelType(t *testing.T) {
 
 func TestTextWriter_ParseMountWithRootType(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
-		{{ rootType string }}
 		{{ mount user }}
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
 }
@@ -271,7 +268,7 @@ func TestTextWriter_ParseMountListWithRootType(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
 }
@@ -282,7 +279,7 @@ func TestTextWriter_ParseMount(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
 }
@@ -293,7 +290,7 @@ func TestTextWriter_ParseMountLiveList(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasLive("profile") {`)
 	hasText(t, builder, `page.Live("/profile", "profile").Render(ctx).Mount(rootDoc)`)
 }
@@ -304,7 +301,7 @@ func TestTextWriter_ParseMountLive(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasLive("profile") {`)
 	hasText(t, builder, `page.Live("/profile", "profile").Render(ctx).Mount(rootDoc)`)
 }
@@ -317,7 +314,7 @@ func TestTextWriter_ParseMountWithFields(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render(ctx.Field1.Field2).Mount(rootDoc)`)
 }
@@ -330,7 +327,7 @@ func TestTextWriter_ParseMountWithArgumentVariable(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render(x).Mount(rootDoc)`)
 }
@@ -343,7 +340,7 @@ func TestTextWriter_ParseMountWithString(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `if page.HasStatic("user") {`)
 	hasText(t, builder, `page.Static("user").Render("alex").Mount(rootDoc)`)
 }
@@ -359,7 +356,7 @@ func TestTextWriter_ParseTextString(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `func definedTemplate3(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
 }
 
@@ -383,7 +380,7 @@ func TestTextWriter_ParseTextTemplate(t *testing.T) {
 	require.NotNil(t, builder)
 	hasText(t, builder, `type ItemList []string`)
 	hasText(t, builder, `Items ItemList`)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx Product, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `func definedTemplate5(page *peji.Page, ctx Product, rootDoc *domu.Node) {`)
 }
 
@@ -405,7 +402,7 @@ func TestTextWriter_ParseLayoutArgument(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx string, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 }
 
 func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
@@ -417,9 +414,9 @@ func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
-	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
@@ -447,9 +444,9 @@ func TestTextWriter_ParseTagAttrsWithListMultiline(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
-	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `domu.NewStringListAttr("class", "")`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
@@ -482,9 +479,9 @@ func TestTextWriter_ParseTagAttrsWithThemeMultiline(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
-	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
@@ -509,9 +506,9 @@ func TestTextWriter_ParseMultilineTag(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
-	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.Element("p")`)
 }
 
 func TestTextWriter_ParseLayoutArgumentWithNoRoot(t *testing.T) {
@@ -520,9 +517,9 @@ func TestTextWriter_ParseLayoutArgumentWithNoRoot(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
-	hasText(t, builder, `domu.Element("p",`)
+	hasText(t, builder, `domu.Element("p")`)
 }
 
 func TestTextWriter_ParseWithPackageImport(t *testing.T) {
@@ -532,7 +529,7 @@ func TestTextWriter_ParseWithPackageImport(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 }
 
 func TestTextWriter_ParseWithPackageUse(t *testing.T) {
@@ -541,7 +538,7 @@ func TestTextWriter_ParseWithPackageUse(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 }
 
 func TestTextWriter_ParseWithPackageUseWithField(t *testing.T) {
@@ -550,7 +547,7 @@ func TestTextWriter_ParseWithPackageUseWithField(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.TotalLives, rootDoc)`)
 	hasText(t, builder, `helpers.TotalLives`)
 }
@@ -561,7 +558,7 @@ func TestTextWriter_ParseWithPackageUseWithFieldWithPipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.TotalLives), rootDoc)`)
 }
@@ -570,7 +567,7 @@ func TestTextWriter_ParseFieldWithImportedFieldWithPipe(t *testing.T) {
 	var builder = textWriterTestHelper(t, `{{ @helpers.Count | print }}`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.Count)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.Count), rootDoc)`)
 }
@@ -579,7 +576,7 @@ func TestTextWriter_ParseFieldWithImportedFieldWithPipe2(t *testing.T) {
 	var builder = textWriterTestHelper(t, `{{ @helpers.Count | print .Field1 }}`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.Count, ctx.Field1)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.Count, ctx.Field1), rootDoc)`)
 }
@@ -590,7 +587,7 @@ func TestTextWriter_ParseUsingPrint(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print("alex", rootDoc)`)
 }
 
@@ -600,7 +597,7 @@ func TestTextWriter_ParseUsingPrint2(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print("alex", rootDoc)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print("alex", rootDoc), rootDoc)`)
 }
@@ -611,7 +608,7 @@ func TestTextWriter_ParseUsingDOMDirective(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AddToDOM("alex", rootDoc)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.AddToDOM("alex", rootDoc), rootDoc)`)
 }
@@ -622,7 +619,7 @@ func TestTextWriter_ParseUsingDOMDirective2(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AddToDOM("alex", rootDoc)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.AddToDOM("alex", rootDoc), rootDoc)`)
 }
@@ -633,7 +630,7 @@ func TestTextWriter_ParseUsingDOMDirective3(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AddToDOM("alex", rootDoc)`)
 	hasNotText(t, builder, `helpers.AttachToNode(helpers.AddToDOM("alex", rootDoc), rootDoc)`)
 }
@@ -644,7 +641,7 @@ func TestTextWriter_ParseUsingDOMDirective4(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AddToDOM("alex", rootDoc)`)
 	hasNotText(t, builder, `helpers.AttachToNode(helpers.AddToDOM("alex", rootDoc), rootDoc)`)
 }
@@ -659,7 +656,7 @@ func TestTextWriter_ParseUsingDOMDirective5(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.AddToDOM("alex", node4))`)
 	hasNotText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.AddToDOM("alex", rootDoc)), rootDoc)`)
 }
@@ -674,7 +671,7 @@ func TestTextWriter_ParseUsingDOMDirective6(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.AddToDOM("alex", node4))`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.AddToDOM("alex", node4)), node4)`)
 }
@@ -689,7 +686,7 @@ func TestTextWriter_ParseUsingDOMDirective7(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.Printf("alex", node4))`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.Printf("alex", node4)), node4)`)
 }
@@ -700,7 +697,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex")`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.TotalLives, "alex"), rootDoc)`)
 }
@@ -711,7 +708,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar2(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex")`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.TotalLives, "alex"), rootDoc)`)
 }
@@ -723,7 +720,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar3(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex", x)`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(helpers.TotalLives, "alex", x), rootDoc)`)
 }
@@ -735,7 +732,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar4(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex", x)`)
 	hasText(t, builder, `x = helpers.Print(helpers.Print(helpers.TotalLives, "alex", x))`)
 }
@@ -747,7 +744,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar5(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex", x)`)
 	hasText(t, builder, `x = helpers.Print(helpers.TotalLives, "alex", x)`)
 }
@@ -759,7 +756,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldTwoVar6(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Print(helpers.TotalLives, "alex", x)`)
 	hasText(t, builder, `x = helpers.Print(helpers.Print(helpers.TotalLives, "alex", x))`)
 }
@@ -770,7 +767,7 @@ func TestTextWriter_ParseWithPackageUsePipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Cap(helpers.Printf(ctx.Field1))`)
 }
 
@@ -780,7 +777,7 @@ func TestTextWriter_ParseWithPackageUsePipe2(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Cap(helpers.Printf(helper.Field1))`)
 }
 
@@ -790,7 +787,7 @@ func TestTextWriter_ParseWithPackageUsePipe3(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.Printf(helpers.Print(helpers.Cap(helpers.Printf(ctx.Field1))))`)
 }
 
@@ -800,7 +797,7 @@ func TestTextWriter_ParseWithPackageUseAsFieldInPipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 }
 
 func TestTextWriter_ParseWithPackageUseWithVariablePipe(t *testing.T) {
@@ -809,7 +806,7 @@ func TestTextWriter_ParseWithPackageUseWithVariablePipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 }
 
 func TestTextWriter_ParseWithPackageUseWithVariable(t *testing.T) {
@@ -818,7 +815,7 @@ func TestTextWriter_ParseWithPackageUseWithVariable(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `date := slucker.Printf(ctx.Field1, ctx.Field2)`)
 }
 
@@ -828,7 +825,7 @@ func TestTextWriter_MultiArgumentsWithImported(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(slacker.Printf(ctx.Field1, ctx.Field2), rootDoc)`)
 }
 
@@ -839,7 +836,7 @@ func TestTextWriter_MultiArgumentsWithImportedWithPipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(slacker.Printf(x, ctx.Field1, ctx.Field2), rootDoc)`)
 }
 
@@ -849,7 +846,7 @@ func TestTextWriter_ArgPipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(slacker.Printf(ctx.Field1)), rootDoc`)
 }
 
@@ -859,7 +856,7 @@ func TestTextWriter_TwoArgsPipe(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(slacker.Printf(ctx.Field3, ctx.Field1)), rootDoc)`)
 }
 
@@ -869,7 +866,7 @@ func TestTextWriter_MultipleArgumentsLaced(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(slacker.Printf(ctx.Field1, ctx.Field2, ctx.Field3)), rootDoc`)
 }
 
@@ -880,7 +877,7 @@ func TestTextWriter_MultipleArgumentsLacedWithVar(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(slacker.Printf(x, ctx.Field1, ctx.Field2, ctx.Field3)), rootDoc`)
 }
 
@@ -890,7 +887,7 @@ func TestTextWriter_BadPipeUsage5_Error(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, rootDoc *domu.Node) {`)
+	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `helpers.AttachToNode(helpers.Print(slacker.Printf(ctx.Field3, ctx.Field1)), rootDoc)`)
 }
 
@@ -1088,7 +1085,7 @@ func TestTextWriter_ParseTextMarkup(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
-	hasText(t, builder, `domu.Element("footer", "node3")`)
+	hasText(t, builder, `domu.Element("footer").UseID("node3")`)
 	hasText(t, builder, `domu.Text("Here is the footer")`)
 }
 
@@ -1266,7 +1263,7 @@ func textWriterTestHelper(t *testing.T, text string, expectErr bool) string {
 }
 
 func hasText(t *testing.T, content string, match string) {
-	require.True(t, strings.Contains(content, match))
+	require.True(t, strings.Contains(content, match), content)
 }
 
 func hasNotText(t *testing.T, content string, match string) {
@@ -1291,7 +1288,7 @@ func (m *memoryFile) Parse(ops miru.Options, funcs map[string]string) (*miru.Par
 }
 
 func (m *memoryFile) ParseFor(ops miru.Options, funcs parse.FuncMaps, t miru.Treeset) (*miru.ParsedData, error) {
-	return miru.ParseTreeWithFuncMaps(m.name, m.content, ops, funcs, partialFiles, t)
+	return miru.ParseTreeWithFuncMaps(m.name, m.name, m.content, ops, funcs, partialFiles, t)
 }
 
 func (m *memoryFile) ParseBlock(name string, ops miru.Options, funcs map[string]string) (*miru.ParsedData, error) {
@@ -1299,7 +1296,7 @@ func (m *memoryFile) ParseBlock(name string, ops miru.Options, funcs map[string]
 }
 
 func (m *memoryFile) ParseBlockFor(name string, ops miru.Options, funcs parse.FuncMaps, t miru.Treeset) (*miru.ParsedData, error) {
-	return miru.ParseTreeWithFuncMaps(name, m.content, ops, funcs, partialFiles, t)
+	return miru.ParseTreeWithFuncMaps(name, m.name, m.content, ops, funcs, partialFiles, t)
 }
 
 func (m *memoryFile) Read() (string, error) {

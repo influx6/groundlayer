@@ -112,15 +112,15 @@ func ParseTree(name string, text string, ops Options, fset map[string]string, sf
 		DefinedBlocks: map[string]string{},
 	}
 
-	return ParseTreeWithFuncMaps(name, text, ops, mmap, sf, tset)
+	return ParseTreeWithFuncMaps(name, name, text, ops, mmap, sf, tset)
 }
 
-func ParseTreeWithFuncMaps(name string, text string, ops Options, maps parse.FuncMaps, sf SourceFileSystem, set Treeset) (*ParsedData, error) {
+func ParseTreeWithFuncMaps(name string, fileName string, text string, ops Options, maps parse.FuncMaps, sf SourceFileSystem, set Treeset) (*ParsedData, error) {
 	if ops.Packages == nil {
 		ops.Packages = map[string]string{}
 	}
 
-	var treeSet, parseErr = parse.Parse(name, text, ops.LeftDelimiter, ops.RightDelimiter, maps, set)
+	var treeSet, parseErr = parse.Parse(fileName, text, ops.LeftDelimiter, ops.RightDelimiter, maps, set)
 	if parseErr != nil {
 		return nil, nerror.WrapOnly(parseErr)
 	}
@@ -246,7 +246,7 @@ func (t *TextWriter) ParseTree() error {
 //	return t.walk(tree, node, parent, t.funcMaps.Komponents)
 // }
 
-func (t *TextWriter) walk(tree *parse.Tree, node parse.Node, parent parse.Node) error {
+func (t *TextWriter) walk(tree *parse.Tree, tnode parse.Node, parent parse.Node) error {
 	var tmp = getBuffer()
 	var oldBuilder = t.swapBuilder(tmp)
 	defer func() {
@@ -256,7 +256,7 @@ func (t *TextWriter) walk(tree *parse.Tree, node parse.Node, parent parse.Node) 
 		releaseBuffer(tmp)
 	}()
 
-	switch node := node.(type) {
+	switch node := tnode.(type) {
 	case *parse.MountLiveNode:
 		return t.walkMountLiveKomponent(tree, node, parent)
 	case *parse.MountNode:
@@ -835,10 +835,9 @@ func (t *TextWriter) walkTemplateNode(tree *parse.Tree, node *parse.TemplateNode
 		}
 	}
 
-	var pipeCondition = getBuffer()
-	defer releaseBuffer(pipeCondition)
+	var pipeCondition strings.Builder
 
-	var oldBuilder = t.swapBuilder(pipeCondition)
+	var oldBuilder = t.swapBuilder(&pipeCondition)
 
 	if err := t.walkNonDisplayPipeNode(tree, node.Pipe, node); err != nil {
 		return nerror.WrapOnly(err)
@@ -884,7 +883,7 @@ func (t *TextWriter) walkTemplateNode(tree *parse.Tree, node *parse.TemplateNode
 			t.incKomponentCounts()
 			targetTextWriter.komponents = t.komponents
 
-			targetTextWriter.rootNode = t.rootNode
+			// targetTextWriter.rootNode = t.rootNode
 			if targetWriterErr := targetTextWriter.ParseTree(); targetWriterErr != nil {
 				return nerror.WrapOnly(targetWriterErr)
 			}
