@@ -17,6 +17,7 @@ import (
 	"github.com/influx6/npkg/njson"
 
 	"github.com/influx6/groundlayer/pkg/peji"
+	"github.com/influx6/groundlayer/pkg/styled"
 )
 
 type LoggerImpl struct{}
@@ -47,16 +48,16 @@ func TestPages(t *testing.T) {
 	}
 
 	var logger = new(LoggerImpl)
-	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, &styled.Theme{}, transport, peji.DefaultNotFound{})
 
-	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		sales.AddStatic("users", &UserComponent{})
 		return sales
 	}))
 
-	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		about.AddStatic("users", &UserComponent{})
 		return about
 	}))
@@ -106,21 +107,21 @@ func TestPagesWithNotification(t *testing.T) {
 	}
 
 	var logger = new(LoggerImpl)
-	var pages = peji.NewPages(newCtx, logger, "/pages/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+	var pages = peji.NewPages(newCtx, logger, "/pages/", 5*time.Second, 2*time.Second, &styled.Theme{}, transport, peji.DefaultNotFound{})
 
 	var pageNotification = make(chan string, 2)
 	pages.AddOnPageRoute(func(route string, p *peji.Pages) {
 		pageNotification <- route
 	})
 
-	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		sales.AddStatic("users", &UserComponent{})
 		return sales
 	}))
 
-	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		about.AddStatic("users", &UserComponent{})
 		return about
 	}))
@@ -184,16 +185,16 @@ func TestPagesRouter(t *testing.T) {
 		},
 	}
 
-	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, &styled.Theme{}, transport, peji.DefaultNotFound{})
 
-	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		sales.AddStatic("users", &UserComponent{})
 		return sales
 	}))
 
-	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		about.AddStatic("users", &UserComponent{})
 		return about
 	}))
@@ -259,16 +260,16 @@ func TestPagesRouter_WithExistingSession_WithQuery(t *testing.T) {
 		},
 	}
 
-	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, &styled.Theme{}, transport, peji.DefaultNotFound{})
 
-	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		sales.AddStatic("users", &UserComponent{})
 		return sales
 	}))
 
-	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		about.AddStatic("users", &UserComponent{})
 		return about
 	}))
@@ -357,16 +358,16 @@ func TestPagesRouter_WithExistingSession_WithHeader(t *testing.T) {
 		},
 	}
 
-	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, transport, peji.DefaultNotFound{})
+	var pages = peji.NewPages(newCtx, logger, "/", 5*time.Second, 2*time.Second, &styled.Theme{}, transport, peji.DefaultNotFound{})
 
-	require.NoError(t, pages.Add("sales", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var sales = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		sales.AddStatic("users", &UserComponent{})
 		return sales
 	}))
 
-	require.NoError(t, pages.Add("about", func(name string, pubsub sabuhp.Transport) *peji.Page {
-		var about = peji.WithPage(name, sampleLayout, peji.DefaultNotFound{})
+	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
+		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
 		about.AddStatic("users", &UserComponent{})
 		return about
 	}))

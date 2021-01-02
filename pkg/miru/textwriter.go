@@ -489,14 +489,14 @@ func (t *TextWriter) walkMountKomponent(tree *parse.Tree, node *parse.MountNode,
 	defer t.swapBuilder(oldBuilder)
 
 	t.Write("\n")
-	t.Write("if page.HasStatic(")
+	t.Write("if page.Has(")
 	t.Write("\"")
 	t.Write(node.Name)
 	t.Write("\")")
 	t.Write(" { ")
 	t.Write("\n\t")
 
-	t.Write("page.Static(")
+	t.Write("page.Live(")
 	t.Write("\"")
 	t.Write(node.Name)
 	t.Write("\").")

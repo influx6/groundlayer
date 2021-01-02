@@ -191,8 +191,8 @@ func TestTextWriter_ParseTextTemplateWithSubDOmMount(t *testing.T) {
 	hasText(t, builder, `type Product struct`)
 	hasText(t, builder, `type ProductMapping map[string]Product`)
 	hasText(t, builder, `func renderSubProducts`)
-	hasText(t, builder, `if page.HasStatic("UserCars") {`)
-	hasText(t, builder, `page.Static("UserCars").Render(product).Mount(node6)`)
+	hasText(t, builder, `if page.Has("UserCars") {`)
+	hasText(t, builder, `page.Live("UserCars").Render(product).Mount(node6)`)
 	hasText(t, builder, `renderSubProducts(page *peji.Page, product Product, subProducts ProductMapping, parentNode *domu.Node) {`)
 }
 
@@ -215,8 +215,8 @@ func TestTextWriter_ParseTextTemplateWithMethodsUsingKomponentAndMounts(t *testi
 	hasText(t, builder, `type Product struct`)
 	hasText(t, builder, `type ProductMapping map[string]Product`)
 	hasText(t, builder, `func renderSubProducts`)
-	hasText(t, builder, `if page.HasStatic("UserCars") {`)
-	hasText(t, builder, `page.Static("UserCars").Render(product).Mount(parentNode)`)
+	hasText(t, builder, `if page.Has("UserCars") {`)
+	hasText(t, builder, `page.Live("UserCars").Render(product).Mount(parentNode)`)
 	hasText(t, builder, `renderSubProducts(page *peji.Page, product Product, subProducts ProductMapping, parentNode *domu.Node) {`)
 }
 
@@ -257,8 +257,8 @@ func TestTextWriter_ParseMountWithRootType(t *testing.T) {
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("user") {`)
+	hasText(t, builder, `page.Live("user").Render(ctx).Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseMountListWithRootType(t *testing.T) {
@@ -269,8 +269,8 @@ func TestTextWriter_ParseMountListWithRootType(t *testing.T) {
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("user") {`)
+	hasText(t, builder, `page.Live("user").Render(ctx).Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseMount(t *testing.T) {
@@ -280,43 +280,37 @@ func TestTextWriter_ParseMount(t *testing.T) {
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render(ctx).Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("user") {`)
+	hasText(t, builder, `page.Live("user").Render(ctx).Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseMountLiveList(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
 		{{ mountLiveList /profile | profile . }}
-	`, false)
+	`, true)
 
-	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasLive("profile") {`)
-	hasText(t, builder, `page.Live("/profile", "profile").Render(ctx).Mount(rootDoc)`)
+	require.Empty(t, builder)
 }
 
 func TestTextWriter_ParseMountLive(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
 		{{ mountLive /profile | profile . }}
-	`, false)
+	`, true)
 
-	require.NotNil(t, builder)
-	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasLive("profile") {`)
-	hasText(t, builder, `page.Live("/profile", "profile").Render(ctx).Mount(rootDoc)`)
+	require.Empty(t, builder)
 }
 
 func TestTextWriter_ParseMountWithFields(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
 		{{ $x := .Field }}
 		
-		{{ mount user .Field1.Field2 }}
+		{{ mount /user .Field1.Field2 }}
 	`, false)
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render(ctx.Field1.Field2).Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("/user") {`)
+	hasText(t, builder, `page.Live("/user").Render(ctx.Field1.Field2).Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseMountWithArgumentVariable(t *testing.T) {
@@ -328,8 +322,8 @@ func TestTextWriter_ParseMountWithArgumentVariable(t *testing.T) {
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render(x).Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("user") {`)
+	hasText(t, builder, `page.Live("user").Render(x).Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseMountWithString(t *testing.T) {
@@ -341,8 +335,8 @@ func TestTextWriter_ParseMountWithString(t *testing.T) {
 
 	require.NotNil(t, builder)
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
-	hasText(t, builder, `if page.HasStatic("user") {`)
-	hasText(t, builder, `page.Static("user").Render("alex").Mount(rootDoc)`)
+	hasText(t, builder, `if page.Has("user") {`)
+	hasText(t, builder, `page.Live("user").Render("alex").Mount(rootDoc)`)
 }
 
 func TestTextWriter_ParseTextString(t *testing.T) {

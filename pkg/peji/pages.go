@@ -15,6 +15,7 @@ import (
 	"github.com/influx6/npkg/nxid"
 
 	"github.com/influx6/groundlayer/pkg/domu"
+	"github.com/influx6/groundlayer/pkg/styled"
 )
 
 const (
@@ -25,7 +26,7 @@ const (
 	QueryAndCookieSessionIdName = "_groundlayer_id"
 )
 
-type PageCreator func(name string, pubsub sabuhp.Transport) *Page
+type PageCreator func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *Page
 
 type PageSession struct {
 	lastUsed time.Time
@@ -46,6 +47,7 @@ type PageSessionManager struct {
 	maxIdle           time.Duration
 	idleCheckInterval time.Duration
 	onAddRoute        OnPage
+	theme             *styled.Theme
 	Creator           PageCreator
 	sessions          map[string]PageSession
 	doFunc            chan func()
@@ -64,6 +66,7 @@ func NewPageSessionManager(
 	maxIdle time.Duration,
 	idleCheckInterval time.Duration,
 	creator PageCreator,
+	theme *styled.Theme,
 	onAddRoute OnPage,
 ) *PageSessionManager {
 	var newCtx, canceler = context.WithCancel(ctx)
@@ -73,6 +76,7 @@ func NewPageSessionManager(
 		canceler:          canceler,
 		maxIdle:           maxIdle,
 		Creator:           creator,
+		theme:             theme,
 		onAddRoute:        onAddRoute,
 		idleCheckInterval: idleCheckInterval,
 		doFunc:            make(chan func(), 0),
@@ -185,7 +189,7 @@ func (psm *PageSessionManager) NewSession(t sabuhp.Transport) (*Page, string, er
 		var ps PageSession
 		ps.Id = nxid.New()
 		ps.lastUsed = time.Now()
-		ps.Page = psm.Creator(psm.routePath, t)
+		ps.Page = psm.Creator(psm.routePath, psm.theme, t)
 		psm.sessions[ps.Id.String()] = ps
 
 		ps.Page.OnPageAdd(psm.manageAddPageRoute)
@@ -250,6 +254,7 @@ type OnPages func(route string, p *Pages)
 type Pages struct {
 	logger    Logger
 	prefix    string
+	theme     *styled.Theme
 	router    *mixer.Mux
 	maxIdle   time.Duration
 	idleCheck time.Duration
@@ -265,6 +270,7 @@ func WithPages(
 	ctx context.Context,
 	logger Logger,
 	prefix string,
+	theme *styled.Theme,
 	transport sabuhp.Transport,
 	notFound Handler,
 ) *Pages {
@@ -274,6 +280,7 @@ func WithPages(
 		prefix,
 		DefaultMaxPageIdleness,
 		DefaultPageIdlenessChecksInterval,
+		theme,
 		transport,
 		notFound,
 	)
@@ -285,6 +292,7 @@ func NewPages(
 	prefix string,
 	maxIdle time.Duration,
 	idleCheck time.Duration,
+	theme *styled.Theme,
 	transport sabuhp.Transport,
 	notFound Handler,
 ) *Pages {
@@ -293,6 +301,7 @@ func NewPages(
 	}
 
 	return &Pages{
+		theme:     theme,
 		tr:        transport,
 		prefix:    prefix,
 		ctx:       ctx,
@@ -428,7 +437,7 @@ func (p *Pages) Add(pageName string, creatorFunc PageCreator) error {
 		return nerror.New("already exists")
 	}
 
-	var manager = NewPageSessionManager(p.ctx, prefixPage, p.maxIdle, p.idleCheck, creatorFunc, p.onNewPage.Emit)
+	var manager = NewPageSessionManager(p.ctx, prefixPage, p.maxIdle, p.idleCheck, creatorFunc, p.theme, p.onNewPage.Emit)
 	manager.Start()
 
 	p.waiter.Add(1)

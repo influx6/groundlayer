@@ -6,9 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/influx6/npkg/nstorage/plain"
-
 	"github.com/influx6/groundlayer/pkg/domu"
+	"github.com/influx6/groundlayer/pkg/styled"
 )
 
 var (
@@ -16,19 +15,11 @@ var (
 	allSlashes      = regexp.MustCompile(`^/$`)
 )
 
-// LiveDOMHandler returns a Handler which provides the params as the data to be giving to
+// DOMHandler returns a Handler which provides the params as the data to be giving to
 // a Live DOM render method.
-func LiveDOMHandler(target string, page *Page) Handler {
+func DOMHandler(target string, page *Page) Handler {
 	return HandlerFunc(func(d Data) *domu.Node {
 		return page.Live(target).Render(d)
-	})
-}
-
-// StaticDOMHandler returns a Handler which provides the params as the data to be giving to
-// a Live DOM render method.
-func StaticDOMHandler(target string, page *Page) Handler {
-	return HandlerFunc(func(d Data) *domu.Node {
-		return page.Static(target).Render(d)
 	})
 }
 
@@ -37,34 +28,32 @@ type OnPage func(route string, p *Page)
 // Page implements the Document interface and represents
 // a single unique html page.
 type Page struct {
-	UseChanges       bool
-	Name             string
-	RoutePath        string
-	AnyRouteInPage   string
-	Router           *Mux
-	Layout           Layout
-	onPageAdded      []OnPage
-	Last             *domu.Node
-	Registry         *DOMRegistry
-	LiveRegistry     *DOMRegistry
-	LiveRouteMapping *plain.StringMap
+	UseChanges     bool
+	Name           string
+	RoutePath      string
+	AnyRouteInPage string
+	Router         *Mux
+	Layout         Layout
+	onPageAdded    []OnPage
+	Theme          *styled.Theme
+	Last           *domu.Node
+	Registry       *DOMRegistry
 }
 
-func WithPage(name string, layout Layout, notFound Handler) *Page {
-	return NewPageUsingRouter(handlePath(name), layout, NewMux(MuxConfig{
+func WithPage(name string, theme *styled.Theme, layout Layout, notFound Handler) *Page {
+	return NewPageUsingRouter(handlePath(name), theme, layout, NewMux(MuxConfig{
 		RootPath: name,
 		NotFound: notFound,
 	}))
 }
 
-func NewPageUsingRouter(routePath string, layout Layout, router *Mux) *Page {
+func NewPageUsingRouter(routePath string, theme *styled.Theme, layout Layout, router *Mux) *Page {
 	var p Page
 	p.Name = routePath
 	p.Layout = layout
 	p.Router = router
-	p.LiveRegistry = NewDOMRegistry()
+	p.Theme = theme
 	p.Registry = NewDOMRegistry()
-	p.LiveRouteMapping = plain.NewStringMap(10)
 	p.RoutePath = handlePath(routePath)
 	p.AnyRouteInPage = handlePath(routePath, "*path")
 
@@ -79,19 +68,12 @@ func NewPageUsingRouter(routePath string, layout Layout, router *Mux) *Page {
 }
 
 func (pg *Page) Close() {
-	pg.LiveRegistry.Reset()
 	pg.Registry.Reset()
 }
 
 func (pg *Page) check() {
 	if pg.Registry == nil {
 		pg.Registry = NewDOMRegistry()
-	}
-	if pg.LiveRegistry == nil {
-		pg.LiveRegistry = NewDOMRegistry()
-	}
-	if pg.LiveRouteMapping == nil {
-		pg.LiveRouteMapping = plain.NewStringMap(10)
 	}
 }
 
@@ -103,14 +85,8 @@ func (pg *Page) SetReconciliation(b bool) {
 	pg.UseChanges = b
 }
 
-// HasLive returns true if giving route exists either as a live dom or dom list.
-func (pg *Page) HasLive(route string) bool {
-	pg.check()
-	return pg.LiveRegistry.Has(route) || pg.LiveRegistry.HasList(route)
-}
-
-// HasStatic returns true if giving route exists either as a static dom or dom list.
-func (pg *Page) HasStatic(name string) bool {
+// Has returns true if giving route exists either as a static dom or dom list.
+func (pg *Page) Has(name string) bool {
 	pg.check()
 	return pg.Registry.Has(name) || pg.Registry.HasList(name)
 }
@@ -125,23 +101,8 @@ func (pg *Page) notifyOnPage(name string, p *Page) {
 	}
 }
 
-func (pg *Page) ServeStatic(name string, handler Handler) {
-	name = cleanName(name)
-	if !pg.HasStatic(name) {
-		panic(fmt.Sprintf("static dom %q does not exists", name))
-	}
-
-	var targetRoute = handlePath(pg.Name, name)
-	var targetRouteWithWildcard = handlePath(pg.Name, name, "*path")
-
-	pg.notifyOnPage(targetRoute, pg)
-
-	pg.Router.Serve(targetRoute, handler)
-	pg.Router.Serve(targetRouteWithWildcard, handler)
-}
-
-func (pg *Page) ServeLive(route string, handler Handler) {
-	if !pg.HasLive(route) {
+func (pg *Page) ServeRoute(route string, handler Handler) {
+	if !pg.Has(route) {
 		panic(fmt.Sprintf("route %q does not exists for any registered dom", route))
 	}
 
@@ -154,65 +115,27 @@ func (pg *Page) ServeLive(route string, handler Handler) {
 	pg.Router.Serve(targetRouteWithWildcard, handler)
 }
 
-// GetRouting returns the route for giving routePath.
-func (pg *Page) GetRouting(name string) string {
-	pg.check()
-	return pg.LiveRouteMapping.Get(name)
-}
-
-// GetStatic returns the DOM for giving routePath, if not found, nil is returned.
-func (pg *Page) Static(name string) DOM {
-	pg.check()
-
-	if pg.Registry.HasList(name) {
-		return DOMSet(pg.Registry.GetList(name))
-	}
-	return pg.Registry.Get(name)
-}
-
 // GetLive returns the DOM for giving routePath, if not found, nil is returned.
 func (pg *Page) Live(route string) DOM {
 	pg.check()
 
-	if !pg.HasLive(route) {
+	if !pg.Has(route) {
 		return nil
 	}
 
-	if pg.LiveRegistry.Has(route) {
-		return DOMSet(pg.LiveRegistry.GetList(route))
+	if pg.Registry.Has(route) {
+		return DOMSet(pg.Registry.GetList(route))
 	}
-	return pg.LiveRegistry.Get(route)
+	return pg.Registry.Get(route)
 }
 
-// Retire retires the dom (live or static) associated with the routePath
-// and every route associated with it.
-func (pg *Page) Retire(name string) {
-	pg.check()
-
-	if !pg.HasStatic(name) {
-		return
-	}
-
-	pg.Registry.Delete(name)
-	pg.Registry.DeleteList(name)
-
-	if pg.LiveRouteMapping.Has(name) {
-		var mapping = pg.LiveRouteMapping.Get(name)
-		pg.LiveRegistry.Delete(mapping)
-		pg.LiveRegistry.DeleteList(mapping)
-		pg.LiveRouteMapping.SetMany(func(items map[string]string) {
-			delete(items, mapping)
-		})
-	}
-}
-
-// AddStatic adds a new routePath mapping for a provided list, ensuring these
+// AddLive adds a new routePath mapping for a provided list, ensuring these
 // are referenced with giving component, if there is more than 1 item then they
 // are treated as a whole and referenced by provided routePath.
 //
 // Note: It clears all live routes for this giving routePath, if we are replacing
 // an existing live key.
-func (pg *Page) AddStatic(name string, items ...DOM) {
+func (pg *Page) AddLive(route string, items ...DOM) {
 	pg.check()
 
 	var itemCount = len(items)
@@ -220,72 +143,26 @@ func (pg *Page) AddStatic(name string, items ...DOM) {
 		panic("DOM set must not be a count of zero")
 	}
 
-	if pg.HasStatic(name) {
-		panic("names must be unique across list and single component types")
+	if pg.Has(route) {
+		panic("route must be unique across list and single component types")
 	}
 
+	var set *LiveDOM
 	if itemCount == 1 {
-		pg.Registry.Add(items[0], name)
+		pg.Registry.Add(items[0], route)
+		set = LiveDOMFrom(items[0], route)
 	} else {
-		pg.Registry.AddList(items, name)
+		pg.Registry.AddList(items, route)
+		set = LiveFromDOMList(items, route)
 	}
 
-	var set = DOMSet(items)
-	pg.ServeStatic(name, HandlerFunc(func(data Data) *domu.Node {
-		return set.Render(data)
-	}))
-
-	if pg.LiveRouteMapping.Has(name) {
-		var mapping = pg.LiveRouteMapping.Get(name)
-		pg.LiveRegistry.Delete(mapping)
-		pg.LiveRegistry.DeleteList(mapping)
-		pg.LiveRouteMapping.SetMany(func(items map[string]string) {
-			delete(items, mapping)
+	pg.ServeRoute(route, HandlerFunc(func(data Data) *domu.Node {
+		var rendered = set.Render(data)
+		rendered.WalkTreeDeptFirst(func(child *domu.Node) {
+			handleThemeDirective(child, pg.Theme, rendered)
 		})
-	}
-}
-
-// AddLive returns a new live DOM by creating a route mapping between
-// a target component or list of components in the page to be serviceable
-// by the route ensuring it's always reconciled with it's last state.
-func (pg *Page) AddLive(route string, targetName string) DOM {
-	pg.check()
-
-	if strings.Trim(route, "/") == targetName {
-		panic("route can not be the same as targetName")
-	}
-
-	if pg.LiveRouteMapping.Has(targetName) {
-		panic(fmt.Sprintf("target %q already has a route %q", targetName, pg.LiveRouteMapping.Get(targetName)))
-	}
-
-	// if we do not have such a registry, then ignore
-	if !pg.HasStatic(targetName) {
-		panic(fmt.Sprintf("no component with target routePath %s", targetName))
-	}
-
-	if pg.Registry.Has(targetName) {
-		var target = pg.Registry.Get(targetName)
-		var liveTarget = LiveDOMFrom(target, route, targetName)
-		pg.LiveRouteMapping.Set(targetName, route)
-		pg.LiveRegistry.Add(liveTarget, route)
-
-		pg.ServeLive(route, HandlerFunc(func(data Data) *domu.Node {
-			return liveTarget.Render(data)
-		}))
-		return liveTarget
-	}
-
-	var instances = pg.Registry.GetList(targetName)
-	var liveInstance = LiveFromDOMList(instances, route, targetName)
-
-	pg.LiveRouteMapping.Set(targetName, route)
-	pg.LiveRegistry.Add(liveInstance, route)
-
-	pg.ServeLive(route, HandlerFunc(func(data Data) *domu.Node {
-		return liveInstance.Render(data)
+		return rendered
 	}))
-	return liveInstance
 }
 
 // Render renders new domu.Node from existing page which is reconciled
@@ -315,7 +192,22 @@ func (pg *Page) Render(d Data) *domu.Node {
 func (pg *Page) render(data Data) *domu.Node {
 	var doc = domu.HTMLDoc()
 	pg.Layout.Render(pg, data, doc)
+
+	doc.WalkTreeDeptFirst(func(child *domu.Node) {
+		handleThemeDirective(child, pg.Theme, doc)
+	})
+
 	return doc
+}
+
+func handleThemeDirective(child *domu.Node, theme *styled.Theme, root *domu.Node) {
+	// ignore nodes without theme directives.
+	if len(child.Themes) == 0 && child.Name() != groundLayerTagName {
+		return
+	}
+
+	// resolve themes for children into root.
+	theme.Resolve(child.Themes, root)
 }
 
 func handlePath(targetPath string, more ...string) string {

@@ -33,6 +33,7 @@ func CreatePages(
 		PagePrefix,
 		maxIdleness,
 		idleCheckDuration,
+		Theme,
 		station.Transport(),
 		not_found.NotFound,
 	)

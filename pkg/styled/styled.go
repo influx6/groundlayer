@@ -1,10 +1,32 @@
 package styled
 
+import (
+	"github.com/influx6/groundlayer/pkg/domu"
+)
+
 // Color represents a color type for a css style value.
 type Color Palette
 
 // URL represent a style url, image unit type in css (used by background-image, etc).
 type URL string
+
+// ThemeResolver will resolve the giving theme directives as <style> nodes using node's special 'tid' or `id`
+// to apply direct changes.
+type ThemeResolver interface {
+	Resolve(theme *Theme, directive domu.ThemeDirective, root *domu.Node)
+}
+
+type ThemeResolvers []ThemeResolver
+
+func (t *ThemeResolvers) Add(r ThemeResolver) {
+	*t = append(*t, r)
+}
+
+func (t ThemeResolvers) Resolve(theme *Theme, directive domu.ThemeDirective, root *domu.Node) {
+	for _, resolver := range t {
+		resolver.Resolve(theme, directive, root)
+	}
+}
 
 /**
 Theme provides a clear description of a predefined styling which will
@@ -78,6 +100,11 @@ fields to cover the following styling.
 		ringWidth: ThemeSection
 */
 type Theme struct {
-	Screens *ScreenDirective
-	Colors  *ColorDirective
+	Screens   *ScreenDirective
+	Colors    *ColorDirective
+	Resolvers ThemeResolvers
+}
+
+func (t *Theme) Resolve(directive domu.ThemeDirective, root *domu.Node) {
+	t.Resolvers.Resolve(t, directive, root)
 }

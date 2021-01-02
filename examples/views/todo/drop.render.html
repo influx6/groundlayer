@@ -1,9 +1,0 @@
-{{/* Component file should contain only template code related to the component */}}
-
-{{/* rootType defines the type of data the function for this block gets */}}
-{{ rootType peji.Data }}
-
-{{ modelType ItemList | List(string) }}
-{{ model Product | Items: ItemList }}
-
-<h2>{{ . }}</h2>

@@ -270,13 +270,17 @@ var componentContent = `{{/* Component file should contain only template code re
 var indexContent = bytes.NewBufferString(`
 {{/* you can reference a specific 'define' block from an external block file using the # prefix*/}}
 {{ template "header.html" .Path }}
+
+<body>
+	Welcome
+</body>
 `)
 
 var headerContent = bytes.NewBufferString(`{{/* header: This file contains what will be a generated function and must define it's own root type */}}
-{{ rootType string }}
+{{ rootType peji.Data }}
 
 <head>
-	<title>{{.}}</title>
+	<title>{{.Path}}</title>
 <head>
 `)
 

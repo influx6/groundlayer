@@ -13,8 +13,6 @@ import (
 	"github.com/influx6/npkg/nerror"
 	"github.com/influx6/npkg/nunsafe"
 	"github.com/influx6/npkg/nxid"
-
-	"github.com/influx6/groundlayer/pkg/styled"
 )
 
 const (
@@ -82,6 +80,8 @@ func (n NodeType) String() string {
 
 // NodeFn defines a type which applies an operation to a node.
 type NodeFn func(*Node) *Node
+
+type NodeHandler func(*Node)
 
 // Nodes defines an interface which expose a method for encoding
 // a giving implementer sing provider NodeEncoder.
@@ -234,11 +234,25 @@ func (n NodeList) Mount(parent *Node) error {
 	return nil
 }
 
+type ThemeDirective []string
+
+func Themes(t ...string) ThemeDirective {
+	return ThemeDirective(t)
+}
+
+func (td *ThemeDirective) Add(t string) {
+	*td = append(*td, t)
+}
+
+func (td *ThemeDirective) Mount(p *Node) {
+	p.Themes = *td
+}
+
 // Node defines a concrete type implementing a combined linked-list with
 // root, next and previous siblings using a underline growing array as
 // the basis.
 type Node struct {
-	Themes      styled.ThemeDirective
+	Themes      ThemeDirective
 	Attrs       AttrList
 	Events      *EventHashList
 	parent      *Node
@@ -909,6 +923,28 @@ func (n *Node) SetAtid(id string) {
 // SetRoutePart sets the routePrefix portion of this node.
 func (n *Node) SetPrefix(route string) {
 	n.routePrefix = strings.TrimSpace(route)
+}
+
+func (n *Node) WalkTreeBreathFirst(handler NodeHandler) {
+	// walk current level of nodes
+	n.EachChild(func(node *Node, i int) bool {
+		handler(node)
+		return true
+	})
+
+	// walk next level of nodes.
+	n.EachChild(func(node *Node, i int) bool {
+		node.WalkTreeBreathFirst(handler)
+		return true
+	})
+}
+
+func (n *Node) WalkTreeDeptFirst(handler NodeHandler) {
+	n.EachChild(func(node *Node, i int) bool {
+		node.WalkTreeDeptFirst(handler)
+		handler(node)
+		return true
+	})
 }
 
 // RefTree returns the tree path for giving node by collecting

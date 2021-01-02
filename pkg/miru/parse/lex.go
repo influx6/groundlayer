@@ -547,74 +547,6 @@ doLoop:
 	}
 }
 
-func lexMountLive(l *lexer) stateFn {
-	return lexMountLiveBase(l, false)
-}
-
-func lexMountLiveList(l *lexer) stateFn {
-	return lexMountLiveBase(l, true)
-}
-
-func lexMountLiveBase(l *lexer, isList bool) stateFn {
-	// Collect away possible space
-	if lexSpaceUntil(l) {
-		l.emit(itemSpace)
-	}
-
-	// scan the route for this live template
-	// CollectName for import alias
-	if count := lexAllUntil(l, func(r rune) bool {
-		return r == '/' || r == '_' || r == '-' || isAlphaNumeric(r)
-	}); count == 0 {
-		return l.errorf("mountLive path is required for this ")
-	}
-
-	if isList {
-		l.emit(itemMountLiveList)
-	} else {
-		l.emit(itemMountLive)
-	}
-
-	// Collect away possible space
-	if lexSpaceUntil(l) {
-		l.emit(itemSpace)
-	}
-
-	if l.next() != '|' {
-		return l.errorf("mountLive must be separated by a vertical bar")
-	}
-
-	// ignore vertical bar separator
-	l.ignore()
-
-	// Collect away possible space
-	if lexSpaceUntil(l) {
-		l.ignore()
-	}
-
-	// collect name for komponent registered to the page.
-	if lexTextUntil(l) {
-		l.emit(itemKomponentName)
-	}
-
-	// Collect away possible space
-	if lexSpaceUntil(l) {
-		l.ignore()
-	}
-
-	var foundDelim, _ = lexIfDelimiter(l, l.rightDelim)
-	if foundDelim {
-		l.emit(itemRightDelim)
-		return lexText
-	}
-
-	if lexSpaceUntil(l) {
-		l.ignore()
-	}
-
-	return lexInsideAction
-}
-
 func lexMount(l *lexer) stateFn {
 	return lexMountBase(l, false)
 }
@@ -629,8 +561,12 @@ func lexMountBase(l *lexer, isList bool) stateFn {
 		l.emit(itemSpace)
 	}
 
-	// CollectName for komponent
-	lexTextUntil(l)
+	// collect route for mount
+	if count := lexAllUntil(l, func(r rune) bool {
+		return r == '/' || r == '_' || r == '-' || isAlphaNumeric(r)
+	}); count == 0 {
+		return l.errorf("mount path is required for this ")
+	}
 
 	if isList {
 		l.emit(itemMountList)
@@ -1577,12 +1513,6 @@ Loop:
 				case "mountList":
 					l.ignore()
 					return lexMountList(l)
-				case "mountLiveList":
-					l.ignore()
-					return lexMountLiveList(l)
-				case "mountLive":
-					l.ignore()
-					return lexMountLive(l)
 				case "mount":
 					l.ignore()
 					return lexMount(l)

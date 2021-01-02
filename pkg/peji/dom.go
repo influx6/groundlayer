@@ -42,21 +42,22 @@ func (pf DOMFunc) Render(ctx Data) *domu.Node {
 	return pf(ctx)
 }
 
-func Portal(route string, name string, renders ...domu.Mounter) *domu.Node {
-	var elem = domu.Element("portal", renders...)
+const groundLayerTagName = "groundlayer-frame"
+
+func GroundLayerFrame(route string, renders ...domu.Mounter) *domu.Node {
+	var elem = domu.Element(groundLayerTagName, renders...)
 	domu.NewStringAttr("route", route).Mount(elem)
-	domu.NewStringAttr("name", name).Mount(elem)
 	return elem
 }
 
 // LiveDOMFrom returns a DOM wrapped to return Nodes reconciled with their previous render.
-func LiveDOMFrom(dom DOM, route string, name string) *LiveDOM {
-	return &LiveDOM{dom: dom, route: route, name: name}
+func LiveDOMFrom(dom DOM, route string) *LiveDOM {
+	return &LiveDOM{dom: dom, route: route}
 }
 
 // LiveFromDOMList returns a DOM wrapped to return Nodes reconciled with their previous render.
-func LiveFromDOMList(dom []DOM, route string, name string) *LiveDOM {
-	return &LiveDOM{dom: DOMSet(dom), route: route, name: name}
+func LiveFromDOMList(dom []DOM, route string) *LiveDOM {
+	return &LiveDOM{dom: DOMSet(dom), route: route}
 }
 
 type LiveDOMList []LiveDOM
@@ -64,7 +65,6 @@ type LiveDOMList []LiveDOM
 // LiveDOM wraps a dom which keeps track of Last render and reconciling new renderings with the old.
 type LiveDOM struct {
 	dom   DOM
-	name  string
 	route string
 }
 
@@ -72,7 +72,10 @@ type LiveDOM struct {
 // a new instance of the DOM's rendered reconciled with
 // the Last.
 func (c *LiveDOM) Render(ctx Data) *domu.Node {
-	return Portal(c.route, c.name, c.dom.Render(ctx))
+	var parent = GroundLayerFrame(c.route)
+	var rendered = c.dom.Render(ctx)
+	rendered.Mount(parent)
+	return parent
 }
 
 // DOMSet defines a list of DOM items.
