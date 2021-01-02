@@ -64,21 +64,6 @@ Above is a package directive with declared alias `plackers` pointed at package p
 Miru adds the ability to define structs and types within the templates itself to allow a form of typesafety in the final generated code. This becomes important due to the naturally need to define
 template entry expectations.
 
-There are 3 types of type directives:
-
-#### RootType Directive
-RootType directives can only appear once and should only occur in the root template, the template which will be transformed into the go file, else panics will occur. 
-
-They exists to define to the template what the entry type it will receive should be, hence providing type safety and definition in generated code.
-
-```go
-{{ rootType string }}
-```
-
-Tells that we expect a string as the value to the whole template.
-
-This generally should be put at the start of your root template, but this is a suggestion and not a rule.
-
 #### Model Directive
 Model directives is used to define a struct type within the templates and there can be many defined across files and in templates with the only constraint is to have unique names. 
 

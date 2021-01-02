@@ -266,12 +266,11 @@ var componentContent = `<!-- component: %s -->
 `
 
 var indexContent = bytes.NewBufferString(`
-
-{{/* you can reference a specific 'define' block from an external file using the # prefix*/}}
+{{/* you can reference a specific 'define' block from an external block file using the # prefix*/}}
 {{ template "blocks.html#header" .Path }}
 `)
 
-var blockContent = bytes.NewBufferString(`{{/* blocks: This file can only contain define blocks */}}
+var blockContent = bytes.NewBufferString(`{{/* blocks: This file can only contain 'define' blocks, anything else will fail */}}
 
 {{ define "header" string }}
 	<h1>{{ . }}</h1>
