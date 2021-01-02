@@ -2864,6 +2864,23 @@
     "status": "obsolete",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/row-gap"
   },
+  "grid-rows": {
+    "type": "string",
+    "syntax": "none",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpcDifferenceLpc",
+    "percentages": "referToDimensionOfContentArea",
+    "groups": [
+      "CSS Grid Layout"
+    ],
+    "initial": "none",
+    "appliesTo": "gridContainers",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
+    "order": "uniqueOrder",
+    "status": "nonstandard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/-ms-grid-rows"
+  },
   "grid-row-start": {
     "type": "string",
     "media": "visual",
@@ -2946,6 +2963,7 @@
   },
   "height": {
     "type": "string",
+    "syntax": "auto |  min-content | max-content",
     "media": "visual",
     "inherited": false,
     "animationType": "lpc",
@@ -3416,7 +3434,8 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/list-style-position"
   },
   "list-style-type": {
-    "type": "URL",
+    "syntax": "disc | circle | square | decimal | georgian | trad-chinese-informal | kannada",
+    "type": "string",
     "media": "visual",
     "inherited": true,
     "animationType": "discrete",
@@ -3706,6 +3725,22 @@
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-border-source"
+  },
+  "border-width": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "discrete",
+    "percentages": "relativeToMaskBorderImageArea",
+    "groups": [
+      "CSS Border"
+    ],
+    "initial": "auto",
+    "appliesTo": "allElementsSVGContainerElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
+    "order": "perGrammar",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/border-width"
   },
   "mask-border-width": {
     "type": "string",
@@ -5511,7 +5546,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/scroll-snap-stop"
   },
   "scroll-snap-type": {
-    "syntax": "none |  x | y | block | inline | both | mandatory | proximity",
+    "syntax": "none | block | inline | both | mandatory | proximity",
     "media": "interactive",
     "inherited": false,
     "animationType": "discrete",
@@ -6111,6 +6146,294 @@
     "order": "perGrammar",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-box"
+  },
+  "transform-skew-y": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "skewY(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-skew-x": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "skewX(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-skew": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "skew(0,0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-scale-z": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "scaleZ(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-scale-y": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "scaleY(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-scale-x": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "scaleX(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-scale": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "scale(1,1)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-scale-3d": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "scale3d(1, 1, 1)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-translate-3d": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "translate3d(0, 0, 0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-translate-z": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "translateZ(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-translate-y": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "translateY(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-translate-x": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "translate(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-translate": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "translate(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-rotate-3d": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "rotate3d(0, 0, 0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-rotate-z": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "rotateZ(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-rotate-y": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "rotateY(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-rotate-x": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "rotateX(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
+  },
+  "transform-rotate": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "simpleListOfLpc",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "initial": "rotate(0)",
+    "appliesTo": "transformableElements",
+    "computed_for": "forLengthAbsoluteValueOtherwisePercentage",
+    "order": "oneOrTwoValuesLengthAbsoluteKeywordsPercentages",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform-origin"
   },
   "transform-origin": {
     "type": "string",

@@ -149,6 +149,42 @@
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/place-self"
   },
+  "transform": {
+    "type": "string",
+    "media": "visual",
+    "inherited": false,
+    "animationType": "transform",
+    "percentages": "referToSizeOfBoundingBox",
+    "groups": [
+      "CSS Transforms"
+    ],
+    "compose": [
+      "transform-translate-x",
+      "transform-translate-y",
+      "transform-scale",
+      "transform-scale-x",
+      "transform-scale-y",
+      "transform-rotate",
+      "transform-skew",
+      "transform-skew-x",
+      "transform-skew-y",
+      "transform-matrix3d",
+      "transform-translate-z",
+      "transform-scale3d",
+      "transform-scale-z",
+      "transform-rotate-x",
+      "transform-rotate-y",
+      "transform-rotate-z",
+      "transform-perspective"
+    ],
+    "initial": "none",
+    "appliesTo": "transformableElements",
+    "computed_for": "asSpecifiedRelativeToAbsoluteLengths",
+    "order": "uniqueOrder",
+    "stacking": true,
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/transform"
+  },
   "place-items": {
     "syntax": "<'align-items'> <'justify-items'>?",
     "media": "visual",
