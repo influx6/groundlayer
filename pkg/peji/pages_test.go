@@ -52,13 +52,13 @@ func TestPages(t *testing.T) {
 
 	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		sales.AddStatic("users", &UserComponent{})
+		sales.AddLive("users", &UserComponent{})
 		return sales
 	}))
 
 	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		about.AddStatic("users", &UserComponent{})
+		about.AddLive("users", &UserComponent{})
 		return about
 	}))
 
@@ -116,13 +116,13 @@ func TestPagesWithNotification(t *testing.T) {
 
 	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		sales.AddStatic("users", &UserComponent{})
+		sales.AddLive("users", &UserComponent{})
 		return sales
 	}))
 
 	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		about.AddStatic("users", &UserComponent{})
+		about.AddLive("users", &UserComponent{})
 		return about
 	}))
 
@@ -189,13 +189,13 @@ func TestPagesRouter(t *testing.T) {
 
 	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		sales.AddStatic("users", &UserComponent{})
+		sales.AddLive("users", &UserComponent{})
 		return sales
 	}))
 
 	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		about.AddStatic("users", &UserComponent{})
+		about.AddLive("users", &UserComponent{})
 		return about
 	}))
 
@@ -264,13 +264,13 @@ func TestPagesRouter_WithExistingSession_WithQuery(t *testing.T) {
 
 	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		sales.AddStatic("users", &UserComponent{})
+		sales.AddLive("users", &UserComponent{})
 		return sales
 	}))
 
 	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		about.AddStatic("users", &UserComponent{})
+		about.AddLive("users", &UserComponent{})
 		return about
 	}))
 
@@ -362,13 +362,13 @@ func TestPagesRouter_WithExistingSession_WithHeader(t *testing.T) {
 
 	require.NoError(t, pages.Add("sales", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var sales = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		sales.AddStatic("users", &UserComponent{})
+		sales.AddLive("users", &UserComponent{})
 		return sales
 	}))
 
 	require.NoError(t, pages.Add("about", func(name string, theme *styled.Theme, pubsub sabuhp.Transport) *peji.Page {
 		var about = peji.WithPage(name, theme, sampleLayout, peji.DefaultNotFound{})
-		about.AddStatic("users", &UserComponent{})
+		about.AddLive("users", &UserComponent{})
 		return about
 	}))
 

@@ -1,5 +1,3 @@
-// +build ignore
-
 // The generation of this package was inspired by Neelance work on DOM (https://github.com/neelance/dom)
 
 package main
@@ -124,7 +122,7 @@ const fileHeader = `// Code auto-generated to provide HTML and SVG DOM Nodes.
 // Documentation source:  "Event reference" by Mozilla Contributors.
 // https://developer.mozilla.org/en-US/docs/Web/Events., licensed under CC-BY-SA 2.5.
 
-package markup
+package domu
 
 import (
 	"github.com/iancoleman/strcase"
@@ -136,7 +134,7 @@ const nodeFormat = `
 // %s
 // https://developer.mozilla.org%s
 func %sEvent(mods ...string) JSONEvent {
-	return JSONEvent{ PageName: strcase.ToKebab(%q), Targets: mods }
+	return JSONEvent{ Name: strcase.ToKebab(%q), Targets: mods }
 }
 
 `

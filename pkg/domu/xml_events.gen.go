@@ -107,7 +107,7 @@ func AudioEndEvent(mods ...string) JSONEvent {
 
 // AudioProcessEvent provides DOM Event representation for the Event "AudioProcess".
 //
-// (no documentation)
+// The input buffer of a ScriptProcessorNode is ready to be processed.
 // https://developer.mozilla.org/docs/Web/Events/audioprocess
 func AudioProcessEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("audioprocess"), Targets: mods}
@@ -346,8 +346,8 @@ func CommandupdateEvent(mods ...string) JSONEvent {
 
 // CompleteEvent provides DOM Event representation for the Event "complete".
 //
-// A transaction successfully completed.
-// https://developer.mozilla.org/docs/Web/Reference/Events/complete_indexedDB
+// The rendering of an OfflineAudioContext is terminated.
+// https://developer.mozilla.org/docs/Web/Events/complete
 func CompleteEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("complete"), Targets: mods}
 }
@@ -420,6 +420,23 @@ func CutEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("cut"), Targets: mods}
 }
 
+// DOMAttrModifiedEvent provides DOM Event representation for the Event "DOMAttrModified".
+//
+// The value of an attribute has been modified (use mutation observers
+// instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMAttrModifiedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMAttrModified"), Targets: mods}
+}
+
+// DOMAttributeNameChangedEvent provides DOM Event representation for the Event "DOMAttributeNameChanged".
+//
+// The name of an attribute changed (use mutation observers instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMAttributeNameChangedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMAttributeNameChanged"), Targets: mods}
+}
+
 // DOMAutoCompleteEvent provides DOM Event representation for the Event "DOMAutoComplete".
 //
 // The content of an element has been auto-completed.
@@ -428,12 +445,29 @@ func DOMAutoCompleteEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("DOMAutoComplete"), Targets: mods}
 }
 
+// DOMCharacterDataModifiedEvent provides DOM Event representation for the Event "DOMCharacterDataModified".
+//
+// A text or another CharacterData has changed (use mutation observers
+// instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMCharacterDataModifiedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMCharacterDataModified"), Targets: mods}
+}
+
 // DOMContentLoadedEvent provides DOM Event representation for the Event "DOMContentLoaded".
 //
 // The document has finished loading (but not its dependent resources).
 // https://developer.mozilla.org/docs/Web/Events/DOMContentLoaded
 func DOMContentLoadedEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("DOMContentLoaded"), Targets: mods}
+}
+
+// DOMElementNameChangedEvent provides DOM Event representation for the Event "DOMElementNameChanged".
+//
+// The name of an element changed (use mutation observers instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMElementNameChangedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMElementNameChanged"), Targets: mods}
 }
 
 // DOMFrameContentLoadedEvent provides DOM Event representation for the Event "DOMFrameContentLoaded".
@@ -500,12 +534,63 @@ func DOMModalDialogClosedEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("DOMModalDialogClosed"), Targets: mods}
 }
 
+// DOMMouseScrollEvent provides DOM Event representation for the Event "DOMMouseScroll".
+//
+// The wheel button of a pointing device is rotated (detail attribute is a
+// number of lines). (use wheel instead)
+// https://developer.mozilla.org/docs/Web/Events/DOMMouseScroll
+func DOMMouseScrollEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMMouseScroll"), Targets: mods}
+}
+
+// DOMNodeInsertedEvent provides DOM Event representation for the Event "DOMNodeInserted".
+//
+// A node has been added as a child of another node (use mutation observers
+// instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMNodeInsertedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMNodeInserted"), Targets: mods}
+}
+
+// DOMNodeInsertedIntoDocumentEvent provides DOM Event representation for the Event "DOMNodeInsertedIntoDocument".
+//
+// A node has been inserted into the document (use mutation observers instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMNodeInsertedIntoDocumentEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMNodeInsertedIntoDocument"), Targets: mods}
+}
+
+// DOMNodeRemovedEvent provides DOM Event representation for the Event "DOMNodeRemoved".
+//
+// A node has been removed from its parent node (use mutation observers
+// instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMNodeRemovedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMNodeRemoved"), Targets: mods}
+}
+
+// DOMNodeRemovedFromDocumentEvent provides DOM Event representation for the Event "DOMNodeRemovedFromDocument".
+//
+// A node has been removed from the document (use mutation observers instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMNodeRemovedFromDocumentEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMNodeRemovedFromDocument"), Targets: mods}
+}
+
 // DOMPopupBlockedEvent provides DOM Event representation for the Event "DOMPopupBlocked".
 //
 // A popup has been blocked.
 // https://developer.mozilla.org/docs/Web/Reference/Events/DOMPopupBlocked
 func DOMPopupBlockedEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("DOMPopupBlocked"), Targets: mods}
+}
+
+// DOMSubtreeModifiedEvent provides DOM Event representation for the Event "DOMSubtreeModified".
+//
+// A change happened in the document (use mutation observers instead).
+// https://developer.mozilla.org/docs/DOM/Mutation_events
+func DOMSubtreeModifiedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("DOMSubtreeModified"), Targets: mods}
 }
 
 // DOMTitleChangedEvent provides DOM Event representation for the Event "DOMTitleChanged".
@@ -895,7 +980,8 @@ func KeyDownEvent(mods ...string) JSONEvent {
 
 // KeyPressEvent provides DOM Event representation for the Event "KeyPress".
 //
-// (no documentation)
+// A key is pressed down, and that key normally produces a character value (use
+// input event instead).
 // https://developer.mozilla.org/docs/Web/Events/keypress
 func KeyPressEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("keypress"), Targets: mods}
@@ -990,6 +1076,14 @@ func MSManipulationStateChangedEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("MSManipulationStateChanged"), Targets: mods}
 }
 
+// MSPointerHoverEvent provides DOM Event representation for the Event "MSPointerHover".
+//
+// (no documentation)
+// https://developer.mozilla.org/docs/Web/Events/MSPointerHover
+func MSPointerHoverEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MSPointerHover"), Targets: mods}
+}
+
 // MarkEvent provides DOM Event representation for the Event "mark".
 //
 // The spoken utterance reaches a named SSML "mark" tag.
@@ -1071,6 +1165,14 @@ func MouseOverEvent(mods ...string) JSONEvent {
 // https://developer.mozilla.org/docs/Web/Events/mouseup
 func MouseUpEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("mouseup"), Targets: mods}
+}
+
+// MousewheelEvent provides DOM Event representation for the Event "mousewheel".
+//
+// The wheel button of a pointing device is rotated.
+// https://developer.mozilla.org/docs/Web/Events/mousewheel
+func MousewheelEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("mousewheel"), Targets: mods}
 }
 
 // MozAfterPaintEvent provides DOM Event representation for the Event "MozAfterPaint".
@@ -1155,6 +1257,23 @@ func MozMagnifyGestureUpdateEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("MozMagnifyGestureUpdate"), Targets: mods}
 }
 
+// MozMousePixelScrollEvent provides DOM Event representation for the Event "MozMousePixelScroll".
+//
+// The wheel button of a pointing device is rotated (detail attribute is a
+// number of pixels). (use wheel instead)
+// https://developer.mozilla.org/docs/Web/Events/MozMousePixelScroll
+func MozMousePixelScrollEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MozMousePixelScroll"), Targets: mods}
+}
+
+// MozOrientationEvent provides DOM Event representation for the Event "MozOrientation".
+//
+// Fresh data is available from an orientation sensor (see deviceorientation).
+// https://developer.mozilla.org/docs/Web/Events/MozOrientation
+func MozOrientationEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MozOrientation"), Targets: mods}
+}
+
 // MozPressTapGestureEvent provides DOM Event representation for the Event "MozPressTapGesture".
 //
 // A "press-tap" gesture happened on the touch surface (first finger down,
@@ -1211,6 +1330,30 @@ func MozSwipeGestureEvent(mods ...string) JSONEvent {
 // https://developer.mozilla.org/docs/Web/Reference/Events/MozTapGesture
 func MozTapGestureEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("MozTapGesture"), Targets: mods}
+}
+
+// MozTouchDownEvent provides DOM Event representation for the Event "MozTouchDown".
+//
+// A touch point is placed on the touch surface (use touchstart instead).
+// https://developer.mozilla.org/DOM/Touch_events_(Mozilla_experimental)
+func MozTouchDownEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MozTouchDown"), Targets: mods}
+}
+
+// MozTouchMoveEvent provides DOM Event representation for the Event "MozTouchMove".
+//
+// A touch point is moved along the touch surface (use touchmove instead).
+// https://developer.mozilla.org/DOM/Touch_events_(Mozilla_experimental)
+func MozTouchMoveEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MozTouchMove"), Targets: mods}
+}
+
+// MozTouchUpEvent provides DOM Event representation for the Event "MozTouchUp".
+//
+// A touch point is removed from the touch surface (use touchend instead).
+// https://developer.mozilla.org/DOM/Touch_events_(Mozilla_experimental)
+func MozTouchUpEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("MozTouchUp"), Targets: mods}
 }
 
 // MozbrowseractivitydoneEvent provides DOM Event representation for the Event "mozbrowseractivitydone".
@@ -1412,6 +1555,16 @@ func MozbrowserscrollviewchangeEvent(mods ...string) JSONEvent {
 // https://developer.mozilla.org/docs/Web/Events/mozbrowsersecuritychange
 func MozbrowsersecuritychangeEvent(mods ...string) JSONEvent {
 	return JSONEvent{Name: strcase.ToKebab("mozbrowsersecuritychange"), Targets: mods}
+}
+
+// MozbrowserselectionstatechangedEvent provides DOM Event representation for the Event "mozbrowserselectionstatechanged".
+//
+// Sent when the text selected inside the browser <iframe> content changes.
+// Note that this is deprecated, and newer implementations use
+// mozbrowsercaretstatechanged instead.
+// https://developer.mozilla.org/docs/Web/Events/mozbrowserselectionstatechanged
+func MozbrowserselectionstatechangedEvent(mods ...string) JSONEvent {
+	return JSONEvent{Name: strcase.ToKebab("mozbrowserselectionstatechanged"), Targets: mods}
 }
 
 // MozbrowsershowmodalpromptEvent provides DOM Event representation for the Event "mozbrowsershowmodalprompt".

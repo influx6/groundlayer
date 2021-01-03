@@ -81,6 +81,8 @@ func (n NodeType) String() string {
 // NodeFn defines a type which applies an operation to a node.
 type NodeFn func(*Node) *Node
 
+type NodeCheck func(*Node) bool
+
 type NodeHandler func(*Node)
 
 // Nodes defines an interface which expose a method for encoding
@@ -150,7 +152,7 @@ func HTMLDoc(renders ...Mounter) *Node {
 // and should be the start position of a set nodes which will be
 // applied to the parent to be mounted to.
 func Replicate(renders ...Mounter) *Node {
-	doc := NewNode(ReplicateNode, "doc")
+	doc := NewNode(ReplicateNode, "replicator")
 	for _, mounter := range renders {
 		mounter.Mount(doc)
 		if err := doc.Err(); err != nil {
@@ -164,7 +166,7 @@ func Replicate(renders ...Mounter) *Node {
 // and should be the start position of a set nodes which will be
 // applied to the parent to be mounted to.
 func Carrier(renders ...Mounter) *Node {
-	doc := NewNode(CarrierNode, "doc")
+	doc := NewNode(CarrierNode, "carrier")
 	for _, mounter := range renders {
 		mounter.Mount(doc)
 		if err := doc.Err(); err != nil {
@@ -925,24 +927,11 @@ func (n *Node) SetPrefix(route string) {
 	n.routePrefix = strings.TrimSpace(route)
 }
 
-func (n *Node) WalkTreeBreathFirst(handler NodeHandler) {
-	// walk current level of nodes
+func (n *Node) WalkTreeDeptFirst(handler NodeCheck) {
 	n.EachChild(func(node *Node, i int) bool {
-		handler(node)
-		return true
-	})
-
-	// walk next level of nodes.
-	n.EachChild(func(node *Node, i int) bool {
-		node.WalkTreeBreathFirst(handler)
-		return true
-	})
-}
-
-func (n *Node) WalkTreeDeptFirst(handler NodeHandler) {
-	n.EachChild(func(node *Node, i int) bool {
-		node.WalkTreeDeptFirst(handler)
-		handler(node)
+		if handler(node) {
+			node.WalkTreeDeptFirst(handler)
+		}
 		return true
 	})
 }
@@ -950,12 +939,8 @@ func (n *Node) WalkTreeDeptFirst(handler NodeHandler) {
 // RefTree returns the tree path for giving node by collecting
 // the parents ID till this node.
 func (n *Node) RefTree() string {
-	var content = stringPool.Get().(*strings.Builder)
-	defer stringPool.Put(content)
-	content.Reset()
-
-	// write out tree ref from root or ancestor parent.
-	n.writeRefTree(content)
+	var content strings.Builder
+	n.writeRefTree(&content)
 	return content.String()
 }
 
@@ -969,8 +954,10 @@ func (n *Node) writeRefTree(b *strings.Builder) {
 		b.Write(nunsafe.String2Bytes(forwardSlash))
 		b.Write(nunsafe.String2Bytes(n.routePrefix))
 	}
-	b.Write(nunsafe.String2Bytes(forwardSlash))
-	b.Write(nunsafe.String2Bytes(n.idAttr))
+	if len(n.idAttr) > 0 {
+		b.Write(nunsafe.String2Bytes(forwardSlash))
+		b.Write(nunsafe.String2Bytes(n.idAttr))
+	}
 }
 
 // FindRefNode walks through provided ref node paths till the last node

@@ -1,4 +1,3 @@
-// +build ignore
 // Credit to Richard Musiol (https://github.com/neelance/dom)
 // His code was crafted to fit my use
 
@@ -68,6 +67,7 @@ var elemNameMap = map[string]string{
 	"i":                "Italic",
 	"iframe":           "InlineFrame",
 	"img":              "Image",
+	"image":            "Image",
 	"ins":              "InsertedText",
 	"kbd":              "KeyboardInput",
 	"keygen":           "KeyGen",
@@ -107,7 +107,7 @@ var elemNameMap = map[string]string{
 	"wbr":              "WordBreakOpportunity",
 }
 
-//list of self closing tags
+// list of self closing tags
 var autoclosers = map[string]bool{
 	"use":     true,
 	"area":    true,
@@ -179,35 +179,39 @@ func main() {
 func buildHTML(w io.Writer, errs chan error) {
 	defer workers.Done()
 
-	doneHtml := make(map[string]bool)
+	var count int
+	var doneHtml = map[string]bool{}
 	if err := pullDoc("https://developer.mozilla.org/en-US/docs/Web/HTML/Element", func(doc *goquery.Document) {
-		doc.Find(".quick-links a").Each(func(i int, s *goquery.Selection) {
+		doc.Find("main#content table.standard-table tr td a").Each(func(i int, s *goquery.Selection) {
 			link, _ := s.Attr("href")
 			if !strings.HasPrefix(link, "/en-US/docs/Web/HTML/Element/") {
 				return
 			}
 
-			if s.Parent().Find(".icon-trash, .icon-thumbs-down-alt, .icon-warning-sign").Length() > 0 {
+			var parent = s.Parent()
+			if parent.Find(".icon-trash, .icon-thumbs-down-alt, .icon-warning-sign").Length() > 0 {
 				return
 			}
 
-			desc, _ := s.Attr("title")
+			var desc, _ = s.Attr("title")
 			text := s.Text()
 
-			if text == "Heading elements" || text == "<h1>–<h6>" {
-				// fmt.Printf("Write with %q\n", text)
-				writeElem(w, "h1", desc, link, "Html", "HTML", "XHTML/HTML")
-				writeElem(w, "h2", desc, link, "Html", "HTML", "XHTML/HTML")
-				writeElem(w, "h3", desc, link, "Html", "HTML", "XHTML/HTML")
-				writeElem(w, "h4", desc, link, "Html", "HTML", "XHTML/HTML")
-				writeElem(w, "h5", desc, link, "Html", "HTML", "XHTML/HTML")
-				writeElem(w, "h6", desc, link, "Html", "HTML", "XHTML/HTML")
-				return
+			var name = text
+			if strings.Contains(text, "<") && strings.Contains(text, ">") {
+				name = text[1 : len(text)-1]
 			}
 
-			name := text[1 : len(text)-1]
+			var funName = name
+			if bName, ok := elemNameMap[strings.ToLower(name)]; ok {
+				funName = bName
+			}
 
-			if name == "html" || name == "head" || name == "body" || unwanted.MatchString(name) {
+			funName = restruct(funName)
+
+			fmt.Printf("%d. Writing method %q > %q\n", count, name, funName)
+			count++
+
+			if unwanted.MatchString(name) {
 				return
 			}
 
@@ -215,8 +219,14 @@ func buildHTML(w io.Writer, errs chan error) {
 				return
 			}
 
-			writeElem(w, name, desc, link, "Html", "HTML", "XHTML/HTML")
+			if doneHtml[funName] {
+				return
+			}
+
 			doneHtml[name] = true
+			doneHtml[funName] = true
+
+			writeElem(w, name, funName, desc, link, "Html", "HTML", "XHTML/HTML")
 		})
 	}); err != nil {
 		errs <- err
@@ -244,19 +254,20 @@ func buildSVG(w io.Writer, errs chan error) {
 			text := code.ReplaceAllString(s.Text(), "")
 
 			name := text[1 : len(text)-1]
+			var funName = name
+			if bName, ok := elemNameMap[strings.ToLower(name)]; ok {
+				funName = bName
+			}
 
-			// for key, item := range elemNameMap {
-			// 	if strings.HasPrefix(name, key) || strings.HasSuffix(name, key) {
-			// 		name = strings.Replace(name, key, item, 1)
-			// 	}
-			// }
+			funName = restruct(funName)
 
-			if doneSvg[name] || unwanted.MatchString(name) {
+			if doneSvg[name] || doneSvg[funName] || unwanted.MatchString(name) {
 				return
 			}
 
-			writeElem(w, name, desc, link, "Svg", "SVG", "XML/SVG")
+			writeElem(w, name, funName, desc, link, "Svg", "SVG", "XML/SVG")
 			doneSvg[name] = true
+			doneSvg[funName] = true
 		})
 	}); err != nil {
 		errs <- err
@@ -265,14 +276,7 @@ func buildSVG(w io.Writer, errs chan error) {
 
 var badSymbs = regexp.MustCompile("-(.+)")
 
-func writeElem(w io.Writer, name, desc, link string, exception string, prefix string, ty string) {
-	var funName = name
-	if bName, ok := elemNameMap[strings.ToLower(name)]; ok {
-		funName = bName
-	}
-
-	funName = restruct(funName)
-
+func writeElem(w io.Writer, name, funName, desc, link string, exception string, prefix string, ty string) {
 	for badSymbs.MatchString(funName) {
 		if simbs := badSymbs.FindStringSubmatch(funName); len(simbs) > 0 {
 			item := capitalize(simbs[1])

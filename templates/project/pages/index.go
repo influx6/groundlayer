@@ -39,9 +39,7 @@ func CreatePages(
 	)
 
 	var router = station.Router()
-	pages.AddOnPageRoute(func(route string, _ *peji.Pages) {
-		_ = router.Event(route, pages)
-	})
+	pages.AddOnPageRoute(peji.PageToRadarEvent(router, pages))
 
 	if addErr := pages.Add("hello", hello.CreateHelloWorldPage); addErr != nil {
 		return nil, nerror.WrapOnly(addErr)

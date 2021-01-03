@@ -3,6 +3,7 @@ module github.com/influx6/groundlayer
 go 1.15
 
 require (
+	github.com/PuerkitoBio/goquery v1.6.0 // indirect
 	github.com/go-redis/redis/v8 v8.4.4
 	github.com/iancoleman/strcase v0.1.2
 	github.com/influx6/npkg v0.4.3

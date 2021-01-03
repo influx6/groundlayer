@@ -130,6 +130,10 @@ func URLQuery(first ...interface{}) string {
 }
 
 func AttachToNode(first interface{}, parent *domu.Node) {
+	if first == nil {
+		return
+	}
+
 	switch targetItem := first.(type) {
 	case *domu.IntAttr:
 		parent.Attrs.Add(targetItem)

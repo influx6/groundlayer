@@ -86,9 +86,14 @@ func (pg *Page) SetReconciliation(b bool) {
 }
 
 // Has returns true if giving route exists either as a static dom or dom list.
-func (pg *Page) Has(name string) bool {
+func (pg *Page) Has(route string) bool {
 	pg.check()
-	return pg.Registry.Has(name) || pg.Registry.HasList(name)
+	if strings.HasPrefix(route, pg.RoutePath) {
+		route = handlePath(route)
+		return pg.Registry.Has(route) || pg.Registry.HasList(route)
+	}
+	route = handlePath(pg.RoutePath, route)
+	return pg.Registry.Has(route) || pg.Registry.HasList(route)
 }
 
 func (pg *Page) Serve(d Data) *domu.Node {
@@ -106,7 +111,17 @@ func (pg *Page) ServeRoute(route string, handler Handler) {
 		panic(fmt.Sprintf("route %q does not exists for any registered dom", route))
 	}
 
-	var targetRoute = handlePath(path.Join(pg.Name, route))
+	if !strings.HasPrefix(route, pg.RoutePath) {
+		route = handlePath(pg.RoutePath, route)
+	} else {
+		route = handlePath(route)
+	}
+
+	pg.serveRoute(route, handler)
+}
+
+func (pg *Page) serveRoute(route string, handler Handler) {
+	var targetRoute = handlePath(pg.Name, route)
 	var targetRouteWithWildcard = handlePath(pg.Name, route, "*path")
 
 	pg.notifyOnPage(targetRoute, pg)
@@ -123,9 +138,12 @@ func (pg *Page) Live(route string) DOM {
 		return nil
 	}
 
-	if pg.Registry.Has(route) {
-		return DOMSet(pg.Registry.GetList(route))
+	if !strings.HasPrefix(route, pg.RoutePath) {
+		route = handlePath(pg.RoutePath, route)
+	} else {
+		route = handlePath(route)
 	}
+
 	return pg.Registry.Get(route)
 }
 
@@ -147,19 +165,21 @@ func (pg *Page) AddLive(route string, items ...DOM) {
 		panic("route must be unique across list and single component types")
 	}
 
-	var set *LiveDOM
-	if itemCount == 1 {
-		pg.Registry.Add(items[0], route)
-		set = LiveDOMFrom(items[0], route)
+	var targetRoute string
+	if !strings.HasPrefix(route, pg.RoutePath) {
+		targetRoute = handlePath(pg.RoutePath, route)
 	} else {
-		pg.Registry.AddList(items, route)
-		set = LiveFromDOMList(items, route)
+		targetRoute = handlePath(route)
 	}
 
-	pg.ServeRoute(route, HandlerFunc(func(data Data) *domu.Node {
+	var set *LiveDOM
+	set = LiveFromDOMList(items, targetRoute)
+	pg.Registry.Add(set, targetRoute)
+
+	pg.serveRoute(targetRoute, HandlerFunc(func(data Data) *domu.Node {
 		var rendered = set.Render(data)
-		rendered.WalkTreeDeptFirst(func(child *domu.Node) {
-			handleThemeDirective(child, pg.Theme, rendered)
+		rendered.WalkTreeDeptFirst(func(child *domu.Node) bool {
+			return handleThemeDirective(child, pg.Theme, rendered)
 		})
 		return rendered
 	}))
@@ -193,21 +213,56 @@ func (pg *Page) render(data Data) *domu.Node {
 	var doc = domu.HTMLDoc()
 	pg.Layout.Render(pg, data, doc)
 
-	doc.WalkTreeDeptFirst(func(child *domu.Node) {
-		handleThemeDirective(child, pg.Theme, doc)
+	// Find head node
+	var headNode, headNodeErr = doc.Find(findHead)
+	if headNodeErr != nil {
+		panic(fmt.Sprintf("Page layout requires the `head` element, we found no `head` node"))
+	}
+
+	// Find body node
+	var _, bodyNodeErr = doc.Find(findBody)
+	if bodyNodeErr != nil {
+		panic(fmt.Sprintf("Page layout requires the `body` element, we found no `body` node"))
+	}
+
+	doc.WalkTreeDeptFirst(func(child *domu.Node) bool {
+		return handleThemeDirective(child, pg.Theme, headNode)
 	})
 
 	return doc
 }
 
-func handleThemeDirective(child *domu.Node, theme *styled.Theme, root *domu.Node) {
+func findBody(node *domu.Node, _ int) bool {
+	if node.Name() == "body" {
+		return true
+	}
+	return false
+}
+
+func findHead(node *domu.Node, _ int) bool {
+	if node.Name() == "head" {
+		return true
+	}
+	return false
+}
+
+func handleThemeDirective(child *domu.Node, theme *styled.Theme, root *domu.Node) bool {
 	// ignore nodes without theme directives.
 	if len(child.Themes) == 0 && child.Name() != groundLayerTagName {
-		return
+		return true
+	}
+
+	// co-locate all the styles for a groundlayer-frame to it's groundlayer parent.
+	if len(child.Themes) == 0 && child.Name() == groundLayerTagName {
+		child.WalkTreeDeptFirst(func(node *domu.Node) bool {
+			return handleThemeDirective(node, theme, child)
+		})
+		return false
 	}
 
 	// resolve themes for children into root.
 	theme.Resolve(child.Themes, root)
+	return true
 }
 
 func handlePath(targetPath string, more ...string) string {
