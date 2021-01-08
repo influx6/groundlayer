@@ -1,4 +1,4 @@
-package styled
+package base
 
 import (
 	gocolorful "github.com/lucasb-eyer/go-colorful"

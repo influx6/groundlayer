@@ -1,4 +1,4 @@
-package styled
+package base
 
 var RosePalette = MustUserPalettes(
 	"#fff1f2",

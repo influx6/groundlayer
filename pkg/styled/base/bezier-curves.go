@@ -1,4 +1,4 @@
-package styled
+package base
 
 import (
 	"gonum.org/v1/plot/tools/bezier"

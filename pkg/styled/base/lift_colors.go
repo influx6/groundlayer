@@ -1,4 +1,4 @@
-package styled
+package base
 
 import (
 	"github.com/influx6/npkg/nerror"

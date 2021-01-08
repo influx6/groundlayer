@@ -24,13 +24,13 @@ var (
 	mozillaPropertiesDataFile   = path.Join(rulesDirectory, "mozilla.json")
 	microsoftPropertiesDataFile = path.Join(rulesDirectory, "microsoft.json")
 
-	styleMappingSetFile             = "utility-mapping-set.gen.go"
-	styleGeneratedFile              = "utility-styles.gen.go"
-	unitGeneratedFile               = "style-units.gen.go"
-	compositionGeneratedFile        = "composer-styles.gen.go"
-	styleMappingGeneratedFile       = "mapping-styles.gen.go"
-	styleGroupingsGeneratedFile     = "groupings-styles.gen.go"
-	styleMappingToRootGeneratedFile = "root-mapping-styles.gen.go"
+	styleMappingSetFile             = "./definitions/utility-mapping-set.gen.go"
+	styleGeneratedFile              = "./definitions/utility-styles.gen.go"
+	unitGeneratedFile               = "./definitions/style-units.gen.go"
+	compositionGeneratedFile        = "./definitions/composer-styles.gen.go"
+	styleMappingGeneratedFile       = "./definitions/mapping-styles.gen.go"
+	styleGroupingsGeneratedFile     = "./definitions/groupings-styles.gen.go"
+	styleMappingToRootGeneratedFile = "./definitions/root-mapping-styles.gen.go"
 )
 
 type StyleUnit struct {
@@ -86,7 +86,7 @@ func main() {
 	noError(chromeReaderErr, "Style file %q", chromePropertiesDataFile)
 
 	var unitContent strings.Builder
-	unitContent.WriteString(`package styled
+	unitContent.WriteString(`package definitions
 
 		type Unit string
 	`)
@@ -105,25 +105,25 @@ func main() {
 	}
 
 	var stylesUtilitiesToParentContent strings.Builder
-	stylesUtilitiesToParentContent.WriteString(`package styled
+	stylesUtilitiesToParentContent.WriteString(`package definitions
 
 		var UtilitiesToParentStyles = map[string]string {
 	`)
 
 	var stylesUtilitiesContent strings.Builder
-	stylesUtilitiesContent.WriteString(`package styled
+	stylesUtilitiesContent.WriteString(`package definitions
 
 		var UtilitiesToCSS = map[string]string {
 	`)
 
 	var stylesToMapSetContent strings.Builder
-	stylesToMapSetContent.WriteString(`package styled
+	stylesToMapSetContent.WriteString(`package definitions
 
 		var UtilityToMappingSet = map[string]map[string]string {
 	`)
 
 	var stylesContent strings.Builder
-	stylesContent.WriteString(`package styled
+	stylesContent.WriteString(`package definitions
 		
 	`)
 
@@ -176,7 +176,7 @@ func main() {
 	}
 
 	var compositionContent strings.Builder
-	compositionContent.WriteString(`package styled
+	compositionContent.WriteString(`package definitions
 
 		// These are styles which define how a giving parent style will be compose from it's
         // utilities which break down a style into individual bits.
@@ -259,7 +259,7 @@ func main() {
 	}
 
 	var stylesGroup strings.Builder
-	stylesGroup.WriteString(`package styled
+	stylesGroup.WriteString(`package definitions
 		
 		var Groupings = map[string][]string {
 	`)

@@ -317,9 +317,10 @@ func NewNode(nt NodeType, tagName string) *Node {
 
 	var child Node
 	child.nodeType = nt
-	child.atid = child.tid
-	child.tagName = tagName
 	child.tid = nxid.New().String()
+	child.atid = child.tid
+	child.idAttr = child.tid
+	child.tagName = tagName
 
 	Themes().Mount(&child)
 
@@ -1012,6 +1013,10 @@ func (n *Node) findRefNodeFromList(ref []string) (*Node, error) {
 
 // UseID sets the id of the giving node.
 func (n *Node) UseID(id string) *Node {
+	if len(id) == 0 {
+		return n
+	}
+
 	n.idAttr = id
 	return n
 }

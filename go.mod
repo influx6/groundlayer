@@ -6,7 +6,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/go-redis/redis/v8 v8.4.4
 	github.com/iancoleman/strcase v0.1.2
-	github.com/influx6/npkg v0.5.2
+	github.com/influx6/npkg v0.5.3
 	github.com/influx6/sabuhp v0.2.9
 	github.com/lucasb-eyer/go-colorful v1.0.3
 	github.com/stretchr/testify v1.6.1

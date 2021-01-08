@@ -1,4 +1,4 @@
-package styled
+package base
 
 type TypefaceDirective struct {
 	Serifs    []string
