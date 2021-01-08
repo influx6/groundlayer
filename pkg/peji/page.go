@@ -248,12 +248,12 @@ func findHead(node *domu.Node, _ int) bool {
 
 func handleThemeDirective(child *domu.Node, theme *styled.Theme, root *domu.Node) bool {
 	// ignore nodes without theme directives.
-	if len(child.Themes) == 0 && child.Name() != groundLayerTagName {
+	if len(child.Themes.Directives) == 0 && child.Name() != groundLayerTagName {
 		return true
 	}
 
 	// co-locate all the styles for a groundlayer-frame to it's groundlayer parent.
-	if len(child.Themes) == 0 && child.Name() == groundLayerTagName {
+	if len(child.Themes.Directives) == 0 && child.Name() == groundLayerTagName {
 		child.WalkTreeDeptFirst(func(node *domu.Node) bool {
 			return handleThemeDirective(node, theme, child)
 		})

@@ -4,98 +4,9 @@ package styled
 // utilities which break down a style into individual bits.
 var ParentCompositionStyles = map[string][]string{
 
-	"place-self": {
-		"align-self",
-		"justify-self",
-	},
-
-	"border-radius": {
-		"border-top-left-radius",
-		"border-top-right-radius",
-		"border-bottom-right-radius",
-		"border-bottom-left-radius",
-	},
-
-	"border-inline-start": {
-		"border-width",
-		"border-style",
-		"color",
-	},
-
-	"flex": {
-		"flex-grow",
-		"flex-shrink",
-		"flex-basis",
-	},
-
-	"-ms-content-zoom-snap": {
-		"-ms-content-zoom-snap-type",
-		"-ms-content-zoom-snap-points",
-	},
-
-	"list-style": {
-		"list-style-type",
-		"list-style-position",
-		"list-style-image",
-	},
-
-	"grid-template": {
-		"grid-template-columns",
-		"grid-template-rows",
-		"grid-template-areas",
-	},
-
-	"margin": {
-		"margin-bottom",
-		"margin-left",
-		"margin-right",
-		"margin-top",
-	},
-
-	"grid": {
-		"grid-template-rows",
-		"grid-template-columns",
-		"grid-template-areas",
-		"grid-auto-rows",
-		"grid-auto-columns",
-		"grid-auto-flow",
-		"grid-column-gap",
-		"grid-row-gap",
-		"column-gap",
-		"row-gap",
-	},
-
-	"font": {
-		"font-style",
-		"font-variant",
-		"font-weight",
-		"font-stretch",
-		"font-size",
-		"line-height",
-		"font-family",
-	},
-
-	"text-emphasis": {
-		"text-emphasis-style",
-		"text-emphasis-color",
-	},
-
-	"border-right": {
-		"border-right-width",
-		"border-right-style",
-		"border-right-color",
-	},
-
-	"text-decoration": {
-		"text-decoration-color",
-		"text-decoration-style",
-		"text-decoration-line",
-	},
-
-	"outline": {
-		"outline-color",
-		"outline-style",
-		"outline-width",
+	"place-items": {
+		"align-items",
+		"justify-items",
 	},
 
 	"mask": {
@@ -120,31 +31,84 @@ var ParentCompositionStyles = map[string][]string{
 		"mask-composite",
 	},
 
-	"mask-border": {
-		"mask-border-mode",
-		"mask-border-outset",
-		"mask-border-repeat",
-		"mask-border-slice",
-		"mask-border-source",
-		"mask-border-width",
+	"font": {
+		"font-style",
+		"font-variant",
+		"font-weight",
+		"font-stretch",
+		"font-size",
+		"line-height",
+		"font-family",
 	},
 
-	"border-block": {
-		"border-top-width",
-		"border-top-style",
-		"border-top-color",
-	},
-
-	"border-block-start": {
+	"border-inline-start": {
 		"border-width",
 		"border-style",
 		"color",
 	},
 
-	"border-left": {
-		"border-left-width",
-		"border-left-style",
-		"border-left-color",
+	"border-top": {
+		"border-top-width",
+		"border-top-style",
+		"border-top-color",
+	},
+
+	"column-rule": {
+		"column-rule-width",
+		"column-rule-style",
+		"column-rule-color",
+	},
+
+	"flex-flow": {
+		"flex-direction",
+		"flex-wrap",
+	},
+
+	"place-self": {
+		"align-self",
+		"justify-self",
+	},
+
+	"margin": {
+		"margin-bottom",
+		"margin-left",
+		"margin-right",
+		"margin-top",
+	},
+
+	"text-emphasis": {
+		"text-emphasis-style",
+		"text-emphasis-color",
+	},
+
+	"text-emphasis-position": {
+		"text-emphasis-position-first text-emphasis-position-second",
+	},
+
+	"border-radius": {
+		"border-top-left-radius",
+		"border-top-right-radius",
+		"border-bottom-right-radius",
+		"border-bottom-left-radius",
+	},
+
+	"border-right": {
+		"border-right-width",
+		"border-right-style",
+		"border-right-color",
+	},
+
+	"padding": {
+		"padding-bottom",
+		"padding-left",
+		"padding-right",
+		"padding-top",
+	},
+
+	"grid-template": {
+		"grid-template-columns",
+		"grid-template-rows",
+		"grid-template-areas",
 	},
 
 	"border-width": {
@@ -152,11 +116,6 @@ var ParentCompositionStyles = map[string][]string{
 		"border-right-width",
 		"border-bottom-width",
 		"border-left-width",
-	},
-
-	"scale": {
-		"scale-left",
-		"scale-right",
 	},
 
 	"transform": {
@@ -179,46 +138,13 @@ var ParentCompositionStyles = map[string][]string{
 		"transform-perspective",
 	},
 
-	"place-items": {
-		"align-items",
-		"justify-items",
-	},
-
-	"border": {
-		"border-width",
-		"border-style",
-		"border-color",
-	},
-
-	"transition": {
-		"transition-delay",
-		"transition-duration",
-		"transition-property",
-		"transition-timing-function",
-	},
-
-	"padding": {
-		"padding-bottom",
-		"padding-left",
-		"padding-right",
-		"padding-top",
-	},
-
-	"animation": {
-		"animation-name",
-		"animation-duration",
-		"animation-timing-function",
-		"animation-delay",
-		"animation-iteration-count",
-		"animation-direction",
-		"animation-fill-mode",
-		"animation-play-state",
-	},
-
-	"border-bottom": {
-		"border-bottom-width",
-		"border-bottom-style",
-		"border-bottom-color",
+	"mask-border": {
+		"mask-border-mode",
+		"mask-border-outset",
+		"mask-border-repeat",
+		"mask-border-slice",
+		"mask-border-source",
+		"mask-border-width",
 	},
 
 	"border-inline-end": {
@@ -227,44 +153,51 @@ var ParentCompositionStyles = map[string][]string{
 		"color",
 	},
 
-	"border-image": {
-		"border-image-source",
-		"border-image-slice",
-		"border-image-width",
-		"border-image-outset",
-		"border-image-repeat",
-	},
-
-	"border-top": {
-		"border-top-width",
-		"border-top-style",
-		"border-top-color",
-	},
-
-	"column-rule": {
-		"column-rule-width",
-		"column-rule-style",
-		"column-rule-color",
-	},
-
-	"grid-row": {
-		"grid-row-start",
-		"grid-row-end",
-	},
-
-	"text-emphasis-position": {
-		"text-emphasis-position-first text-emphasis-position-second",
-	},
-
 	"border-block-end": {
 		"border-top-width",
 		"border-top-style",
 		"border-top-color",
 	},
 
-	"grid-column": {
-		"grid-column-start",
-		"grid-column-end",
+	"border-bottom": {
+		"border-bottom-width",
+		"border-bottom-style",
+		"border-bottom-color",
+	},
+
+	"text-decoration": {
+		"text-decoration-color",
+		"text-decoration-style",
+		"text-decoration-line",
+	},
+
+	"scale": {
+		"scale-left",
+		"scale-right",
+	},
+
+	"outline": {
+		"outline-color",
+		"outline-style",
+		"outline-width",
+	},
+
+	"grid-gap": {
+		"grid-row-gap",
+		"grid-column-gap",
+	},
+
+	"grid": {
+		"grid-template-rows",
+		"grid-template-columns",
+		"grid-template-areas",
+		"grid-auto-rows",
+		"grid-auto-columns",
+		"grid-auto-flow",
+		"grid-column-gap",
+		"grid-row-gap",
+		"column-gap",
+		"row-gap",
 	},
 
 	"background": {
@@ -278,6 +211,19 @@ var ParentCompositionStyles = map[string][]string{
 		"background-color",
 	},
 
+	"border-color": {
+		"border-top-color",
+		"border-right-color",
+		"border-bottom-color",
+		"border-left-color",
+	},
+
+	"border-inline": {
+		"border-top-width",
+		"border-top-style",
+		"border-top-color",
+	},
+
 	"border-style": {
 		"border-top-style",
 		"border-right-style",
@@ -285,31 +231,18 @@ var ParentCompositionStyles = map[string][]string{
 		"border-left-style",
 	},
 
-	"columns": {
-		"column-width",
-		"column-count",
+	"-ms-content-zoom-snap": {
+		"-ms-content-zoom-snap-type",
+		"-ms-content-zoom-snap-points",
 	},
 
 	"-ms-content-zoom-limit": {},
 
-	"offset": {
-		"offset-position",
-		"offset-path",
-		"offset-distance",
-		"offset-anchor",
-		"offset-rotate",
-	},
-
-	"grid-gap": {
-		"grid-row-gap",
-		"grid-column-gap",
-	},
-
-	"border-color": {
-		"border-top-color",
-		"border-right-color",
-		"border-bottom-color",
-		"border-left-color",
+	"transition": {
+		"transition-delay",
+		"transition-duration",
+		"transition-property",
+		"transition-timing-function",
 	},
 
 	"grid-area": {
@@ -319,14 +252,81 @@ var ParentCompositionStyles = map[string][]string{
 		"grid-column-end",
 	},
 
-	"border-inline": {
+	"animation": {
+		"animation-name",
+		"animation-duration",
+		"animation-timing-function",
+		"animation-delay",
+		"animation-iteration-count",
+		"animation-direction",
+		"animation-fill-mode",
+		"animation-play-state",
+	},
+
+	"border-left": {
+		"border-left-width",
+		"border-left-style",
+		"border-left-color",
+	},
+
+	"list-style": {
+		"list-style-type",
+		"list-style-position",
+		"list-style-image",
+	},
+
+	"grid-column": {
+		"grid-column-start",
+		"grid-column-end",
+	},
+
+	"border-block": {
 		"border-top-width",
 		"border-top-style",
 		"border-top-color",
 	},
 
-	"flex-flow": {
-		"flex-direction",
-		"flex-wrap",
+	"border-block-start": {
+		"border-width",
+		"border-style",
+		"color",
+	},
+
+	"border-image": {
+		"border-image-source",
+		"border-image-slice",
+		"border-image-width",
+		"border-image-outset",
+		"border-image-repeat",
+	},
+
+	"flex": {
+		"flex-grow",
+		"flex-shrink",
+		"flex-basis",
+	},
+
+	"offset": {
+		"offset-position",
+		"offset-path",
+		"offset-distance",
+		"offset-anchor",
+		"offset-rotate",
+	},
+
+	"grid-row": {
+		"grid-row-start",
+		"grid-row-end",
+	},
+
+	"border": {
+		"border-width",
+		"border-style",
+		"border-color",
+	},
+
+	"columns": {
+		"column-width",
+		"column-count",
 	},
 }

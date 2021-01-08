@@ -369,3 +369,35 @@ element.
     id=wan
 >It was you</p>
 ```
+
+One thing to notice with list attributes for html is a limitation in the parser which 
+requires that space be only used to separate values and any value which is not meant to be
+separated should generally only have space after it's definition, so:
+
+##### Bad form:
+
+```go
+<p
+    class="bob"
+    theme=[
+        color-red-50
+        sm-padding-10
+        xs:(bg-color-500, fg-color-400) // this is wrong
+    ]
+    id=wan
+    >It was you</p>
+```
+
+##### Good form:
+
+```go
+<p
+    class="bob"
+    theme=[
+        color-red-50
+        sm-padding-10
+        xs:(bg-color-500,fg-color-400) // this is correct, no space in-between
+    ]
+    id=wan
+>It was you</p>
+```

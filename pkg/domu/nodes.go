@@ -236,25 +236,31 @@ func (n NodeList) Mount(parent *Node) error {
 	return nil
 }
 
-type ThemeDirective []string
+type ThemeDirective struct {
+	Directives []string
+	Node       *Node
+}
 
-func Themes(t ...string) ThemeDirective {
-	return ThemeDirective(t)
+func Themes(t ...string) *ThemeDirective {
+	return &ThemeDirective{
+		Directives: t,
+	}
 }
 
 func (td *ThemeDirective) Add(t string) {
-	*td = append(*td, t)
+	td.Directives = append(td.Directives, t)
 }
 
 func (td *ThemeDirective) Mount(p *Node) {
-	p.Themes = *td
+	td.Node = p
+	p.Themes = td
 }
 
 // Node defines a concrete type implementing a combined linked-list with
 // root, next and previous siblings using a underline growing array as
 // the basis.
 type Node struct {
-	Themes      ThemeDirective
+	Themes      *ThemeDirective
 	Attrs       AttrList
 	Events      *EventHashList
 	parent      *Node
@@ -301,7 +307,8 @@ func NewNode(nt NodeType, tagName string) *Node {
 	child.atid = child.tid
 	child.tagName = tagName
 	child.tid = nxid.New().String()
-	child.Themes = []string{}
+
+	Themes().Mount(&child)
 
 	child.Events = NewEventHashList()
 	child.next = &natomic.IntSwitch{}

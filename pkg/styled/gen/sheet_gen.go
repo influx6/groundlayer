@@ -24,6 +24,7 @@ var (
 	mozillaPropertiesDataFile   = path.Join(rulesDirectory, "mozilla.json")
 	microsoftPropertiesDataFile = path.Join(rulesDirectory, "microsoft.json")
 
+	styleMappingSetFile             = "utility-mapping-set.gen.go"
 	styleGeneratedFile              = "utility-styles.gen.go"
 	unitGeneratedFile               = "style-units.gen.go"
 	compositionGeneratedFile        = "composer-styles.gen.go"
@@ -115,6 +116,12 @@ func main() {
 		var UtilitiesToCSS = map[string]string {
 	`)
 
+	var stylesToMapSetContent strings.Builder
+	stylesToMapSetContent.WriteString(`package styled
+
+		var UtilityToMappingSet = map[string]map[string]string {
+	`)
+
 	var stylesContent strings.Builder
 	stylesContent.WriteString(`package styled
 		
@@ -144,10 +151,11 @@ func main() {
 			msStyle.Name = msName
 		}
 
-		var utilitiesMapping, utilitiesToRoot, utilitiesNames = createStyling(&stylesContent, name, styleUnit, webkitStyle, mozStyle, msStyle)
+		var utilitiesMapping, utilitiesToRoot, mappingSet, utilitiesNames = createStyling(&stylesContent, name, styleUnit, webkitStyle, mozStyle, msStyle)
 
-		stylesUtilitiesContent.WriteString(fmt.Sprintf(`%s`, utilitiesMapping.String()))
-		stylesUtilitiesToParentContent.WriteString(fmt.Sprintf(`%s`, utilitiesToRoot.String()))
+		stylesToMapSetContent.WriteString(mappingSet.String())
+		stylesUtilitiesContent.WriteString(utilitiesMapping.String())
+		stylesUtilitiesToParentContent.WriteString(utilitiesToRoot.String())
 
 		for _, group := range styleUnit.Groups {
 			groupings[group] = append(groupings[group], name)
@@ -211,6 +219,10 @@ func main() {
 		noError(err, "Write file failure %q", chromePropertiesDataFile)
 	}
 
+	stylesToMapSetContent.WriteString(`
+		}
+	`)
+
 	stylesUtilitiesContent.WriteString(`
 		}
 	`)
@@ -218,6 +230,15 @@ func main() {
 	stylesUtilitiesToParentContent.WriteString(`
 		}
 	`)
+
+	var formattedMapSet, mapSetFormatErr = formatCode(nunsafe.String2Bytes(stylesToMapSetContent.String()))
+	if mapSetFormatErr != nil {
+		noError(mapSetFormatErr, "Format file failure")
+	}
+
+	if err := writeFile(styleMappingSetFile, bytes.NewReader(formattedMapSet)); err != nil {
+		noError(err, "Write file failure %q", chromePropertiesDataFile)
+	}
 
 	var formattedUtilitiesContent, utilitiesFormatErr = formatCode(nunsafe.String2Bytes(stylesUtilitiesContent.String()))
 	if utilitiesFormatErr != nil {
@@ -302,7 +323,7 @@ func createCompositionStyle(builder *strings.Builder, name string, unit, webkit,
 	}
 }
 
-func createStyling(builder *strings.Builder, name string, unit, webkit, moz, ms *StyleRule) (strings.Builder, strings.Builder, []string) {
+func createStyling(builder *strings.Builder, name string, unit, webkit, moz, ms *StyleRule) (strings.Builder, strings.Builder, strings.Builder, []string) {
 	var styleType = "string"
 	if len(unit.Type) != 0 {
 		styleType = unit.Type
@@ -360,22 +381,36 @@ func createStyling(builder *strings.Builder, name string, unit, webkit, moz, ms 
 	}
 
 	builder.WriteString(fmt.Sprintf(`
-		func (t %sStyle) BrowserVariants() []string {
-			return []string{
-				%s
-			}
+		var %sStyleBrowserVariantsList = []string{
+			%s
 		}
-	`, typeName, browserVariantMap.String()))
+		func (t %sStyle) BrowserVariants() []string {
+			return %sStyleBrowserVariantsList
+		}
+	`, typeName, browserVariantMap.String(), typeName, typeName))
 
 	builder.WriteString(fmt.Sprintf(`
-		func (t %sStyle) Utilities() map[string]string {
-			return map[string]string{
-				%s
-			}
+		var %sStyleUtilitiesMapping = map[string]string{
+			%s
 		}
-	`, typeName, styleSelectionMap.String()))
+		func (t %sStyle) Utilities() map[string]string {
+			return %sStyleUtilitiesMapping
+		}
+	`, typeName, styleSelectionMap.String(), typeName, typeName))
 
-	return styleSelectionMap, syntaxToParentMap, utilities
+	builder.WriteString(fmt.Sprintf(`
+		func (t %sStyle) UtilityFor(tu string) (string, bool) {
+			var value, hasValue = %sStyleUtilitiesMapping[tu]
+			return value, hasValue
+		}
+	`, typeName, typeName))
+
+	var utilityToMapset strings.Builder
+	utilityToMapset.WriteString(fmt.Sprintf(`
+		%q: %sStyleUtilitiesMapping,
+	`, name, typeName))
+
+	return styleSelectionMap, syntaxToParentMap, utilityToMapset, utilities
 }
 
 func toList(builder *strings.Builder, groups []string) {

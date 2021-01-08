@@ -403,7 +403,7 @@ func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
 		<p
 			class="bob"
-			theme=[ color-red-50 sm-padding-10 max-w max-h ]
+			theme=[ color-red-50 sm-padding-10 max-w max-h xs:(bg-color-500) ]
 		>It was you</p>
 	`, false)
 
@@ -412,17 +412,22 @@ func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
 	hasText(t, builder, `It was you`)
 	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
+	hasText(t, builder, `.Add("xs:(bg-color-500)")`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
 	hasText(t, builder, `.Add("max-w")`)
 	hasText(t, builder, `.Add("max-h")`)
-	hasText(t, builder, `.Themes = theme`)
+	hasText(t, builder, `theme4.Mount(node2)`)
 }
 
 func TestTextWriter_ParseTagAttrsWithListMultiline(t *testing.T) {
 	var builder = textWriterTestHelper(t, `
 		<p
 			class=[ 
+				xs:(bg-color-500)
+				xs:(bg-color-500,fg-color-400)
+				xs:(bg-color-500,hover:fg-color-400)
+				xs:(bg-color-500,hover:(fg-color-400))
 				color-red-50 
 				sm-padding-10 
 				max-w 
@@ -442,6 +447,10 @@ func TestTextWriter_ParseTagAttrsWithListMultiline(t *testing.T) {
 	hasText(t, builder, `It was you`)
 	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `domu.NewStringListAttr("class", "")`)
+	hasText(t, builder, `.Add("xs:(bg-color-500,fg-color-400)")`)
+	hasText(t, builder, `.Add("xs:(bg-color-500,hover:fg-color-400)")`)
+	hasText(t, builder, `.Add("xs:(bg-color-500,hover:(fg-color-400))")`)
+	hasText(t, builder, `.Add("xs:(bg-color-500)")`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
 	hasText(t, builder, `.Add("max-w")`)
@@ -458,6 +467,7 @@ func TestTextWriter_ParseTagAttrsWithThemeMultiline(t *testing.T) {
 		<p
 			class="bob"
 			theme=[ 
+				xs:(bg-color-500)
 				color-red-50 
 				sm-padding-10 
 				max-w 
@@ -477,6 +487,7 @@ func TestTextWriter_ParseTagAttrsWithThemeMultiline(t *testing.T) {
 	hasText(t, builder, `It was you`)
 	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
+	hasText(t, builder, `.Add("xs:(bg-color-500)")`)
 	hasText(t, builder, `.Add("color-red-50")`)
 	hasText(t, builder, `.Add("sm-padding-10")`)
 	hasText(t, builder, `.Add("max-w")`)

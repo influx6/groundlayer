@@ -1,0 +1,3 @@
+package groundlayer
+
+//go:generate go generate ./pkg/...

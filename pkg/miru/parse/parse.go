@@ -578,7 +578,7 @@ attrLoop:
 				continue attrLoop
 			}
 
-			var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(nextToken.val, ""))
+			var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(nextToken.val, " "))
 			for _, part := range strings.Split(text, " ") {
 				var newText = t.newText(nextToken.pos, part)
 				newAttr.Values.append(newText)

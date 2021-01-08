@@ -1724,7 +1724,7 @@ func (t *TextWriter) NewNode(varName string, nodeType int, tagName string, id st
 }
 
 func (t *TextWriter) AssignNodeTheme(rootName string, varName string) {
-	t.Write(fmt.Sprintf(`%s.Themes = %s`, varName, rootName))
+	t.Write(fmt.Sprintf(`%s.Mount(%s)`, rootName, varName))
 }
 
 func (t *TextWriter) AppendNode(rootName string, varName string) {

@@ -768,7 +768,7 @@ func lexTagAttrs(l *lexer) stateFn {
 
 	// lexTextUntil(l)
 	if found := lexAllUntil(l, func(r rune) bool {
-		return isAlphaNumeric(r) || (r == '_') || (r == '.') || (r == '-')
+		return isAlphaNumeric(r) || (r == '_') || (r == '.') || (r == '-') || r == '(' || r == ')'
 	}); found > 0 {
 		if l.htmlListMode {
 			l.emit(itemText)

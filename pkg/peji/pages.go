@@ -366,18 +366,17 @@ type PagesStat struct {
 func (p *Pages) Stats() PagesStat {
 	var totalPages int
 	var stats = map[string]SessionStat{}
+	var stack = njson.Log(p.logger)
 
 	p.sl.RLock()
 	totalPages = len(p.managers)
 	for page, manager := range p.managers {
 		stat, err := manager.Stat()
 		if err != nil {
-			var stack = njson.Log(p.logger)
-			stack.LError().Error("error", err).
+			stack.New().LError().Error("error", err).
 				Message("failed to get stat for page").
 				String("page", page).
 				End()
-			njson.ReleaseLogStack(stack)
 			continue
 		}
 		stats[page] = stat

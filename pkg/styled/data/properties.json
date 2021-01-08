@@ -2713,8 +2713,10 @@
   },
   "gap": {
     "type": "string",
+    "syntax": "none",
     "media": "visual",
     "inherited": false,
+    "initial": "none",
     "animationTypes": [
       "row-gap",
       "column-gap"

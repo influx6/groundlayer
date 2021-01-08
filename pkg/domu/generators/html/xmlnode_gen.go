@@ -179,7 +179,6 @@ func main() {
 func buildHTML(w io.Writer, errs chan error) {
 	defer workers.Done()
 
-	var count int
 	var doneHtml = map[string]bool{}
 	if err := pullDoc("https://developer.mozilla.org/en-US/docs/Web/HTML/Element", func(doc *goquery.Document) {
 		doc.Find("main#content table.standard-table tr td a").Each(func(i int, s *goquery.Selection) {
@@ -207,9 +206,6 @@ func buildHTML(w io.Writer, errs chan error) {
 			}
 
 			funName = restruct(funName)
-
-			fmt.Printf("%d. Writing method %q > %q\n", count, name, funName)
-			count++
 
 			if unwanted.MatchString(name) {
 				return
