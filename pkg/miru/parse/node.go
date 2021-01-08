@@ -204,12 +204,13 @@ func (l *ListNode) Copy() Node {
 type TextNode struct {
 	NodeType
 	Pos
-	tr   *Tree
-	Text []byte // The text; may span newlines.
+	tr      *Tree
+	Text    []byte // The text; may span newlines.
+	InTheme bool
 }
 
-func (t *Tree) newText(pos Pos, text string) *TextNode {
-	return &TextNode{tr: t, NodeType: NodeText, Pos: pos, Text: []byte(text)}
+func (t *Tree) newText(pos Pos, text string, withinTheme bool) *TextNode {
+	return &TextNode{tr: t, NodeType: NodeText, Pos: pos, InTheme: withinTheme, Text: []byte(text)}
 }
 
 func (t *TextNode) String() string {
@@ -225,7 +226,7 @@ func (t *TextNode) tree() *Tree {
 }
 
 func (t *TextNode) Copy() Node {
-	return &TextNode{tr: t.tr, NodeType: NodeText, Pos: t.Pos, Text: append([]byte{}, t.Text...)}
+	return &TextNode{tr: t.tr, InTheme: t.InTheme, NodeType: NodeText, Pos: t.Pos, Text: append([]byte{}, t.Text...)}
 }
 
 // DOMIdentifier holds plain text.

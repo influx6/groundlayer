@@ -67,6 +67,18 @@ func (st *Stylus) Add(style string) {
 	*st = append(*st, style)
 }
 
+type StylusGroup map[string]Stylus
+
+func NewStyleusGroup() StylusGroup {
+	return StylusGroup{
+		"*": make(Stylus, 0, 10),
+	}
+}
+
+func (st StylusGroup) AddVariant(variant string, sl Stylus) {
+	st[variant] = sl
+}
+
 // ThemeResolver will resolve the giving theme directives as <style> nodes using node's special 'tid' or `id`
 // to apply direct changes.
 type ThemeResolver interface {
@@ -80,6 +92,9 @@ func (t *ThemeResolvers) Add(r ThemeResolver) {
 }
 
 func (t ThemeResolvers) Resolve(themeDirective *domu.ThemeDirective, theme *Theme, root *domu.Node) {
+	var styles = make([]string, 0, len(themeDirective.Directives))
+	_ = styles
+
 	// var stylus Stylus
 	// for _, directiveValue := range themeDirective.Directives {
 	//

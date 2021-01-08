@@ -11,6 +11,7 @@ import (
 
 	"github.com/influx6/npkg/natomic"
 	"github.com/influx6/npkg/nerror"
+	"github.com/influx6/npkg/nlexing"
 	"github.com/influx6/npkg/nunsafe"
 	"github.com/influx6/npkg/nxid"
 )
@@ -247,8 +248,20 @@ func Themes(t ...string) *ThemeDirective {
 	}
 }
 
-func (td *ThemeDirective) Add(t string) {
-	td.Directives = append(td.Directives, t)
+func (td *ThemeDirective) MustAdd(t string) {
+	if addErr := td.Add(t); addErr != nil {
+		panic(nerror.WrapOnly(addErr).Error())
+	}
+}
+
+func (td *ThemeDirective) Add(t string) error {
+	// parse directive into individual portions
+	var expandedDirectives, expandDirectiveErr = nlexing.ParseVariantDirectives(t)
+	if expandDirectiveErr != nil {
+		return nerror.WrapOnly(expandDirectiveErr)
+	}
+	td.Directives = append(td.Directives, expandedDirectives...)
+	return nil
 }
 
 func (td *ThemeDirective) Mount(p *Node) {

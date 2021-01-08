@@ -59,7 +59,7 @@ func (t *TextList) print(l *ListNode, tt *Tree) {
 	if len(*t) == 0 {
 		return
 	}
-	var newTextNode = tt.newText(0, t.String())
+	var newTextNode = tt.newText(0, t.String(), tt.withinTheme)
 	l.append(newTextNode)
 }
 
@@ -456,10 +456,10 @@ func (t *Tree) textOrAction(allowSpace bool) Node {
 		return nn
 	case itemSpace:
 		if allowSpace {
-			return t.newText(token.pos, token.val)
+			return t.newText(token.pos, token.val, t.withinTheme)
 		}
 	case itemText:
-		return t.newText(token.pos, token.val)
+		return t.newText(token.pos, token.val, t.withinTheme)
 	case itemLeftDelim:
 		return t.action(false)
 	case itemEOF:
@@ -468,7 +468,7 @@ func (t *Tree) textOrAction(allowSpace bool) Node {
 		t.errorf("Should not receive ignore instruction for token %#v at line %d, did you forget to properly end a statement", token, token.pos)
 	default:
 		if t.withinTheme {
-			return t.newText(token.pos, token.val)
+			return t.newText(token.pos, token.val, t.withinTheme)
 		}
 		t.unexpected(token, "input")
 	}
@@ -503,7 +503,8 @@ htmlLoop:
 			var newAttr = t.attr(nextToken)
 			tagNode.Attr.append(newAttr)
 		case itemText, itemSpace:
-			textList.add(t.newText(nextToken.pos, nextToken.val))
+			var tx = t.newText(nextToken.pos, nextToken.val, false)
+			textList.add(tx)
 		case itemTag:
 			textList.print(tagNode.Children, t)
 			textList = textList[:0]
@@ -561,7 +562,7 @@ func (t *Tree) attr(token item) *AttrNode {
 	newAttr := t.newAttr(token.pos, token.val, token.val, new(ListNode))
 	newAttr.IsTheme = strings.TrimSpace(token.val) == themeAttrName
 
-	t.withinTheme = true
+	t.withinTheme = newAttr.IsTheme
 
 	var acceptSpaces = false
 attrLoop:
@@ -580,7 +581,7 @@ attrLoop:
 
 			var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(nextToken.val, " "))
 			for _, part := range strings.Split(text, " ") {
-				var newText = t.newText(nextToken.pos, part)
+				var newText = t.newText(nextToken.pos, part, newAttr.IsTheme)
 				newAttr.Values.append(newText)
 			}
 		case itemText:
@@ -590,14 +591,14 @@ attrLoop:
 			if strings.TrimSpace(nextToken.val) == "" && newAttr.IsTheme {
 				continue attrLoop
 			}
-			var newText = t.newText(nextToken.pos, nextToken.val)
+			var newText = t.newText(nextToken.pos, nextToken.val, newAttr.IsTheme)
 			newAttr.Values.append(newText)
 		case itemSpace:
 			if nextToken.val == "" {
 				continue attrLoop
 			}
 			if acceptSpaces && !newAttr.IsTheme {
-				newAttr.Values.append(t.newText(nextToken.pos, nextToken.val))
+				newAttr.Values.append(t.newText(nextToken.pos, nextToken.val, newAttr.IsTheme))
 			}
 		case itemEOF:
 			break attrLoop
@@ -667,7 +668,7 @@ handleLoop:
 
 			node.Body.append(t.html(nextToken))
 		case itemText:
-			textList.add(t.newText(nextToken.pos, nextToken.val))
+			textList.add(t.newText(nextToken.pos, nextToken.val, t.withinTheme))
 		case itemLeftDelim:
 			textList.print(node.Body, t)
 			textList = textList[:0]

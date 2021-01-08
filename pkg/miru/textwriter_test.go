@@ -412,11 +412,11 @@ func TestTextWriter_ParseTagAttrsWithTheme(t *testing.T) {
 	hasText(t, builder, `It was you`)
 	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
-	hasText(t, builder, `.Add("xs:(bg-color-500)")`)
-	hasText(t, builder, `.Add("color-red-50")`)
-	hasText(t, builder, `.Add("sm-padding-10")`)
-	hasText(t, builder, `.Add("max-w")`)
-	hasText(t, builder, `.Add("max-h")`)
+	hasText(t, builder, `.MustAdd("xs:(bg-color-500)")`)
+	hasText(t, builder, `.MustAdd("color-red-50")`)
+	hasText(t, builder, `.MustAdd("sm-padding-10")`)
+	hasText(t, builder, `.MustAdd("max-w")`)
+	hasText(t, builder, `.MustAdd("max-h")`)
 	hasText(t, builder, `theme4.Mount(node2)`)
 }
 
@@ -483,20 +483,21 @@ func TestTextWriter_ParseTagAttrsWithThemeMultiline(t *testing.T) {
 	`, false)
 
 	require.NotNil(t, builder)
+
 	hasText(t, builder, `func RenderLayout(page *peji.Page, ctx peji.Data, rootDoc *domu.Node) {`)
 	hasText(t, builder, `It was you`)
 	hasText(t, builder, `domu.Element("p")`)
 	hasText(t, builder, `= styled.ThemeDirective{}`)
-	hasText(t, builder, `.Add("xs:(bg-color-500)")`)
-	hasText(t, builder, `.Add("color-red-50")`)
-	hasText(t, builder, `.Add("sm-padding-10")`)
-	hasText(t, builder, `.Add("max-w")`)
-	hasText(t, builder, `.Add("max-h")`)
+	hasText(t, builder, `.MustAdd("xs:(bg-color-500)")`)
+	hasText(t, builder, `.MustAdd("color-red-50")`)
+	hasText(t, builder, `.MustAdd("sm-padding-10")`)
+	hasText(t, builder, `.MustAdd("max-w")`)
+	hasText(t, builder, `.MustAdd("max-h")`)
 	hasText(t, builder, `if helpers.And(ctx.User, ctx.User.Admin) {`)
-	hasText(t, builder, `.Add("bob")`)
+	hasText(t, builder, `.MustAdd("bob")`)
 	hasText(t, builder, `else`)
-	hasText(t, builder, `.Add("bob-10")`)
-	hasText(t, builder, `.Themes = theme`)
+	hasText(t, builder, `.MustAdd("bob-10")`)
+	hasText(t, builder, `theme4.Mount(node2)`)
 }
 
 func TestTextWriter_ParseMultilineTag(t *testing.T) {

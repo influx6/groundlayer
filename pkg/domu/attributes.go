@@ -416,6 +416,11 @@ func NewStringListAttr(n string, join string, v ...string) StringListAttr {
 	return StringListAttr{Name: n, Val: v, Join: join}
 }
 
+// MustAdds a new item into the list.
+func (s *StringListAttr) MustAdd(item string) {
+	s.Add(item)
+}
+
 // Adds a new item into the list.
 func (s *StringListAttr) Add(item string) {
 	s.Val = append(s.Val, item)

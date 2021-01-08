@@ -746,7 +746,7 @@ func (t *TextWriter) walkHTMLNode(tree *parse.Tree, node *parse.HTMLNode, parent
 		var currentBuffer = t.swapBuilder(htmlAttrContent)
 
 		for _, value := range attr.Values.Nodes {
-			if err := t.walkAttrValue(tree, value, node, attrName); err != nil {
+			if err := t.walkAttrValue(tree, value, node, attrName, attr.IsTheme); err != nil {
 				return nerror.WrapOnly(err)
 			}
 
@@ -797,14 +797,18 @@ func (t *TextWriter) walkHTMLNode(tree *parse.Tree, node *parse.HTMLNode, parent
 	return nil
 }
 
-func (t *TextWriter) walkAttrValue(tree *parse.Tree, node parse.Node, parent parse.Node, varName string) error {
+func (t *TextWriter) walkAttrValue(tree *parse.Tree, node parse.Node, parent parse.Node, varName string, isTheme bool) error {
 	t.inHTMLAttr = true
 	switch value := node.(type) {
 	case *parse.TextNode:
 		var deQuoted = nunsafe.Bytes2String(value.Text)
 		deQuoted = strings.Trim(deQuoted, "\"")
 		if deQuoted != "" {
-			t.AddValueToHtmlListAttr(varName, deQuoted)
+			if isTheme {
+				t.AddValueToThemeListAttr(varName, deQuoted)
+			} else {
+				t.AddValueToHtmlListAttr(varName, deQuoted)
+			}
 			t.NewLine()
 		}
 	case *parse.ActionNode:
@@ -1018,7 +1022,12 @@ func (t *TextWriter) walkTextNode(tree *parse.Tree, node *parse.TextNode, parent
 	if t.inHTMLAttr {
 		var text = strings.TrimSpace(allLineSpacesTabs.ReplaceAllString(string(node.Text), ""))
 		for _, part := range strings.Split(text, " ") {
-			t.AddToAttr(currentNode.Name, part)
+			if !node.InTheme {
+				t.AddToAttr(currentNode.Name, part)
+				t.NewLine()
+				continue
+			}
+			t.AddValueToThemeListAttr(currentNode.Name, part)
 			t.NewLine()
 		}
 		return nil
@@ -1705,6 +1714,10 @@ func (t *TextWriter) NewHtmlListAttr(varName string, name string) {
 
 func (t *TextWriter) NewHtmlTheme(varName string) {
 	t.Write(fmt.Sprintf(`var %s = styled.ThemeDirective{}`, varName))
+}
+
+func (t *TextWriter) AddValueToThemeListAttr(varName string, content string) {
+	t.Write(fmt.Sprintf(`%s.MustAdd(%q)`, varName, content))
 }
 
 func (t *TextWriter) AddValueToHtmlListAttr(varName string, content string) {
