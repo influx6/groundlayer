@@ -2,841 +2,841 @@ package definitions
 
 var UtilityToMappingSet = map[string]map[string]string{
 
-	"animation-fill-mode": AnimationFillModeStyleUtilitiesMapping,
-
-	"image-resolution": ImageResolutionStyleUtilitiesMapping,
-
-	"perspective": PerspectiveStyleUtilitiesMapping,
-
-	"backdrop-filter": BackdropFilterStyleUtilitiesMapping,
-
-	"clip-path": ClipPathStyleUtilitiesMapping,
-
-	"font-smooth": FontSmoothStyleUtilitiesMapping,
-
-	"border-block-style": BorderBlockStyleStyleUtilitiesMapping,
-
-	"padding-block-end": PaddingBlockEndStyleUtilitiesMapping,
-
-	"page-break-inside": PageBreakInsideStyleUtilitiesMapping,
-
-	"perspective-origin": PerspectiveOriginStyleUtilitiesMapping,
-
-	"content": ContentStyleUtilitiesMapping,
-
-	"max-block-size": MaxBlockSizeStyleUtilitiesMapping,
-
-	"overscroll-behavior": OverscrollBehaviorStyleUtilitiesMapping,
-
-	"background-attachment": BackgroundAttachmentStyleUtilitiesMapping,
-
-	"caret-color": CaretColorStyleUtilitiesMapping,
-
-	"transform-rotate-3d": TransformRotate3dStyleUtilitiesMapping,
-
-	"aspect-ratio": AspectRatioStyleUtilitiesMapping,
-
-	"ruby-position": RubyPositionStyleUtilitiesMapping,
-
-	"padding-block-start": PaddingBlockStartStyleUtilitiesMapping,
-
-	"scroll-snap-points-x": ScrollSnapPointsXStyleUtilitiesMapping,
-
-	"zoom": ZoomStyleUtilitiesMapping,
-
-	"border-inline-start-style": BorderInlineStartStyleStyleUtilitiesMapping,
-
-	"overflow-block": OverflowBlockStyleUtilitiesMapping,
-
-	"padding-inline": PaddingInlineStyleUtilitiesMapping,
-
-	"azimuth": AzimuthStyleUtilitiesMapping,
-
-	"mask-border-source": MaskBorderSourceStyleUtilitiesMapping,
-
-	"mask-type": MaskTypeStyleUtilitiesMapping,
-
-	"overscroll-behavior-inline": OverscrollBehaviorInlineStyleUtilitiesMapping,
-
-	"border-inline-style": BorderInlineStyleStyleUtilitiesMapping,
-
-	"font-weight": FontWeightStyleUtilitiesMapping,
-
-	"list-style-image": ListStyleImageStyleUtilitiesMapping,
-
-	"font-size": FontSizeStyleUtilitiesMapping,
-
-	"box-lines": BoxLinesStyleUtilitiesMapping,
-
-	"line-break": LineBreakStyleUtilitiesMapping,
-
-	"scrollbar-gutter": ScrollbarGutterStyleUtilitiesMapping,
-
-	"widows": WidowsStyleUtilitiesMapping,
-
-	"border-bottom-right-radius": BorderBottomRightRadiusStyleUtilitiesMapping,
-
-	"block-overflow": BlockOverflowStyleUtilitiesMapping,
-
-	"min-block-size": MinBlockSizeStyleUtilitiesMapping,
-
-	"scroll-snap-type-x": ScrollSnapTypeXStyleUtilitiesMapping,
-
-	"stroke": StrokeStyleUtilitiesMapping,
-
-	"animation-play-state": AnimationPlayStateStyleUtilitiesMapping,
-
-	"column-span": ColumnSpanStyleUtilitiesMapping,
-
-	"grid-row-end": GridRowEndStyleUtilitiesMapping,
-
-	"scroll-padding": ScrollPaddingStyleUtilitiesMapping,
-
-	"transform-scale-y": TransformScaleYStyleUtilitiesMapping,
-
-	"marker-end": MarkerEndStyleUtilitiesMapping,
-
-	"transition-timing-function": TransitionTimingFunctionStyleUtilitiesMapping,
-
-	"border-image-source": BorderImageSourceStyleUtilitiesMapping,
-
-	"padding-left": PaddingLeftStyleUtilitiesMapping,
-
-	"shape-outside": ShapeOutsideStyleUtilitiesMapping,
-
-	"transform-translate-y": TransformTranslateYStyleUtilitiesMapping,
-
-	"border-collapse": BorderCollapseStyleUtilitiesMapping,
-
-	"box-pack": BoxPackStyleUtilitiesMapping,
-
-	"border-image-repeat": BorderImageRepeatStyleUtilitiesMapping,
-
-	"column-rule-width": ColumnRuleWidthStyleUtilitiesMapping,
-
-	"transform-rotate": TransformRotateStyleUtilitiesMapping,
-
-	"text-emphasis-color": TextEmphasisColorStyleUtilitiesMapping,
-
-	"place-content": PlaceContentStyleUtilitiesMapping,
-
-	"clear": ClearStyleUtilitiesMapping,
-
-	"transform": TransformStyleUtilitiesMapping,
-
-	"border-block-color": BorderBlockColorStyleUtilitiesMapping,
-
-	"box-flex-group": BoxFlexGroupStyleUtilitiesMapping,
-
-	"display": DisplayStyleUtilitiesMapping,
-
-	"alignment-baseline": AlignmentBaselineStyleUtilitiesMapping,
-
-	"text-underline-position": TextUnderlinePositionStyleUtilitiesMapping,
-
-	"scroll-snap-stop": ScrollSnapStopStyleUtilitiesMapping,
-
-	"transform-scale": TransformScaleStyleUtilitiesMapping,
-
-	"visibility": VisibilityStyleUtilitiesMapping,
-
-	"border-bottom-width": BorderBottomWidthStyleUtilitiesMapping,
-
-	"box-align": BoxAlignStyleUtilitiesMapping,
-
-	"opacity": OpacityStyleUtilitiesMapping,
-
-	"transform-translate-z": TransformTranslateZStyleUtilitiesMapping,
-
-	"flood-opacity": FloodOpacityStyleUtilitiesMapping,
-
-	"border-right-width": BorderRightWidthStyleUtilitiesMapping,
-
-	"counter-reset": CounterResetStyleUtilitiesMapping,
-
-	"font-variant-alternates": FontVariantAlternatesStyleUtilitiesMapping,
-
-	"text-decoration-skip": TextDecorationSkipStyleUtilitiesMapping,
-
-	"block-size": BlockSizeStyleUtilitiesMapping,
-
-	"border-bottom-left-radius": BorderBottomLeftRadiusStyleUtilitiesMapping,
-
-	"border-right-style": BorderRightStyleStyleUtilitiesMapping,
-
-	"break-inside": BreakInsideStyleUtilitiesMapping,
-
-	"counter-increment": CounterIncrementStyleUtilitiesMapping,
-
-	"text-anchor": TextAnchorStyleUtilitiesMapping,
-
-	"text-align-last": TextAlignLastStyleUtilitiesMapping,
-
-	"border-block-start-style": BorderBlockStartStyleStyleUtilitiesMapping,
-
-	"mask-border-repeat": MaskBorderRepeatStyleUtilitiesMapping,
-
-	"scroll-behavior": ScrollBehaviorStyleUtilitiesMapping,
-
-	"text-indent": TextIndentStyleUtilitiesMapping,
-
-	"transform-skew-x": TransformSkewXStyleUtilitiesMapping,
-
-	"stroke-linecap": StrokeLinecapStyleUtilitiesMapping,
-
-	"list-style-position": ListStylePositionStyleUtilitiesMapping,
-
-	"text-decoration-style": TextDecorationStyleStyleUtilitiesMapping,
-
-	"color": ColorStyleUtilitiesMapping,
-
-	"inset": InsetStyleUtilitiesMapping,
-
-	"unicode-bidi": UnicodeBidiStyleUtilitiesMapping,
-
-	"scroll-padding-block-start": ScrollPaddingBlockStartStyleUtilitiesMapping,
-
-	"width": WidthStyleUtilitiesMapping,
-
-	"content-visibility": ContentVisibilityStyleUtilitiesMapping,
-
-	"flood-color": FloodColorStyleUtilitiesMapping,
-
-	"stroke-width": StrokeWidthStyleUtilitiesMapping,
-
-	"border-inline-color": BorderInlineColorStyleUtilitiesMapping,
-
-	"initial-letter": InitialLetterStyleUtilitiesMapping,
-
-	"offset-anchor": OffsetAnchorStyleUtilitiesMapping,
-
-	"contain": ContainStyleUtilitiesMapping,
-
-	"overflow-wrap": OverflowWrapStyleUtilitiesMapping,
-
-	"scroll-snap-type-y": ScrollSnapTypeYStyleUtilitiesMapping,
-
-	"touch-action": TouchActionStyleUtilitiesMapping,
-
-	"offset-position": OffsetPositionStyleUtilitiesMapping,
-
-	"scroll-padding-inline-end": ScrollPaddingInlineEndStyleUtilitiesMapping,
-
-	"color-interpolation": ColorInterpolationStyleUtilitiesMapping,
-
-	"mask-border-mode": MaskBorderModeStyleUtilitiesMapping,
-
-	"shape-image-threshold": ShapeImageThresholdStyleUtilitiesMapping,
-
-	"font-variant-ligatures": FontVariantLigaturesStyleUtilitiesMapping,
-
-	"marker-start": MarkerStartStyleUtilitiesMapping,
-
-	"quotes": QuotesStyleUtilitiesMapping,
-
-	"initial-letter-align": InitialLetterAlignStyleUtilitiesMapping,
-
-	"masonry-auto-flow": MasonryAutoFlowStyleUtilitiesMapping,
-
-	"max-inline-size": MaxInlineSizeStyleUtilitiesMapping,
-
-	"overscroll-behavior-x": OverscrollBehaviorXStyleUtilitiesMapping,
-
-	"border-spacing": BorderSpacingStyleUtilitiesMapping,
-
-	"border-top-width": BorderTopWidthStyleUtilitiesMapping,
-
-	"font-variant-numeric": FontVariantNumericStyleUtilitiesMapping,
-
-	"padding-block": PaddingBlockStyleUtilitiesMapping,
-
-	"z-index": ZIndexStyleUtilitiesMapping,
-
-	"stop-opacity": StopOpacityStyleUtilitiesMapping,
-
-	"mask-image": MaskImageStyleUtilitiesMapping,
-
-	"transform-skew-y": TransformSkewYStyleUtilitiesMapping,
-
-	"border-inline-width": BorderInlineWidthStyleUtilitiesMapping,
-
-	"animation-name": AnimationNameStyleUtilitiesMapping,
-
-	"background-blend-mode": BackgroundBlendModeStyleUtilitiesMapping,
+	"border-inline-start-color": BorderInlineStartColorStyleUtilitiesMapping,
 
 	"border-left-color": BorderLeftColorStyleUtilitiesMapping,
 
-	"filter": FilterStyleUtilitiesMapping,
-
-	"overflow-clip-box": OverflowClipBoxStyleUtilitiesMapping,
-
-	"scale-left": ScaleLeftStyleUtilitiesMapping,
-
-	"animation-duration": AnimationDurationStyleUtilitiesMapping,
-
-	"animation-timing-function": AnimationTimingFunctionStyleUtilitiesMapping,
-
-	"border-inline-start-color": BorderInlineStartColorStyleUtilitiesMapping,
-
-	"box-sizing": BoxSizingStyleUtilitiesMapping,
-
-	"color-adjust": ColorAdjustStyleUtilitiesMapping,
-
-	"font-variation-settings": FontVariationSettingsStyleUtilitiesMapping,
-
-	"mask-composite": MaskCompositeStyleUtilitiesMapping,
-
-	"scroll-snap-align": ScrollSnapAlignStyleUtilitiesMapping,
-
-	"font-variant-position": FontVariantPositionStyleUtilitiesMapping,
-
-	"border-end-start-radius": BorderEndStartRadiusStyleUtilitiesMapping,
-
-	"grid-column-gap": GridColumnGapStyleUtilitiesMapping,
-
-	"text-decoration-thickness": TextDecorationThicknessStyleUtilitiesMapping,
-
-	"background-origin": BackgroundOriginStyleUtilitiesMapping,
-
-	"ime-mode": ImeModeStyleUtilitiesMapping,
-
-	"mask-border-width": MaskBorderWidthStyleUtilitiesMapping,
-
-	"right": RightStyleUtilitiesMapping,
-
-	"scroll-margin-left": ScrollMarginLeftStyleUtilitiesMapping,
-
-	"grid-auto-columns": GridAutoColumnsStyleUtilitiesMapping,
-
-	"border-inline-end-style": BorderInlineEndStyleStyleUtilitiesMapping,
-
-	"border-inline-end-width": BorderInlineEndWidthStyleUtilitiesMapping,
-
-	"clip": ClipStyleUtilitiesMapping,
-
-	"hanging-punctuation": HangingPunctuationStyleUtilitiesMapping,
-
-	"margin-block-end": MarginBlockEndStyleUtilitiesMapping,
-
-	"outline-width": OutlineWidthStyleUtilitiesMapping,
-
-	"scroll-margin-block": ScrollMarginBlockStyleUtilitiesMapping,
-
-	"border-start-end-radius": BorderStartEndRadiusStyleUtilitiesMapping,
-
-	"font-language-override": FontLanguageOverrideStyleUtilitiesMapping,
-
-	"text-emphasis-position-first": TextEmphasisPositionFirstStyleUtilitiesMapping,
-
-	"user-select": UserSelectStyleUtilitiesMapping,
-
-	"scroll-padding-bottom": ScrollPaddingBottomStyleUtilitiesMapping,
-
-	"font-size-adjust": FontSizeAdjustStyleUtilitiesMapping,
-
-	"justify-content": JustifyContentStyleUtilitiesMapping,
-
-	"list-style-type": ListStyleTypeStyleUtilitiesMapping,
-
-	"margin-block": MarginBlockStyleUtilitiesMapping,
-
-	"text-rendering": TextRenderingStyleUtilitiesMapping,
-
 	"ruby-align": RubyAlignStyleUtilitiesMapping,
 
-	"align-self": AlignSelfStyleUtilitiesMapping,
-
-	"line-height-step": LineHeightStepStyleUtilitiesMapping,
-
-	"mask-origin": MaskOriginStyleUtilitiesMapping,
-
-	"ruby-merge": RubyMergeStyleUtilitiesMapping,
-
-	"clip-rule": ClipRuleStyleUtilitiesMapping,
-
-	"transform-translate-3d": TransformTranslate3dStyleUtilitiesMapping,
-
-	"text-emphasis-style": TextEmphasisStyleStyleUtilitiesMapping,
-
-	"column-gap": ColumnGapStyleUtilitiesMapping,
-
-	"grid-rows": GridRowsStyleUtilitiesMapping,
-
-	"border-bottom-color": BorderBottomColorStyleUtilitiesMapping,
-
-	"inset-block-start": InsetBlockStartStyleUtilitiesMapping,
-
-	"box-ordinal-group": BoxOrdinalGroupStyleUtilitiesMapping,
-
-	"object-position": ObjectPositionStyleUtilitiesMapping,
-
-	"appearance": AppearanceStyleUtilitiesMapping,
-
-	"direction": DirectionStyleUtilitiesMapping,
-
-	"flex-wrap": FlexWrapStyleUtilitiesMapping,
-
-	"grid-template-columns": GridTemplateColumnsStyleUtilitiesMapping,
-
-	"row-gap": RowGapStyleUtilitiesMapping,
-
-	"text-underline-offset": TextUnderlineOffsetStyleUtilitiesMapping,
-
-	"marker-mid": MarkerMidStyleUtilitiesMapping,
-
-	"grid-column-end": GridColumnEndStyleUtilitiesMapping,
-
-	"align-tracks": AlignTracksStyleUtilitiesMapping,
-
-	"font-variant": FontVariantStyleUtilitiesMapping,
-
-	"math-style": MathStyleStyleUtilitiesMapping,
-
-	"offset-rotate": OffsetRotateStyleUtilitiesMapping,
-
-	"transform-style": TransformStyleStyleUtilitiesMapping,
-
-	"border-inline-start-width": BorderInlineStartWidthStyleUtilitiesMapping,
-
-	"box-shadow": BoxShadowStyleUtilitiesMapping,
-
-	"flex-grow": FlexGrowStyleUtilitiesMapping,
-
-	"hyphens": HyphensStyleUtilitiesMapping,
-
-	"align-content": AlignContentStyleUtilitiesMapping,
-
-	"margin-top": MarginTopStyleUtilitiesMapping,
-
-	"position": PositionStyleUtilitiesMapping,
-
-	"font-family": FontFamilyStyleUtilitiesMapping,
-
-	"font-kerning": FontKerningStyleUtilitiesMapping,
-
-	"overflow-x": OverflowXStyleUtilitiesMapping,
-
-	"fill-opacity": FillOpacityStyleUtilitiesMapping,
-
-	"line-height": LineHeightStyleUtilitiesMapping,
-
-	"mask-mode": MaskModeStyleUtilitiesMapping,
-
-	"stroke-linejoin": StrokeLinejoinStyleUtilitiesMapping,
-
-	"scroll-margin": ScrollMarginStyleUtilitiesMapping,
-
-	"font-variant-caps": FontVariantCapsStyleUtilitiesMapping,
-
-	"overflow-y": OverflowYStyleUtilitiesMapping,
-
-	"text-align": TextAlignStyleUtilitiesMapping,
-
-	"translate": TranslateStyleUtilitiesMapping,
-
-	"stop-color": StopColorStyleUtilitiesMapping,
-
-	"border-top-style": BorderTopStyleStyleUtilitiesMapping,
-
-	"margin-inline-end": MarginInlineEndStyleUtilitiesMapping,
-
-	"grid-template-areas": GridTemplateAreasStyleUtilitiesMapping,
-
-	"shape-margin": ShapeMarginStyleUtilitiesMapping,
-
-	"border-block-start-color": BorderBlockStartColorStyleUtilitiesMapping,
-
-	"margin-inline-start": MarginInlineStartStyleUtilitiesMapping,
-
-	"padding-top": PaddingTopStyleUtilitiesMapping,
-
-	"pointer-events": PointerEventsStyleUtilitiesMapping,
-
-	"all": AllStyleUtilitiesMapping,
-
-	"flex-direction": FlexDirectionStyleUtilitiesMapping,
-
-	"left": LeftStyleUtilitiesMapping,
-
-	"letter-spacing": LetterSpacingStyleUtilitiesMapping,
-
-	"max-lines": MaxLinesStyleUtilitiesMapping,
-
-	"column-count": ColumnCountStyleUtilitiesMapping,
-
-	"border-top-left-radius": BorderTopLeftRadiusStyleUtilitiesMapping,
-
-	"scroll-margin-inline-end": ScrollMarginInlineEndStyleUtilitiesMapping,
-
-	"transform-rotate-x": TransformRotateXStyleUtilitiesMapping,
-
-	"shape-rendering": ShapeRenderingStyleUtilitiesMapping,
-
-	"border-right-color": BorderRightColorStyleUtilitiesMapping,
-
-	"border-start-start-radius": BorderStartStartRadiusStyleUtilitiesMapping,
-
-	"inset-block-end": InsetBlockEndStyleUtilitiesMapping,
-
-	"background-size": BackgroundSizeStyleUtilitiesMapping,
-
-	"padding-bottom": PaddingBottomStyleUtilitiesMapping,
-
-	"scroll-margin-bottom": ScrollMarginBottomStyleUtilitiesMapping,
-
-	"scroll-margin-inline-start": ScrollMarginInlineStartStyleUtilitiesMapping,
-
-	"background-position-x": BackgroundPositionXStyleUtilitiesMapping,
-
-	"scroll-margin-block-start": ScrollMarginBlockStartStyleUtilitiesMapping,
-
-	"scroll-margin-top": ScrollMarginTopStyleUtilitiesMapping,
-
-	"scroll-padding-inline-start": ScrollPaddingInlineStartStyleUtilitiesMapping,
-
-	"animation-iteration-count": AnimationIterationCountStyleUtilitiesMapping,
-
-	"border-end-end-radius": BorderEndEndRadiusStyleUtilitiesMapping,
-
-	"grid-row-start": GridRowStartStyleUtilitiesMapping,
-
-	"inset-inline-end": InsetInlineEndStyleUtilitiesMapping,
-
-	"resize": ResizeStyleUtilitiesMapping,
-
-	"transition-duration": TransitionDurationStyleUtilitiesMapping,
-
-	"marker": MarkerStyleUtilitiesMapping,
-
-	"box-orient": BoxOrientStyleUtilitiesMapping,
-
-	"scroll-snap-type": ScrollSnapTypeStyleUtilitiesMapping,
-
-	"tab-size": TabSizeStyleUtilitiesMapping,
-
-	"gap": GapStyleUtilitiesMapping,
-
-	"grid-auto-rows": GridAutoRowsStyleUtilitiesMapping,
-
-	"white-space": WhiteSpaceStyleUtilitiesMapping,
-
-	"border-image-outset": BorderImageOutsetStyleUtilitiesMapping,
-
-	"margin-trim": MarginTrimStyleUtilitiesMapping,
-
-	"transition-property": TransitionPropertyStyleUtilitiesMapping,
-
-	"animation-direction": AnimationDirectionStyleUtilitiesMapping,
-
-	"mask-size": MaskSizeStyleUtilitiesMapping,
-
-	"padding-inline-end": PaddingInlineEndStyleUtilitiesMapping,
-
-	"transform-rotate-y": TransformRotateYStyleUtilitiesMapping,
-
-	"font-feature-settings": FontFeatureSettingsStyleUtilitiesMapping,
-
-	"margin-right": MarginRightStyleUtilitiesMapping,
-
-	"border-block-width": BorderBlockWidthStyleUtilitiesMapping,
-
-	"box-direction": BoxDirectionStyleUtilitiesMapping,
-
-	"transform-origin": TransformOriginStyleUtilitiesMapping,
-
-	"stroke-dashoffset": StrokeDashoffsetStyleUtilitiesMapping,
-
-	"break-before": BreakBeforeStyleUtilitiesMapping,
-
-	"isolation": IsolationStyleUtilitiesMapping,
-
-	"rotate": RotateStyleUtilitiesMapping,
-
-	"scroll-padding-block-end": ScrollPaddingBlockEndStyleUtilitiesMapping,
-
-	"border-block-end-style": BorderBlockEndStyleStyleUtilitiesMapping,
-
-	"text-decoration-skip-ink": TextDecorationSkipInkStyleUtilitiesMapping,
-
-	"transform-scale-z": TransformScaleZStyleUtilitiesMapping,
-
-	"align-items": AlignItemsStyleUtilitiesMapping,
-
-	"break-after": BreakAfterStyleUtilitiesMapping,
-
-	"baseline-shift": BaselineShiftStyleUtilitiesMapping,
-
-	"stroke-opacity": StrokeOpacityStyleUtilitiesMapping,
-
-	"bottom": BottomStyleUtilitiesMapping,
-
-	"font-optical-sizing": FontOpticalSizingStyleUtilitiesMapping,
-
-	"text-decoration-color": TextDecorationColorStyleUtilitiesMapping,
-
-	"text-orientation": TextOrientationStyleUtilitiesMapping,
-
-	"outline-color": OutlineColorStyleUtilitiesMapping,
-
-	"cursor": CursorStyleUtilitiesMapping,
-
-	"mask-border-slice": MaskBorderSliceStyleUtilitiesMapping,
-
-	"offset-path": OffsetPathStyleUtilitiesMapping,
-
-	"scroll-padding-inline": ScrollPaddingInlineStyleUtilitiesMapping,
-
-	"padding-right": PaddingRightStyleUtilitiesMapping,
-
-	"word-spacing": WordSpacingStyleUtilitiesMapping,
-
-	"glyph-orientation-vertical": GlyphOrientationVerticalStyleUtilitiesMapping,
-
-	"column-rule-style": ColumnRuleStyleStyleUtilitiesMapping,
-
-	"forced-color-adjust": ForcedColorAdjustStyleUtilitiesMapping,
-
-	"border-width": BorderWidthStyleUtilitiesMapping,
-
-	"object-fit": ObjectFitStyleUtilitiesMapping,
-
-	"mask-border-outset": MaskBorderOutsetStyleUtilitiesMapping,
-
-	"font-variant-east-asian": FontVariantEastAsianStyleUtilitiesMapping,
-
-	"transform-scale-3d": TransformScale3dStyleUtilitiesMapping,
-
-	"scroll-snap-destination": ScrollSnapDestinationStyleUtilitiesMapping,
-
-	"text-size-adjust": TextSizeAdjustStyleUtilitiesMapping,
-
-	"transform-scale-x": TransformScaleXStyleUtilitiesMapping,
-
-	"overscroll-behavior-block": OverscrollBehaviorBlockStyleUtilitiesMapping,
-
-	"caption-side": CaptionSideStyleUtilitiesMapping,
-
-	"scrollbar-width": ScrollbarWidthStyleUtilitiesMapping,
-
-	"transform-translate": TransformTranslateStyleUtilitiesMapping,
-
-	"background-repeat": BackgroundRepeatStyleUtilitiesMapping,
-
-	"image-orientation": ImageOrientationStyleUtilitiesMapping,
-
-	"overflow-inline": OverflowInlineStyleUtilitiesMapping,
-
-	"scroll-margin-block-end": ScrollMarginBlockEndStyleUtilitiesMapping,
+	"transform-translate-z": TransformTranslateZStyleUtilitiesMapping,
 
 	"transform-translate-x": TransformTranslateXStyleUtilitiesMapping,
 
-	"box-decoration-break": BoxDecorationBreakStyleUtilitiesMapping,
+	"border-image-source": BorderImageSourceStyleUtilitiesMapping,
 
-	"scroll-padding-left": ScrollPaddingLeftStyleUtilitiesMapping,
+	"margin-inline-start": MarginInlineStartStyleUtilitiesMapping,
 
-	"text-emphasis-position-second": TextEmphasisPositionSecondStyleUtilitiesMapping,
+	"border-block-color": BorderBlockColorStyleUtilitiesMapping,
 
-	"text-transform": TextTransformStyleUtilitiesMapping,
+	"z-index": ZIndexStyleUtilitiesMapping,
 
-	"font-style": FontStyleStyleUtilitiesMapping,
-
-	"grid-auto-flow": GridAutoFlowStyleUtilitiesMapping,
-
-	"margin-bottom": MarginBottomStyleUtilitiesMapping,
-
-	"fill-rule": FillRuleStyleUtilitiesMapping,
-
-	"stroke-miterlimit": StrokeMiterlimitStyleUtilitiesMapping,
-
-	"height": HeightStyleUtilitiesMapping,
-
-	"scale-right": ScaleRightStyleUtilitiesMapping,
-
-	"text-justify": TextJustifyStyleUtilitiesMapping,
-
-	"vertical-align": VerticalAlignStyleUtilitiesMapping,
-
-	"margin-block-start": MarginBlockStartStyleUtilitiesMapping,
-
-	"max-width": MaxWidthStyleUtilitiesMapping,
-
-	"transform-box": TransformBoxStyleUtilitiesMapping,
-
-	"word-wrap": WordWrapStyleUtilitiesMapping,
-
-	"justify-self": JustifySelfStyleUtilitiesMapping,
-
-	"transition-delay": TransitionDelayStyleUtilitiesMapping,
-
-	"paint-order": PaintOrderStyleUtilitiesMapping,
-
-	"line-clamp": LineClampStyleUtilitiesMapping,
-
-	"table-layout": TableLayoutStyleUtilitiesMapping,
-
-	"animation-delay": AnimationDelayStyleUtilitiesMapping,
-
-	"border-image-width": BorderImageWidthStyleUtilitiesMapping,
-
-	"word-break": WordBreakStyleUtilitiesMapping,
-
-	"color-rendering": ColorRenderingStyleUtilitiesMapping,
-
-	"page-break-before": PageBreakBeforeStyleUtilitiesMapping,
-
-	"scroll-margin-right": ScrollMarginRightStyleUtilitiesMapping,
-
-	"grid-template-rows": GridTemplateRowsStyleUtilitiesMapping,
-
-	"justify-items": JustifyItemsStyleUtilitiesMapping,
-
-	"overflow-anchor": OverflowAnchorStyleUtilitiesMapping,
-
-	"margin-inline": MarginInlineStyleUtilitiesMapping,
-
-	"lighting-color": LightingColorStyleUtilitiesMapping,
-
-	"text-overflow": TextOverflowStyleUtilitiesMapping,
-
-	"top": TopStyleUtilitiesMapping,
-
-	"border-top-right-radius": BorderTopRightRadiusStyleUtilitiesMapping,
+	"border-end-end-radius": BorderEndEndRadiusStyleUtilitiesMapping,
 
 	"mask-repeat": MaskRepeatStyleUtilitiesMapping,
 
-	"border-left-width": BorderLeftWidthStyleUtilitiesMapping,
+	"scroll-margin-inline-start": ScrollMarginInlineStartStyleUtilitiesMapping,
 
-	"border-block-start-width": BorderBlockStartWidthStyleUtilitiesMapping,
+	"mask-border-source": MaskBorderSourceStyleUtilitiesMapping,
 
-	"outline-offset": OutlineOffsetStyleUtilitiesMapping,
+	"table-layout": TableLayoutStyleUtilitiesMapping,
 
-	"transform-rotate-z": TransformRotateZStyleUtilitiesMapping,
+	"grid-template-areas": GridTemplateAreasStyleUtilitiesMapping,
 
-	"float": FloatStyleUtilitiesMapping,
+	"scroll-snap-type-y": ScrollSnapTypeYStyleUtilitiesMapping,
 
-	"min-height": MinHeightStyleUtilitiesMapping,
+	"transform-rotate-3d": TransformRotate3dStyleUtilitiesMapping,
 
-	"scroll-snap-coordinate": ScrollSnapCoordinateStyleUtilitiesMapping,
+	"marker-start": MarkerStartStyleUtilitiesMapping,
 
-	"writing-mode": WritingModeStyleUtilitiesMapping,
+	"color": ColorStyleUtilitiesMapping,
 
-	"column-width": ColumnWidthStyleUtilitiesMapping,
+	"min-width": MinWidthStyleUtilitiesMapping,
 
-	"border-block-end-color": BorderBlockEndColorStyleUtilitiesMapping,
+	"outline-width": OutlineWidthStyleUtilitiesMapping,
 
-	"empty-cells": EmptyCellsStyleUtilitiesMapping,
+	"animation-timing-function": AnimationTimingFunctionStyleUtilitiesMapping,
+
+	"font-variation-settings": FontVariationSettingsStyleUtilitiesMapping,
+
+	"text-decoration-skip-ink": TextDecorationSkipInkStyleUtilitiesMapping,
+
+	"text-emphasis-color": TextEmphasisColorStyleUtilitiesMapping,
+
+	"animation-fill-mode": AnimationFillModeStyleUtilitiesMapping,
+
+	"contain": ContainStyleUtilitiesMapping,
 
 	"flex-basis": FlexBasisStyleUtilitiesMapping,
 
+	"font-variant-alternates": FontVariantAlternatesStyleUtilitiesMapping,
+
+	"grid-row-start": GridRowStartStyleUtilitiesMapping,
+
+	"scrollbar-color": ScrollbarColorStyleUtilitiesMapping,
+
+	"line-clamp": LineClampStyleUtilitiesMapping,
+
+	"border-start-end-radius": BorderStartEndRadiusStyleUtilitiesMapping,
+
+	"font-feature-settings": FontFeatureSettingsStyleUtilitiesMapping,
+
+	"mask-border-width": MaskBorderWidthStyleUtilitiesMapping,
+
+	"overscroll-behavior-block": OverscrollBehaviorBlockStyleUtilitiesMapping,
+
+	"font-variant-position": FontVariantPositionStyleUtilitiesMapping,
+
+	"padding-block-start": PaddingBlockStartStyleUtilitiesMapping,
+
+	"animation-name": AnimationNameStyleUtilitiesMapping,
+
+	"background-size": BackgroundSizeStyleUtilitiesMapping,
+
+	"box-align": BoxAlignStyleUtilitiesMapping,
+
+	"box-flex": BoxFlexStyleUtilitiesMapping,
+
+	"image-orientation": ImageOrientationStyleUtilitiesMapping,
+
+	"stroke-opacity": StrokeOpacityStyleUtilitiesMapping,
+
+	"box-flex-group": BoxFlexGroupStyleUtilitiesMapping,
+
+	"mask-clip": MaskClipStyleUtilitiesMapping,
+
+	"scroll-padding-block-end": ScrollPaddingBlockEndStyleUtilitiesMapping,
+
+	"text-shadow": TextShadowStyleUtilitiesMapping,
+
+	"caret-color": CaretColorStyleUtilitiesMapping,
+
+	"mask-image": MaskImageStyleUtilitiesMapping,
+
+	"grid-rows": GridRowsStyleUtilitiesMapping,
+
+	"animation-play-state": AnimationPlayStateStyleUtilitiesMapping,
+
 	"grid-column-start": GridColumnStartStyleUtilitiesMapping,
-
-	"background-image": BackgroundImageStyleUtilitiesMapping,
-
-	"order": OrderStyleUtilitiesMapping,
-
-	"padding-inline-start": PaddingInlineStartStyleUtilitiesMapping,
-
-	"scroll-padding-right": ScrollPaddingRightStyleUtilitiesMapping,
-
-	"inset-block": InsetBlockStyleUtilitiesMapping,
-
-	"vector-effect": VectorEffectStyleUtilitiesMapping,
-
-	"flex-shrink": FlexShrinkStyleUtilitiesMapping,
 
 	"mask-position": MaskPositionStyleUtilitiesMapping,
 
 	"orphans": OrphansStyleUtilitiesMapping,
 
-	"overscroll-behavior-y": OverscrollBehaviorYStyleUtilitiesMapping,
+	"scroll-snap-align": ScrollSnapAlignStyleUtilitiesMapping,
 
-	"fill": FillStyleUtilitiesMapping,
+	"scroll-padding-right": ScrollPaddingRightStyleUtilitiesMapping,
 
-	"border-image-slice": BorderImageSliceStyleUtilitiesMapping,
+	"scroll-snap-coordinate": ScrollSnapCoordinateStyleUtilitiesMapping,
 
-	"counter-set": CounterSetStyleUtilitiesMapping,
+	"scroll-snap-stop": ScrollSnapStopStyleUtilitiesMapping,
 
-	"overflow": OverflowStyleUtilitiesMapping,
+	"list-style-type": ListStyleTypeStyleUtilitiesMapping,
+
+	"padding-inline-end": PaddingInlineEndStyleUtilitiesMapping,
+
+	"unicode-bidi": UnicodeBidiStyleUtilitiesMapping,
+
+	"hanging-punctuation": HangingPunctuationStyleUtilitiesMapping,
+
+	"scroll-margin-block-start": ScrollMarginBlockStartStyleUtilitiesMapping,
+
+	"row-gap": RowGapStyleUtilitiesMapping,
+
+	"break-inside": BreakInsideStyleUtilitiesMapping,
+
+	"stroke-linejoin": StrokeLinejoinStyleUtilitiesMapping,
 
 	"background-position": BackgroundPositionStyleUtilitiesMapping,
 
-	"scroll-margin-inline": ScrollMarginInlineStyleUtilitiesMapping,
+	"border-bottom-color": BorderBottomColorStyleUtilitiesMapping,
 
-	"dominant-baseline": DominantBaselineStyleUtilitiesMapping,
+	"scroll-padding-inline": ScrollPaddingInlineStyleUtilitiesMapping,
 
-	"border-block-end-width": BorderBlockEndWidthStyleUtilitiesMapping,
+	"isolation": IsolationStyleUtilitiesMapping,
 
-	"font-stretch": FontStretchStyleUtilitiesMapping,
+	"font-variant-caps": FontVariantCapsStyleUtilitiesMapping,
 
-	"image-rendering": ImageRenderingStyleUtilitiesMapping,
+	"font-style": FontStyleStyleUtilitiesMapping,
 
-	"inline-size": InlineSizeStyleUtilitiesMapping,
-
-	"mask-clip": MaskClipStyleUtilitiesMapping,
-
-	"column-rule-color": ColumnRuleColorStyleUtilitiesMapping,
-
-	"offset-distance": OffsetDistanceStyleUtilitiesMapping,
-
-	"scroll-padding-block": ScrollPaddingBlockStyleUtilitiesMapping,
-
-	"text-shadow": TextShadowStyleUtilitiesMapping,
-
-	"border-bottom-style": BorderBottomStyleStyleUtilitiesMapping,
-
-	"mix-blend-mode": MixBlendModeStyleUtilitiesMapping,
-
-	"background-clip": BackgroundClipStyleUtilitiesMapping,
-
-	"text-combine-upright": TextCombineUprightStyleUtilitiesMapping,
-
-	"transform-skew": TransformSkewStyleUtilitiesMapping,
-
-	"grid-row-gap": GridRowGapStyleUtilitiesMapping,
-
-	"max-height": MaxHeightStyleUtilitiesMapping,
-
-	"min-inline-size": MinInlineSizeStyleUtilitiesMapping,
-
-	"border-left-style": BorderLeftStyleStyleUtilitiesMapping,
-
-	"justify-tracks": JustifyTracksStyleUtilitiesMapping,
-
-	"backface-visibility": BackfaceVisibilityStyleUtilitiesMapping,
-
-	"background-color": BackgroundColorStyleUtilitiesMapping,
-
-	"background-position-y": BackgroundPositionYStyleUtilitiesMapping,
-
-	"inset-inline-start": InsetInlineStartStyleUtilitiesMapping,
-
-	"page-break-after": PageBreakAfterStyleUtilitiesMapping,
-
-	"text-decoration-line": TextDecorationLineStyleUtilitiesMapping,
+	"justify-content": JustifyContentStyleUtilitiesMapping,
 
 	"margin-left": MarginLeftStyleUtilitiesMapping,
 
-	"scrollbar-color": ScrollbarColorStyleUtilitiesMapping,
+	"scroll-padding-bottom": ScrollPaddingBottomStyleUtilitiesMapping,
 
-	"scroll-padding-top": ScrollPaddingTopStyleUtilitiesMapping,
+	"stroke-linecap": StrokeLinecapStyleUtilitiesMapping,
 
-	"will-change": WillChangeStyleUtilitiesMapping,
+	"list-style-position": ListStylePositionStyleUtilitiesMapping,
 
-	"box-flex": BoxFlexStyleUtilitiesMapping,
+	"max-block-size": MaxBlockSizeStyleUtilitiesMapping,
 
-	"min-width": MinWidthStyleUtilitiesMapping,
+	"border-block-style": BorderBlockStyleStyleUtilitiesMapping,
+
+	"border-block-start-width": BorderBlockStartWidthStyleUtilitiesMapping,
+
+	"box-lines": BoxLinesStyleUtilitiesMapping,
+
+	"box-orient": BoxOrientStyleUtilitiesMapping,
+
+	"image-resolution": ImageResolutionStyleUtilitiesMapping,
+
+	"scroll-padding-inline-start": ScrollPaddingInlineStartStyleUtilitiesMapping,
+
+	"animation-iteration-count": AnimationIterationCountStyleUtilitiesMapping,
+
+	"border-top-left-radius": BorderTopLeftRadiusStyleUtilitiesMapping,
+
+	"overflow-anchor": OverflowAnchorStyleUtilitiesMapping,
+
+	"overflow-inline": OverflowInlineStyleUtilitiesMapping,
+
+	"grid-row-gap": GridRowGapStyleUtilitiesMapping,
+
+	"content-visibility": ContentVisibilityStyleUtilitiesMapping,
+
+	"grid-auto-rows": GridAutoRowsStyleUtilitiesMapping,
+
+	"grid-template-columns": GridTemplateColumnsStyleUtilitiesMapping,
+
+	"page-break-inside": PageBreakInsideStyleUtilitiesMapping,
+
+	"scale-right": ScaleRightStyleUtilitiesMapping,
+
+	"text-decoration-color": TextDecorationColorStyleUtilitiesMapping,
+
+	"border-block-end-width": BorderBlockEndWidthStyleUtilitiesMapping,
+
+	"border-top-width": BorderTopWidthStyleUtilitiesMapping,
+
+	"max-width": MaxWidthStyleUtilitiesMapping,
+
+	"max-height": MaxHeightStyleUtilitiesMapping,
+
+	"pointer-events": PointerEventsStyleUtilitiesMapping,
+
+	"transition-delay": TransitionDelayStyleUtilitiesMapping,
+
+	"cursor": CursorStyleUtilitiesMapping,
+
+	"transform-rotate": TransformRotateStyleUtilitiesMapping,
+
+	"shape-rendering": ShapeRenderingStyleUtilitiesMapping,
+
+	"align-self": AlignSelfStyleUtilitiesMapping,
+
+	"border-image-repeat": BorderImageRepeatStyleUtilitiesMapping,
+
+	"gap": GapStyleUtilitiesMapping,
+
+	"border-block-width": BorderBlockWidthStyleUtilitiesMapping,
+
+	"color-adjust": ColorAdjustStyleUtilitiesMapping,
+
+	"grid-row-end": GridRowEndStyleUtilitiesMapping,
+
+	"justify-items": JustifyItemsStyleUtilitiesMapping,
+
+	"fill": FillStyleUtilitiesMapping,
+
+	"lighting-color": LightingColorStyleUtilitiesMapping,
+
+	"background-image": BackgroundImageStyleUtilitiesMapping,
+
+	"overscroll-behavior-x": OverscrollBehaviorXStyleUtilitiesMapping,
+
+	"text-size-adjust": TextSizeAdjustStyleUtilitiesMapping,
+
+	"float": FloatStyleUtilitiesMapping,
+
+	"stop-color": StopColorStyleUtilitiesMapping,
+
+	"column-rule-color": ColumnRuleColorStyleUtilitiesMapping,
+
+	"overflow": OverflowStyleUtilitiesMapping,
+
+	"padding-block-end": PaddingBlockEndStyleUtilitiesMapping,
 
 	"border-inline-end-color": BorderInlineEndColorStyleUtilitiesMapping,
 
-	"border-top-color": BorderTopColorStyleUtilitiesMapping,
+	"line-height": LineHeightStyleUtilitiesMapping,
+
+	"min-inline-size": MinInlineSizeStyleUtilitiesMapping,
+
+	"scroll-padding-inline-end": ScrollPaddingInlineEndStyleUtilitiesMapping,
+
+	"text-align": TextAlignStyleUtilitiesMapping,
+
+	"animation-direction": AnimationDirectionStyleUtilitiesMapping,
+
+	"border-bottom-left-radius": BorderBottomLeftRadiusStyleUtilitiesMapping,
+
+	"counter-reset": CounterResetStyleUtilitiesMapping,
+
+	"text-emphasis-style": TextEmphasisStyleStyleUtilitiesMapping,
+
+	"font-language-override": FontLanguageOverrideStyleUtilitiesMapping,
+
+	"transform-origin": TransformOriginStyleUtilitiesMapping,
+
+	"column-span": ColumnSpanStyleUtilitiesMapping,
+
+	"opacity": OpacityStyleUtilitiesMapping,
+
+	"overscroll-behavior-y": OverscrollBehaviorYStyleUtilitiesMapping,
+
+	"offset-distance": OffsetDistanceStyleUtilitiesMapping,
+
+	"padding-right": PaddingRightStyleUtilitiesMapping,
+
+	"quotes": QuotesStyleUtilitiesMapping,
+
+	"scroll-snap-points-y": ScrollSnapPointsYStyleUtilitiesMapping,
+
+	"line-height-step": LineHeightStepStyleUtilitiesMapping,
+
+	"shape-margin": ShapeMarginStyleUtilitiesMapping,
+
+	"writing-mode": WritingModeStyleUtilitiesMapping,
+
+	"grid-auto-columns": GridAutoColumnsStyleUtilitiesMapping,
+
+	"grid-column-gap": GridColumnGapStyleUtilitiesMapping,
+
+	"border-image-outset": BorderImageOutsetStyleUtilitiesMapping,
+
+	"box-ordinal-group": BoxOrdinalGroupStyleUtilitiesMapping,
+
+	"mask-composite": MaskCompositeStyleUtilitiesMapping,
+
+	"inset": InsetStyleUtilitiesMapping,
+
+	"ruby-merge": RubyMergeStyleUtilitiesMapping,
+
+	"color-rendering": ColorRenderingStyleUtilitiesMapping,
+
+	"box-pack": BoxPackStyleUtilitiesMapping,
+
+	"grid-auto-flow": GridAutoFlowStyleUtilitiesMapping,
+
+	"border-block-start-style": BorderBlockStartStyleStyleUtilitiesMapping,
 
 	"column-fill": ColumnFillStyleUtilitiesMapping,
 
 	"font-synthesis": FontSynthesisStyleUtilitiesMapping,
 
+	"color-interpolation": ColorInterpolationStyleUtilitiesMapping,
+
+	"transform": TransformStyleUtilitiesMapping,
+
+	"paint-order": PaintOrderStyleUtilitiesMapping,
+
+	"background-clip": BackgroundClipStyleUtilitiesMapping,
+
+	"transform-skew-x": TransformSkewXStyleUtilitiesMapping,
+
+	"inset-block": InsetBlockStyleUtilitiesMapping,
+
+	"font-variant-east-asian": FontVariantEastAsianStyleUtilitiesMapping,
+
+	"border-inline-start-style": BorderInlineStartStyleStyleUtilitiesMapping,
+
+	"box-direction": BoxDirectionStyleUtilitiesMapping,
+
+	"line-break": LineBreakStyleUtilitiesMapping,
+
+	"outline-offset": OutlineOffsetStyleUtilitiesMapping,
+
+	"text-overflow": TextOverflowStyleUtilitiesMapping,
+
+	"border-block-start-color": BorderBlockStartColorStyleUtilitiesMapping,
+
+	"text-indent": TextIndentStyleUtilitiesMapping,
+
+	"flex-direction": FlexDirectionStyleUtilitiesMapping,
+
+	"inline-size": InlineSizeStyleUtilitiesMapping,
+
+	"letter-spacing": LetterSpacingStyleUtilitiesMapping,
+
+	"counter-increment": CounterIncrementStyleUtilitiesMapping,
+
+	"min-height": MinHeightStyleUtilitiesMapping,
+
+	"scroll-snap-type": ScrollSnapTypeStyleUtilitiesMapping,
+
+	"block-overflow": BlockOverflowStyleUtilitiesMapping,
+
+	"column-gap": ColumnGapStyleUtilitiesMapping,
+
+	"inset-block-end": InsetBlockEndStyleUtilitiesMapping,
+
+	"overflow-y": OverflowYStyleUtilitiesMapping,
+
+	"text-anchor": TextAnchorStyleUtilitiesMapping,
+
+	"inset-block-start": InsetBlockStartStyleUtilitiesMapping,
+
+	"margin-bottom": MarginBottomStyleUtilitiesMapping,
+
+	"text-justify": TextJustifyStyleUtilitiesMapping,
+
+	"top": TopStyleUtilitiesMapping,
+
+	"font-variant": FontVariantStyleUtilitiesMapping,
+
+	"border-left-width": BorderLeftWidthStyleUtilitiesMapping,
+
+	"column-width": ColumnWidthStyleUtilitiesMapping,
+
+	"backdrop-filter": BackdropFilterStyleUtilitiesMapping,
+
+	"border-inline-color": BorderInlineColorStyleUtilitiesMapping,
+
+	"word-wrap": WordWrapStyleUtilitiesMapping,
+
+	"content": ContentStyleUtilitiesMapping,
+
+	"height": HeightStyleUtilitiesMapping,
+
+	"ruby-position": RubyPositionStyleUtilitiesMapping,
+
+	"glyph-orientation-vertical": GlyphOrientationVerticalStyleUtilitiesMapping,
+
+	"background-attachment": BackgroundAttachmentStyleUtilitiesMapping,
+
+	"scrollbar-width": ScrollbarWidthStyleUtilitiesMapping,
+
+	"scroll-padding": ScrollPaddingStyleUtilitiesMapping,
+
+	"transform-skew": TransformSkewStyleUtilitiesMapping,
+
+	"all": AllStyleUtilitiesMapping,
+
+	"border-inline-end-width": BorderInlineEndWidthStyleUtilitiesMapping,
+
+	"flex-grow": FlexGrowStyleUtilitiesMapping,
+
+	"shape-image-threshold": ShapeImageThresholdStyleUtilitiesMapping,
+
+	"transform-box": TransformBoxStyleUtilitiesMapping,
+
+	"border-block-end-style": BorderBlockEndStyleStyleUtilitiesMapping,
+
+	"clip": ClipStyleUtilitiesMapping,
+
+	"text-combine-upright": TextCombineUprightStyleUtilitiesMapping,
+
+	"text-rendering": TextRenderingStyleUtilitiesMapping,
+
+	"font-family": FontFamilyStyleUtilitiesMapping,
+
+	"forced-color-adjust": ForcedColorAdjustStyleUtilitiesMapping,
+
+	"overflow-block": OverflowBlockStyleUtilitiesMapping,
+
+	"scroll-margin-left": ScrollMarginLeftStyleUtilitiesMapping,
+
+	"align-items": AlignItemsStyleUtilitiesMapping,
+
+	"text-underline-offset": TextUnderlineOffsetStyleUtilitiesMapping,
+
+	"scroll-snap-destination": ScrollSnapDestinationStyleUtilitiesMapping,
+
+	"border-bottom-right-radius": BorderBottomRightRadiusStyleUtilitiesMapping,
+
+	"text-decoration-skip": TextDecorationSkipStyleUtilitiesMapping,
+
+	"border-end-start-radius": BorderEndStartRadiusStyleUtilitiesMapping,
+
+	"initial-letter": InitialLetterStyleUtilitiesMapping,
+
+	"overscroll-behavior": OverscrollBehaviorStyleUtilitiesMapping,
+
+	"transform-translate-3d": TransformTranslate3dStyleUtilitiesMapping,
+
+	"border-top-style": BorderTopStyleStyleUtilitiesMapping,
+
+	"user-select": UserSelectStyleUtilitiesMapping,
+
+	"direction": DirectionStyleUtilitiesMapping,
+
+	"inset-inline-end": InsetInlineEndStyleUtilitiesMapping,
+
 	"inset-inline": InsetInlineStyleUtilitiesMapping,
 
-	"scroll-snap-points-y": ScrollSnapPointsYStyleUtilitiesMapping,
+	"background-blend-mode": BackgroundBlendModeStyleUtilitiesMapping,
+
+	"transition-property": TransitionPropertyStyleUtilitiesMapping,
+
+	"overscroll-behavior-inline": OverscrollBehaviorInlineStyleUtilitiesMapping,
+
+	"scroll-margin-block": ScrollMarginBlockStyleUtilitiesMapping,
+
+	"transform-translate": TransformTranslateStyleUtilitiesMapping,
+
+	"marker": MarkerStyleUtilitiesMapping,
+
+	"border-image-width": BorderImageWidthStyleUtilitiesMapping,
 
 	"outline-style": OutlineStyleStyleUtilitiesMapping,
+
+	"overflow-clip-box": OverflowClipBoxStyleUtilitiesMapping,
+
+	"scroll-padding-top": ScrollPaddingTopStyleUtilitiesMapping,
+
+	"stroke-width": StrokeWidthStyleUtilitiesMapping,
+
+	"list-style-image": ListStyleImageStyleUtilitiesMapping,
+
+	"scroll-padding-block-start": ScrollPaddingBlockStartStyleUtilitiesMapping,
+
+	"border-image-slice": BorderImageSliceStyleUtilitiesMapping,
+
+	"border-top-color": BorderTopColorStyleUtilitiesMapping,
+
+	"transform-scale-3d": TransformScale3dStyleUtilitiesMapping,
+
+	"aspect-ratio": AspectRatioStyleUtilitiesMapping,
+
+	"position": PositionStyleUtilitiesMapping,
+
+	"mask-border-outset": MaskBorderOutsetStyleUtilitiesMapping,
+
+	"clip-rule": ClipRuleStyleUtilitiesMapping,
+
+	"font-stretch": FontStretchStyleUtilitiesMapping,
+
+	"margin-top": MarginTopStyleUtilitiesMapping,
+
+	"scroll-margin-bottom": ScrollMarginBottomStyleUtilitiesMapping,
+
+	"animation-delay": AnimationDelayStyleUtilitiesMapping,
+
+	"block-size": BlockSizeStyleUtilitiesMapping,
+
+	"font-optical-sizing": FontOpticalSizingStyleUtilitiesMapping,
+
+	"shape-outside": ShapeOutsideStyleUtilitiesMapping,
+
+	"flood-opacity": FloodOpacityStyleUtilitiesMapping,
+
+	"padding-inline": PaddingInlineStyleUtilitiesMapping,
+
+	"border-bottom-width": BorderBottomWidthStyleUtilitiesMapping,
+
+	"grid-template-rows": GridTemplateRowsStyleUtilitiesMapping,
+
+	"offset-anchor": OffsetAnchorStyleUtilitiesMapping,
+
+	"vector-effect": VectorEffectStyleUtilitiesMapping,
+
+	"marker-end": MarkerEndStyleUtilitiesMapping,
+
+	"marker-mid": MarkerMidStyleUtilitiesMapping,
+
+	"border-block-end-color": BorderBlockEndColorStyleUtilitiesMapping,
+
+	"object-position": ObjectPositionStyleUtilitiesMapping,
+
+	"offset-path": OffsetPathStyleUtilitiesMapping,
+
+	"scroll-margin-inline-end": ScrollMarginInlineEndStyleUtilitiesMapping,
+
+	"border-collapse": BorderCollapseStyleUtilitiesMapping,
+
+	"border-top-right-radius": BorderTopRightRadiusStyleUtilitiesMapping,
+
+	"box-decoration-break": BoxDecorationBreakStyleUtilitiesMapping,
+
+	"mask-origin": MaskOriginStyleUtilitiesMapping,
+
+	"page-break-after": PageBreakAfterStyleUtilitiesMapping,
+
+	"text-transform": TextTransformStyleUtilitiesMapping,
+
+	"transform-rotate-z": TransformRotateZStyleUtilitiesMapping,
+
+	"justify-self": JustifySelfStyleUtilitiesMapping,
+
+	"resize": ResizeStyleUtilitiesMapping,
+
+	"border-inline-start-width": BorderInlineStartWidthStyleUtilitiesMapping,
+
+	"font-size": FontSizeStyleUtilitiesMapping,
+
+	"mask-border-repeat": MaskBorderRepeatStyleUtilitiesMapping,
+
+	"text-decoration-style": TextDecorationStyleStyleUtilitiesMapping,
+
+	"transform-scale": TransformScaleStyleUtilitiesMapping,
+
+	"clear": ClearStyleUtilitiesMapping,
+
+	"font-smooth": FontSmoothStyleUtilitiesMapping,
+
+	"max-lines": MaxLinesStyleUtilitiesMapping,
+
+	"scroll-padding-left": ScrollPaddingLeftStyleUtilitiesMapping,
+
+	"flood-color": FloodColorStyleUtilitiesMapping,
+
+	"column-rule-width": ColumnRuleWidthStyleUtilitiesMapping,
+
+	"transform-scale-x": TransformScaleXStyleUtilitiesMapping,
+
+	"word-spacing": WordSpacingStyleUtilitiesMapping,
+
+	"font-weight": FontWeightStyleUtilitiesMapping,
+
+	"image-rendering": ImageRenderingStyleUtilitiesMapping,
+
+	"counter-set": CounterSetStyleUtilitiesMapping,
+
+	"margin-inline-end": MarginInlineEndStyleUtilitiesMapping,
+
+	"order": OrderStyleUtilitiesMapping,
+
+	"border-start-start-radius": BorderStartStartRadiusStyleUtilitiesMapping,
+
+	"margin-block-end": MarginBlockEndStyleUtilitiesMapping,
+
+	"clip-path": ClipPathStyleUtilitiesMapping,
+
+	"padding-top": PaddingTopStyleUtilitiesMapping,
+
+	"text-orientation": TextOrientationStyleUtilitiesMapping,
+
+	"stroke-dashoffset": StrokeDashoffsetStyleUtilitiesMapping,
+
+	"border-inline-width": BorderInlineWidthStyleUtilitiesMapping,
+
+	"rotate": RotateStyleUtilitiesMapping,
+
+	"transform-rotate-x": TransformRotateXStyleUtilitiesMapping,
+
+	"azimuth": AzimuthStyleUtilitiesMapping,
+
+	"bottom": BottomStyleUtilitiesMapping,
+
+	"break-before": BreakBeforeStyleUtilitiesMapping,
+
+	"transition-duration": TransitionDurationStyleUtilitiesMapping,
+
+	"right": RightStyleUtilitiesMapping,
+
+	"text-decoration-line": TextDecorationLineStyleUtilitiesMapping,
+
+	"border-right-color": BorderRightColorStyleUtilitiesMapping,
+
+	"touch-action": TouchActionStyleUtilitiesMapping,
+
+	"will-change": WillChangeStyleUtilitiesMapping,
+
+	"padding-inline-start": PaddingInlineStartStyleUtilitiesMapping,
+
+	"scroll-margin-inline": ScrollMarginInlineStyleUtilitiesMapping,
+
+	"transform-scale-y": TransformScaleYStyleUtilitiesMapping,
+
+	"transform-translate-y": TransformTranslateYStyleUtilitiesMapping,
+
+	"left": LeftStyleUtilitiesMapping,
+
+	"mask-mode": MaskModeStyleUtilitiesMapping,
+
+	"padding-block": PaddingBlockStyleUtilitiesMapping,
+
+	"fill-opacity": FillOpacityStyleUtilitiesMapping,
+
+	"stroke": StrokeStyleUtilitiesMapping,
+
+	"break-after": BreakAfterStyleUtilitiesMapping,
+
+	"initial-letter-align": InitialLetterAlignStyleUtilitiesMapping,
+
+	"text-align-last": TextAlignLastStyleUtilitiesMapping,
+
+	"font-size-adjust": FontSizeAdjustStyleUtilitiesMapping,
+
+	"scroll-behavior": ScrollBehaviorStyleUtilitiesMapping,
+
+	"stop-opacity": StopOpacityStyleUtilitiesMapping,
+
+	"backface-visibility": BackfaceVisibilityStyleUtilitiesMapping,
+
+	"border-left-style": BorderLeftStyleStyleUtilitiesMapping,
+
+	"justify-tracks": JustifyTracksStyleUtilitiesMapping,
+
+	"mask-border-mode": MaskBorderModeStyleUtilitiesMapping,
+
+	"mix-blend-mode": MixBlendModeStyleUtilitiesMapping,
+
+	"scroll-snap-type-x": ScrollSnapTypeXStyleUtilitiesMapping,
+
+	"background-repeat": BackgroundRepeatStyleUtilitiesMapping,
+
+	"perspective-origin": PerspectiveOriginStyleUtilitiesMapping,
+
+	"scrollbar-gutter": ScrollbarGutterStyleUtilitiesMapping,
+
+	"fill-rule": FillRuleStyleUtilitiesMapping,
+
+	"width": WidthStyleUtilitiesMapping,
+
+	"background-position-y": BackgroundPositionYStyleUtilitiesMapping,
+
+	"border-inline-end-style": BorderInlineEndStyleStyleUtilitiesMapping,
+
+	"margin-block-start": MarginBlockStartStyleUtilitiesMapping,
+
+	"tab-size": TabSizeStyleUtilitiesMapping,
+
+	"border-spacing": BorderSpacingStyleUtilitiesMapping,
+
+	"mask-type": MaskTypeStyleUtilitiesMapping,
+
+	"padding-left": PaddingLeftStyleUtilitiesMapping,
+
+	"text-emphasis-position-second": TextEmphasisPositionSecondStyleUtilitiesMapping,
+
+	"animation-duration": AnimationDurationStyleUtilitiesMapping,
+
+	"background-origin": BackgroundOriginStyleUtilitiesMapping,
+
+	"zoom": ZoomStyleUtilitiesMapping,
+
+	"display": DisplayStyleUtilitiesMapping,
+
+	"math-style": MathStyleStyleUtilitiesMapping,
+
+	"scroll-margin-top": ScrollMarginTopStyleUtilitiesMapping,
+
+	"scroll-padding-block": ScrollPaddingBlockStyleUtilitiesMapping,
+
+	"background-color": BackgroundColorStyleUtilitiesMapping,
+
+	"border-bottom-style": BorderBottomStyleStyleUtilitiesMapping,
+
+	"column-rule-style": ColumnRuleStyleStyleUtilitiesMapping,
+
+	"translate": TranslateStyleUtilitiesMapping,
+
+	"dominant-baseline": DominantBaselineStyleUtilitiesMapping,
+
+	"border-inline-style": BorderInlineStyleStyleUtilitiesMapping,
+
+	"vertical-align": VerticalAlignStyleUtilitiesMapping,
+
+	"empty-cells": EmptyCellsStyleUtilitiesMapping,
+
+	"grid-column-end": GridColumnEndStyleUtilitiesMapping,
+
+	"border-width": BorderWidthStyleUtilitiesMapping,
+
+	"margin-right": MarginRightStyleUtilitiesMapping,
+
+	"min-block-size": MinBlockSizeStyleUtilitiesMapping,
+
+	"scale-left": ScaleLeftStyleUtilitiesMapping,
+
+	"font-variant-ligatures": FontVariantLigaturesStyleUtilitiesMapping,
+
+	"text-decoration-thickness": TextDecorationThicknessStyleUtilitiesMapping,
+
+	"max-inline-size": MaxInlineSizeStyleUtilitiesMapping,
+
+	"overflow-x": OverflowXStyleUtilitiesMapping,
+
+	"padding-bottom": PaddingBottomStyleUtilitiesMapping,
+
+	"text-underline-position": TextUnderlinePositionStyleUtilitiesMapping,
+
+	"border-right-style": BorderRightStyleStyleUtilitiesMapping,
+
+	"margin-inline": MarginInlineStyleUtilitiesMapping,
+
+	"transform-rotate-y": TransformRotateYStyleUtilitiesMapping,
+
+	"align-content": AlignContentStyleUtilitiesMapping,
+
+	"margin-block": MarginBlockStyleUtilitiesMapping,
+
+	"offset-rotate": OffsetRotateStyleUtilitiesMapping,
+
+	"transform-style": TransformStyleStyleUtilitiesMapping,
+
+	"offset-position": OffsetPositionStyleUtilitiesMapping,
+
+	"mask-border-slice": MaskBorderSliceStyleUtilitiesMapping,
+
+	"outline-color": OutlineColorStyleUtilitiesMapping,
+
+	"filter": FilterStyleUtilitiesMapping,
+
+	"overflow-wrap": OverflowWrapStyleUtilitiesMapping,
+
+	"scroll-margin-right": ScrollMarginRightStyleUtilitiesMapping,
+
+	"transform-skew-y": TransformSkewYStyleUtilitiesMapping,
+
+	"box-shadow": BoxShadowStyleUtilitiesMapping,
+
+	"box-sizing": BoxSizingStyleUtilitiesMapping,
+
+	"transform-scale-z": TransformScaleZStyleUtilitiesMapping,
+
+	"border-right-width": BorderRightWidthStyleUtilitiesMapping,
+
+	"flex-wrap": FlexWrapStyleUtilitiesMapping,
+
+	"scroll-margin": ScrollMarginStyleUtilitiesMapping,
+
+	"scroll-margin-block-end": ScrollMarginBlockEndStyleUtilitiesMapping,
+
+	"alignment-baseline": AlignmentBaselineStyleUtilitiesMapping,
+
+	"stroke-miterlimit": StrokeMiterlimitStyleUtilitiesMapping,
+
+	"perspective": PerspectiveStyleUtilitiesMapping,
+
+	"masonry-auto-flow": MasonryAutoFlowStyleUtilitiesMapping,
+
+	"scroll-snap-points-x": ScrollSnapPointsXStyleUtilitiesMapping,
+
+	"widows": WidowsStyleUtilitiesMapping,
+
+	"baseline-shift": BaselineShiftStyleUtilitiesMapping,
+
+	"margin-trim": MarginTrimStyleUtilitiesMapping,
+
+	"transition-timing-function": TransitionTimingFunctionStyleUtilitiesMapping,
+
+	"flex-shrink": FlexShrinkStyleUtilitiesMapping,
+
+	"hyphens": HyphensStyleUtilitiesMapping,
+
+	"place-content": PlaceContentStyleUtilitiesMapping,
+
+	"visibility": VisibilityStyleUtilitiesMapping,
+
+	"object-fit": ObjectFitStyleUtilitiesMapping,
+
+	"word-break": WordBreakStyleUtilitiesMapping,
+
+	"appearance": AppearanceStyleUtilitiesMapping,
+
+	"font-variant-numeric": FontVariantNumericStyleUtilitiesMapping,
+
+	"ime-mode": ImeModeStyleUtilitiesMapping,
+
+	"white-space": WhiteSpaceStyleUtilitiesMapping,
+
+	"caption-side": CaptionSideStyleUtilitiesMapping,
+
+	"column-count": ColumnCountStyleUtilitiesMapping,
+
+	"align-tracks": AlignTracksStyleUtilitiesMapping,
+
+	"font-kerning": FontKerningStyleUtilitiesMapping,
+
+	"inset-inline-start": InsetInlineStartStyleUtilitiesMapping,
+
+	"mask-size": MaskSizeStyleUtilitiesMapping,
+
+	"page-break-before": PageBreakBeforeStyleUtilitiesMapping,
+
+	"text-emphasis-position-first": TextEmphasisPositionFirstStyleUtilitiesMapping,
+
+	"background-position-x": BackgroundPositionXStyleUtilitiesMapping,
 }

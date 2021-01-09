@@ -2,10 +2,11 @@ package pages
 
 import (
 	"github.com/influx6/groundlayer/pkg/styled"
+	"github.com/influx6/groundlayer/pkg/styled/base"
 )
 
-var Theme = &styled.Theme{
-	Screens:   nil,
+var Theme = &base.Theme{
 	Colors:    nil,
-	Resolvers: nil,
+	Screens:   styled.TailwindUIScreens,
+	Resolvers: base.ThemeResolvers{},
 }
