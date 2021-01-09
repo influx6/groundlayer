@@ -167,7 +167,7 @@ func gzipBindataTemplatesProjectComponentsDropdownBlockshtml() (*gzipAsset, erro
 		size: 80,
 		md5checksum: "",
 		mode: os.FileMode(436),
-		modTime: time.Unix(1609587368, 0),
+		modTime: time.Unix(1610203264, 0),
 	}
 
 	a := &gzipAsset{bytes: bytes, info: info}
@@ -347,7 +347,7 @@ func gzipBindataTemplatesProjectPagesHelloIndexgo() (*gzipAsset, error) {
 		size: 754,
 		md5checksum: "",
 		mode: os.FileMode(436),
-		modTime: time.Unix(1609607488, 0),
+		modTime: time.Unix(1610203264, 0),
 	}
 
 	a := &gzipAsset{bytes: bytes, info: info}
@@ -384,7 +384,7 @@ func gzipBindataTemplatesProjectPagesIndexgo() (*gzipAsset, error) {
 		size: 1100,
 		md5checksum: "",
 		mode: os.FileMode(436),
-		modTime: time.Unix(1609671343, 0),
+		modTime: time.Unix(1610203264, 0),
 	}
 
 	a := &gzipAsset{bytes: bytes, info: info}
@@ -433,7 +433,7 @@ func gzipBindataTemplatesProjectPagesThemego() (*gzipAsset, error) {
 		size: 239,
 		md5checksum: "",
 		mode: os.FileMode(436),
-		modTime: time.Unix(1610203169, 0),
+		modTime: time.Unix(1610203264, 0),
 	}
 
 	a := &gzipAsset{bytes: bytes, info: info}
