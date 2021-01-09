@@ -8,6 +8,11 @@ Groundlayer combines the best ideas into a small but powerful library capable of
 performing server-rendered applications with ease. It's the culmination of all ideas running 
 through my head for years, each learnt through playing with different technologies.
 
+## Features
+
+- Project generator for quick start
+- Go Template based (heavily modified version)
+- Inbuilt css generation using [Tailwind CSS](https://tailwindcss.com/) styled directives (e.g `sm:text-500`)
 
 ## Getting
 
@@ -29,6 +34,10 @@ Then run the application:
 cd hello && go run main.go start --env-file=.env.dev
 ```
 
+## Note:
+
+Be kind, this is a lone project and due to time development and response may be slow, so if you have an idea or see an 
+issue, and can fix it, consider submitting a PR.
 
 ## Contact
 

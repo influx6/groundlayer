@@ -15,11 +15,14 @@ type Color Palette
 // URL represent a style url, image unit type in css (used by background-image, etc).
 type URL string
 
+const darkVariant = "dark"
+
 type Directive struct {
 	Screens  map[string]bool // screen variant
 	Variants []string        // other variants
 	Style    string          // the target style e.g text-gray-500, font-thin, ...etc
 	Negated  bool            // has a ! at the end of the style to negate giving styling.
+	Dark     bool
 }
 
 // ParseDirective parses incoming directive string, which we follow a simple format:
@@ -63,6 +66,11 @@ func ParseDirective(t string, theme *Theme) (Directive, error) {
 			directive.Screens[target] = true
 			continue
 		}
+		if strings.ToLower(target) == darkVariant {
+			directive.Dark = true
+			continue
+		}
+
 		filteredVariants = append(filteredVariants, target)
 	}
 
