@@ -2,17 +2,23 @@ package definitions
 
 type Unit string
 
-// pt is a standard unit
-const PT Unit = "pt"
+// pc is a standard unit
+const PC Unit = "pc"
 
-// vw is a standard unit
-const VW Unit = "vw"
+// ch is a standard unit
+const CH Unit = "ch"
 
-// vmax is a standard unit
-const VMAX Unit = "vmax"
+// deg is a standard unit
+const DEG Unit = "deg"
 
-// vmin is a standard unit
-const VMIN Unit = "vmin"
+// kHz is a standard unit
+const KHZ Unit = "kHz"
+
+// ms is a standard unit
+const MS Unit = "ms"
+
+// s is a standard unit
+const S Unit = "s"
 
 // x is a standard unit
 const X Unit = "x"
@@ -20,56 +26,50 @@ const X Unit = "x"
 // dpcm is a standard unit
 const DPCM Unit = "dpcm"
 
-// Hz is a standard unit
-const HZ Unit = "Hz"
-
-// px is a standard unit
-const PX Unit = "px"
-
-// turn is a standard unit
-const TURN Unit = "turn"
-
-// deg is a standard unit
-const DEG Unit = "deg"
-
-// in is a standard unit
-const IN Unit = "in"
-
-// rad is a standard unit
-const RAD Unit = "rad"
-
-// vh is a standard unit
-const VH Unit = "vh"
-
-// ch is a standard unit
-const CH Unit = "ch"
-
-// grad is a standard unit
-const GRAD Unit = "grad"
-
-// mm is a standard unit
-const MM Unit = "mm"
+// dppx is a standard unit
+const DPPX Unit = "dppx"
 
 // ex is a standard unit
 const EX Unit = "ex"
 
-// fr is a standard unit
-const FR Unit = "fr"
+// grad is a standard unit
+const GRAD Unit = "grad"
 
-// pc is a standard unit
-const PC Unit = "pc"
+// rad is a standard unit
+const RAD Unit = "rad"
 
-// s is a standard unit
-const S Unit = "s"
-
-// ms is a standard unit
-const MS Unit = "ms"
-
-// Q is a standard unit
-const Q Unit = "Q"
+// Hz is a standard unit
+const HZ Unit = "Hz"
 
 // rem is a standard unit
 const REM Unit = "rem"
+
+// pt is a standard unit
+const PT Unit = "pt"
+
+// vh is a standard unit
+const VH Unit = "vh"
+
+// vmin is a standard unit
+const VMIN Unit = "vmin"
+
+// in is a standard unit
+const IN Unit = "in"
+
+// mm is a standard unit
+const MM Unit = "mm"
+
+// px is a standard unit
+const PX Unit = "px"
+
+// vw is a standard unit
+const VW Unit = "vw"
+
+// turn is a standard unit
+const TURN Unit = "turn"
+
+// vmax is a standard unit
+const VMAX Unit = "vmax"
 
 // cm is a standard unit
 const CM Unit = "cm"
@@ -80,8 +80,8 @@ const DPI Unit = "dpi"
 // em is a standard unit
 const EM Unit = "em"
 
-// kHz is a standard unit
-const KHZ Unit = "kHz"
+// fr is a standard unit
+const FR Unit = "fr"
 
-// dppx is a standard unit
-const DPPX Unit = "dppx"
+// Q is a standard unit
+const Q Unit = "Q"

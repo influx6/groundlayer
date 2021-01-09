@@ -5,4 +5,4 @@
 //
 package styled
 
-//go:generate go run ./gen/sheet_gen.go
+//go:generate go run ./gen/sheets/sheet_gen.go

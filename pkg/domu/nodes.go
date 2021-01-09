@@ -2,6 +2,7 @@ package domu
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"math/rand"
 	"regexp"
@@ -404,6 +405,10 @@ func (n *Node) Apply(fns ...NodeFn) *Node {
 	return current
 }
 
+func (n *Node) Selector() string {
+	return fmt.Sprintf("%s#%s", n.Name(), n.ID())
+}
+
 // Err returns the current error found when adding into this node.
 func (n *Node) Err() error {
 	return n.err
@@ -736,6 +741,10 @@ func (n *Node) renderAttributes(build io.Writer, indented bool) error {
 		if err = encoder.QuotedString("atid", n.atid); err != nil {
 			return err
 		}
+	}
+
+	if err = encoder.QuotedString("id", n.idAttr); err != nil {
+		return err
 	}
 
 	if err = encoder.QuotedString("_tid", n.tid); err != nil {
@@ -1084,12 +1093,25 @@ func (n *Node) Mount(parent *Node) {
 	parent.AppendChild(n)
 }
 
+func (n *Node) prependChild(kid *Node) {
+	var capacity = len(n.kids)
+	var oldKids = n.kids
+	n.kids = make([]*Node, 0, capacity*2+1)
+
+	n.addChild(kid)
+	for _, kd := range oldKids {
+		n.addChild(kd)
+	}
+}
+
 func (n *Node) addChild(kid *Node) {
-	if len(n.kids) == cap(n.kids) {
+	if len(n.kids) == cap(n.kids) && len(n.kids) != 0 {
 		var newKids = make([]*Node, cap(n.kids)*2)
 		var written = copy(newKids, n.kids)
 		n.kids = newKids[:written]
 	}
+
+	kid.parent = n
 
 	var last = len(n.kids)
 	n.kids = append(n.kids, kid)
@@ -1102,8 +1124,55 @@ func (n *Node) addChild(kid *Node) {
 	lastChild.next.Flip(len(n.kids))
 }
 
-// AppendChild adds new child into node tree creating a relationship of child
-// and parent.
+// PrependChild adds new child at the top of list.
+//
+// Comment and Text nodes can't have children.
+//
+// Operation will fail if the node.Err() has an error.
+func (n *Node) PrependChild(kid *Node) {
+	if n.err != nil {
+		return
+	}
+
+	if kid.err != nil {
+		n.err = kid.err
+		return
+	}
+
+	if n == kid {
+		return
+	}
+
+	if n.Type() == CommentNode || n.Type() == TextNode {
+		n.SetErr(nerror.New("noop"))
+		return
+	}
+
+	if kid.nodeType == ReplicateNode {
+		kid.EachChild(func(node *Node, _ int) bool {
+			var cloned = node.Clone(true)
+			cloned.parent = n
+			n.prependChild(cloned)
+			return true
+		})
+		return
+	}
+
+	if kid.nodeType == CarrierNode {
+		kid.EachChild(func(node *Node, _ int) bool {
+			node.parent = n
+			n.prependChild(node)
+			return true
+		})
+		kid.kids = kid.kids[:0]
+		return
+	}
+
+	n.prependChild(kid)
+	kid.parent = n
+}
+
+// AppendChild adds new child into end of the list.
 //
 // Comment and Text nodes can't have children.
 //
